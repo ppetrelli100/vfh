@@ -60,7 +60,7 @@ if (S) {
       <div class="stats">
         <div class="stat"><b>${record(R)}</b><span>Record</span></div>
         <div class="stat"><b>${fmtPct(R.winPct)}</b><span>Win %</span></div>
-        <div class="stat"><b>${fmtInt(R.spPerGame)}</b><span>Points per game${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)} in Class ${esc(R.cls)}` : ''}</span></div>
+        <div class="stat"><b>${fmtInt(R.spPerGame)}</b><span>Saylor points per game${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)} in Class ${esc(R.cls)}` : ''}</span></div>
         <div class="stat"><b>${R.inW}-${R.inL}-${R.inT}</b><span>In class</span></div>
       </div>`;
     document.getElementById('tbl').innerHTML = `

@@ -48,7 +48,7 @@ if (S) {
 
       <h2>Seed order</h2>
       <div class="scroll"><table class="tbl">
-        <thead><tr><th class="l">Seed</th><th class="l">School</th><th>Pairings won</th><th>Points per game</th><th class="hide-sm">Points per game rank</th></tr></thead>
+        <thead><tr><th class="l">Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
         <tbody>${res.table.map((t) => `<tr${t.seed === 8 ? ' class="cut"' : ''}${t.seed > 8 ? ' style="opacity:.72"' : ''}>
           <td class="pos">${t.seed}</td>
           <td class="name"><a href="${gameUrl(t.name)}">${esc(t.name)}</a></td>
