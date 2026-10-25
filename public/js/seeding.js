@@ -36,7 +36,7 @@ if (S) {
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
     const side = (x) => x.name
-      ? `<div class="side"><span class="seedno${x.seed === 1 ? ' top' : ''}">${x.seed}</span><span class="tn">${logo(x.name, 26)}<span>${esc(x.name)}</span></span></div>`
+      ? `<div class="side"><span class="seedno">${x.seed}</span><span class="tn">${logo(x.name, 26)}<span>${esc(x.name)}</span></span></div>`
       : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`;
 
     out.innerHTML = `

@@ -145,7 +145,6 @@ input.invalid, select.invalid { border-color: var(--danger); background: var(--d
   display: inline-grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%;
   border: 2px solid rgba(255, 255, 255, .85); font-size: 13px; font-weight: 800; font-stretch: 100%;
 }
-.seedno.top { background: var(--ball); border-color: var(--ball); color: var(--ball-ink); }
 .pairs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 @media (min-width: 980px) { .pairs { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; } }
 .mx { border-collapse: collapse; font-stretch: 95%; }

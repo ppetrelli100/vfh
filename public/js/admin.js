@@ -85,6 +85,12 @@ function main() {
           </div>
           <div class="actions" style="margin-top:10px"><button type="button" class="btn ghost" id="ns-go">Create season</button><span class="status" id="ns-msg" role="status"></span></div>
         </div>
+        <div>
+          <h3 style="margin:0 0 4px">Remove a season</h3>
+          <p class="hint" style="margin:0 0 10px">Deletes the season with all of its games and its school list. This can't be undone.</p>
+          <div class="field"><label for="rm-pick">Season</label><select id="rm-pick">${S.seasons.map((s) => `<option value="${esc(s.id)}">${esc(s.label)}</option>`).join('')}</select></div>
+          <div class="actions" style="margin-top:10px"><button type="button" class="btn ghost" id="rm-go">Remove season</button><span class="status" id="rm-msg" role="status"></span></div>
+        </div>
       </div>
     </details>`;
 
@@ -112,6 +118,26 @@ function wireTools($) {
       loadMsg.className = 'status bad'; loadMsg.textContent = e.message;
       loadBtn.disabled = false; loadBtn.textContent = 'Load Fall 2024 season';
     }
+  });
+  const rmBtn = $('rm-go'), rmMsg = $('rm-msg'), rmPick = $('rm-pick');
+  let rmArmed = null;
+  const rmReset = () => { clearTimeout(rmArmed); rmArmed = null; rmBtn.textContent = 'Remove season'; };
+  if (!rmPick.options.length) rmBtn.disabled = true;
+  rmPick.addEventListener('change', () => { rmReset(); rmMsg.textContent = ''; });
+  rmBtn.addEventListener('click', async () => {
+    if (!rmArmed) {
+      rmBtn.textContent = `Click again to remove ${rmPick.options[rmPick.selectedIndex].text}`;
+      rmArmed = setTimeout(rmReset, 6000);
+      return;
+    }
+    const id = rmPick.value;
+    rmReset(); rmBtn.disabled = true;
+    try {
+      const r = await api(`/api/seasons/${encodeURIComponent(id)}`, { method: 'DELETE' });
+      rmMsg.className = 'status ok'; rmMsg.textContent = `Removed the season and its ${r.games} games.`;
+      if (store.get('vfh.season') === id) store.del('vfh.season');
+      setTimeout(() => { location.href = '/admin.html'; }, 900);
+    } catch (e) { rmMsg.className = 'status bad'; rmMsg.textContent = e.message; rmBtn.disabled = false; }
   });
   $('ns-go').addEventListener('click', async () => {
     const msg = $('ns-msg');
