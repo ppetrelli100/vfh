@@ -40,6 +40,7 @@ a:hover { color: var(--turf); }
   width: 15px; height: 15px; border-radius: 50%; background: var(--ball);
   box-shadow: inset -2px -3px 0 rgba(74, 58, 0, .22);
 }
+.logo { display: block; width: 44px; height: auto; }
 .brand-name { font-weight: 800; font-stretch: 125%; font-size: 18px; letter-spacing: -.01em; color: var(--ink); }
 .nav { display: flex; gap: 2px; margin-bottom: -1px; }
 .nav a {

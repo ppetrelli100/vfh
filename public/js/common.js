@@ -52,7 +52,7 @@ function renderChrome(active, data, me) {
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
     <div class="wrap bar">
-      <a class="brand" href="/"><span class="ball" aria-hidden="true"></span><span class="brand-name">Varsity Field Hockey</span></a>
+      <a class="brand" href="/"><img class="logo" src="/img/nepsac-logo.png" alt="" width="44" height="45"><span class="brand-name">Varsity Field Hockey</span></a>
       <nav class="nav" aria-label="Main">${items.map(([k, label, href]) =>
         `<a href="${href}"${k === active ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
       ${seasons.length ? `<label class="season"><span class="sr">Season</span>
