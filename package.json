@@ -1,0 +1,12 @@
+{
+  "name": "vfh",
+  "private": true,
+  "description": "Varsity field hockey rankings, seeding and score entry",
+  "scripts": {
+    "test": "node tests/ranking.test.js && node tests/seeding.test.js",
+    "dev": "wrangler pages dev public --d1=DB --port 8788 --binding DEV_ADMIN_EMAIL=local-admin@example.com"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

@@ -1,0 +1,5912 @@
+[
+ {
+  "date": "2025-09-07",
+  "home": "Wilbraham Monson",
+  "away": "Wheeler",
+  "homeScore": 2.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "C",
+  "row": 3
+ },
+ {
+  "date": "2025-09-07",
+  "home": "Austin Prep",
+  "away": "Mount Saint Charles",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 4
+ },
+ {
+  "date": "2025-09-07",
+  "home": "Hopkins",
+  "away": "Holy Child",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 5
+ },
+ {
+  "date": "2025-09-08",
+  "home": "Rocky Hill",
+  "away": "Wheeler",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": null,
+  "row": 6
+ },
+ {
+  "date": "2025-09-10",
+  "home": "Brewster",
+  "away": "Berwick",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 7
+ },
+ {
+  "date": "2025-09-10",
+  "home": "Greenwich CDS",
+  "away": "Greenwich Academy",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 8
+ },
+ {
+  "date": "2025-09-10",
+  "home": "SHG",
+  "away": "Holy Child",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 9
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Berkshire",
+  "away": "BBN",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 10
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Lexington Christian",
+  "away": "Kents Hill",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "C",
+  "row": 11
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Taft",
+  "away": "Milton",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 12
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Exeter",
+  "away": "New Hampton",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 13
+ },
+ {
+  "date": "2025-09-11",
+  "home": "St Georges",
+  "away": "Pomfret",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 14
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Holderness",
+  "away": "Tilton",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 15
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Dana Hall",
+  "away": "Beaver",
+  "homeScore": 2.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 16
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Montrose",
+  "away": "Concord",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 17
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Thayer",
+  "away": "Cushing",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 18
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Pingree",
+  "away": "Dexter",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 19
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Wheeler",
+  "away": "Marianapolis",
+  "homeScore": 11.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 20
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Tabor",
+  "away": "Portsmouth Abbey",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 21
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Choate",
+  "away": "Ethel Walker School",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 22
+ },
+ {
+  "date": "2025-09-11",
+  "home": "St Lukes",
+  "away": "Hopkins",
+  "homeScore": 3.0,
+  "awayScore": 4.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 23
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Miss Porters",
+  "away": "Kingswood Oxford",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 24
+ },
+ {
+  "date": "2025-09-11",
+  "home": "Hamden Hall",
+  "away": "King",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D4",
+  "row": 25
+ },
+ {
+  "date": "2025-09-12",
+  "home": "Cambridge",
+  "away": "Mount Saint Charles",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 26
+ },
+ {
+  "date": "2025-09-13",
+  "home": "Beaver",
+  "away": "Concord",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 27
+ },
+ {
+  "date": "2025-09-13",
+  "home": "Berwick",
+  "away": "Dana Hall",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 28
+ },
+ {
+  "date": "2025-09-13",
+  "home": "Montrose",
+  "away": "Lexington Christian",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 29
+ },
+ {
+  "date": "2025-09-13",
+  "home": "King",
+  "away": "Greenwich Academy",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 30
+ },
+ {
+  "date": "2025-09-14",
+  "home": "New Hampton",
+  "away": "Middlesex",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "C",
+  "row": 31
+ },
+ {
+  "date": "2025-09-14",
+  "home": "St Marks",
+  "away": "Williston",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 32
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Holderness",
+  "away": "Brewster",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 33
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Gould",
+  "away": "Tilton",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 34
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Thayer",
+  "away": "Andover",
+  "homeScore": 1.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "D3",
+  "row": 35
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Brooks",
+  "away": "Austin Prep",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 36
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Pingree",
+  "away": "BBN",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 37
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Tabor",
+  "away": "Exeter",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 38
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Cushing",
+  "away": "Governors",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 39
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Dana Hall",
+  "away": "Lawrence Academy",
+  "homeScore": 0.0,
+  "awayScore": 9.0,
+  "note": null,
+  "division": "D3",
+  "row": 40
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Dexter",
+  "away": "St Georges",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 41
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Groton",
+  "away": "St Pauls",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 42
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Berwick",
+  "away": "Wheeler",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 43
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Portsmouth Abbey",
+  "away": "Winsor",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 44
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Deerfield",
+  "away": "Berkshire",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 45
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Westminster",
+  "away": "Ethel Walker School",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 46
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Canterbury",
+  "away": "Greenwich CDS",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 47
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Suffield",
+  "away": "Holy Child",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 48
+ },
+ {
+  "date": "2025-09-14",
+  "home": "SHG",
+  "away": "Kent",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 49
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Millbrook",
+  "away": "Marianapolis",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "FFT",
+  "division": "D4",
+  "row": 50
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Wilbraham Monson",
+  "away": "Miss Porters",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 51
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Frederick Gunn",
+  "away": "NMH",
+  "homeScore": 4.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 52
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Greens Farms",
+  "away": "Pomfret",
+  "homeScore": 8.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 53
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Hopkins",
+  "away": "Rye CDS",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 54
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Kingswood Oxford",
+  "away": "St Lukes",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 55
+ },
+ {
+  "date": "2025-09-14",
+  "home": "Choate",
+  "away": "Taft",
+  "homeScore": 1.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D4",
+  "row": 56
+ },
+ {
+  "date": "2025-09-16",
+  "home": "Lexington Christian",
+  "away": "Cambridge",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 57
+ },
+ {
+  "date": "2025-09-16",
+  "home": "Wheeler",
+  "away": "Mount Saint Charles",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 58
+ },
+ {
+  "date": "2025-09-16",
+  "home": "Nobles",
+  "away": "Pingree",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 59
+ },
+ {
+  "date": "2025-09-16",
+  "home": "Rivers",
+  "away": "Worcester",
+  "homeScore": 10.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 60
+ },
+ {
+  "date": "2025-09-16",
+  "home": "SHG",
+  "away": "Hopkins",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 61
+ },
+ {
+  "date": "2025-09-16",
+  "home": "Berkshire",
+  "away": "Hotchkiss",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 62
+ },
+ {
+  "date": "2025-09-17",
+  "home": "Newton CDS",
+  "away": "Lexington Christian",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 63
+ },
+ {
+  "date": "2025-09-17",
+  "home": "Greenwich CDS",
+  "away": "King",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 64
+ },
+ {
+  "date": "2025-09-17",
+  "home": "Rye CDS",
+  "away": "St Lukes",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 65
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Kents Hill",
+  "away": "Berwick",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "C",
+  "row": 66
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Groton",
+  "away": "Holderness",
+  "homeScore": 10.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 67
+ },
+ {
+  "date": "2025-09-18",
+  "home": "St Marks",
+  "away": "Loomis",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 68
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Worcester",
+  "away": "Marianapolis",
+  "homeScore": 9.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 69
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Brewster",
+  "away": "New Hampton",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 70
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Kimball Union",
+  "away": "Proctor",
+  "homeScore": 0.0,
+  "awayScore": 0.0,
+  "note": "OT",
+  "division": "D1/2",
+  "row": 71
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Lawrence Academy",
+  "away": "Andover",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 72
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Mount Saint Charles",
+  "away": "Austin Prep",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 73
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Winsor",
+  "away": "BBN",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 74
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Portsmouth Abbey",
+  "away": "Concord",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 75
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Middlesex",
+  "away": "Cushing",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 76
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Rivers",
+  "away": "Dexter",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 77
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Tabor",
+  "away": "Governors",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 78
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Exeter",
+  "away": "Milton",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 79
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Dana Hall",
+  "away": "Montrose",
+  "homeScore": 4.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 80
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Beaver",
+  "away": "Pingree",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 81
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Thayer",
+  "away": "St Pauls",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 82
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Miss Porters",
+  "away": "Canterbury",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 83
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Greenwich Academy",
+  "away": "Choate",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 84
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Millbrook",
+  "away": "Hamden Hall",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 85
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Kingswood Oxford",
+  "away": "Hopkins",
+  "homeScore": 3.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 86
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Frederick Gunn",
+  "away": "Kent",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 87
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Deerfield",
+  "away": "Pomfret",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 88
+ },
+ {
+  "date": "2025-09-18",
+  "home": "Taft",
+  "away": "SHG",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 89
+ },
+ {
+  "date": "2025-09-18",
+  "home": "NMH",
+  "away": "Suffield",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 90
+ },
+ {
+  "date": "2025-09-19",
+  "home": "Holy Child",
+  "away": "King",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 91
+ },
+ {
+  "date": "2025-09-20",
+  "home": "Tilton",
+  "away": "Kimball Union",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "C",
+  "row": 92
+ },
+ {
+  "date": "2025-09-20",
+  "home": "Concord",
+  "away": "Beaver",
+  "homeScore": 6.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 93
+ },
+ {
+  "date": "2025-09-20",
+  "home": "Worcester",
+  "away": "Dana Hall",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 94
+ },
+ {
+  "date": "2025-09-20",
+  "home": "Lexington Christian",
+  "away": "Mount Saint Charles",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 95
+ },
+ {
+  "date": "2025-09-20",
+  "home": "Dexter",
+  "away": "St Marks",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 96
+ },
+ {
+  "date": "2025-09-20",
+  "home": "Nobles",
+  "away": "St Pauls",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 97
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Loomis",
+  "away": "Andover",
+  "homeScore": 0.0,
+  "awayScore": 9.0,
+  "note": null,
+  "division": "C",
+  "row": 98
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Williston",
+  "away": "BBN",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "C",
+  "row": 99
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Kingswood Oxford",
+  "away": "Worcester",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 100
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Brewster",
+  "away": "Hebron",
+  "homeScore": 10.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 101
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Holderness",
+  "away": "Kimball Union",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 102
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Proctor",
+  "away": "New Hampton",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 103
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Austin Prep",
+  "away": "Dexter",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 104
+ },
+ {
+  "date": "2025-09-21",
+  "home": "St Georges",
+  "away": "Groton",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 105
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Wheeler",
+  "away": "Newton CDS",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 106
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Brooks",
+  "away": "Pingree",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 107
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Cushing",
+  "away": "Portsmouth Abbey",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 108
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Middlesex",
+  "away": "St Marks",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 109
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Rivers",
+  "away": "Tabor",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 110
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Governors",
+  "away": "Thayer",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 111
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Berwick",
+  "away": "Winsor",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 112
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Taft",
+  "away": "Canterbury",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 113
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Rye CDS",
+  "away": "Frederick Gunn",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 114
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Pomfret",
+  "away": "Hopkins",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 115
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Deerfield",
+  "away": "Hotchkiss",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 116
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Kent",
+  "away": "Miss Porters",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 117
+ },
+ {
+  "date": "2025-09-21",
+  "home": "King",
+  "away": "SHG",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 118
+ },
+ {
+  "date": "2025-09-21",
+  "home": "NMH",
+  "away": "Westminster",
+  "homeScore": 3.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 119
+ },
+ {
+  "date": "2025-09-21",
+  "home": "Hamden Hall",
+  "away": "Wilbraham Monson",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 120
+ },
+ {
+  "date": "2025-09-23",
+  "home": "Montrose",
+  "away": "Mount Saint Charles",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 121
+ },
+ {
+  "date": "2025-09-23",
+  "home": "Lexington Christian",
+  "away": "Pingree",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 122
+ },
+ {
+  "date": "2025-09-23",
+  "home": "Greens Farms",
+  "away": "Holy Child",
+  "homeScore": 10.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 123
+ },
+ {
+  "date": "2025-09-24",
+  "home": "Thayer",
+  "away": "Milton",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 124
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Pomfret",
+  "away": "Dexter",
+  "homeScore": 1.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "C",
+  "row": 125
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Proctor",
+  "away": "Groton",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "C",
+  "row": 126
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Portsmouth Abbey",
+  "away": "Marianapolis",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "7v7**",
+  "division": "C",
+  "row": 127
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Deerfield",
+  "away": "Milton",
+  "homeScore": 6.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 128
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Kimball Union",
+  "away": "NMH",
+  "homeScore": 5.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "C",
+  "row": 129
+ },
+ {
+  "date": "2025-09-25",
+  "home": "New Hampton",
+  "away": "Tilton",
+  "homeScore": 8.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "C",
+  "row": 130
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Brewster",
+  "away": "Gould",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 131
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Hebron",
+  "away": "Kents Hill",
+  "homeScore": 1.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 132
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Worcester",
+  "away": "Beaver",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 133
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Lexington Christian",
+  "away": "Berwick",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 134
+ },
+ {
+  "date": "2025-09-25",
+  "home": "St Marks",
+  "away": "Brooks",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 135
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Cushing",
+  "away": "Lawrence Academy",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 136
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Tabor",
+  "away": "Middlesex",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 137
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Concord",
+  "away": "Newton CDS",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 138
+ },
+ {
+  "date": "2025-09-25",
+  "home": "BBN",
+  "away": "Nobles",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 139
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Dana Hall",
+  "away": "Pingree",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 140
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Governors",
+  "away": "St Georges",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 141
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Rivers",
+  "away": "St Pauls",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 142
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Winsor",
+  "away": "Wheeler",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 143
+ },
+ {
+  "date": "2025-09-25",
+  "home": "St Lukes",
+  "away": "Canterbury",
+  "homeScore": 3.0,
+  "awayScore": 4.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 144
+ },
+ {
+  "date": "2025-09-25",
+  "home": "King",
+  "away": "Ethel Walker School",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 145
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Hopkins",
+  "away": "Greenwich Academy",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 146
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Holy Child",
+  "away": "Greenwich CDS",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 147
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Taft",
+  "away": "Frederick Gunn",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 148
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Kingswood Oxford",
+  "away": "Loomis",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D4",
+  "row": 149
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Berkshire",
+  "away": "Millbrook",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 150
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Suffield",
+  "away": "Miss Porters",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 151
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Greens Farms",
+  "away": "Rye CDS",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 152
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Choate",
+  "away": "SHG",
+  "homeScore": 1.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 153
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Kent",
+  "away": "Westminster",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 154
+ },
+ {
+  "date": "2025-09-25",
+  "home": "Hotchkiss",
+  "away": "Williston",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 155
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Pingree",
+  "away": "Holderness",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 156
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Beaver",
+  "away": "Berwick",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 157
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Mount Saint Charles",
+  "away": "Dana Hall",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 158
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Thayer",
+  "away": "Dexter",
+  "homeScore": 2.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 159
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Newton CDS",
+  "away": "Portsmouth Abbey",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 160
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Governors",
+  "away": "Rivers",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 161
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Pomfret",
+  "away": "Westminster",
+  "homeScore": 3.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 162
+ },
+ {
+  "date": "2025-09-27",
+  "home": "Suffield",
+  "away": "Wilbraham Monson",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 163
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Cushing",
+  "away": "Brewster",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 164
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Exeter",
+  "away": "Deerfield",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 165
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Tilton",
+  "away": "Kents Hill",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 166
+ },
+ {
+  "date": "2025-09-28",
+  "home": "St Pauls",
+  "away": "NMH",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 167
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Austin Prep",
+  "away": "SHG",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "C",
+  "row": 168
+ },
+ {
+  "date": "2025-09-28",
+  "home": "New Hampton",
+  "away": "Winsor",
+  "homeScore": 5.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 169
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Marianapolis",
+  "away": "Worcester",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "Cancelled",
+  "division": "C",
+  "row": 170
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Hebron",
+  "away": "Gould",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 171
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Dexter",
+  "away": "BBN",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 172
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Brooks",
+  "away": "Groton",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 173
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Portsmouth Abbey",
+  "away": "Lexington Christian",
+  "homeScore": 7.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 174
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Milton",
+  "away": "Middlesex",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 175
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Rocky Hill",
+  "away": "Mount Saint Charles",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 176
+ },
+ {
+  "date": "2025-09-28",
+  "home": "St Georges",
+  "away": "Nobles",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 177
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Lawrence Academy",
+  "away": "St Marks",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 178
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Andover",
+  "away": "Tabor",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 179
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Westminster",
+  "away": "Choate",
+  "homeScore": 6.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 180
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Greens Farms",
+  "away": "Ethel Walker School",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 181
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Holy Child",
+  "away": "Frederick Gunn",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 182
+ },
+ {
+  "date": "2025-09-28",
+  "home": "King",
+  "away": "Hamden Hall",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 183
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Greenwich CDS",
+  "away": "Hopkins",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 184
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Greenwich Academy",
+  "away": "Hotchkiss",
+  "homeScore": 4.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 185
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Berkshire",
+  "away": "Kent",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 186
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Williston",
+  "away": "Millbrook",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 187
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Canterbury",
+  "away": "Pomfret",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 188
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Miss Porters",
+  "away": "St Lukes",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 189
+ },
+ {
+  "date": "2025-09-28",
+  "home": "Loomis",
+  "away": "Taft",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 190
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Newton CDS",
+  "away": "Lawrence Academy",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 191
+ },
+ {
+  "date": "2025-09-30",
+  "home": "St Pauls",
+  "away": "New Hampton",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 192
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Austin Prep",
+  "away": "Rivers",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 193
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Portsmouth Abbey",
+  "away": "St Georges",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 194
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Frederick Gunn",
+  "away": "Berkshire",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 195
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Taft",
+  "away": "Greenwich Academy",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 196
+ },
+ {
+  "date": "2025-09-30",
+  "home": "King",
+  "away": "Greens Farms",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 197
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Rye CDS",
+  "away": "Hamden Hall",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 198
+ },
+ {
+  "date": "2025-09-30",
+  "home": "Choate",
+  "away": "Kingswood Oxford",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": "was 9/16",
+  "division": "D4",
+  "row": 199
+ },
+ {
+  "date": "2025-10-01",
+  "home": "Berwick",
+  "away": "Hebron",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "Cancelled",
+  "division": "D1/2",
+  "row": 200
+ },
+ {
+  "date": "2025-10-01",
+  "home": "Andover",
+  "away": "Brooks",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 201
+ },
+ {
+  "date": "2025-10-01",
+  "home": "Tabor",
+  "away": "Nobles",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 202
+ },
+ {
+  "date": "2025-10-01",
+  "home": "Concord",
+  "away": "Wheeler",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "cancelled",
+  "division": "D3",
+  "row": 203
+ },
+ {
+  "date": "2025-10-01",
+  "home": "Winsor",
+  "away": "Worcester",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 204
+ },
+ {
+  "date": "2025-10-01",
+  "home": "St Lukes",
+  "away": "Greenwich Academy",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 205
+ },
+ {
+  "date": "2025-10-02",
+  "home": "New Hampton",
+  "away": "Cushing",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 206
+ },
+ {
+  "date": "2025-10-02",
+  "home": "St Pauls",
+  "away": "Kimball Union",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 207
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Wilbraham Monson",
+  "away": "Lexington Christian",
+  "homeScore": 6.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 208
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Tilton",
+  "away": "Holderness",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 209
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Brewster",
+  "away": "Kents Hill",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 210
+ },
+ {
+  "date": "2025-10-02",
+  "home": "St Marks",
+  "away": "BBN",
+  "homeScore": 3.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 211
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Andover",
+  "away": "Governors",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 212
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Middlesex",
+  "away": "Lawrence Academy",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 213
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Groton",
+  "away": "Milton",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 214
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Dana Hall",
+  "away": "Rivers",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 215
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Proctor",
+  "away": "St Georges",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "cancelled",
+  "division": "D3",
+  "row": 216
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Brooks",
+  "away": "Thayer",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 217
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Millbrook",
+  "away": "Canterbury",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 218
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Loomis",
+  "away": "Ethel Walker School",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 219
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Hopkins",
+  "away": "Greens Farms",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 220
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Berkshire",
+  "away": "Kingswood Oxford",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 221
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Pomfret",
+  "away": "Marianapolis",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "7v7",
+  "division": "D4",
+  "row": 222
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Westminster",
+  "away": "Miss Porters",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 223
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Deerfield",
+  "away": "NMH",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 224
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Greenwich CDS",
+  "away": "SHG",
+  "homeScore": 1.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D4",
+  "row": 225
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Frederick Gunn",
+  "away": "Suffield",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 226
+ },
+ {
+  "date": "2025-10-02",
+  "home": "Kent",
+  "away": "Williston",
+  "homeScore": 2.0,
+  "awayScore": 11.0,
+  "note": null,
+  "division": "D4",
+  "row": 227
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Worcester",
+  "away": "Wilbraham Monson",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 228
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Governors",
+  "away": "Austin Prep",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 229
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Wheeler",
+  "away": "Concord",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 230
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Newton CDS",
+  "away": "Dana Hall",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 231
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Beaver",
+  "away": "Portsmouth Abbey",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 232
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Tilton",
+  "away": "Proctor",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 233
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Cushing",
+  "away": "St Marks",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 234
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Lexington Christian",
+  "away": "Winsor",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 235
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Williston",
+  "away": "Berkshire",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 236
+ },
+ {
+  "date": "2025-10-04",
+  "home": "Ethel Walker School",
+  "away": "Pomfret",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 237
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Austin Prep",
+  "away": "Kents Hill",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 238
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Deerfield",
+  "away": "St Pauls",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 239
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Choate",
+  "away": "Andover",
+  "homeScore": 0.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "C",
+  "row": 240
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Gould",
+  "away": "Brewster",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 241
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Kimball Union",
+  "away": "Holderness",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D1/2",
+  "row": 242
+ },
+ {
+  "date": "2025-10-05",
+  "home": "New Hampton",
+  "away": "Proctor",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 243
+ },
+ {
+  "date": "2025-10-05",
+  "home": "BBN",
+  "away": "Governors",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 244
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Brooks",
+  "away": "Middlesex",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 245
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Pingree",
+  "away": "Mount Saint Charles",
+  "homeScore": 10.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 246
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Exeter",
+  "away": "Nobles",
+  "homeScore": 2.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 247
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Groton",
+  "away": "Rivers",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 248
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Marianapolis",
+  "away": "Rocky Hill",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "cancelled",
+  "division": "D3",
+  "row": 249
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Lawrence Academy",
+  "away": "St Georges",
+  "homeScore": 5.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 250
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Thayer",
+  "away": "Tabor",
+  "homeScore": 2.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 251
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Greenwich CDS",
+  "away": "Frederick Gunn",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 252
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Canterbury",
+  "away": "Hopkins",
+  "homeScore": 9.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 253
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Greenwich Academy",
+  "away": "Kent",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 254
+ },
+ {
+  "date": "2025-10-05",
+  "home": "King",
+  "away": "Millbrook",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 255
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Hotchkiss",
+  "away": "NMH",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 256
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Greens Farms",
+  "away": "Suffield",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 257
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Miss Porters",
+  "away": "Taft",
+  "homeScore": 1.0,
+  "awayScore": 9.0,
+  "note": null,
+  "division": "D4",
+  "row": 258
+ },
+ {
+  "date": "2025-10-05",
+  "home": "Loomis",
+  "away": "Westminster",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 259
+ },
+ {
+  "date": "2025-10-07",
+  "home": "Milton",
+  "away": "Lawrence Academy",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 260
+ },
+ {
+  "date": "2025-10-07",
+  "home": "Frederick Gunn",
+  "away": "Greens Farms",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 261
+ },
+ {
+  "date": "2025-10-07",
+  "home": "Millbrook",
+  "away": "Kent",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 262
+ },
+ {
+  "date": "2025-10-08",
+  "home": "Concord",
+  "away": "Lexington Christian",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 263
+ },
+ {
+  "date": "2025-10-08",
+  "home": "Greenwich Academy",
+  "away": "Rye CDS",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 264
+ },
+ {
+  "date": "2025-10-08",
+  "home": "Hamden Hall",
+  "away": "Greenwich CDS",
+  "homeScore": 0.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "D4",
+  "row": 265
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Tilton",
+  "away": "Brewster",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 266
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Proctor",
+  "away": "Brooks",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 267
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Austin Prep",
+  "away": "Williston",
+  "homeScore": 1.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "C",
+  "row": 268
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Pomfret",
+  "away": "Cushing",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 269
+ },
+ {
+  "date": "2025-10-09",
+  "home": "St Pauls",
+  "away": "Holderness",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 270
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Gould",
+  "away": "Kents Hill",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 271
+ },
+ {
+  "date": "2025-10-09",
+  "home": "New Hampton",
+  "away": "Kimball Union",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 272
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Beaver",
+  "away": "Wheeler",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 273
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Dana Hall",
+  "away": "Portsmouth Abbey",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 274
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Dexter",
+  "away": "Winsor",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 275
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Groton",
+  "away": "Thayer",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 276
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Lawrence Academy",
+  "away": "Tabor",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 277
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Middlesex",
+  "away": "Governors",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 278
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Milton",
+  "away": "Andover",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 279
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Nobles",
+  "away": "St Marks",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 280
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Pingree",
+  "away": "Exeter",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 281
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Rivers",
+  "away": "BBN",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 282
+ },
+ {
+  "date": "2025-10-09",
+  "home": "St Georges",
+  "away": "Mount Saint Charles",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 283
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Choate",
+  "away": "Canterbury",
+  "homeScore": 7.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 284
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Taft",
+  "away": "Berkshire",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 285
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Marianapolis",
+  "away": "Ethel Walker School",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "cancelled",
+  "division": "D4",
+  "row": 286
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Kingswood Oxford",
+  "away": "Kent",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 287
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Miss Porters",
+  "away": "Hopkins",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 288
+ },
+ {
+  "date": "2025-10-09",
+  "home": "SHG",
+  "away": "Loomis",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 289
+ },
+ {
+  "date": "2025-10-09",
+  "home": "Hotchkiss",
+  "away": "Westminster",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 290
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Hamden Hall",
+  "away": "Mount Saint Charles",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 291
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Berwick",
+  "away": "Newton CDS",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 292
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Dana Hall",
+  "away": "Concord",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 293
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Lexington Christian",
+  "away": "Montrose",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 294
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Winsor",
+  "away": "Pingree",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 295
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Worcester",
+  "away": "Dexter",
+  "homeScore": 1.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "D3",
+  "row": 296
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Greenwich Academy",
+  "away": "Greens Farms",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 297
+ },
+ {
+  "date": "2025-10-10",
+  "home": "Rye CDS",
+  "away": "Holy Child",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 298
+ },
+ {
+  "date": "2025-10-10",
+  "home": "King",
+  "away": "St Lukes",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 299
+ },
+ {
+  "date": "2025-10-11",
+  "home": "NMH",
+  "away": "Exeter",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "C",
+  "row": 300
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Proctor",
+  "away": "Kimball Union",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D1/2",
+  "row": 301
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Andover",
+  "away": "St Pauls",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 302
+ },
+ {
+  "date": "2025-10-11",
+  "home": "BBN",
+  "away": "Milton",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 303
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Brooks",
+  "away": "Rivers",
+  "homeScore": 4.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 304
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Governors",
+  "away": "Lawrence Academy",
+  "homeScore": 3.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 305
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Middlesex",
+  "away": "Groton",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 306
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Portsmouth Abbey",
+  "away": "Wheeler",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 307
+ },
+ {
+  "date": "2025-10-11",
+  "home": "St Georges",
+  "away": "St Marks",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 308
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Thayer",
+  "away": "Nobles",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 309
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Suffield",
+  "away": "Berkshire",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 310
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Deerfield",
+  "away": "Loomis",
+  "homeScore": 4.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 311
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Frederick Gunn",
+  "away": "Millbrook",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 312
+ },
+ {
+  "date": "2025-10-11",
+  "home": "Kingswood Oxford",
+  "away": "Pomfret",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 313
+ },
+ {
+  "date": "2025-10-11",
+  "home": "SHG",
+  "away": "Hotchkiss",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 314
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Ethel Walker School",
+  "away": "Kimball Union",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 315
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Holderness",
+  "away": "New Hampton",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 316
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Kents Hill",
+  "away": "Hebron",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 317
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Proctor",
+  "away": "Brewster",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D1/2",
+  "row": 318
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Austin Prep",
+  "away": "Cushing",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 319
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Portsmouth Abbey",
+  "away": "Mount Saint Charles",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 320
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Canterbury",
+  "away": "Wilbraham Monson",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 321
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Williston",
+  "away": "Westminster",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 322
+ },
+ {
+  "date": "2025-10-12",
+  "home": "Holy Child",
+  "away": "Kent",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 323
+ },
+ {
+  "date": "2025-10-14",
+  "home": "Miss Porters",
+  "away": "Hamden Hall",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 324
+ },
+ {
+  "date": "2025-10-15",
+  "home": "SHG",
+  "away": "Greenwich Academy",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 325
+ },
+ {
+  "date": "2025-10-15",
+  "home": "St Lukes",
+  "away": "Greenwich CDS",
+  "homeScore": 0.0,
+  "awayScore": 0.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 326
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Cushing",
+  "away": "NMH",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 327
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Holderness",
+  "away": "Berwick",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 328
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Tilton",
+  "away": "New Hampton",
+  "homeScore": 3.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "C",
+  "row": 329
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Proctor",
+  "away": "St Pauls",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 330
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Beaver",
+  "away": "Marianapolis",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "cancelled",
+  "division": "C",
+  "row": 331
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Brewster",
+  "away": "Kimball Union",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D1/2",
+  "row": 332
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Andover",
+  "away": "Middlesex",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 333
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Brooks",
+  "away": "St Georges",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 334
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Concord",
+  "away": "Dana Hall",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 335
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Exeter",
+  "away": "Austin Prep",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 336
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Lawrence Academy",
+  "away": "Worcester",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 337
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Milton",
+  "away": "St Marks",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 338
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Mount Saint Charles",
+  "away": "Rocky Hill",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 339
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Newton CDS",
+  "away": "Winsor",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 340
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Nobles",
+  "away": "Groton",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 341
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Pingree",
+  "away": "Governors",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 342
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Portsmouth Abbey",
+  "away": "Dexter",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 343
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Tabor",
+  "away": "BBN",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 344
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Thayer",
+  "away": "Rivers",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 345
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Wheeler",
+  "away": "Lexington Christian",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 346
+ },
+ {
+  "date": "2025-10-16",
+  "home": "St Lukes",
+  "away": "Frederick Gunn",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 347
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Berkshire",
+  "away": "Greenwich CDS",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": "moved from 9/21",
+  "division": "D4",
+  "row": 348
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Greens Farms",
+  "away": "Choate",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 349
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Suffield",
+  "away": "Pomfret",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 350
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Kingswood Oxford",
+  "away": "Wilbraham Monson",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 351
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Millbrook",
+  "away": "Ethel Walker School",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 352
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Hotchkiss",
+  "away": "Kent",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 353
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Miss Porters",
+  "away": "Loomis",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 354
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Williston",
+  "away": "Taft",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 355
+ },
+ {
+  "date": "2025-10-16",
+  "home": "Westminster",
+  "away": "Deerfield",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 356
+ },
+ {
+  "date": "2025-10-17",
+  "home": "Rye CDS",
+  "away": "SHG",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D4",
+  "row": 357
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Cambridge",
+  "away": "Kents Hill",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 358
+ },
+ {
+  "date": "2025-10-18",
+  "home": "New Hampton",
+  "away": "Holderness",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 359
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Dana Hall",
+  "away": "Wheeler",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 360
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Groton",
+  "away": "BBN",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 361
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Newton CDS",
+  "away": "Beaver",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 362
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Milton",
+  "away": "Rivers",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 363
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Winsor",
+  "away": "Austin Prep",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 364
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Middlesex",
+  "away": "Nobles",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 365
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Westminster",
+  "away": "Kingswood Oxford",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 366
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Berkshire",
+  "away": "Canterbury",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 367
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Holy Child",
+  "away": "Greenwich Academy",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 368
+ },
+ {
+  "date": "2025-10-18",
+  "home": "Loomis",
+  "away": "Choate",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 369
+ },
+ {
+  "date": "2025-10-19",
+  "home": "NMH",
+  "away": "Andover",
+  "homeScore": 0.0,
+  "awayScore": 11.0,
+  "note": null,
+  "division": "C",
+  "row": 370
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Austin Prep",
+  "away": "Greens Farms",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "C",
+  "row": 371
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Kimball Union",
+  "away": "Tilton",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "OT",
+  "division": "C",
+  "row": 372
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Brewster",
+  "away": "Proctor",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 373
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Gould",
+  "away": "Hebron",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 374
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Concord",
+  "away": "Pingree",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 375
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Dexter",
+  "away": "Worcester",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 376
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Exeter",
+  "away": "Brooks",
+  "homeScore": 2.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 377
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Lawrence Academy",
+  "away": "Thayer",
+  "homeScore": 5.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 378
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Lexington Christian",
+  "away": "Rocky Hill",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 379
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Portsmouth Abbey",
+  "away": "Beaver",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 380
+ },
+ {
+  "date": "2025-10-19",
+  "home": "St Georges",
+  "away": "Tabor",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 381
+ },
+ {
+  "date": "2025-10-19",
+  "home": "St Marks",
+  "away": "Governors",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 382
+ },
+ {
+  "date": "2025-10-19",
+  "home": "St Pauls",
+  "away": "Cushing",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 383
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Hamden Hall",
+  "away": "Marianapolis",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 384
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Kent",
+  "away": "Ethel Walker School",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 385
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Millbrook",
+  "away": "SHG",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 386
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Hotchkiss",
+  "away": "Choate",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 387
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Wilbraham Monson",
+  "away": "Frederick Gunn",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 388
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Taft",
+  "away": "Deerfield",
+  "homeScore": 4.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 389
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Hopkins",
+  "away": "King",
+  "homeScore": 2.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D4",
+  "row": 390
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Loomis",
+  "away": "Suffield",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 391
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Pomfret",
+  "away": "Williston",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 392
+ },
+ {
+  "date": "2025-10-19",
+  "home": "Rye CDS",
+  "away": "Masters",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 393
+ },
+ {
+  "date": "2025-10-19",
+  "home": "St Lukes",
+  "away": "Holy Child",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 394
+ },
+ {
+  "date": "2025-10-21",
+  "home": "Berwick",
+  "away": "Pingree",
+  "homeScore": 1.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "D3",
+  "row": 395
+ },
+ {
+  "date": "2025-10-21",
+  "home": "Greens Farms",
+  "away": "SHG",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 396
+ },
+ {
+  "date": "2025-10-21",
+  "home": "Kingswood Oxford",
+  "away": "Hamden Hall",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 397
+ },
+ {
+  "date": "2025-10-22",
+  "home": "Mount Saint Charles",
+  "away": "Cambridge",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 398
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Deerfield",
+  "away": "Worcester",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 399
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Portsmouth Abbey",
+  "away": "Pomfret",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 400
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Rocky Hill",
+  "away": "Marianapolis",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 401
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Kimball Union",
+  "away": "Exeter",
+  "homeScore": 2.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "C",
+  "row": 402
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Tilton",
+  "away": "Hebron",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 403
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Brewster",
+  "away": "Holderness",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "C",
+  "row": 404
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Proctor",
+  "away": "Kents Hill",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 405
+ },
+ {
+  "date": "2025-10-23",
+  "home": "BBN",
+  "away": "Andover",
+  "homeScore": 2.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 406
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Lexington Christian",
+  "away": "Beaver",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 407
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Concord",
+  "away": "Mount Saint Charles",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 408
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Cushing",
+  "away": "Groton",
+  "homeScore": 3.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 409
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Governors",
+  "away": "Nobles",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 410
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Dana Hall",
+  "away": "Dexter",
+  "homeScore": 0.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D3",
+  "row": 411
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Lawrence Academy",
+  "away": "Brooks",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 412
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Middlesex",
+  "away": "Rivers",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 413
+ },
+ {
+  "date": "2025-10-23",
+  "home": "St Marks",
+  "away": "St Pauls",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 414
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Pingree",
+  "away": "Newton CDS",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 415
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Tabor",
+  "away": "Milton",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 416
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Wheeler",
+  "away": "Austin Prep",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 417
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Winsor",
+  "away": "Thayer",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 418
+ },
+ {
+  "date": "2025-10-23",
+  "home": "NMH",
+  "away": "Berkshire",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 419
+ },
+ {
+  "date": "2025-10-23",
+  "home": "King",
+  "away": "Canterbury",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 420
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Miss Porters",
+  "away": "Choate",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 421
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Hamden Hall",
+  "away": "St Lukes",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 422
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Ethel Walker School",
+  "away": "Taft",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 423
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Greenwich CDS",
+  "away": "Kingswood Oxford",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 424
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Greenwich Academy",
+  "away": "Loomis",
+  "homeScore": 1.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 425
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Hopkins",
+  "away": "Frederick Gunn",
+  "homeScore": 0.0,
+  "awayScore": 9.0,
+  "note": null,
+  "division": "D4",
+  "row": 426
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Suffield",
+  "away": "Kent",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 427
+ },
+ {
+  "date": "2025-10-23",
+  "home": "SHG",
+  "away": "Westminster",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 428
+ },
+ {
+  "date": "2025-10-23",
+  "home": "Wilbraham Monson",
+  "away": "Williston",
+  "homeScore": 1.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D4",
+  "row": 429
+ },
+ {
+  "date": "2025-10-24",
+  "home": "St Lukes",
+  "away": "Greens Farms",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D4",
+  "row": 430
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Andover",
+  "away": "Deerfield",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 431
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Concord",
+  "away": "Montrose",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 432
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Dana Hall",
+  "away": "Newton CDS",
+  "homeScore": 1.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 433
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Governors",
+  "away": "Dexter",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 434
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Rivers",
+  "away": "St Marks",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 435
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Winsor",
+  "away": "Beaver",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 436
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Rye CDS",
+  "away": "King",
+  "homeScore": 0.0,
+  "awayScore": 0.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 437
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Holy Child",
+  "away": "Hamden Hall",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 438
+ },
+ {
+  "date": "2025-10-25",
+  "home": "Suffield",
+  "away": "Williston",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 439
+ },
+ {
+  "date": "2025-10-25",
+  "home": "St Lukes",
+  "away": "Millbrook",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "cancelled",
+  "division": "D4",
+  "row": 440
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Worcester",
+  "away": "Pomfret",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "C",
+  "row": 441
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Austin Prep",
+  "away": "Proctor",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "C",
+  "row": 442
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Brewster",
+  "away": "Tilton",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 443
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Cushing",
+  "away": "Kimball Union",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 444
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Holderness",
+  "away": "Milton",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 445
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Kents Hill",
+  "away": "Gould",
+  "homeScore": 2.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 446
+ },
+ {
+  "date": "2025-10-26",
+  "home": "BBN",
+  "away": "St Georges",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 447
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Brooks",
+  "away": "Governors",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 448
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Mount Saint Charles",
+  "away": "Dexter",
+  "homeScore": 0.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D3",
+  "row": 449
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Nobles",
+  "away": "Lawrence Academy",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 450
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Portsmouth Abbey",
+  "away": "Berwick",
+  "homeScore": 6.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 451
+ },
+ {
+  "date": "2025-10-26",
+  "home": "St Pauls",
+  "away": "Exeter",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 452
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Tabor",
+  "away": "Groton",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 453
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Wheeler",
+  "away": "Pingree",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 454
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Thayer",
+  "away": "Middlesex",
+  "homeScore": 0.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D3",
+  "row": 455
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Millbrook",
+  "away": "Wilbraham Monson",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 456
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Kent",
+  "away": "Taft",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 457
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Miss Porters",
+  "away": "Ethel Walker School",
+  "homeScore": 0.0,
+  "awayScore": 0.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 458
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Westminster",
+  "away": "Greenwich Academy",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 459
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Frederick Gunn",
+  "away": "Kingswood Oxford",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 460
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Canterbury",
+  "away": "Greens Farms",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 461
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Berkshire",
+  "away": "Loomis",
+  "homeScore": 2.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 462
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Choate",
+  "away": "NMH",
+  "homeScore": 9.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 463
+ },
+ {
+  "date": "2025-10-26",
+  "home": "Masters",
+  "away": "Hopkins",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 464
+ },
+ {
+  "date": "2025-10-28",
+  "home": "Berwick",
+  "away": "Lexington Christian",
+  "homeScore": 7.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 465
+ },
+ {
+  "date": "2025-10-28",
+  "home": "Wheeler",
+  "away": "Montrose",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 466
+ },
+ {
+  "date": "2025-10-28",
+  "home": "Greenwich CDS",
+  "away": "Greens Farms",
+  "homeScore": 2.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D4",
+  "row": 467
+ },
+ {
+  "date": "2025-10-28",
+  "home": "St Lukes",
+  "away": "SHG",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D4",
+  "row": 468
+ },
+ {
+  "date": "2025-10-28",
+  "home": "Westminster",
+  "away": "Suffield",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 469
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Kimball Union",
+  "away": "Deerfield",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "C",
+  "row": 470
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Exeter",
+  "away": "Holderness",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 471
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Proctor",
+  "away": "Cushing",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 472
+ },
+ {
+  "date": "2025-10-30",
+  "home": "St Pauls",
+  "away": "Brewster",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "C",
+  "row": 473
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Williston",
+  "away": "Dexter",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 474
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Austin Prep",
+  "away": "Tabor",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 475
+ },
+ {
+  "date": "2025-10-30",
+  "home": "BBN",
+  "away": "Brooks",
+  "homeScore": 3.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 476
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Berwick",
+  "away": "Tilton",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 477
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Concord",
+  "away": "Winsor",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 478
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Governors",
+  "away": "Groton",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 479
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Montrose",
+  "away": "Beaver",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 480
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Lexington Christian",
+  "away": "Dana Hall",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 481
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Mount Saint Charles",
+  "away": "Wheeler",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 482
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Nobles",
+  "away": "Andover",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 483
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Newton CDS",
+  "away": "Worcester",
+  "homeScore": 5.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 484
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Rivers",
+  "away": "Lawrence Academy",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 485
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Pingree",
+  "away": "Portsmouth Abbey",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 486
+ },
+ {
+  "date": "2025-10-30",
+  "home": "St Georges",
+  "away": "Milton",
+  "homeScore": 3.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 487
+ },
+ {
+  "date": "2025-10-30",
+  "home": "St Marks",
+  "away": "Thayer",
+  "homeScore": 7.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 488
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Tilton",
+  "away": "Berwick",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 489
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Hopkins",
+  "away": "Hamden Hall",
+  "homeScore": 6.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 490
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Berkshire",
+  "away": "Greens Farms",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 491
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Canterbury",
+  "away": "Suffield",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 492
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Millbrook",
+  "away": "Holy Child",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 493
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Marianapolis",
+  "away": "Kingswood Oxford",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": "Forfeit",
+  "division": "D4",
+  "row": 494
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Choate",
+  "away": "Kent",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 495
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Loomis",
+  "away": "NMH",
+  "homeScore": 7.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 496
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Hotchkiss",
+  "away": "Miss Porters",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 497
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Wilbraham Monson",
+  "away": "Pomfret",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 498
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Ethel Walker School",
+  "away": "Frederick Gunn",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 499
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Masters",
+  "away": "Greenwich CDS",
+  "homeScore": 0.0,
+  "awayScore": 8.0,
+  "note": "was 10/10",
+  "division": "D4",
+  "row": 500
+ },
+ {
+  "date": "2025-10-30",
+  "home": "St Lukes",
+  "away": "King",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 501
+ },
+ {
+  "date": "2025-10-30",
+  "home": "Westminster",
+  "away": "Taft",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D4",
+  "row": 502
+ },
+ {
+  "date": "2025-11-01",
+  "home": "New Hampton",
+  "away": "Brewster",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 503
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Holderness",
+  "away": "Proctor",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 504
+ },
+ {
+  "date": "2025-11-01",
+  "home": "BBN",
+  "away": "Thayer",
+  "homeScore": 6.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 505
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Brooks",
+  "away": "Nobles",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 506
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Dana Hall",
+  "away": "Winsor",
+  "homeScore": 0.0,
+  "awayScore": 7.0,
+  "note": null,
+  "division": "D3",
+  "row": 507
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Lexington Christian",
+  "away": "Concord",
+  "homeScore": 1.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "D3",
+  "row": 508
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Middlesex",
+  "away": "Dexter",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 509
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Milton",
+  "away": "Governors",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 510
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Newton CDS",
+  "away": "Austin Prep",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 511
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Rivers",
+  "away": "St Georges",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 512
+ },
+ {
+  "date": "2025-11-01",
+  "home": "Montrose",
+  "away": "Mount Saint Charles",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 513
+ },
+ {
+  "date": "2025-11-01",
+  "home": "St Marks",
+  "away": "Tabor",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 514
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Rocky Hill",
+  "away": "Hamden Hall",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 515
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Milton",
+  "away": "Hotchkiss",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "C",
+  "row": 516
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Brewster",
+  "away": "Exeter",
+  "homeScore": 0.0,
+  "awayScore": 4.0,
+  "note": null,
+  "division": "C",
+  "row": 517
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Austin Prep",
+  "away": "Kimball Union",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": "OT",
+  "division": "C",
+  "row": 518
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Proctor",
+  "away": "Tilton",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "C",
+  "row": 519
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Cushing",
+  "away": "Andover",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 520
+ },
+ {
+  "date": "2025-11-02",
+  "home": "St Pauls",
+  "away": "Pingree",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 521
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Worcester",
+  "away": "Portsmouth Abbey",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 522
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Berkshire",
+  "away": "Westminster",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 523
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Miss Porters",
+  "away": "Pomfret",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 524
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Millbrook",
+  "away": "Suffield",
+  "homeScore": 0.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D4",
+  "row": 525
+ },
+ {
+  "date": "2025-11-02",
+  "home": "NMH",
+  "away": "Taft",
+  "homeScore": 1.0,
+  "awayScore": 10.0,
+  "note": null,
+  "division": "D4",
+  "row": 526
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Loomis",
+  "away": "Williston",
+  "homeScore": 3.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 527
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Ethel Walker School",
+  "away": "Wilbraham Monson",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 528
+ },
+ {
+  "date": "2025-11-02",
+  "home": "King",
+  "away": "Frederick Gunn",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 529
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Greenwich Academy",
+  "away": "Deerfield",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": "at Trinity Col",
+  "division": "D4",
+  "row": 530
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Choate",
+  "away": "Hopkins",
+  "homeScore": 6.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 531
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Canterbury",
+  "away": "Holy Child",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 532
+ },
+ {
+  "date": "2025-11-02",
+  "home": "Greens Farms",
+  "away": "Kingswood Oxford",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 533
+ },
+ {
+  "date": "2025-11-04",
+  "home": "Austin Prep",
+  "away": "Tilton",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 534
+ },
+ {
+  "date": "2025-11-04",
+  "home": "Dexter",
+  "away": "Newton CDS",
+  "homeScore": 4.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 535
+ },
+ {
+  "date": "2025-11-04",
+  "home": "Montrose",
+  "away": "Dana Hall",
+  "homeScore": 3.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 536
+ },
+ {
+  "date": "2025-11-04",
+  "home": "Greens Farms",
+  "away": "Hopkins",
+  "homeScore": 7.0,
+  "awayScore": 0.0,
+  "note": "FAA quarter",
+  "division": "D4",
+  "row": 537
+ },
+ {
+  "date": "2025-11-04",
+  "home": "King",
+  "away": "Greenwich CDS",
+  "homeScore": 6.0,
+  "awayScore": 2.0,
+  "note": "FAA quarter",
+  "division": "D4",
+  "row": 538
+ },
+ {
+  "date": "2025-11-05",
+  "home": "Wheeler",
+  "away": "Portsmouth Abbey",
+  "homeScore": 2.0,
+  "awayScore": 2.0,
+  "note": "OT",
+  "division": "D3",
+  "row": 539
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Austin Prep",
+  "away": "NMH",
+  "homeScore": 1.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "C",
+  "row": 540
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Pomfret",
+  "away": "Tabor",
+  "homeScore": 1.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "C",
+  "row": 541
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Holderness",
+  "away": "Cushing",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 542
+ },
+ {
+  "date": "2025-11-06",
+  "home": "NMH",
+  "away": "Austin Prep",
+  "homeScore": 5.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 543
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Pingree",
+  "away": "New Hampton",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 544
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Marianapolis",
+  "away": "Beaver",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "Cancelled",
+  "division": "C",
+  "row": 545
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Gould",
+  "away": "Kents Hill",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 546
+ },
+ {
+  "date": "2025-11-06",
+  "home": "BBN",
+  "away": "Middlesex",
+  "homeScore": 0.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D3",
+  "row": 547
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Berwick",
+  "away": "Concord",
+  "homeScore": 2.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 548
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Dana Hall",
+  "away": "Lexington Christian",
+  "homeScore": 5.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 549
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Dexter",
+  "away": "St Pauls",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 550
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Exeter",
+  "away": "Governors",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 551
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Lawrence Academy",
+  "away": "Groton",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D3",
+  "row": 552
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Milton",
+  "away": "Brooks",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 553
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Nobles",
+  "away": "Rivers",
+  "homeScore": 2.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 554
+ },
+ {
+  "date": "2025-11-06",
+  "home": "St Georges",
+  "away": "Thayer",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 555
+ },
+ {
+  "date": "2025-11-06",
+  "home": "St Marks",
+  "away": "Worcester",
+  "homeScore": 8.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 556
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Tilton",
+  "away": "Mount Saint Charles",
+  "homeScore": 9.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 557
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Winsor",
+  "away": "Newton CDS",
+  "homeScore": 4.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 558
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Greenwich Academy",
+  "away": "Greens Farms",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "FAA Semi",
+  "division": "D4",
+  "row": 559
+ },
+ {
+  "date": "2025-11-06",
+  "home": "SHG",
+  "away": "King",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": "FAA Semi",
+  "division": "D4",
+  "row": 560
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Kent",
+  "away": "Canterbury",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 561
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Wilbraham Monson",
+  "away": "Berkshire",
+  "homeScore": 0.0,
+  "awayScore": 6.0,
+  "note": null,
+  "division": "D4",
+  "row": 562
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Suffield",
+  "away": "Kingswood Oxford",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 563
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Frederick Gunn",
+  "away": "Choate",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 564
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Hotchkiss",
+  "away": "Loomis",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 565
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Williston",
+  "away": "Deerfield",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D4",
+  "row": 566
+ },
+ {
+  "date": "2025-11-06",
+  "home": "Miss Porters",
+  "away": "Millbrook",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 567
+ },
+ {
+  "date": "2025-11-07",
+  "home": "Lexington Christian",
+  "away": "Rocky Hill",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 568
+ },
+ {
+  "date": "2025-11-08",
+  "home": "Winsor",
+  "away": "Newton CDS",
+  "homeScore": 0.0,
+  "awayScore": 2.0,
+  "note": "EIL Semi's",
+  "division": "D3",
+  "row": 569
+ },
+ {
+  "date": "2025-11-08",
+  "home": "Portsmouth Abbey",
+  "away": "Pingree",
+  "homeScore": 1.0,
+  "awayScore": 3.0,
+  "note": "EIL Semi's",
+  "division": "D3",
+  "row": 570
+ },
+ {
+  "date": "2025-11-08",
+  "home": "St Pauls",
+  "away": "Tilton",
+  "homeScore": 5.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 571
+ },
+ {
+  "date": "2025-11-08",
+  "home": "SHG",
+  "away": "Greenwich Academy",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "FAA final",
+  "division": "D4",
+  "row": 572
+ },
+ {
+  "date": "2025-11-08",
+  "home": "Beaver",
+  "away": "Wheeler",
+  "homeScore": null,
+  "awayScore": null,
+  "note": "Cancelled",
+  "division": null,
+  "row": 573
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Governors",
+  "away": "Westminster",
+  "homeScore": 2.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "C",
+  "row": 574
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Kimball Union",
+  "away": "New Hampton",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 575
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Proctor",
+  "away": "Holderness",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D1/2",
+  "row": 576
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Pingree",
+  "away": "Newton CDS",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": "EIL final",
+  "division": "D3",
+  "row": 577
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Andover",
+  "away": "Exeter",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 578
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Cushing",
+  "away": "Worcester",
+  "homeScore": 9.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 579
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Dexter",
+  "away": "Austin Prep",
+  "homeScore": 6.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 580
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Groton",
+  "away": "St Marks",
+  "homeScore": 3.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 581
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Lawrence Academy",
+  "away": "BBN",
+  "homeScore": 2.0,
+  "awayScore": 5.0,
+  "note": null,
+  "division": "D3",
+  "row": 582
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Nobles",
+  "away": "Milton",
+  "homeScore": 0.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D3",
+  "row": 583
+ },
+ {
+  "date": "2025-11-09",
+  "home": "St Georges",
+  "away": "Middlesex",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D3",
+  "row": 584
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Tabor",
+  "away": "Brooks",
+  "homeScore": 1.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D3",
+  "row": 585
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Choate",
+  "away": "Deerfield",
+  "homeScore": 2.0,
+  "awayScore": 8.0,
+  "note": null,
+  "division": "D4",
+  "row": 586
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Loomis",
+  "away": "Kent",
+  "homeScore": 7.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 587
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Williston",
+  "away": "NMH",
+  "homeScore": 9.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 588
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Kingswood Oxford",
+  "away": "Ethel Walker School",
+  "homeScore": 1.0,
+  "awayScore": 2.0,
+  "note": null,
+  "division": "D4",
+  "row": 589
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Wilbraham Monson",
+  "away": "Marianapolis",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 590
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Taft",
+  "away": "Hotchkiss",
+  "homeScore": 2.0,
+  "awayScore": 3.0,
+  "note": "OT",
+  "division": "D4",
+  "row": 591
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Frederick Gunn",
+  "away": "Canterbury",
+  "homeScore": 2.0,
+  "awayScore": 0.0,
+  "note": null,
+  "division": "D4",
+  "row": 592
+ },
+ {
+  "date": "2025-11-09",
+  "home": "Pomfret",
+  "away": "Millbrook",
+  "homeScore": 4.0,
+  "awayScore": 1.0,
+  "note": null,
+  "division": "D4",
+  "row": 593
+ }
+]

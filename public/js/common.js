@@ -1,0 +1,129 @@
+// Shared by every page: data loading, header, formatting.
+// The ranking engine (engine.js) is loaded with a plain <script> tag and exposes FHEngine.
+
+export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+export const fmtPct = (p) => (p === null || p === undefined ? '–' : p >= 1 ? '1.000' : p.toFixed(3).replace(/^0/, ''));
+export const fmtInt = (n) => (n === null || n === undefined ? '–' : Math.round(n).toLocaleString('en-US'));
+export const fmtDate = (iso) => (iso ? new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '');
+export const fmtDateLong = (iso) => (iso ? new Date(`${iso}T12:00:00`).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }) : '');
+export const record = (r) => `${r.w}-${r.l}-${r.t}`;
+export const gameUrl = (team) => `/games.html?team=${encodeURIComponent(team)}`;
+
+export async function api(path, opts = {}) {
+  const res = await fetch(path, {
+    credentials: 'same-origin',
+    headers: { 'content-type': 'application/json' },
+    ...opts,
+    body: opts.body ? JSON.stringify(opts.body) : undefined,
+  });
+  let data = null;
+  try { data = await res.json(); } catch (e) { /* non-JSON error page */ }
+  if (!res.ok) {
+    const err = new Error((data && data.error) || `Request failed (${res.status})`);
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+  return data;
+}
+
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } },
+  del(k) { try { localStorage.removeItem(k); } catch (e) { /* storage unavailable */ } },
+};
+export { store };
+
+/** Update one query-string value without reloading. */
+export function setParam(key, value) {
+  const u = new URL(location.href);
+  if (value === null || value === '' || value === undefined) u.searchParams.delete(key); else u.searchParams.set(key, value);
+  history.replaceState(null, '', u);
+}
+export const getParam = (key) => new URLSearchParams(location.search).get(key);
+
+export const classesOf = (schools) =>
+  [...new Map(schools.map((s) => [s.cls, s.classNum])).entries()].sort((a, b) => a[1] - b[1]).map((x) => x[0]);
+
+function renderChrome(active, data, me) {
+  const items = [['rankings', 'Rankings', '/'], ['games', 'Games', '/games.html'], ['seeding', 'Seeding', '/seeding.html']];
+  if (me.admin || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
+  const seasons = data.seasons || [];
+  document.getElementById('chrome').innerHTML = `
+    <div class="wrap bar">
+      <a class="brand" href="/"><span class="ball" aria-hidden="true"></span><span class="brand-name">Varsity Field Hockey</span></a>
+      <nav class="nav" aria-label="Main">${items.map(([k, label, href]) =>
+        `<a href="${href}"${k === active ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+      ${seasons.length ? `<label class="season"><span class="sr">Season</span>
+        <select id="season-pick">${seasons.map((s) =>
+          `<option value="${esc(s.id)}"${data.season && s.id === data.season.id ? ' selected' : ''}>${esc(s.label)}</option>`).join('')}</select></label>` : ''}
+    </div>`;
+  const pick = document.getElementById('season-pick');
+  if (pick) pick.addEventListener('change', () => {
+    store.set('vfh.season', pick.value);
+    const u = new URL(location.href);
+    u.searchParams.set('season', pick.value);
+    location.href = u;
+  });
+  if (!document.querySelector('.foot')) {
+    const f = document.createElement('footer');
+    f.className = 'wrap foot';
+    f.innerHTML = 'Rankings and seeding are worked out from the saved scores each time a page loads. <a href="/admin.html">Administrator sign-in</a>';
+    document.body.appendChild(f);
+  }
+}
+
+const problem = (title, text) => `<div class="scroll"><div class="empty"><strong>${esc(title)}</strong>${text}</div></div>`;
+export const emptySeason = () => problem('No season has been set up yet', 'An administrator can load one from the <a href="/admin.html">Enter scores</a> page.');
+
+/**
+ * Load the season, draw the header, and compute rankings.
+ * Returns { season, seasons, schools, games, me, ranked } (ranked = FHEngine.rank output),
+ * or null after showing a message when there is nothing to show.
+ */
+export async function boot(active, { allowEmpty = false } = {}) {
+  const app = document.getElementById('app');
+  const want = getParam('season') || store.get('vfh.season') || '';
+  let data;
+  try {
+    data = await api(`/api/data${want ? `?season=${encodeURIComponent(want)}` : ''}`);
+  } catch (e) {
+    if (e.status === 404 && want) { store.del('vfh.season'); data = await api('/api/data'); }
+    else {
+      renderChrome(active, { seasons: [] }, { admin: false });
+      app.innerHTML = problem('The page could not load its data', esc(e.message));
+      return null;
+    }
+  }
+  let me = { admin: false };
+  try { me = await api('/api/me'); } catch (e) { /* signed out */ }
+  if (data.season) store.set('vfh.season', data.season.id);
+  renderChrome(active, data, me);
+  if (!data.season) {
+    if (allowEmpty) return { ...data, me, ranked: null };
+    app.innerHTML = emptySeason();
+    return null;
+  }
+  return { ...data, me, ranked: FHEngine.rank(data.schools, data.games) };
+}
+
+/** Segmented class picker. onPick(cls) is called on change. */
+export function classPicker(el, classes, counts, current, onPick) {
+  el.innerHTML = classes.map((c) =>
+    `<button type="button" data-c="${esc(c)}" aria-pressed="${c === current}">Class ${esc(c)}<span class="n">${counts[c] || 0}</span></button>`).join('');
+  el.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+    el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    onPick(b.dataset.c);
+  }));
+}
+
+/** Option list of schools grouped by class, A to Z inside each class. */
+export function schoolOptions(schools, selected, { blank } = {}) {
+  const groups = classesOf(schools).map((c) => {
+    const list = schools.filter((s) => s.cls === c).sort((a, b) => a.name.localeCompare(b.name));
+    return `<optgroup label="Class ${esc(c)}">${list.map((s) =>
+      `<option value="${esc(s.id ?? s.name)}"${String(s.id ?? s.name) === String(selected) ? ' selected' : ''}>${esc(s.name)}</option>`).join('')}</optgroup>`;
+  });
+  return (blank ? `<option value="">${esc(blank)}</option>` : '') + groups.join('');
+}
