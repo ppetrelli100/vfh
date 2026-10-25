@@ -74,6 +74,17 @@ function renderChrome(active, data, me) {
   }
 }
 
+let LOGOS = {};
+/** Small school logo for a team name, or an empty spacer of the same size so names line up. */
+export const logo = (name, size = 22) => {
+  const f = LOGOS[name];
+  return f ? `<img class="tl" src="/logos/${encodeURIComponent(f)}" alt="" width="${size}" height="${size}" loading="lazy">`
+           : `<span class="tl blank" style="width:${size}px;height:${size}px" aria-hidden="true"></span>`;
+};
+async function loadLogos() {
+  try { LOGOS = await (await fetch('/logos/index.json')).json(); } catch (e) { LOGOS = {}; }
+}
+
 const problem = (title, text) => `<div class="scroll"><div class="empty"><strong>${esc(title)}</strong>${text}</div></div>`;
 export const emptySeason = () => problem('No season has been set up yet', 'An administrator can load one from the <a href="/admin.html">Enter scores</a> page.');
 
@@ -99,6 +110,7 @@ export async function boot(active, { allowEmpty = false } = {}) {
   let me = { admin: false };
   try { me = await api('/api/me'); } catch (e) { /* signed out */ }
   if (data.season) store.set('vfh.season', data.season.id);
+  await loadLogos();
   renderChrome(active, data, me);
   if (!data.season) {
     if (allowEmpty) return { ...data, me, ranked: null };

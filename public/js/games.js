@@ -1,4 +1,4 @@
-import { boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, getParam, setParam, schoolOptions, classesOf } from './common.js';
+import { logo, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, getParam, setParam, schoolOptions, classesOf } from './common.js';
 
 const S = await boot('games');
 if (S) {
@@ -69,7 +69,7 @@ if (S) {
       <tbody>${log.map((x) => `<tr>
         <td class="l">${esc(fmtDate(x.date))}</td>
         <td class="l muted">${x.home ? 'Home' : 'Away'}</td>
-        <td class="name${x.status === 'cancelled' ? ' struck' : ''}"><a href="${gameUrl(x.opp)}">${esc(x.opp)}</a></td>
+        <td class="name${x.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(x.opp)}">${logo(x.opp)}<span>${esc(x.opp)}</span></a></td>
         <td>${x.result ? `<span class="result-${x.result}">${x.result}</span> ${x.my}–${x.th}` : ''}${tags(x)}</td>
         <td class="hide-sm">${esc(x.oppClass || '')}</td>
         <td class="hide-sm">${fmtPct(x.oppWinPct)}</td>
@@ -81,7 +81,7 @@ if (S) {
   const ord = (n) => (n % 100 >= 11 && n % 100 <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[n % 10] || 'th');
 
   function draw() {
-    document.getElementById('title').textContent = team || 'Games';
+    document.getElementById('title').innerHTML = team ? `<span class="tn">${logo(team, 40)}<span>${esc(team)}</span></span>` : 'Games';
     document.getElementById('cls-wrap').hidden = !!team;
     if (team) drawTeam(); else drawAll();
   }

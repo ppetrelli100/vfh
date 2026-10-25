@@ -198,3 +198,11 @@ details.how p, details.how li { color: var(--ink); }
   .pitch { padding: 20px 16px 22px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* School logos beside team names */
+.tn { display: inline-flex; align-items: center; gap: 8px; }
+.tn.c { justify-content: center; }
+.tl { flex: none; object-fit: contain; image-rendering: auto; }
+.tl.blank { display: inline-block; }
+h1 .tn { gap: 12px; }
+.tbl td a.tn { display: flex; }

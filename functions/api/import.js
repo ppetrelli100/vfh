@@ -1,5 +1,5 @@
 // POST /api/import - load a whole season (schools with classes, plus games) in one go.
-// Used to load the 2025 test season from /seed/2025.json, and later to bring in any season
+// Used to load the Fall 2024 season from /seed/fall-2024.json, and later to bring in any season
 // kept elsewhere. With replace=true the season's existing games and school list are swapped out.
 import { getDb, handle, json, HttpError, batchInChunks } from '../_lib/db.js';
 import { requireAdmin } from '../_lib/auth.js';

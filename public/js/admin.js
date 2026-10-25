@@ -18,7 +18,7 @@ function main() {
 
   app.innerHTML = `
     <h1>Enter scores</h1>
-    <p class="lede">${hasSeason ? `Adding results to ${esc(S.season.label)}. Rankings and playoff seeds update as soon as a game is saved.` : 'No season has been set up yet. Load the test season or start a new one below.'}
+    <p class="lede">${hasSeason ? `Adding results to ${esc(S.season.label)}. Rankings and playoff seeds update as soon as a game is saved.` : 'No season has been set up yet. Load the Fall 2024 season or start a new one below.'}
       <span class="muted">Signed in as ${esc(S.me.email)}.</span></p>
     ${hasSeason ? `
     <form id="form" class="panel form-grid" novalidate>
@@ -69,9 +69,9 @@ function main() {
       <summary>Season tools</summary>
       <div class="panel form-grid">
         <div>
-          <h3 style="margin:0 0 4px">Load the 2025 test season</h3>
-          <p class="hint" style="margin:0 0 10px">Adds the 74 schools and 591 games from last season's spreadsheet. If a 2025 season is already here, its games and school list are replaced.</p>
-          <div class="actions"><button type="button" class="btn ghost" id="load-test">Load 2025 test season</button><span class="status" id="load-msg" role="status"></span></div>
+          <h3 style="margin:0 0 4px">Load the Fall 2024 season</h3>
+          <p class="hint" style="margin:0 0 10px">Adds the 74 schools and 591 games from the season spreadsheet. If a Fall 2024 season is already here, its games and school list are replaced.</p>
+          <div class="actions"><button type="button" class="btn ghost" id="load-test">Load Fall 2024 season</button><span class="status" id="load-msg" role="status"></span></div>
         </div>
         <div>
           <h3 style="margin:0 0 4px">Start a new season</h3>
@@ -98,19 +98,19 @@ function wireTools($) {
   loadBtn.addEventListener('click', async () => {
     if (!armed) {
       loadBtn.textContent = 'Click again to confirm';
-      armed = setTimeout(() => { armed = null; loadBtn.textContent = 'Load 2025 test season'; }, 5000);
+      armed = setTimeout(() => { armed = null; loadBtn.textContent = 'Load Fall 2024 season'; }, 5000);
       return;
     }
     clearTimeout(armed); armed = null; loadBtn.disabled = true; loadBtn.textContent = 'Loading…';
     try {
-      const seed = await (await fetch('/seed/2025.json')).json();
+      const seed = await (await fetch('/seed/fall-2024.json')).json();
       const r = await api('/api/import', { method: 'POST', body: { ...seed, replace: true } });
       loadMsg.className = 'status ok'; loadMsg.textContent = `Loaded ${r.games} games for ${r.schools} schools.`;
-      store.set('vfh.season', '2025');
-      setTimeout(() => { location.href = '/admin.html?season=2025'; }, 700);
+      store.set('vfh.season', 'fall-2024');
+      setTimeout(() => { location.href = '/admin.html?season=fall-2024'; }, 700);
     } catch (e) {
       loadMsg.className = 'status bad'; loadMsg.textContent = e.message;
-      loadBtn.disabled = false; loadBtn.textContent = 'Load 2025 test season';
+      loadBtn.disabled = false; loadBtn.textContent = 'Load Fall 2024 season';
     }
   });
   $('ns-go').addEventListener('click', async () => {

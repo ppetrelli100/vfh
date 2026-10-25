@@ -1,4 +1,4 @@
-// GET /api/data?season=2025
+// GET /api/data?season=fall-2024
 // Everything the public pages need in one call: the seasons list, that season's schools (with
 // class and league) and every game. The ranking and seeding math runs in the browser from this.
 
