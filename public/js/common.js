@@ -47,12 +47,12 @@ export const classesOf = (schools) =>
   [...new Map(schools.map((s) => [s.cls, s.classNum])).entries()].sort((a, b) => a[1] - b[1]).map((x) => x[0]);
 
 function renderChrome(active, data, me) {
-  const items = [['rankings', 'Rankings', '/'], ['games', 'Games', '/games.html'], ['seeding', 'Seeding', '/seeding.html']];
+  const items = [['playoffs', 'Playoffs', '/playoffs.html'], ['rankings', 'Rankings', '/'], ['games', 'Games', '/games.html']];
   if (me.admin || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
     <div class="wrap bar">
-      <a class="brand" href="/"><img class="logo" src="/img/nepsac-logo.png" alt="" width="44" height="45"><span class="brand-name">Varsity Field Hockey</span></a>
+      <a class="brand" href="/"><img class="logo" src="/img/nepsac-logo.png" alt="" width="44" height="45"><span class="brand-name">NEPSAC Field Hockey</span></a>
       <nav class="nav" aria-label="Main">${items.map(([k, label, href]) =>
         `<a href="${href}"${k === active ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
       ${seasons.length ? `<label class="season"><span class="sr">Season</span>
@@ -69,7 +69,7 @@ function renderChrome(active, data, me) {
   if (!document.querySelector('.foot')) {
     const f = document.createElement('footer');
     f.className = 'wrap foot';
-    f.innerHTML = 'Rankings and seeding are worked out from the saved scores each time a page loads. <a href="/admin.html">Administrator sign-in</a>';
+    f.innerHTML = 'Rankings and playoff seeds are worked out from the saved scores each time a page loads. <a href="/admin.html">Administrator sign-in</a>';
     document.body.appendChild(f);
   }
 }

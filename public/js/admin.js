@@ -18,7 +18,7 @@ function main() {
 
   app.innerHTML = `
     <h1>Enter scores</h1>
-    <p class="lede">${hasSeason ? `Adding results to ${esc(S.season.label)}. Rankings and seeding update as soon as a game is saved.` : 'No season has been set up yet. Load the test season or start a new one below.'}
+    <p class="lede">${hasSeason ? `Adding results to ${esc(S.season.label)}. Rankings and playoff seeds update as soon as a game is saved.` : 'No season has been set up yet. Load the test season or start a new one below.'}
       <span class="muted">Signed in as ${esc(S.me.email)}.</span></p>
     ${hasSeason ? `
     <form id="form" class="panel form-grid" novalidate>

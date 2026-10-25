@@ -1,4 +1,4 @@
-# Varsity Field Hockey (vfh)
+# NEPSAC Field Hockey (vfh)
 
 Rankings, game log and playoff seeding for varsity field hockey, with an administrator page for entering scores.
 

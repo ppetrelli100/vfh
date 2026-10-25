@@ -1,6 +1,6 @@
 import { boot, esc, fmtPct, fmtInt, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
 
-const S = await boot('seeding');
+const S = await boot('playoffs');
 if (S) {
   const app = document.getElementById('app');
   const classes = classesOf(S.schools);
@@ -19,7 +19,7 @@ if (S) {
   ];
 
   app.innerHTML = `
-    <h1>Seeding</h1>
+    <h1>Playoffs</h1>
     <p class="lede">The 12 teams in each class with the most Saylor points per game are compared in pairs on seven measures. The top eight seeds make the playoffs.</p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
     <div id="out"></div>`;
