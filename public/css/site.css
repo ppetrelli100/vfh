@@ -133,7 +133,7 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .tbl.c .rk { font-size: 10px; vertical-align: super; margin-left: 3px; }
 
 /* narrow pages (games, playoffs) so the cards are not stretched across wide screens */
-.narrow { max-width: 920px; }
+.narrow { max-width: 980px; }
 
 /* games list: matchup cell, same layout as the NEPSAC scoreboard */
 .matchup {
@@ -165,9 +165,10 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .pitch { padding: 18px 18px 20px; margin-bottom: 8px; }
 .pitch h2 { margin: 0 0 2px; font-size: 14px; }
 .pitch p { margin: 0 0 14px; color: var(--muted); max-width: 70ch; }
-.matchups { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px; }
+.matchups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 860px) { .matchups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .match { background: #fbfbfc; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-.match .side { display: flex; align-items: center; gap: 10px; padding: 10px 12px; font-weight: 600; color: var(--ink); }
+.match .side { display: flex; align-items: center; gap: 8px; padding: 9px 10px; line-height: 1.2; font-weight: 600; color: var(--ink); }
 .match .side + .side { border-top: 1px solid var(--line); font-weight: 500; }
 .seedno {
   display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%;
