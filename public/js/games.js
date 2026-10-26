@@ -43,9 +43,9 @@ if (S) {
         const hw = hasScore(g) && g.homeScore > g.awayScore, aw = hasScore(g) && g.awayScore > g.homeScore;
         return `<tr>
           <td class="l">${esc(fmtDate(g.date))}</td>
-          <td class="name${g.status === 'cancelled' ? ' struck' : ''}"><a href="${gameUrl(g.home)}"${hw ? ' style="font-weight:800"' : ''}>${esc(g.home)}</a></td>
+          <td class="name${g.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(g.home)}"${hw ? ' style="font-weight:800"' : ''}>${logo(g.home)}<span>${esc(g.home)}</span></a></td>
           <td>${hasScore(g) ? `${g.homeScore}–${g.awayScore}` : ''}${tags(g)}</td>
-          <td class="name${g.status === 'cancelled' ? ' struck' : ''}"><a href="${gameUrl(g.away)}"${aw ? ' style="font-weight:800"' : ''}>${esc(g.away)}</a></td>
+          <td class="name${g.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(g.away)}"${aw ? ' style="font-weight:800"' : ''}>${logo(g.away)}<span>${esc(g.away)}</span></a></td>
           <td class="l hide-sm muted">${noteText(g)}</td></tr>`;
       }).join('')}</tbody>`;
     if (!list.length) document.getElementById('tbl').innerHTML = '<tbody><tr><td class="empty">No games yet.</td></tr></tbody>';
