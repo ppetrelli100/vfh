@@ -217,7 +217,17 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .editing { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 8px 14px; border-radius: 8px; font-weight: 600; }
 details.tools { margin-top: 28px; }
 details.tools summary, details.how summary { cursor: pointer; font-weight: 700; padding: 8px 0; }
-details.how { margin-top: 20px; max-width: 74ch; }
+details.how { margin-top: 20px; }
+details.how > p { max-width: 74ch; }
+.tbl.pts { font-size: 12.5px; margin: 6px 0 14px; }
+.tbl.pts th, .tbl.pts td { padding: 6px 8px; text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tbl.pts thead th { font-size: 11px; }
+.tbl.pts th.grp { border-bottom: 1px solid var(--line); }
+.tbl.pts th.yc { vertical-align: middle; font-weight: 700; color: var(--ink); background: #fbfbfc; border-right: 1px solid var(--line); }
+.tbl.pts th.res { text-align: left; font-weight: 500; color: var(--data); text-transform: none; letter-spacing: 0; font-size: 12.5px; }
+.tbl.pts tr.top td, .tbl.pts tr.top th { border-top: 2px solid var(--line); }
+.tbl.pts td.gl, .tbl.pts thead tr:nth-child(2) th:nth-child(4n+1) { border-left: 1px solid var(--line); }
+.tbl.pts thead th.grp { border-left: 1px solid var(--line); }
 details.how p, details.how li { color: var(--data); }
 .foot { margin: 44px auto 36px; color: var(--muted); font-size: 12px; }
 

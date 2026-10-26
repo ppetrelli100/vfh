@@ -32,15 +32,22 @@ if (S) {
     <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
       <summary>How the points work</summary>
-      <p>Every game earns both teams Saylor points. A game starts at 1,250 points, then:</p>
-      <ul>
-        <li>Class A teams give up 50 points and Class C teams gain 50, compared with Class B.</li>
-        <li>Playing a Class A opponent adds 200 points. Playing a Class C opponent takes away 200.</li>
-        <li>Each step down in the opponent's win-percentage quartile takes away 100 points (top quartile 0, bottom quartile −300).</li>
-        <li>A loss takes away 700 points. A tie takes away 300.</li>
-      </ul>
-      <p>Saylor points per game is a team's total divided by its games played, and it sets the order. The small grey number beside a figure is the team's rank in its class for that measure. The two .500+ columns score results against teams with a win percentage above .500: 2 points for a win and 1 for a tie, doubled when a team beats the same opponent twice.</p>
+      <p>Every game earns both teams Saylor points. Find your team's class and the result on the left, then the opponent's class and win percentage across the top.</p>
+      ${pointsTable()}
+      <p>An opponent's win percentage that falls exactly on a boundary (for example .750) counts in the higher band. Saylor points per game is a team's total divided by its games played, and it sets the order. The small grey number beside a figure is the team's rank in its class for that measure. The two .500+ columns score results against teams with a win percentage above .500: 2 points for a win and 1 for a tie, doubled when a team beats the same opponent twice.</p>
     </details>`;
+
+  // The Saylor points table, built from the same formula the rankings use (so it cannot drift).
+  function pointsTable() {
+    const classes = [['A', 1], ['B', 2], ['C', 3]], bands = ['75–100%', '50–75%', '25–50%', '0–25%'];
+    const pts = (me, opp, q, o) => 1250 + (me - 2) * 50 + (opp - 2) * -200 + (q - 4) * 100 + (o === 'L' ? -700 : o === 'T' ? -300 : 0);
+    const head1 = classes.map(([c]) => `<th colspan="4" class="grp">Opponent Class ${c}</th>`).join('');
+    const head2 = classes.map(() => bands.map((b) => `<th>${b}</th>`).join('')).join('');
+    const body = classes.map(([mc, me]) => [['W', 'Win'], ['T', 'Tie'], ['L', 'Loss']].map(([o, label], i) =>
+      `<tr${i === 0 ? ' class="top"' : ''}>${i === 0 ? `<th rowspan="3" class="yc">Class ${mc}</th>` : ''}<th class="res">${label}</th>${
+        classes.map(([, opp]) => [4, 3, 2, 1].map((q, j) => `<td${j === 0 ? ' class="gl"' : ''}>${fmtInt(pts(me, opp, q, o))}</td>`).join('')).join('')}</tr>`).join('')).join('');
+    return `<div class="scroll"><table class="tbl pts"><thead><tr><th colspan="2" rowspan="2" class="corner">Your team</th>${head1}</tr><tr>${head2}</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
 
   const cmp = (a, b) => {
     const av = a[sortKey], bv = b[sortKey];
