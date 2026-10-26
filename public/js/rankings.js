@@ -12,7 +12,6 @@ if (S) {
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
   const COLS = [
-    { key: 'rank_spPerGame', label: 'Rank', cls: '', rankCol: true },
     { key: 'name', label: 'School', cls: 'name' },
     { key: 'league', label: 'League', cls: 'hide-sm' },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
@@ -63,7 +62,6 @@ if (S) {
       <thead><tr>${head}</tr></thead>
       <tbody>${rows.map((r) => `<tr>
         ${COLS.map((c) => {
-          if (c.rankCol) return `<td class="pos">${r.gp ? r.rank_spPerGame : '–'}</td>`;
           if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a></td>`;
           if (c.key === 'league') return `<td class="hide-sm muted">${esc(r.league || '')}</td>`;
           const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
