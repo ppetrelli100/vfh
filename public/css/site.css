@@ -65,14 +65,14 @@ select, input[type="text"], input[type="date"], input[type="number"] {
 select:hover, input:hover { border-color: #b8bec8; }
 select:focus, input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
 input.invalid, select.invalid { border-color: var(--warn); background: var(--warn-tint); }
-.seg { display: inline-flex; gap: 4px; }
+.seg { display: inline-flex; gap: 8px; }
 .seg button {
-  font: inherit; font-size: 13px; font-weight: 500; color: var(--muted); background: transparent; border: 0;
-  padding: 6px 12px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+  font: inherit; font-size: 15px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid #cbd2dc;
+  padding: 9px 20px; border-radius: 10px; cursor: pointer; white-space: nowrap; box-shadow: 0 1px 2px rgba(16,24,40,.06);
 }
-.seg button:hover { background: #f9fafb; }
-.seg button[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
-.seg .n { font-weight: 500; opacity: .75; margin-left: 6px; font-size: 12px; }
+.seg button:hover { background: #f3f6ff; border-color: var(--accent); }
+.seg button[aria-pressed="true"] { color: #fff; background: var(--accent); border-color: var(--accent); }
+.seg .n { font-weight: 500; opacity: .7; margin-left: 7px; font-size: 13px; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: end; margin: 0 0 14px; }
 .toolbar label { display: grid; gap: 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
 
@@ -256,7 +256,8 @@ details.how p, details.how li { color: var(--data); }
   .tbl.c .pos { width: 40px; }
   .panel { padding: 14px; }
   .pitch { padding: 14px; }
-  .seg { flex-wrap: wrap; }
+  .seg { flex-wrap: wrap; gap: 6px; }
+  .seg button { padding: 8px 14px; font-size: 14px; }
   .stats { gap: 8px 28px; }
   .matchup { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); font-size: 12.5px; }
   .matchup img, .matchup .tl { display: none; }
