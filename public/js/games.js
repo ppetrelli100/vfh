@@ -48,7 +48,7 @@ if (S) {
           <td class="l">${esc(fmtDate(g.date))}</td>
           <td class="matchup-cell"><div class="matchup">
             <a class="side home${hw ? ' w' : ''}${off}" href="${gameUrl(g.home)}">${nm(g.home)}${logo(g.home, 18)}</a>
-            <span class="score-both">${hs}–${as}${tags(g)}</span>
+            <span class="score-both">${hasScore(g) ? `${hs}–${as}` : ''}${tags(g)}</span>
             <span class="score home">${hs}</span><span class="vs">vs</span><span class="score away">${as}</span>
             <a class="side away${aw ? ' w' : ''}${off}" href="${gameUrl(g.away)}">${logo(g.away, 18)}${nm(g.away)}</a>
           </div></td>

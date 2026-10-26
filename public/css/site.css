@@ -263,6 +263,7 @@ details.how p, details.how li { color: var(--data); }
   .matchup img, .matchup .tl { display: none; }
   .matchup .score.home, .matchup .score.away, .matchup .vs { display: none; }
   .matchup .score-both { display: inline-block; text-align: center; }
+  .score-both .tag:first-child { margin-left: 0; }
 }
 @media (min-width: 701px) { .matchup .score-both { display: none; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
