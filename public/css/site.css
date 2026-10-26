@@ -206,6 +206,9 @@ details.how { margin-top: 20px; max-width: 74ch; }
 details.how p, details.how li { color: var(--data); }
 .foot { margin: 44px auto 36px; color: var(--muted); font-size: 12px; }
 
+/* short school names are for phones only */
+.nm .abbr { display: none; }
+
 @media (max-width: 700px) {
   .wrap { padding: 0 12px; }
   .nav { padding: 6px 12px; gap: 8px; flex-wrap: nowrap; }
@@ -217,8 +220,20 @@ details.how p, details.how li { color: var(--data); }
   h1 { font-size: 22px; padding-top: 18px; }
   .hide-sm { display: none; }
   .teams { grid-template-columns: 1fr; }
-  .tbl th, .tbl td { padding: 7px 7px; font-size: 12.5px; }
-  .tbl th { font-size: 10px; }
+  .tbl th, .tbl td { padding: 7px 4px; font-size: 12.5px; }
+  .tbl th:first-child, .tbl td:first-child { padding-left: 10px; }
+  .tbl th:last-child, .tbl td:last-child { padding-right: 10px; }
+  .tbl th { font-size: 10px; letter-spacing: .02em; }
+  .tbl .pos { width: 26px; }
+  .tbl .tl { width: 18px; height: 18px; }
+  .tn { gap: 6px; }
+  .rk { display: none; }
+  .tag { margin-left: 3px; padding: 1px 5px; font-size: 10px; }
+  .tbl td, .tbl th { letter-spacing: 0; }
+  .nm .full { display: none; }
+  .nm .abbr { display: inline; }
+  .mx td { width: 24px; height: 26px; }
+  .mx tbody th { font-size: 11px; padding-right: 5px; }
   .panel { padding: 14px; }
   .pitch { padding: 14px; }
   .seg { flex-wrap: wrap; }

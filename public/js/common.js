@@ -75,6 +75,18 @@ function renderChrome(active, data, me) {
   }
 }
 
+// Shorter spellings for long school names, shown on phones only (the full name is used everywhere else).
+const ABBR = {
+  'Ethel Walker School': 'Ethel Walker', 'Lexington Christian': 'Lexington Chr', 'Mount Saint Charles': 'Mt St Charles',
+  'Greenwich Academy': 'Greenwich Acad', 'Kingswood Oxford': 'Kingswood', 'Lawrence Academy': 'Lawrence Acad',
+  'Portsmouth Abbey': 'Portsmouth Ab', 'Wilbraham Monson': 'Wilbraham', 'Frederick Gunn': 'Fred Gunn',
+  'Kimball Union': 'Kimball Un',
+};
+/** School name as HTML: full name, plus the short one for small screens when there is one. */
+export const nm = (name) => (ABBR[name]
+  ? `<span class="nm"><span class="full">${esc(name)}</span><span class="abbr">${esc(ABBR[name])}</span></span>`
+  : `<span class="nm">${esc(name)}</span>`);
+
 let LOGOS = {};
 /** Small school logo for a team name, or an empty spacer of the same size so names line up. */
 export const logo = (name, size = 22) => {

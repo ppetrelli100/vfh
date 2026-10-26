@@ -1,4 +1,4 @@
-import { logo, boot, esc, fmtPct, fmtInt, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
+import { logo, nm, boot, esc, fmtPct, fmtInt, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
 
 const S = await boot('playoffs');
 if (S) {
@@ -36,7 +36,7 @@ if (S) {
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
     const side = (x) => x.name
-      ? `<div class="side"><span class="seedno">${x.seed}</span><span class="tn">${logo(x.name, 26)}<span>${esc(x.name)}</span></span></div>`
+      ? `<div class="side"><span class="seedno">${x.seed}</span><span class="tn">${logo(x.name, 26)}${nm(x.name)}</span></div>`
       : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`;
 
     out.innerHTML = `
@@ -51,7 +51,7 @@ if (S) {
         <thead><tr><th class="l">Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
         <tbody>${res.table.map((t) => `<tr${t.seed === 8 ? ' class="cut"' : ''}${t.seed > 8 ? ' style="opacity:.72"' : ''}>
           <td class="pos">${t.seed}</td>
-          <td class="name"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}<span>${esc(t.name)}</span></a></td>
+          <td class="name"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a></td>
           <td class="key">${t.total}<span class="rk">of ${res.top12.length - 1}</span></td>
           <td>${fmtInt(t.spPerGame)}</td>
           <td class="hide-sm">${t.spRank}</td></tr>`).join('')}</tbody>
@@ -74,8 +74,8 @@ if (S) {
 
     const mx = document.getElementById('mx');
     mx.innerHTML = `
-      <thead><tr><th></th>${order.map((j) => `<th scope="col"><span>${seedOf[res.top12[j]]}. ${esc(res.top12[j])}</span></th>`).join('')}</tr></thead>
-      <tbody>${order.map((i) => `<tr><th scope="row">${seedOf[res.top12[i]]}. ${esc(res.top12[i])}</th>${order.map((j) => {
+      <thead><tr><th></th>${order.map((j) => `<th scope="col"><span>${seedOf[res.top12[j]]}. ${nm(res.top12[j])}</span></th>`).join('')}</tr></thead>
+      <tbody>${order.map((i) => `<tr><th scope="row">${seedOf[res.top12[i]]}. ${nm(res.top12[i])}</th>${order.map((j) => {
         if (i === j) return '<td class="self"></td>';
         const w = res.detail[i][j].win;
         const sel = pair[0] === res.top12[i] && pair[1] === res.top12[j];
@@ -117,7 +117,7 @@ if (S) {
       el.innerHTML = `
         <div class="toolbar"><label>Team${sel('ca', A)}</label><label>Compared with${sel('cb', B)}</label></div>
         <div class="scroll"><table class="tbl cmp">
-          <thead><tr><th class="l">Measure</th><th><span class="tn c">${logo(A)}<span>${esc(A)}</span></span></th><th><span class="tn c">${logo(B)}<span>${esc(B)}</span></span></th></tr></thead>
+          <thead><tr><th class="l">Measure</th><th><span class="tn c">${logo(A)}${nm(A)}</span></th><th><span class="tn c">${logo(B)}${nm(B)}</span></th></tr></thead>
           <tbody>${CRITERIA.map(([k, label]) => `<tr><td class="l">${label}</td>
             <td class="${d[k] ? 'win' : ''}">${val[k][0]}</td><td class="${d[k + '_opp'] ? 'win' : ''}">${val[k][1]}</td></tr>`).join('')}
           <tr><td class="l key">Measures won</td><td class="key">${d.sum}</td><td class="key">${d.sumOpp}</td></tr></tbody>

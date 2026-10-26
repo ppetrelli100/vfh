@@ -1,4 +1,4 @@
-import { logo, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, getParam, setParam, schoolOptions, classesOf } from './common.js';
+import { logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, getParam, setParam, schoolOptions, classesOf } from './common.js';
 
 const S = await boot('games');
 if (S) {
@@ -46,10 +46,10 @@ if (S) {
         return `<tr>
           <td class="l">${esc(fmtDate(g.date))}</td>
           <td class="matchup-cell"><div class="matchup">
-            <a class="side home${hw ? ' w' : ''}${off}" href="${gameUrl(g.home)}"><span>${esc(g.home)}</span>${logo(g.home, 18)}</a>
+            <a class="side home${hw ? ' w' : ''}${off}" href="${gameUrl(g.home)}">${nm(g.home)}${logo(g.home, 18)}</a>
             <span class="score-both">${hs}–${as}${tags(g)}</span>
             <span class="score home">${hs}</span><span class="vs">vs</span><span class="score away">${as}</span>
-            <a class="side away${aw ? ' w' : ''}${off}" href="${gameUrl(g.away)}">${logo(g.away, 18)}<span>${esc(g.away)}</span></a>
+            <a class="side away${aw ? ' w' : ''}${off}" href="${gameUrl(g.away)}">${logo(g.away, 18)}${nm(g.away)}</a>
           </div></td>
           <td class="l hide-sm muted">${tags(g).replace('tag"', 'tag first"')}${noteText(g)}</td></tr>`;
       }).join('')}</tbody>`;
@@ -73,13 +73,13 @@ if (S) {
         <th class="hide-sm">Opponent class</th><th class="hide-sm">Opponent win %</th><th>Saylor points</th></tr></thead>
       <tbody>${log.map((x) => `<tr>
         <td class="l">${esc(fmtDate(x.date))}</td>
-        <td class="l muted">${x.home ? 'Home' : 'Away'}</td>
-        <td class="name${x.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(x.opp)}">${logo(x.opp)}<span>${esc(x.opp)}</span></a></td>
+        <td class="l muted"><span class="nm"><span class="full">${x.home ? 'Home' : 'Away'}</span><span class="abbr">${x.home ? 'H' : 'A'}</span></span></td>
+        <td class="name${x.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(x.opp)}">${logo(x.opp)}${nm(x.opp)}</a></td>
         <td>${x.result ? `<span class="result-${x.result}">${x.result}</span> ${x.my}–${x.th}` : ''}${tags(x)}</td>
         <td class="hide-sm">${esc(x.oppClass || '')}</td>
         <td class="hide-sm">${fmtPct(x.oppWinPct)}</td>
         <td>${x.saylor === null ? '' : fmtInt(x.saylor)}</td></tr>`).join('')}
-      ${log.length ? `<tr><td class="l key" colspan="6">Total, ${R.gp} games</td><td class="key">${fmtInt(pts)}</td></tr>` : ''}</tbody>`;
+      ${log.length ? `<tr><td class="l key" colspan="4">Total, ${R.gp} games</td><td class="hide-sm"></td><td class="hide-sm"></td><td class="key">${fmtInt(pts)}</td></tr>` : ''}</tbody>`;
     if (!log.length) document.getElementById('tbl').innerHTML = '<tbody><tr><td class="empty">No games for this team yet.</td></tr></tbody>';
   }
 

@@ -1,4 +1,4 @@
-import { logo, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
+import { logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
 
 const S = await boot('rankings');
 if (S) {
@@ -19,7 +19,7 @@ if (S) {
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },
     { key: 'spPerGame', label: 'Saylor points per game', cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
     { key: 'sp', label: 'Saylor points total', cls: 'hide-sm', cell: (r) => fmtInt(r.sp), rank: 'rank_sp' },
-    { key: 'inWinPct', label: 'In-class win %', cls: '', cell: (r) => fmtPct(r.inWinPct), rank: 'rank_inWinPct' },
+    { key: 'inWinPct', label: 'In-class win %', cls: 'hide-sm', cell: (r) => fmtPct(r.inWinPct), rank: 'rank_inWinPct' },
     { key: 'gt500In', label: 'vs .500+ in class', cls: 'hide-sm', cell: (r) => r.gt500In, rank: 'rank_gt500In' },
     { key: 'gt500Out', label: 'vs .500+ other classes', cls: 'hide-sm', cell: (r) => r.gt500Out, rank: 'rank_gt500Out' },
   ];
@@ -64,7 +64,7 @@ if (S) {
       <tbody>${rows.map((r) => `<tr>
         ${COLS.map((c) => {
           if (c.rankCol) return `<td class="pos">${r.gp ? r.rank_spPerGame : '–'}</td>`;
-          if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}<span>${esc(r.name)}</span></a></td>`;
+          if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a></td>`;
           if (c.key === 'league') return `<td class="l hide-sm muted">${esc(r.league || '')}</td>`;
           const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
           return `<td class="${c.cls}">${c.cell(r)}${rk}</td>`;
