@@ -51,10 +51,11 @@ function renderChrome(active, data, me) {
   if (me.admin || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
-    <div class="wrap bar">
-      <a class="brand" href="/"><img class="logo" src="/img/nepsac-logo.png" alt="" width="44" height="45"><span class="brand-name">NEPSAC Field Hockey</span></a>
-      <nav class="nav" aria-label="Main">${items.map(([k, label, href]) =>
-        `<a href="${href}"${k === active ? ' aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
+    <div class="nav">
+      <a class="nav-logo" href="/"><img class="logo" src="/img/nepsac-logo.png" alt="" width="26" height="27">NEPSAC Field Hockey</a>
+      <span class="nav-sep">|</span>
+      <nav class="nav-links" aria-label="Main">${items.map(([k, label, href]) =>
+        `<a href="${href}"${k === active ? ' class="here" aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
       ${seasons.length ? `<label class="season"><span class="sr">Season</span>
         <select id="season-pick">${seasons.map((s) =>
           `<option value="${esc(s.id)}"${data.season && s.id === data.season.id ? ' selected' : ''}>${esc(s.label)}</option>`).join('')}</select></label>` : ''}

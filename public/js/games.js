@@ -38,15 +38,20 @@ if (S) {
     document.getElementById('lede').textContent = `${list.length} games in ${S.season.label}${cls ? `, Class ${cls}` : ''}. Pick a team to see its schedule and how each game scored.`;
     document.getElementById('summary').innerHTML = '';
     document.getElementById('tbl').innerHTML = `
-      <thead><tr><th class="l">Date</th><th class="l">Home</th><th>Score</th><th class="l">Away</th><th class="l hide-sm">Notes</th></tr></thead>
+      <thead><tr><th class="l">Date</th><th style="text-align:center">Matchup</th><th class="l hide-sm">Notes</th></tr></thead>
       <tbody>${list.map((g) => {
         const hw = hasScore(g) && g.homeScore > g.awayScore, aw = hasScore(g) && g.awayScore > g.homeScore;
+        const off = g.status === 'cancelled' ? ' struck' : '';
+        const hs = hasScore(g) ? g.homeScore : '–', as = hasScore(g) ? g.awayScore : '–';
         return `<tr>
           <td class="l">${esc(fmtDate(g.date))}</td>
-          <td class="name${g.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(g.home)}"${hw ? ' style="font-weight:800"' : ''}>${logo(g.home)}<span>${esc(g.home)}</span></a></td>
-          <td>${hasScore(g) ? `${g.homeScore}–${g.awayScore}` : ''}${tags(g)}</td>
-          <td class="name${g.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(g.away)}"${aw ? ' style="font-weight:800"' : ''}>${logo(g.away)}<span>${esc(g.away)}</span></a></td>
-          <td class="l hide-sm muted">${noteText(g)}</td></tr>`;
+          <td class="matchup-cell"><div class="matchup">
+            <a class="side home${hw ? ' w' : ''}${off}" href="${gameUrl(g.home)}"><span>${esc(g.home)}</span>${logo(g.home, 18)}</a>
+            <span class="score-both">${hs}–${as}${tags(g)}</span>
+            <span class="score home">${hs}</span><span class="vs">vs</span><span class="score away">${as}</span>
+            <a class="side away${aw ? ' w' : ''}${off}" href="${gameUrl(g.away)}">${logo(g.away, 18)}<span>${esc(g.away)}</span></a>
+          </div></td>
+          <td class="l hide-sm muted">${tags(g).replace('tag"', 'tag first"')}${noteText(g)}</td></tr>`;
       }).join('')}</tbody>`;
     if (!list.length) document.getElementById('tbl').innerHTML = '<tbody><tr><td class="empty">No games yet.</td></tr></tbody>';
   }
