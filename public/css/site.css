@@ -190,7 +190,19 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .pw td.tot { width: auto; padding: 0 14px; font-weight: 700; color: var(--ink); cursor: default; border-color: var(--line); background: #fbfbfc; }
 .pw td.sel { outline: 2px solid var(--accent); outline-offset: -2px; background: var(--accent-soft); }
 .pw td[data-a]:hover { background: #dbeafe; }
-.cmp-wrap { max-width: 640px; }
+.cmp-wrap { max-width: 720px; }
+a.lk { color: inherit; text-decoration: underline dotted #9aa4b2; text-underline-offset: 3px; }
+a.lk:hover, .cmp th a.tn:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.cmp th a.tn { color: inherit; text-decoration: none; }
+h3.sub { margin: 22px 0 8px; font-size: 14px; scroll-margin-top: 70px; }
+.tbl.sm td, .tbl.sm th { padding: 7px 10px; font-size: 13px; text-align: center; }
+.tbl.sm td.l, .tbl.sm th.l { text-align: left; }
+.tbl.sm td.sc { font-weight: 700; color: var(--ink); }
+.tbl.sm td.wn { font-weight: 700; color: var(--ink); }
+.tbl.sm th.grp { border-bottom: 1px solid var(--line); }
+.tbl.mut td.g, .tbl.mut th.g { border-left: 1px solid var(--line); }
+.tbl.mut tr.tot td { font-weight: 700; color: var(--ink); background: #fbfbfc; }
+
 .cmp td.win { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
 .cmp td, .cmp th { white-space: normal; }
 .verdict { margin: 12px 0 0; font-weight: 600; }
@@ -287,3 +299,5 @@ details.how p, details.how li { color: var(--data); }
 h1 .tn { gap: 12px; }
 .tbl td a.tn { display: flex; }
 .tag.first{margin-left:0;margin-right:6px}
+.tbl.sm a.tn { color: inherit; text-decoration: none; }
+.tbl.sm a.tn:hover { color: var(--accent); text-decoration: underline; }

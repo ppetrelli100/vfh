@@ -6,6 +6,8 @@ if (S) {
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
   let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
   let sortKey = 'spPerGame', sortDir = 'desc';
+  // A link such as /rankings.html?class=A&sort=inWinPct opens the table sorted by that measure.
+  { const k = getParam('sort'); if (k && k !== 'league' && k !== 'record') { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; } }
 
   const played = FHEngine.playedGames(S.games);
   const lastDate = played.reduce((m, g) => (g.date > m ? g.date : m), '');
@@ -22,6 +24,8 @@ if (S) {
     { key: 'gt500In', label: 'vs .500+ in class', cls: 'hide-sm', cell: (r) => r.gt500In, rank: 'rank_gt500In' },
     { key: 'gt500Out', label: 'vs .500+ other classes', cls: 'hide-sm', cell: (r) => r.gt500Out, rank: 'rank_gt500Out' },
   ];
+
+  if (!COLS.some((c) => c.key === sortKey && !c.nosort)) { sortKey = 'spPerGame'; sortDir = 'desc'; }
 
   const app = document.getElementById('app');
   app.innerHTML = `

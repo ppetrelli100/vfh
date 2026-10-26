@@ -1,4 +1,4 @@
-import { logo, nm, boot, esc, fmtPct, fmtInt, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
+import { logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
 
 const S = await boot('playoffs');
 if (S) {
@@ -87,6 +87,49 @@ if (S) {
     drawCompare(res);
   }
 
+  // Where each measure's underlying numbers live: the Rankings page, sorted by that measure.
+  const RANK_KEY = { winPct: 'winPct', spPerGame: 'spPerGame', inWinPct: 'inWinPct', gt500In: 'gt500In', gt500Out: 'gt500Out' };
+  function rowLink(k, label) {
+    if (RANK_KEY[k]) return `<a class="lk" href="/rankings.html?class=${encodeURIComponent(cls)}&sort=${RANK_KEY[k]}" title="See this measure for every Class ${esc(cls)} team">${label}</a>`;
+    return `<a class="lk" href="#${k === 'h2h' ? 'h2h' : 'mutual'}">${label}</a>`;
+  }
+
+  // Games these two teams played against each other.
+  function h2hSection(A, B) {
+    const games = FHEngine.playedGames(S.games).filter((g) => (g.home === A && g.away === B) || (g.home === B && g.away === A))
+      .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    const rows = games.map((g) => {
+      const hs = Number(g.homeScore), as = Number(g.awayScore);
+      const w = hs > as ? g.home : hs < as ? g.away : null;
+      return `<tr><td class="l">${esc(fmtDate(g.date))}</td>
+        <td class="${w === g.home ? 'wn' : ''}">${nm(g.home)}</td><td class="sc">${hs}&ndash;${as}</td><td class="${w === g.away ? 'wn' : ''}">${nm(g.away)}</td>
+        <td class="l muted">${w ? `${nm(w)} won` : 'Tie'}</td></tr>`;
+    }).join('');
+    return `<h3 id="h2h" class="sub">Head to head</h3>` + (games.length
+      ? `<div class="scroll"><table class="tbl sm"><tbody>${rows}</tbody></table></div>`
+      : `<p class="hint">${nm(A)} and ${nm(B)} have not played each other this season.</p>`);
+  }
+
+  // Each team's results against the opponents both have played.
+  function mutualSection(A, B, opps) {
+    if (!opps.length) return `<h3 id="mutual" class="sub">Record vs mutual opponents</h3><p class="hint">These teams have no opponents in common yet.</p>`;
+    const rec = (t, o) => (S.ranked.rec[t][o] || { w: 0, l: 0, t: 0 });
+    const dash = (n) => (n ? n : '&ndash;');
+    const list = opps.slice().sort((a, b) => a.localeCompare(b));
+    const tot = { A: { w: 0, l: 0, t: 0 }, B: { w: 0, l: 0, t: 0 } };
+    const cells = (r, k) => { tot[k].w += r.w; tot[k].l += r.l; tot[k].t += r.t; return `<td class="g">${dash(r.w)}</td><td>${dash(r.l)}</td><td>${dash(r.t)}</td>`; };
+    const rows = list.map((o) => `<tr><td class="l"><a class="tn" href="${gameUrl(o)}">${logo(o, 18)}${nm(o)}</a></td>${cells(rec(A, o), 'A')}${cells(rec(B, o), 'B')}</tr>`).join('');
+    const pct = (x) => fmtPct((x.w + 0.5 * x.t) / (x.w + x.l + x.t));
+    return `<h3 id="mutual" class="sub">Record vs mutual opponents</h3>
+      <div class="scroll"><table class="tbl sm mut">
+        <thead><tr><th class="l" rowspan="2">Opponent</th><th colspan="3" class="grp">${nm(A)}</th><th colspan="3" class="grp">${nm(B)}</th></tr>
+          <tr><th class="g">W</th><th>L</th><th>T</th><th class="g">W</th><th>L</th><th>T</th></tr></thead>
+        <tbody>${rows}
+          <tr class="tot"><td class="l">Total</td><td class="g">${tot.A.w}</td><td>${tot.A.l}</td><td>${tot.A.t}</td><td class="g">${tot.B.w}</td><td>${tot.B.l}</td><td>${tot.B.t}</td></tr>
+          <tr class="tot"><td class="l">Win %</td><td colspan="3" class="g">${pct(tot.A)}</td><td colspan="3" class="g">${pct(tot.B)}</td></tr></tbody>
+      </table></div>`;
+  }
+
   function drawCompare(res) {
     const [A, B] = pair;
     const iA = res.top12.indexOf(A), iB = res.top12.indexOf(B);
@@ -115,12 +158,14 @@ if (S) {
       el.innerHTML = `
         <div class="toolbar"><label>Team${sel('ca', A)}</label><label>Compared with${sel('cb', B)}</label></div>
         <div class="scroll"><table class="tbl cmp">
-          <thead><tr><th class="l">Measure</th><th><span class="tn c">${logo(A)}${nm(A)}</span></th><th><span class="tn c">${logo(B)}${nm(B)}</span></th></tr></thead>
-          <tbody>${CRITERIA.map(([k, label]) => `<tr><td class="l">${label}</td>
+          <thead><tr><th class="l">Measure</th><th><a class="tn c" href="${gameUrl(A)}" title="See ${esc(A)}'s games">${logo(A)}${nm(A)}</a></th><th><a class="tn c" href="${gameUrl(B)}" title="See ${esc(B)}'s games">${logo(B)}${nm(B)}</a></th></tr></thead>
+          <tbody>${CRITERIA.map(([k, label]) => `<tr><td class="l">${rowLink(k, label)}</td>
             <td class="${d[k] ? 'win' : ''}">${val[k][0]}</td><td class="${d[k + '_opp'] ? 'win' : ''}">${val[k][1]}</td></tr>`).join('')}
           <tr><td class="l key">Measures won</td><td class="key">${d.sum}</td><td class="key">${d.sumOpp}</td></tr></tbody>
         </table></div>
-        <p class="verdict">${esc(verdict)}</p>`;
+        <p class="verdict">${esc(verdict)}</p>
+        ${h2hSection(A, B)}
+        ${mutualSection(A, B, mo.mutual)}`;
     }
     const swap = () => { pair = [document.getElementById('ca').value, document.getElementById('cb').value]; draw(); };
     document.getElementById('ca').addEventListener('change', swap);
