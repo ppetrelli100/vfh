@@ -47,7 +47,7 @@ export const classesOf = (schools) =>
   [...new Map(schools.map((s) => [s.cls, s.classNum])).entries()].sort((a, b) => a[1] - b[1]).map((x) => x[0]);
 
 function renderChrome(active, data, me) {
-  const items = [['playoffs', 'Playoffs', '/playoffs.html'], ['rankings', 'Rankings', '/'], ['games', 'Games', '/games.html']];
+  const items = [['playoffs', 'Playoffs', '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
   if (me.admin || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
