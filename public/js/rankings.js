@@ -12,9 +12,9 @@ if (S) {
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
   const COLS = [
-    { key: 'rank_spPerGame', label: 'Rank', cls: 'l', rankCol: true },
+    { key: 'rank_spPerGame', label: 'Rank', cls: '', rankCol: true },
     { key: 'name', label: 'School', cls: 'name' },
-    { key: 'league', label: 'League', cls: 'l hide-sm' },
+    { key: 'league', label: 'League', cls: 'hide-sm' },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },
     { key: 'spPerGame', label: 'Saylor points per game', cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
@@ -30,7 +30,7 @@ if (S) {
     <p class="lede">${esc(S.season.label)}. Teams are ranked within their class by Saylor points per game.
       ${played.length} games played${lastDate ? `, scores through ${esc(fmtDate(lastDate))}` : ''}.</p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
-    <div class="scroll"><table class="tbl" id="tbl"></table></div>
+    <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
       <summary>How the points work</summary>
       <p>Every game earns both teams Saylor points. A game starts at 1,250 points, then:</p>
@@ -65,7 +65,7 @@ if (S) {
         ${COLS.map((c) => {
           if (c.rankCol) return `<td class="pos">${r.gp ? r.rank_spPerGame : '–'}</td>`;
           if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a></td>`;
-          if (c.key === 'league') return `<td class="l hide-sm muted">${esc(r.league || '')}</td>`;
+          if (c.key === 'league') return `<td class="hide-sm muted">${esc(r.league || '')}</td>`;
           const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
           return `<td class="${c.cls}">${c.cell(r)}${rk}</td>`;
         }).join('')}

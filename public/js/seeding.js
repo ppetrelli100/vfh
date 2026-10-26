@@ -3,6 +3,7 @@ import { logo, nm, boot, esc, fmtPct, fmtInt, gameUrl, classesOf, classPicker, g
 const S = await boot('playoffs');
 if (S) {
   const app = document.getElementById('app');
+  app.classList.add('narrow');
   const classes = classesOf(S.schools);
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
   let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
@@ -31,8 +32,6 @@ if (S) {
       out.innerHTML = '<div class="scroll"><div class="empty"><strong>Not enough games yet</strong>Seeds appear once teams in this class have played.</div></div>';
       return;
     }
-    const seedOf = Object.fromEntries(res.table.map((t) => [t.name, t.seed]));
-    const order = res.table.map((t) => res.top12.indexOf(t.name));      // detail index, in seed order
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
     const side = (x) => x.name
@@ -47,8 +46,8 @@ if (S) {
       </section>
 
       <h2>Seed order</h2>
-      <div class="scroll"><table class="tbl">
-        <thead><tr><th class="l">Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
+      <div class="scroll"><table class="tbl c">
+        <thead><tr><th>Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
         <tbody>${res.table.map((t) => `<tr${t.seed === 8 ? ' class="cut"' : ''}${t.seed > 8 ? ' style="opacity:.72"' : ''}>
           <td class="pos">${t.seed}</td>
           <td class="name"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a></td>
@@ -58,14 +57,12 @@ if (S) {
       </table></div>
       <p class="hint" style="margin-top:8px">Seeds 9 to 12 are shown for reference. The line marks the playoff cut.</p>
 
-      <h2>How the seeds were decided</h2>
-      <div class="pairs">
-        <div>
-          <p class="hint" style="margin-top:0">Each team is compared with every other team in the top 12. A check mark means the team in that row won the pairing against the team in that column. Select any square to see the comparison.</p>
-          <div class="scroll" style="padding:8px 8px 8px 0"><table class="mx" id="mx"></table></div>
-        </div>
-        <div id="cmp"></div>
-      </div>
+      <h2>Pairwise comparison</h2>
+      <p class="hint" style="margin-top:0">Each team is compared with every other team in the top 12. A 1 means the team in that row won the pairing against the team in that column. Select any cell to see the comparison below.</p>
+      <div class="scroll"><table class="pw" id="mx"></table></div>
+
+      <h2>Compare two teams</h2>
+      <div id="cmp" class="cmp-wrap"></div>
       <details class="how">
         <summary>The seven measures</summary>
         <p>For each pairing, each team is awarded a point on every measure where its figure is strictly higher than the other team's. Win percentage, points per game, in-class win percentage and the two .500+ records compare each team's season totals. Head to head compares wins in the games the two teams played. Mutual opponents compares each team's win percentage in games against opponents both have played.</p>
@@ -74,13 +71,14 @@ if (S) {
 
     const mx = document.getElementById('mx');
     mx.innerHTML = `
-      <thead><tr><th></th>${order.map((j) => `<th scope="col"><span>${seedOf[res.top12[j]]}. ${nm(res.top12[j])}</span></th>`).join('')}</tr></thead>
-      <tbody>${order.map((i) => `<tr><th scope="row">${seedOf[res.top12[i]]}. ${nm(res.top12[i])}</th>${order.map((j) => {
+      <thead><tr><th class="corner"></th>${res.top12.map((n) => `<th scope="col" class="cn"><span>${nm(n)}</span></th>`).join('')}
+        <th class="tot">Total</th><th class="tot">Seed</th></tr></thead>
+      <tbody>${res.top12.map((a, i) => `<tr><th scope="row" class="rn"><span class="tn">${logo(a, 18)}${nm(a)}</span></th>${res.top12.map((b, j) => {
         if (i === j) return '<td class="self"></td>';
         const w = res.detail[i][j].win;
-        const sel = pair[0] === res.top12[i] && pair[1] === res.top12[j];
-        return `<td class="${w ? 'w' : ''}${sel ? ' sel' : ''}" data-a="${esc(res.top12[i])}" data-b="${esc(res.top12[j])}" tabindex="0" role="button" aria-label="${esc(res.top12[i])} against ${esc(res.top12[j])}: ${w ? 'won' : 'lost'}">${w ? '✓' : ''}</td>`;
-      }).join('')}</tr>`).join('')}</tbody>`;
+        const sel = pair[0] === a && pair[1] === b;
+        return `<td class="${w ? 'w' : 'l'}${sel ? ' sel' : ''}" data-a="${esc(a)}" data-b="${esc(b)}" tabindex="0" role="button" aria-label="${esc(a)} against ${esc(b)}: ${w ? 'won' : 'lost'}">${w ? '1' : '&ndash;'}</td>`;
+      }).join('')}<td class="tot">${res.total[i]}</td><td class="tot">${res.finalRank[i]}</td></tr>`).join('')}</tbody>`;
     mx.querySelectorAll('td[data-a]').forEach((td) => {
       const go = () => { pair = [td.dataset.a, td.dataset.b]; draw(); };
       td.addEventListener('click', go);

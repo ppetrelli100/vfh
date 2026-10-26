@@ -126,6 +126,15 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .empty { padding: 38px 16px; text-align: center; color: var(--muted); }
 .empty strong { display: block; color: var(--ink); font-size: 15px; margin-bottom: 4px; }
 
+/* tables with centered columns (the first column of names stays left) */
+.tbl.c th, .tbl.c td { text-align: center; }
+.tbl.c th.l, .tbl.c td.name { text-align: left; padding-left: 24px; }
+.tbl.c .pos { text-align: center; width: 64px; }
+.tbl.c .rk { font-size: 10px; vertical-align: super; margin-left: 3px; }
+
+/* narrow pages (games, playoffs) so the cards are not stretched across wide screens */
+.narrow { max-width: 920px; }
+
 /* games list: matchup cell, same layout as the NEPSAC scoreboard */
 .matchup {
   display: grid; grid-template-columns: minmax(0, 1fr) 24px 18px 24px minmax(0, 1fr);
@@ -164,18 +173,23 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
   display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%;
   background: #eef0f3; color: var(--data); font-size: 12px; font-weight: 700;
 }
-.pairs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
-@media (min-width: 980px) { .pairs { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; } }
-.mx { border-collapse: collapse; }
-.mx th, .mx td { padding: 0; }
-.mx thead th { height: 128px; vertical-align: bottom; background: none; border: 0; text-transform: none; letter-spacing: 0; }
-.mx thead th span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 12px; font-weight: 600; color: var(--muted); padding: 4px 0; }
-.mx tbody th { text-align: right; font-size: 12px; font-weight: 600; padding-right: 8px; white-space: nowrap; color: var(--data); }
-.mx td { width: 30px; height: 28px; text-align: center; border: 1px solid var(--line); cursor: pointer; font-size: 14px; }
-.mx td.self { background: #f3f4f6; cursor: default; }
-.mx td.w { background: var(--accent-soft); color: var(--accent); font-weight: 800; }
-.mx td.sel { outline: 2px solid var(--accent); outline-offset: -2px; }
-.mx td:not(.self):hover { background: #dbeafe; }
+/* pairwise grid: same layout as the sheet's "Pairwise Comparison - Summary" */
+.pw { border-collapse: collapse; margin: 0 auto; }
+.pw th, .pw td { padding: 0; }
+.pw thead th.cn { height: 150px; vertical-align: bottom; width: 38px; padding-bottom: 6px; }
+.pw thead th.cn > span {
+  display: inline-block; writing-mode: vertical-rl; white-space: nowrap; font-size: 12px; font-weight: 600; color: var(--data);
+}
+.pw thead th.tot { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding: 0 12px 6px; vertical-align: bottom; }
+.pw tbody th.rn { text-align: left; font-size: 13px; font-weight: 600; padding: 0 14px 0 14px; white-space: nowrap; color: var(--ink); }
+.pw td { width: 38px; height: 30px; text-align: center; border: 1px solid var(--line); cursor: pointer; font-size: 13px; font-variant-numeric: tabular-nums; }
+.pw td.self { background: #e5e7eb; cursor: default; }
+.pw td.w { color: var(--accent); font-weight: 700; }
+.pw td.l { color: #b8bec8; }
+.pw td.tot { width: auto; padding: 0 14px; font-weight: 700; color: var(--ink); cursor: default; border-color: var(--line); background: #fbfbfc; }
+.pw td.sel { outline: 2px solid var(--accent); outline-offset: -2px; background: var(--accent-soft); }
+.pw td[data-a]:hover { background: #dbeafe; }
+.cmp-wrap { max-width: 640px; }
 .cmp td.win { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
 .cmp td, .cmp th { white-space: normal; }
 .verdict { margin: 12px 0 0; font-weight: 600; }
@@ -232,8 +246,13 @@ details.how p, details.how li { color: var(--data); }
   .tbl td, .tbl th { letter-spacing: 0; }
   .nm .full { display: none; }
   .nm .abbr { display: inline; }
-  .mx td { width: 24px; height: 26px; }
-  .mx tbody th { font-size: 11px; padding-right: 5px; }
+  .pw td, .pw thead th.cn { width: 28px; }
+  .pw td { height: 28px; }
+  .pw tbody th.rn { font-size: 12px; padding: 0 8px; }
+  .pw thead th.tot { padding: 0 7px 6px; }
+  .pw td.tot { padding: 0 8px; }
+  .tbl.c th.l, .tbl.c td.name { padding-left: 8px; }
+  .tbl.c .pos { width: 40px; }
   .panel { padding: 14px; }
   .pitch { padding: 14px; }
   .seg { flex-wrap: wrap; }

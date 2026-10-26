@@ -3,6 +3,7 @@ import { logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, getParam
 const S = await boot('games');
 if (S) {
   const app = document.getElementById('app');
+  app.classList.add('narrow');
   const byName = Object.fromEntries(S.schools.map((s) => [s.name, s]));
   const classes = classesOf(S.schools);
   let team = byName[getParam('team')] ? getParam('team') : '';
