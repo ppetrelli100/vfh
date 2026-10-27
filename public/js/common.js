@@ -59,7 +59,7 @@ export function playoffLabel(season) {
 }
 
 function renderChrome(active, data, me) {
-  const items = [['playoffs', playoffLabel(data.season), '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
+  const items = [['playoffs', 'Playoffs', '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
   if (me.admin || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
