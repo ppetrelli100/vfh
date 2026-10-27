@@ -1,0 +1,521 @@
+{
+ "season": {
+  "id": "fall-2026",
+  "label": "Fall 2026",
+  "isCurrent": true
+ },
+ "schools": [
+  {
+   "name": "Andover",
+   "matchRegex": "(?i)^\\s*(?:phil+ips\\s*)?(?:andover\\s*academy|academy\\s*andover|andover)\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": null
+  },
+  {
+   "name": "Austin Prep",
+   "matchRegex": "(?i)^\\s*(austin\\s*(prep|preparatory)\\s*(school)?|ap)$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Vaillancourt"
+  },
+  {
+   "name": "BBN",
+   "matchRegex": "(?i)^\\s*(?:b\\s*\\.?(?:\\s*b\\s*\\.?)?\\s*&?\\s*n\\.?|buckingham[\\s,]*browne[\\s,]*&?\\s*and?\\s*nichols)\\s*(?:school)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "ISL"
+  },
+  {
+   "name": "Beaver",
+   "matchRegex": "(?i)^\\s*beaver\\s*((countr*y\\s*day(\\s*school)?)|\\s*cd(\\s*school)?)$|(?i)^\\s*bcd(s)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "EIL"
+  },
+  {
+   "name": "Berkshire",
+   "matchRegex": "(?i)^\\s*(the\\s+)?berkshire\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": null
+  },
+  {
+   "name": "Berwick",
+   "matchRegex": "(?i)^\\s*berwick\\s*(academy|school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "EIL"
+  },
+  {
+   "name": "Brewster",
+   "matchRegex": "(?i)^brewster\\s*(academy)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Lakes"
+  },
+  {
+   "name": "Brooks",
+   "matchRegex": "(?i)^\\s*(the\\s+)?brooks\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Canterbury",
+   "matchRegex": "(?i)^\\s*(the\\s+)?canterbury\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": null
+  },
+  {
+   "name": "Choate",
+   "matchRegex": "(?i)^\\s*choate\\s*(rosemary\\s*hall)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Founders"
+  },
+  {
+   "name": "Concord",
+   "matchRegex": "(?i)^\\s*concord\\s*(academy|school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "EIL"
+  },
+  {
+   "name": "Cushing",
+   "matchRegex": "(?i)^cushing\\s*(academy\\s*)?(prep)?(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": null
+  },
+  {
+   "name": "Dana Hall",
+   "matchRegex": "(?i)^\\s*dana\\s*hall\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "EIL"
+  },
+  {
+   "name": "Deerfield",
+   "matchRegex": "(?i)^deerfield\\s*(academy)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": null
+  },
+  {
+   "name": "Dexter",
+   "matchRegex": "(?i)^(dxsf|dexter\\s*(southfield\\s*)?(school)?)$",
+   "cls": "B",
+   "classNum": 2,
+   "league": null
+  },
+  {
+   "name": "Ethel Walker School",
+   "matchRegex": "(?i)^\\s*ethel\\s*walker\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "Founders"
+  },
+  {
+   "name": "Exeter",
+   "matchRegex": "(?i)^\\s*(?:phil+ips\\s*)?(?:exeter\\s*(?:academy)?|academy\\s*exeter)\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": null
+  },
+  {
+   "name": "Frederick Gunn",
+   "matchRegex": "(?i)^((the\\s*)?gunnery|frederick\\s*gunn)\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": null
+  },
+  {
+   "name": "Gould",
+   "matchRegex": "(?i)^\\s*gould\\s*(academy)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "MAISAD"
+  },
+  {
+   "name": "Governors",
+   "matchRegex": "(?i)^\\s*(?:gov's|govs|governors|governor's|govenors)\\s*(?:academy)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Greens Farms",
+   "matchRegex": "(?i)^\\s*(?:greens\\s*farms\\s*(?:academy)?|gfa)\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "FAA"
+  },
+  {
+   "name": "Greenwich Academy",
+   "matchRegex": "(?i)^\\s*(?:greenwich\\s*academy|ga)\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "FAA"
+  },
+  {
+   "name": "Greenwich CDS",
+   "matchRegex": "(?i)^\\s*(?:greenwich\\s*country\\s*day\\s*school|greenwich\\s*c?d\\s*s|gcds)\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "FAA"
+  },
+  {
+   "name": "Groton",
+   "matchRegex": "(?i)^\\s*(the\\s+)?groton\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Hamden Hall",
+   "matchRegex": "(?i)^\\s*hamden\\s*hall\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "FAA"
+  },
+  {
+   "name": "Hebron",
+   "matchRegex": "(?i)^hebron\\s*(academy)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "MAISAD"
+  },
+  {
+   "name": "Holderness",
+   "matchRegex": "(?i)^holderness\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Lakes"
+  },
+  {
+   "name": "Hopkins",
+   "matchRegex": "(?i)^\\s*hopkins\\s*(school)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "FAA"
+  },
+  {
+   "name": "Hotchkiss",
+   "matchRegex": "(?i)^(the\\s*)?hotchkiss\\s*(school)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Founders"
+  },
+  {
+   "name": "Kent",
+   "matchRegex": "(?i)^\\s*(the\\s+)?kent\\s*(school)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Founders"
+  },
+  {
+   "name": "Kents Hill",
+   "matchRegex": "(?i)^\\s*(the\\s+)?kents\\s*hill\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "MAISAD"
+  },
+  {
+   "name": "Kimball Union",
+   "matchRegex": "(?i)^\\s*(?:kimball\\s*union\\s*(?:academy)?|kua)\\s*$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Lakes"
+  },
+  {
+   "name": "King",
+   "matchRegex": "(?i)^\\s*(the\\s+)?king\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "FAA"
+  },
+  {
+   "name": "Kingswood Oxford",
+   "matchRegex": "(?i)^\\s*(?:kingswood[\\s-]*oxford\\s*(?:school)?|k-?o)\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "Founders"
+  },
+  {
+   "name": "Lawrence Academy",
+   "matchRegex": "(?i)^lawrence\\s*(academy)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Lexington Christian",
+   "matchRegex": "(?i)^\\s*(?:lexington\\s*christian\\s*(?:academy)?|lca)\\s*$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "EIL"
+  },
+  {
+   "name": "Loomis",
+   "matchRegex": "(?i)^\\s*(the\\s+)?loomis\\s*(chaffee\\s*(school)?)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Founders"
+  },
+  {
+   "name": "Marianapolis",
+   "matchRegex": "(?i)^\\s*marianapolis\\s*(prep|preparatory)\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": null
+  },
+  {
+   "name": "Masters",
+   "matchRegex": "(?i)^\\s*(?:the\\s+)?masters\\s*(?:school)?\\s*(?:ny)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "FAA"
+  },
+  {
+   "name": "Middlesex",
+   "matchRegex": "(?i)^middlesex\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Millbrook",
+   "matchRegex": "(?i)^millbrook\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": null
+  },
+  {
+   "name": "Milton",
+   "matchRegex": "(?i)^milton\\s*(academy)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "ISL"
+  },
+  {
+   "name": "Miss Porters",
+   "matchRegex": "(?i)^\\s*miss\\s*porters?'?\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "Founders"
+  },
+  {
+   "name": "Montrose",
+   "matchRegex": "(?i)^\\s*montrose\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "IGC"
+  },
+  {
+   "name": "Mount Saint Charles",
+   "matchRegex": "(?i)^\\s*(?:mount|mt\\.?)\\s*(?:saint|st\\.?)\\s*charles\\s*(?:academy)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "SENEISAA"
+  },
+  {
+   "name": "New Hampton",
+   "matchRegex": "(?i)^\\s*(the\\s+)?new\\s*hampton\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Lakes"
+  },
+  {
+   "name": "Newton CDS",
+   "matchRegex": "(?i)^\\s*(?:newton\\s*country\\s*day\\s*school|newton\\s*c?d\\s*s?|ncds)\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "EIL"
+  },
+  {
+   "name": "Nobles",
+   "matchRegex": "(?i)^\\s*(?:noble|nobles)\\s*(?:and|&)\\s*greenough\\s*(?:school)?$|(?i)^\\s*nobles\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "ISL"
+  },
+  {
+   "name": "NMH",
+   "matchRegex": "(?i)^\\s*(?:northfield\\s*(?:mount|mt\\.?)\\s*hermon\\s*(?:school)?|n\\.?\\s*m\\.?\\s*h\\.?)\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Vaillancourt"
+  },
+  {
+   "name": "Holy Child",
+   "matchRegex": "(?i)^\\s*(?:school\\s+of\\s+the\\s+)?holy\\s*child\\s*(?:rye)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "FAA"
+  },
+  {
+   "name": "Pingree",
+   "matchRegex": "(?i)^pingree\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "EIL"
+  },
+  {
+   "name": "Pomfret",
+   "matchRegex": "(?i)^pomfret\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Vaillancourt"
+  },
+  {
+   "name": "Portsmouth Abbey",
+   "matchRegex": "(?i)^\\s*portsmouth\\s*(?:abbey\\s*(?:school)?)?\\s*$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "EIL"
+  },
+  {
+   "name": "Proctor",
+   "matchRegex": "(?i)^proctor\\s*(academy)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Lakes"
+  },
+  {
+   "name": "Rivers",
+   "matchRegex": "(?i)^\\s*(the\\s+)?rivers\\s*(school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Rocky Hill",
+   "matchRegex": "(?i)^\\s*rocky\\s*hill\\s*(?:country\\s*day\\s*(?:school)?|cds)?\\s*$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "SENEISAA"
+  },
+  {
+   "name": "Rye CDS",
+   "matchRegex": "(?i)^\\s*rye\\s*(?:country\\s*day\\s*(?:school)?|cd\\s*s?)?\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "FAA"
+  },
+  {
+   "name": "SHG",
+   "matchRegex": "(?i)^\\s*(?:convent\\s+)?sacred\\s*heart\\s*(?:greenwich)?\\s*$|(?i)^\\s*shg\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "FAA"
+  },
+  {
+   "name": "St Georges",
+   "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?georges?'?(\\s*school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "St Lukes",
+   "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?lukes?'?(\\s*school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "FAA"
+  },
+  {
+   "name": "St Marks",
+   "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?marks?'?(\\s*school)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "St Pauls",
+   "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?pauls?'?(\\s*school)?$|(?i)^\\s*sps\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Lakes"
+  },
+  {
+   "name": "Suffield",
+   "matchRegex": "(?i)^\\s*suffield\\s*(academy)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": null
+  },
+  {
+   "name": "Tabor",
+   "matchRegex": "(?i)^tabor\\s*(academy)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "ISL"
+  },
+  {
+   "name": "Taft",
+   "matchRegex": "(?i)^(the\\s*)?taft\\s*(school)?$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Founders"
+  },
+  {
+   "name": "Thayer",
+   "matchRegex": "(?i)^thayer\\s*(academy\\s*)?(varsity)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "ISL"
+  },
+  {
+   "name": "Tilton",
+   "matchRegex": "(?i)^\\s*(the\\s+)?tilton\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "Lakes"
+  },
+  {
+   "name": "Westminster",
+   "matchRegex": "(?i)^\\s*(?:westminster\\s*(?:school)?|westy)\\s*$",
+   "cls": "A",
+   "classNum": 1,
+   "league": "Founders"
+  },
+  {
+   "name": "Wheeler",
+   "matchRegex": "(?i)^\\s*(the\\s+)?wheeler\\s*(school)?$",
+   "cls": "C",
+   "classNum": 3,
+   "league": "EIL"
+  },
+  {
+   "name": "Wilbraham Monson",
+   "matchRegex": "(?i)^\\s*(?:wilbraham\\s*(?:and|&)?\\s*monson|wil\\s*(?:and|&)\\s*monson)\\s*(?:academy)?\\s*$",
+   "cls": "C",
+   "classNum": 3,
+   "league": null
+  },
+  {
+   "name": "Williston",
+   "matchRegex": "(?i)^\\s*williston\\s*(?:northampton\\s*(?:school)?)?\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": null
+  },
+  {
+   "name": "Winsor",
+   "matchRegex": "(?i)^\\s*(the\\s+)?winsor\\s*(school|academy)?\\s*$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "EIL"
+  },
+  {
+   "name": "Worcester",
+   "matchRegex": "(?i)^worcester\\s*(academy)?$",
+   "cls": "B",
+   "classNum": 2,
+   "league": "Vaillancourt"
+  }
+ ],
+ "games": []
+}

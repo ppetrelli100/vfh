@@ -65,6 +65,26 @@ function main() {
     <h2>Recent games</h2>
     <div class="scroll"><table class="tbl" id="recent"></table></div>` : ''}
 
+    ${hasSeason ? `<details class="tools" id="sc-wrap">
+      <summary>Schools and classes</summary>
+      <div class="panel">
+        <p class="hint" style="margin:0 0 10px">Classes belong to a season. Changes here apply to <strong>${esc(S.season.label)}</strong> only, and the rankings, points and seeds update as soon as you save.</p>
+        <div class="scroll"><table class="tbl" id="sc-tbl"></table></div>
+        <div class="actions" style="margin-top:10px"><button type="button" class="btn" id="sc-save" disabled>Save changes</button>
+          <button type="button" class="btn ghost" id="sc-reset" disabled>Undo changes</button><span class="status" id="sc-msg" role="status"></span></div>
+        <h3 style="margin:18px 0 4px">Paste a list</h3>
+        <p class="hint" style="margin:0 0 8px">One school per line, with the class (A, B or C) at the end. Tabs or commas both work, so a column copied from a spreadsheet is fine. Lines are matched to the school names in the table; nothing is saved until you press Save changes.</p>
+        <textarea id="sc-paste" rows="5" placeholder="Phillips Andover&#9;Andover&#9;A"></textarea>
+        <div class="actions" style="margin-top:8px"><button type="button" class="btn ghost" id="sc-apply">Apply list to the table</button><span class="status" id="sc-paste-msg" role="status"></span></div>
+        <h3 style="margin:18px 0 4px">Add a school to this season</h3>
+        <div class="teams">
+          <div class="field"><label for="sc-new-name">School name</label><input type="text" id="sc-new-name" maxlength="60" placeholder="Name as it should appear"></div>
+          <div class="field"><label for="sc-new-cls">Class</label><select id="sc-new-cls"><option>A</option><option>B</option><option>C</option></select></div>
+        </div>
+        <div class="actions" style="margin-top:8px"><button type="button" class="btn ghost" id="sc-add">Add school</button><span class="status" id="sc-add-msg" role="status"></span></div>
+      </div>
+    </details>` : ''}
+
     <details class="tools"${hasSeason ? '' : ' open'}>
       <summary>Season tools</summary>
       <div class="panel form-grid">
@@ -72,6 +92,11 @@ function main() {
           <h3 style="margin:0 0 4px">Load the Fall 2024 season</h3>
           <p class="hint" style="margin:0 0 10px">Adds the 74 schools and 591 games from the season spreadsheet. If a Fall 2024 season is already here, its games and school list are replaced.</p>
           <div class="actions"><button type="button" class="btn ghost" id="load-test">Load Fall 2024 season</button><span class="status" id="load-msg" role="status"></span></div>
+        </div>
+        <div>
+          <h3 style="margin:0 0 4px">Create the Fall 2026 season</h3>
+          <p class="hint" style="margin:0 0 10px">Adds a Fall 2026 season with no games yet and the 73 schools in their Fall 2026 classes. It becomes the current season; Fall 2024 is left as it is. You can adjust any class afterwards under Schools and classes.</p>
+          <div class="actions"><button type="button" class="btn ghost" id="load-26"${S.seasons.some((x) => x.id === 'fall-2026') ? ' disabled' : ''}>Create Fall 2026 season</button><span class="status" id="load26-msg" role="status">${S.seasons.some((x) => x.id === 'fall-2026') ? 'Already created.' : ''}</span></div>
         </div>
         <div>
           <h3 style="margin:0 0 4px">Start a new season</h3>
@@ -95,7 +120,7 @@ function main() {
     </details>`;
 
   wireTools($);
-  if (hasSeason) wireForm($);
+  if (hasSeason) { wireForm($); wireClasses($); }
 }
 
 function wireTools($) {
@@ -118,6 +143,17 @@ function wireTools($) {
       loadMsg.className = 'status bad'; loadMsg.textContent = e.message;
       loadBtn.disabled = false; loadBtn.textContent = 'Load Fall 2024 season';
     }
+  });
+  const b26 = $('load-26'), m26 = $('load26-msg');
+  b26.addEventListener('click', async () => {
+    b26.disabled = true; b26.textContent = 'Creating…';
+    try {
+      const seed = await (await fetch('/seed/fall-2026.json')).json();
+      const r = await api('/api/import', { method: 'POST', body: seed });
+      m26.className = 'status ok'; m26.textContent = `Created Fall 2026 with ${r.schools} schools.`;
+      store.set('vfh.season', 'fall-2026');
+      setTimeout(() => { location.href = '/admin.html?season=fall-2026'; }, 700);
+    } catch (e) { m26.className = 'status bad'; m26.textContent = e.message; b26.disabled = false; b26.textContent = 'Create Fall 2026 season'; }
   });
   const rmBtn = $('rm-go'), rmMsg = $('rm-msg'), rmPick = $('rm-pick');
   let rmArmed = null;
@@ -149,6 +185,82 @@ function wireTools($) {
       setTimeout(() => { location.href = `/admin.html?season=${encodeURIComponent(r.season.id)}`; }, 700);
     } catch (e) { msg.className = 'status bad'; msg.textContent = e.message; }
   });
+}
+
+// Schools-and-classes editor: edit classes in a table, or paste a list, then save in one go.
+function wireClasses($) {
+  const tbl = $('sc-tbl'); if (!tbl) return;
+  const orig = new Map(S.schools.map((x) => [x.name, { cls: x.cls, league: x.league || '' }]));
+  const cur = new Map([...orig].map(([k, v]) => [k, { ...v, remove: false }]));
+  const added = new Set();            // names added in this edit
+  const norm = (t) => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const msg = $('sc-msg');
+  const dirty = () => [...cur].filter(([k, v]) => added.has(k) || v.remove || v.cls !== orig.get(k)?.cls || v.league !== orig.get(k)?.league);
+  function draw() {
+    const names = [...cur.keys()].sort((a, b) => a.localeCompare(b));
+    tbl.innerHTML = `<thead><tr><th class="l">School</th><th>Class</th><th class="l">League</th><th>Take out</th></tr></thead><tbody>${names.map((n) => {
+      const v = cur.get(n), o = orig.get(n), ch = added.has(n) || v.remove || v.cls !== o?.cls || v.league !== o?.league;
+      return `<tr class="${ch ? 'chg' : ''}${v.remove ? ' struck' : ''}"><td class="l name">${esc(n)}${added.has(n) ? ' <span class="tag">new</span>' : ''}</td>
+        <td><select data-n="${esc(n)}" data-f="cls" aria-label="Class for ${esc(n)}">${['A', 'B', 'C'].map((c) => `<option${c === v.cls ? ' selected' : ''}>${c}</option>`).join('')}</select>
+          ${o && o.cls !== v.cls ? `<span class="muted"> was ${o.cls}</span>` : ''}</td>
+        <td class="l"><input type="text" data-n="${esc(n)}" data-f="league" value="${esc(v.league)}" maxlength="40" aria-label="League for ${esc(n)}" style="min-width:9em"></td>
+        <td><input type="checkbox" data-n="${esc(n)}" data-f="remove"${v.remove ? ' checked' : ''} aria-label="Take ${esc(n)} out of this season"></td></tr>`;
+    }).join('')}</tbody>`;
+    const n = dirty().length;
+    $('sc-save').disabled = !n; $('sc-reset').disabled = !n;
+    $('sc-save').textContent = n ? `Save ${n} change${n === 1 ? '' : 's'}` : 'Save changes';
+  }
+  tbl.addEventListener('change', (e) => {
+    const t = e.target, n = t.dataset.n; if (!n) return;
+    const v = cur.get(n);
+    if (t.dataset.f === 'remove') v.remove = t.checked; else v[t.dataset.f] = t.value.trim();
+    msg.textContent = ''; draw();
+  });
+  $('sc-reset').addEventListener('click', () => {
+    for (const k of [...cur.keys()]) { if (added.has(k)) cur.delete(k); else cur.set(k, { ...orig.get(k), remove: false }); }
+    added.clear(); msg.textContent = ''; draw();
+  });
+  $('sc-add').addEventListener('click', () => {
+    const name = $('sc-new-name').value.trim(), m = $('sc-add-msg');
+    if (!name) { m.className = 'status bad'; m.textContent = 'Type the school name.'; return; }
+    if ([...cur.keys()].some((k) => norm(k) === norm(name))) { m.className = 'status bad'; m.textContent = `${name} is already in this season.`; return; }
+    cur.set(name, { cls: $('sc-new-cls').value, league: '', remove: false }); added.add(name);
+    $('sc-new-name').value = ''; m.className = 'status ok'; m.textContent = 'Added to the table. Press Save changes.'; draw();
+  });
+  // Pasted list: match each line to one school, by name (ignoring punctuation and case; a short
+  // form such as "Choate RH" or "Newton CD" matches "Choate" or "Newton CDS" when it is unambiguous).
+  $('sc-apply').addEventListener('click', () => {
+    const m = $('sc-paste-msg'), lines = $('sc-paste').value.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+    const names = [...cur.keys()].filter((k) => !cur.get(k).remove), ln = new Map(names.map((k) => [norm(k), k]));
+    const find = (tok) => {
+      const t = norm(tok); if (!t) return null;
+      if (ln.has(t)) return [ln.get(t)];
+      return names.filter((k) => { const x = norm(k); return x.length >= 4 && t.length >= 4 && (t.startsWith(x) || x.startsWith(t)); });
+    };
+    let applied = 0; const bad = [];
+    for (const line of lines) {
+      const parts = line.split(/\t|,/).map((x) => x.trim()).filter(Boolean);
+      const cls = (parts.pop() || '').toUpperCase();
+      if (!/^[ABC]$/.test(cls) || !parts.length) { bad.push(`${line} (needs a class A, B or C at the end)`); continue; }
+      let hit = null;
+      for (const tok of parts.slice().reverse()) { const f = find(tok); if (f && f.length === 1) { hit = f[0]; break; } }
+      if (!hit) { bad.push(`${parts.join(' / ')} (no single matching school)`); continue; }
+      cur.get(hit).cls = cls; applied++;
+    }
+    m.className = bad.length ? 'status bad' : 'status ok';
+    m.textContent = `${applied} of ${lines.length} lines applied.${bad.length ? ` Not matched: ${bad.slice(0, 6).join('; ')}${bad.length > 6 ? `; and ${bad.length - 6} more` : ''}.` : ' Press Save changes to keep them.'}`;
+    draw();
+  });
+  $('sc-save').addEventListener('click', async () => {
+    const changes = dirty().map(([k, v]) => ({ name: k, cls: v.cls, league: v.league, remove: v.remove }));
+    $('sc-save').disabled = true;
+    try {
+      const r = await api(`/api/seasons/${encodeURIComponent(S.season.id)}/schools`, { method: 'PUT', body: { changes } });
+      msg.className = 'status ok'; msg.textContent = `Saved ${r.changed} change${r.changed === 1 ? '' : 's'}.`;
+      setTimeout(() => location.reload(), 600);
+    } catch (e) { msg.className = 'status bad'; msg.textContent = e.message; $('sc-save').disabled = false; }
+  });
+  draw();
 }
 
 function wireForm($) {
