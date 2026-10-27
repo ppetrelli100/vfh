@@ -22,7 +22,8 @@ export const onRequestPut = handle(async ({ env, request, params }) => {
   const h = Number(body.homeId), a = Number(body.awayId);
   const sameSlot = body.date === before.date &&
     ((h === before.homeId && a === before.awayId) || (h === before.awayId && a === before.homeId));
-  const g = await validateGame(db, { ...body, force: body.force || sameSlot }, { seasonId: before.season, selfId: before.id });
+  // The admin form has no division field, so an edit keeps the division the game already has.
+  const g = await validateGame(db, { ...body, division: body.division === undefined ? before.division : body.division, force: body.force || sameSlot }, { seasonId: before.season, selfId: before.id });
   await db.prepare(
     `UPDATE games SET game_date = ?, home_id = ?, away_id = ?, home_score = ?, away_score = ?, status = ?, overtime = ?,
        game_type = ?, division = ?, note = ?, updated_by = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`)

@@ -27,7 +27,7 @@ function main() {
       <div class="teams">
         <div class="field"><label for="date">Game date</label><input type="date" id="date" required><div class="err" id="err-date"></div></div>
         <div class="field"><label for="status">Result</label>
-          <select id="status"><option value="final">Final score</option><option value="forfeit">Forfeit</option><option value="cancelled">Cancelled</option></select>
+          <select id="status"><option value="final">Final score</option><option value="forfeit">Forfeit</option><option value="cancelled">Cancelled</option><option value="scheduled">Not played yet (needs a score)</option></select>
           <div class="err" id="err-status"></div></div>
       </div>
       <div class="teams">
@@ -374,9 +374,10 @@ function wireForm($) {
       await refresh();
       let text;
       if (g.status === 'cancelled') text = `Saved ${g.home} vs ${g.away} on ${fmtDate(g.date)} as cancelled.`;
+      else if (g.status === 'scheduled') text = `Saved ${g.home} vs ${g.away} on ${fmtDate(g.date)} as not played yet. It needs a score.`;
       else if (g.status === 'forfeit') text = `Saved: ${g.homeScore > g.awayScore ? g.home : g.away} won by forfeit on ${fmtDate(g.date)}, recorded as 1–0.`;
       else text = `Saved: ${g.home} ${g.homeScore}, ${g.away} ${g.awayScore} on ${fmtDate(g.date)}${g.overtime ? ' (overtime)' : ''}.`;
-      const st = g.status === 'cancelled' ? '' : ` ${standing(g.home)}. ${standing(g.away)}.`;
+      const st = g.status === 'cancelled' || g.status === 'scheduled' ? '' : ` ${standing(g.home)}. ${standing(g.away)}.`;
       const wasEditing = !!editingId;
       endEdit(); clearForm();
       say((wasEditing ? text.replace('Saved:', 'Updated:') : text) + st, 'ok');

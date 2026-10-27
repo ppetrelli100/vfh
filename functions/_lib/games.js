@@ -30,7 +30,7 @@ export async function validateGame(db, body, { seasonId, selfId = 0 }) {
   const status = body.status || 'final';
   const homeId = toInt(body.homeId), awayId = toInt(body.awayId);
 
-  if (!STATUSES.includes(status)) fields.status = 'Choose Final, Forfeit or Cancelled.';
+  if (!STATUSES.includes(status)) fields.status = 'Choose Final, Forfeit, Cancelled or Not played yet.';
   if (!validDate(body.date)) fields.date = 'Enter the game date.';
   if (!homeId) fields.home = 'Choose the home team.';
   if (!awayId) fields.away = 'Choose the away team.';
