@@ -2,6 +2,7 @@ import { boot, api, esc, fmtDate, schoolOptions, store, logo } from './common.js
 
 const S = await boot('admin', { allowEmpty: true });
 const app = document.getElementById('app');
+const isAdmin = !!S && (S.me.role ? S.me.role === 'admin' : !!S.me.admin);   // coaches, once they exist, never see the reset
 
 const ord = (n) => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[n % 10] || 'th'}`;
 const localToday = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
@@ -62,7 +63,7 @@ function main() {
         <button type="submit" class="btn" id="save">Save game</button>
         <button type="button" class="btn ghost" id="cancel-edit" hidden>Cancel changes</button>
         <span class="status" id="msg" role="status"></span>
-        <button type="button" class="btn reset" id="reset-game" hidden>Reset to needs score</button>
+        <div class="reset-wrap" id="reset-wrap" hidden><button type="button" class="btn reset" id="reset-game">Reset this game</button><small>Admin only</small></div>
       </div>
     </form>
 
@@ -352,7 +353,7 @@ function wireForm($) {
   }
 
   function endEdit() {
-    editingId = null; $('reset-game').hidden = true; setTimeout(() => drawRecent(false), 0); $('editing').hidden = true; $('cancel-edit').hidden = true; $('save').textContent = 'Save game';
+    editingId = null; $('reset-wrap').hidden = true; setTimeout(() => drawRecent(false), 0); $('editing').hidden = true; $('cancel-edit').hidden = true; $('save').textContent = 'Save game';
   }
 
   function standing(name) {
@@ -416,7 +417,7 @@ function wireForm($) {
   let resetTimer = null;
   function resetArm(on) {
     clearTimeout(resetTimer); resetTimer = null;
-    $('reset-game').textContent = on ? 'Click again to reset this game' : 'Reset to needs score';
+    $('reset-game').textContent = on ? 'Click again to reset' : 'Reset this game';
     $('reset-game').classList.toggle('armed', on);
     if (on) resetTimer = setTimeout(() => resetArm(false), 4000);
   }
@@ -446,7 +447,7 @@ function wireForm($) {
     $('editing').hidden = false;
     $('editing').textContent = `${g.status === 'scheduled' ? 'Entering the score for' : 'Editing'}: ${g.home} vs ${g.away}, ${fmtDate(g.date)}. Save, or cancel.`;
     $('cancel-edit').hidden = false; $('save').textContent = g.status === 'scheduled' ? 'Save score' : 'Save changes';
-    $('reset-game').hidden = g.status === 'scheduled'; resetArm(false);
+    $('reset-wrap').hidden = !isAdmin || g.status === 'scheduled'; resetArm(false);
     say(''); drawRecent(false);
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
     (g.status === 'scheduled' || g.status === 'final' ? $('hs') : $('home')).focus();
