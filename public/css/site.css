@@ -134,6 +134,7 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 
 /* narrow pages (games, playoffs) so the cards are not stretched across wide screens */
 .narrow { max-width: 980px; }
+.narrow.games-wide { max-width: 1225px; }
 
 /* games list: matchup cell, same layout as the NEPSAC scoreboard */
 .matchup {

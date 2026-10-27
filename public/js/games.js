@@ -3,7 +3,7 @@ import { logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, record, gameUrl, getParam
 const S = await boot('games');
 if (S) {
   const app = document.getElementById('app');
-  app.classList.add('narrow');
+  app.classList.add('narrow', 'games-wide');
   const byName = Object.fromEntries(S.schools.map((s) => [s.name, s]));
   const classes = classesOf(S.schools);
   let team = byName[getParam('team')] ? getParam('team') : '';
@@ -16,12 +16,17 @@ if (S) {
       <label>Team<select id="team"><option value="">All teams</option>${schoolOptions(S.schools.map((s) => ({ ...s, id: s.name })), team)}</select></label>
       <label id="cls-wrap">Class<select id="cls"><option value="">All classes</option>${classes.map((c) =>
         `<option value="${esc(c)}"${c === cls ? ' selected' : ''}>Class ${esc(c)}</option>`).join('')}</select></label>
+      <button type="button" class="btn ghost" id="export-csv" style="margin-left:auto">Download as CSV</button>
     </div>
-    <p class="actions" style="margin:0 0 10px"><button type="button" class="btn ghost" id="export-csv">Download scores as CSV</button>
-      <span class="muted" id="export-note"> All ${S.games.length} games in ${esc(S.season.label)}, in the coach's score sheet columns.</span></p>
     <div id="summary"></div>
     <div class="scroll"><table class="tbl" id="tbl"></table></div>`;
 
+  // The export covers the whole season, so it is only available with all teams and all classes showing.
+  const syncExport = () => {
+    const b = document.getElementById('export-csv'), all = !team && !cls;
+    b.disabled = !all;
+    b.title = all ? 'All games in the coach\'s score sheet columns' : 'Set Team and Class to All to download';
+  };
   // CSV in the same columns as the coach's Google Sheet: Date, Team, Score, Team, Score, Notes, Division.
   document.getElementById('export-csv').addEventListener('click', () => {
     const q = (v) => { const s = v === null || v === undefined ? '' : String(v); return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
@@ -109,7 +114,8 @@ if (S) {
     document.getElementById('cls-wrap').hidden = !!team;
     if (team) drawTeam(); else drawAll();
   }
-  document.getElementById('team').addEventListener('change', (e) => { team = e.target.value; setParam('team', team); draw(); });
-  document.getElementById('cls').addEventListener('change', (e) => { cls = e.target.value; setParam('class', cls); draw(); });
+  document.getElementById('team').addEventListener('change', (e) => { team = e.target.value; setParam('team', team); syncExport(); draw(); });
+  document.getElementById('cls').addEventListener('change', (e) => { cls = e.target.value; setParam('class', cls); syncExport(); draw(); });
+  syncExport();
   draw();
 }
