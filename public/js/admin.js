@@ -52,7 +52,9 @@ function main() {
       <div class="checks" id="ot-wrap"><label><input type="checkbox" id="ot"> Decided in overtime</label></div>
       <div class="teams">
         <div class="field"><label for="division">Division</label>
-          <select id="division"><option value="">Choose a division</option><option>D1/2</option><option>D3</option><option>D4</option><option>Crossover</option></select><div class="err" id="err-division"></div></div>
+          <input type="hidden" id="division" value="">
+          <div class="choice" id="division-btns" role="group" aria-label="Division">${['D1/2', 'D3', 'D4', 'Crossover'].map((d) => `<button type="button" class="chip" data-v="${d}" aria-pressed="false">${d}</button>`).join('')}</div>
+          <div class="err" id="err-division"></div></div>
         <div class="field"><label for="note">Note (optional)</label><input type="text" id="note" maxlength="120" placeholder="For example, played at a neutral site"></div>
       </div>
       <div id="dup" class="alert" hidden></div>
@@ -269,7 +271,7 @@ function wireForm($) {
   const byId = Object.fromEntries(S.schools.map((s) => [String(s.id), s]));
   const touched = new Set();
   let editingId = null, busy = false;
-  const FIELDS = { division: 'division', date: 'date', home: 'home', away: 'away', homeScore: 'hs', awayScore: 'as', winner: 'winner-wrap', status: 'status' };
+  const FIELDS = { division: 'division-btns', date: 'date', home: 'home', away: 'away', homeScore: 'hs', awayScore: 'as', winner: 'winner-wrap', status: 'status' };
 
   $('date').value = store.get('vfh.lastDate') || localToday();
 
@@ -313,6 +315,7 @@ function wireForm($) {
     $('winner-wrap').hidden = st !== 'forfeit';
     $('w-home').textContent = byId[v.homeId] ? byId[v.homeId].name : 'Home team';
     $('w-away').textContent = byId[v.awayId] ? byId[v.awayId].name : 'Away team';
+    document.querySelectorAll('#division-btns .chip').forEach((b) => { const on = b.dataset.v === $('division').value; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     const hT = byId[v.homeId], aT = byId[v.awayId];
     $('mu').hidden = !hT && !aT;
     $('mu').innerHTML = `<span class="mt home">${hT ? `${esc(hT.name)}${logo(hT.name, 40)}` : '<span class="muted">Home team</span>'}</span><span class="vs">vs</span><span class="mt away">${aT ? `${logo(aT.name, 40)}${esc(aT.name)}` : '<span class="muted">Away team</span>'}</span>`;
@@ -322,6 +325,12 @@ function wireForm($) {
 
   function say(text, kind) { const m = $('msg'); m.textContent = text; m.className = `status${kind ? ' ' + kind : ''}`; }
   const hideDup = () => { $('dup').hidden = true; };
+
+  $('division-btns').addEventListener('click', (e) => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    $('division').value = $('division').value === b.dataset.v ? '' : b.dataset.v;   // click again to un-select
+    touched.add('division'); hideDup(); syncLayout(); refreshErrors();
+  });
 
   form.addEventListener('input', (e) => {
     hideDup();
@@ -362,7 +371,7 @@ function wireForm($) {
     const v = read(), errs = validate(v);
     show(errs);
     const first = Object.keys(errs)[0];
-    if (first) { const el = $(FIELDS[first]); (el.focus ? el : el.querySelector('input')).focus(); say('Fix the highlighted fields to save.', 'bad'); return; }
+    if (first) { const el = $(FIELDS[first]); (el.focus ? el : el.querySelector('input,button')).focus(); say('Fix the highlighted fields to save.', 'bad'); return; }
     if (busy) return;
     busy = true; $('save').disabled = true; say('Saving…');
     try {

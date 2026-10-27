@@ -336,3 +336,10 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .tag.need { background: #fff4d6; color: #8a5a00; }
 .tag.today { background: var(--accent-soft); color: var(--accent); margin-left: 4px; }
 #form { scroll-margin-top: 70px; }
+
+/* Division buttons on the score form: click to select (bold outline), click again to clear */
+.choice { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: inherit; font-size: 14px; font-weight: 500; padding: 9px 16px; border-radius: 10px; border: 1px solid var(--line, #d7dce2); background: #fff; color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: #9aa5b4; }
+.chip.on { border: 2px solid var(--accent); padding: 8px 15px; font-weight: 700; color: var(--accent); background: #fff; }
+.choice.invalid .chip { border-color: #b42318; }
