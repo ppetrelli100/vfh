@@ -63,7 +63,7 @@ function main() {
         <button type="submit" class="btn" id="save">Save game</button>
         <button type="button" class="btn ghost" id="cancel-edit" hidden>Cancel changes</button>
         <span class="status" id="msg" role="status"></span>
-        <div class="reset-wrap" id="reset-wrap" hidden><button type="button" class="btn reset" id="reset-game">Reset this game</button><small>Admin only</small></div>
+        <div class="reset-wrap" id="reset-wrap" hidden><button type="button" class="btn reset" id="reset-game"><span id="reset-label">Reset this game</span><small>Admin only</small></button></div>
       </div>
     </form>
 
@@ -417,7 +417,7 @@ function wireForm($) {
   let resetTimer = null;
   function resetArm(on) {
     clearTimeout(resetTimer); resetTimer = null;
-    $('reset-game').textContent = on ? 'Click again to reset' : 'Reset this game';
+    $('reset-label').textContent = on ? 'Click again to reset' : 'Reset this game';
     $('reset-game').classList.toggle('armed', on);
     if (on) resetTimer = setTimeout(() => resetArm(false), 4000);
   }
