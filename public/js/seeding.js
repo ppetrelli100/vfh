@@ -46,7 +46,7 @@ if (S) {
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
     const side = (x) => x.name
-      ? `<div class="side"><span class="seedno${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${x.seed}</span><span class="tn">${logo(x.name, 26)}${nm(x.name)}</span></div>`
+      ? `<div class="side"><span class="seedno${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${x.seed}</span><span class="tn${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${logo(x.name, 26)}${nm(x.name)}</span></div>`
       : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`;
 
     out.innerHTML = `

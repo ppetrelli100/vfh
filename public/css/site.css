@@ -317,3 +317,4 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .tag.tie { background: #fde8e8; color: #b42318; }
 .tbl td.pos.tie, .tbl td.key.tie, .tbl td.key.tie .rk { color: #b42318; }
 .seedno.tie { background: #fde8e8; color: #b42318; }
+.match .tn.tie { color: #b42318; }
