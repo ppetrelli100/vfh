@@ -95,7 +95,7 @@ function main() {
         </div>
         <div>
           <h3 style="margin:0 0 4px">Create the Fall 2026 season</h3>
-          <p class="hint" style="margin:0 0 10px">Adds a Fall 2026 season with no games yet and the 73 schools in their Fall 2026 classes. It becomes the current season; Fall 2024 is left as it is. You can adjust any class afterwards under Schools and classes.</p>
+          <p class="hint" style="margin:0 0 10px">Adds a Fall 2026 season with the 73 schools in their Fall 2026 classes and the 588 games from the coach's scoreboard (scores through Oct 26, plus the schedule to Nov 14). It becomes the current season; Fall 2024 is left as it is. You can adjust any class afterwards under Schools and classes.</p>
           <div class="actions"><button type="button" class="btn ghost" id="load-26"${S.seasons.some((x) => x.id === 'fall-2026') ? ' disabled' : ''}>Create Fall 2026 season</button><span class="status" id="load26-msg" role="status">${S.seasons.some((x) => x.id === 'fall-2026') ? 'Already created.' : ''}</span></div>
         </div>
         <div>
