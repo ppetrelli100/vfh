@@ -190,20 +190,19 @@ function wireTools($) {
 // Schools-and-classes editor: edit classes in a table, or paste a list, then save in one go.
 function wireClasses($) {
   const tbl = $('sc-tbl'); if (!tbl) return;
-  const orig = new Map(S.schools.map((x) => [x.name, { cls: x.cls, league: x.league || '' }]));
+  const orig = new Map(S.schools.map((x) => [x.name, { cls: x.cls }]));
   const cur = new Map([...orig].map(([k, v]) => [k, { ...v, remove: false }]));
   const added = new Set();            // names added in this edit
   const norm = (t) => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const msg = $('sc-msg');
-  const dirty = () => [...cur].filter(([k, v]) => added.has(k) || v.remove || v.cls !== orig.get(k)?.cls || v.league !== orig.get(k)?.league);
+  const dirty = () => [...cur].filter(([k, v]) => added.has(k) || v.remove || v.cls !== orig.get(k)?.cls);
   function draw() {
     const names = [...cur.keys()].sort((a, b) => a.localeCompare(b));
-    tbl.innerHTML = `<thead><tr><th class="l">School</th><th>Class</th><th class="l">League</th><th>Take out</th></tr></thead><tbody>${names.map((n) => {
-      const v = cur.get(n), o = orig.get(n), ch = added.has(n) || v.remove || v.cls !== o?.cls || v.league !== o?.league;
+    tbl.innerHTML = `<thead><tr><th class="l">School</th><th>Class</th><th>Take out</th></tr></thead><tbody>${names.map((n) => {
+      const v = cur.get(n), o = orig.get(n), ch = added.has(n) || v.remove || v.cls !== o?.cls;
       return `<tr class="${ch ? 'chg' : ''}${v.remove ? ' struck' : ''}"><td class="l name">${esc(n)}${added.has(n) ? ' <span class="tag">new</span>' : ''}</td>
         <td><select data-n="${esc(n)}" data-f="cls" aria-label="Class for ${esc(n)}">${['A', 'B', 'C'].map((c) => `<option${c === v.cls ? ' selected' : ''}>${c}</option>`).join('')}</select>
           ${o && o.cls !== v.cls ? `<span class="muted"> was ${o.cls}</span>` : ''}</td>
-        <td class="l"><input type="text" data-n="${esc(n)}" data-f="league" value="${esc(v.league)}" maxlength="40" aria-label="League for ${esc(n)}" style="min-width:9em"></td>
         <td><input type="checkbox" data-n="${esc(n)}" data-f="remove"${v.remove ? ' checked' : ''} aria-label="Take ${esc(n)} out of this season"></td></tr>`;
     }).join('')}</tbody>`;
     const n = dirty().length;
@@ -224,7 +223,7 @@ function wireClasses($) {
     const name = $('sc-new-name').value.trim(), m = $('sc-add-msg');
     if (!name) { m.className = 'status bad'; m.textContent = 'Type the school name.'; return; }
     if ([...cur.keys()].some((k) => norm(k) === norm(name))) { m.className = 'status bad'; m.textContent = `${name} is already in this season.`; return; }
-    cur.set(name, { cls: $('sc-new-cls').value, league: '', remove: false }); added.add(name);
+    cur.set(name, { cls: $('sc-new-cls').value, remove: false }); added.add(name);
     $('sc-new-name').value = ''; m.className = 'status ok'; m.textContent = 'Added to the table. Press Save changes.'; draw();
   });
   // Pasted list: match each line to one school, by name (ignoring punctuation and case; a short
@@ -252,7 +251,7 @@ function wireClasses($) {
     draw();
   });
   $('sc-save').addEventListener('click', async () => {
-    const changes = dirty().map(([k, v]) => ({ name: k, cls: v.cls, league: v.league, remove: v.remove }));
+    const changes = dirty().map(([k, v]) => ({ name: k, cls: v.cls, remove: v.remove }));
     $('sc-save').disabled = true;
     try {
       const r = await api(`/api/seasons/${encodeURIComponent(S.season.id)}/schools`, { method: 'PUT', body: { changes } });

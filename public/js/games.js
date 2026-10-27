@@ -61,7 +61,7 @@ if (S) {
     const R = S.ranked.R[team];
     const log = FHEngine.teamGames(S.schools, S.games, team).reverse();
     const pts = log.reduce((s, x) => s + (x.saylor || 0), 0);
-    document.getElementById('lede').innerHTML = `Class ${esc(R.cls)}${R.league ? `, ${esc(R.league)}` : ''}. <a href="/games.html">All games</a>`;
+    document.getElementById('lede').innerHTML = `Class ${esc(R.cls)}. <a href="/games.html">All games</a>`;
     document.getElementById('summary').innerHTML = `
       <div class="stats">
         <div class="stat"><b>${record(R)}</b><span>Record</span></div>

@@ -81,6 +81,9 @@ const ABBR = {
   'Greenwich Academy': 'Greenwich Acad', 'Kingswood Oxford': 'Kingswood', 'Lawrence Academy': 'Lawrence Acad',
   'Portsmouth Abbey': 'Portsmouth Ab', 'Wilbraham Monson': 'Wilbraham', 'Frederick Gunn': 'Fred Gunn',
   'Kimball Union': 'Kimball Un',
+  // names as spelled in the coach's score sheet (Fall 2026)
+  'Wilbraham & Monson': 'Wilbraham', 'Mt. St. Charles': 'Mt St Charles', 'Dexter Southfield': 'Dexter',
+  "Governor's Academy": "Governor's", 'Greens Farms Academy': 'Greens Farms', 'Marianapolis Prep': 'Marianapolis',
 };
 /** School name as HTML: full name, plus the short one for small screens when there is one. */
 export const nm = (name) => (ABBR[name]

@@ -17,21 +17,21 @@
    "matchRegex": "(?i)^\\s*(austin\\s*(prep|preparatory)\\s*(school)?|ap)$",
    "cls": "A",
    "classNum": 1,
-   "league": "Vaillancourt"
+   "league": null
   },
   {
    "name": "BBN",
    "matchRegex": "(?i)^\\s*(?:b\\s*\\.?(?:\\s*b\\s*\\.?)?\\s*&?\\s*n\\.?|buckingham[\\s,]*browne[\\s,]*&?\\s*and?\\s*nichols)\\s*(?:school)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "ISL"
+   "league": null
   },
   {
-   "name": "Beaver",
+   "name": "Beaver CD",
    "matchRegex": "(?i)^\\s*beaver\\s*((countr*y\\s*day(\\s*school)?)|\\s*cd(\\s*school)?)$|(?i)^\\s*bcd(s)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Berkshire",
@@ -45,21 +45,21 @@
    "matchRegex": "(?i)^\\s*berwick\\s*(academy|school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Brewster",
    "matchRegex": "(?i)^brewster\\s*(academy)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "Lakes"
+   "league": null
   },
   {
    "name": "Brooks",
    "matchRegex": "(?i)^\\s*(the\\s+)?brooks\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "Canterbury",
@@ -69,18 +69,18 @@
    "league": null
   },
   {
-   "name": "Choate",
+   "name": "Choate RH",
    "matchRegex": "(?i)^\\s*choate\\s*(rosemary\\s*hall)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Concord",
    "matchRegex": "(?i)^\\s*concord\\s*(academy|school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Cushing",
@@ -94,7 +94,7 @@
    "matchRegex": "(?i)^\\s*dana\\s*hall\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Deerfield",
@@ -104,18 +104,18 @@
    "league": null
   },
   {
-   "name": "Dexter",
+   "name": "Dexter Southfield",
    "matchRegex": "(?i)^(dxsf|dexter\\s*(southfield\\s*)?(school)?)$",
    "cls": "B",
    "classNum": 2,
    "league": null
   },
   {
-   "name": "Ethel Walker School",
+   "name": "Ethel Walker",
    "matchRegex": "(?i)^\\s*ethel\\s*walker\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Exeter",
@@ -136,154 +136,154 @@
    "matchRegex": "(?i)^\\s*gould\\s*(academy)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "MAISAD"
+   "league": null
   },
   {
-   "name": "Governors",
+   "name": "Governor's Academy",
    "matchRegex": "(?i)^\\s*(?:gov's|govs|governors|governor's|govenors)\\s*(?:academy)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
-   "name": "Greens Farms",
+   "name": "Greens Farms Academy",
    "matchRegex": "(?i)^\\s*(?:greens\\s*farms\\s*(?:academy)?|gfa)\\s*$",
    "cls": "B",
    "classNum": 2,
-   "league": "FAA"
+   "league": null
   },
   {
    "name": "Greenwich Academy",
    "matchRegex": "(?i)^\\s*(?:greenwich\\s*academy|ga)\\s*$",
    "cls": "A",
    "classNum": 1,
-   "league": "FAA"
+   "league": null
   },
   {
-   "name": "Greenwich CDS",
+   "name": "Greenwich CD",
    "matchRegex": "(?i)^\\s*(?:greenwich\\s*country\\s*day\\s*school|greenwich\\s*c?d\\s*s|gcds)\\s*$",
    "cls": "B",
    "classNum": 2,
-   "league": "FAA"
+   "league": null
   },
   {
    "name": "Groton",
    "matchRegex": "(?i)^\\s*(the\\s+)?groton\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
-   "name": "Hamden Hall",
+   "name": "Hamden Hall CD",
    "matchRegex": "(?i)^\\s*hamden\\s*hall\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "FAA"
+   "league": null
   },
   {
    "name": "Hebron",
    "matchRegex": "(?i)^hebron\\s*(academy)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "MAISAD"
+   "league": null
   },
   {
    "name": "Holderness",
    "matchRegex": "(?i)^holderness\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "Lakes"
+   "league": null
   },
   {
    "name": "Hopkins",
    "matchRegex": "(?i)^\\s*hopkins\\s*(school)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "FAA"
+   "league": null
   },
   {
    "name": "Hotchkiss",
    "matchRegex": "(?i)^(the\\s*)?hotchkiss\\s*(school)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Kent",
    "matchRegex": "(?i)^\\s*(the\\s+)?kent\\s*(school)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Kents Hill",
    "matchRegex": "(?i)^\\s*(the\\s+)?kents\\s*hill\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "MAISAD"
+   "league": null
   },
   {
    "name": "Kimball Union",
    "matchRegex": "(?i)^\\s*(?:kimball\\s*union\\s*(?:academy)?|kua)\\s*$",
    "cls": "C",
    "classNum": 3,
-   "league": "Lakes"
+   "league": null
   },
   {
    "name": "King",
    "matchRegex": "(?i)^\\s*(the\\s+)?king\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "FAA"
+   "league": null
   },
   {
-   "name": "Kingswood Oxford",
+   "name": "K-O",
    "matchRegex": "(?i)^\\s*(?:kingswood[\\s-]*oxford\\s*(?:school)?|k-?o)\\s*$",
    "cls": "B",
    "classNum": 2,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Lawrence Academy",
    "matchRegex": "(?i)^lawrence\\s*(academy)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "Lexington Christian",
    "matchRegex": "(?i)^\\s*(?:lexington\\s*christian\\s*(?:academy)?|lca)\\s*$",
    "cls": "C",
    "classNum": 3,
-   "league": "EIL"
+   "league": null
   },
   {
-   "name": "Loomis",
+   "name": "Loomis Chaffee",
    "matchRegex": "(?i)^\\s*(the\\s+)?loomis\\s*(chaffee\\s*(school)?)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "Founders"
+   "league": null
   },
   {
-   "name": "Marianapolis",
+   "name": "Marianapolis Prep",
    "matchRegex": "(?i)^\\s*marianapolis\\s*(prep|preparatory)\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
    "league": null
   },
   {
-   "name": "Masters",
+   "name": "Masters NY",
    "matchRegex": "(?i)^\\s*(?:the\\s+)?masters\\s*(?:school)?\\s*(?:ny)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "FAA"
+   "league": null
   },
   {
    "name": "Middlesex",
    "matchRegex": "(?i)^middlesex\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "Millbrook",
@@ -297,147 +297,147 @@
    "matchRegex": "(?i)^milton\\s*(academy)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "Miss Porters",
    "matchRegex": "(?i)^\\s*miss\\s*porters?'?\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Montrose",
    "matchRegex": "(?i)^\\s*montrose\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "IGC"
+   "league": null
   },
   {
-   "name": "Mount Saint Charles",
+   "name": "Mt. St. Charles",
    "matchRegex": "(?i)^\\s*(?:mount|mt\\.?)\\s*(?:saint|st\\.?)\\s*charles\\s*(?:academy)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "SENEISAA"
+   "league": null
   },
   {
    "name": "New Hampton",
    "matchRegex": "(?i)^\\s*(the\\s+)?new\\s*hampton\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "Lakes"
+   "league": null
   },
   {
-   "name": "Newton CDS",
+   "name": "Newton CD",
    "matchRegex": "(?i)^\\s*(?:newton\\s*country\\s*day\\s*school|newton\\s*c?d\\s*s?|ncds)\\s*$",
    "cls": "B",
    "classNum": 2,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Nobles",
    "matchRegex": "(?i)^\\s*(?:noble|nobles)\\s*(?:and|&)\\s*greenough\\s*(?:school)?$|(?i)^\\s*nobles\\s*$",
    "cls": "A",
    "classNum": 1,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "NMH",
    "matchRegex": "(?i)^\\s*(?:northfield\\s*(?:mount|mt\\.?)\\s*hermon\\s*(?:school)?|n\\.?\\s*m\\.?\\s*h\\.?)\\s*$",
    "cls": "A",
    "classNum": 1,
-   "league": "Vaillancourt"
+   "league": null
   },
   {
    "name": "Holy Child",
    "matchRegex": "(?i)^\\s*(?:school\\s+of\\s+the\\s+)?holy\\s*child\\s*(?:rye)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "FAA"
+   "league": null
   },
   {
    "name": "Pingree",
    "matchRegex": "(?i)^pingree\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Pomfret",
    "matchRegex": "(?i)^pomfret\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "Vaillancourt"
+   "league": null
   },
   {
    "name": "Portsmouth Abbey",
    "matchRegex": "(?i)^\\s*portsmouth\\s*(?:abbey\\s*(?:school)?)?\\s*$",
    "cls": "C",
    "classNum": 3,
-   "league": "EIL"
+   "league": null
   },
   {
    "name": "Proctor",
    "matchRegex": "(?i)^proctor\\s*(academy)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "Lakes"
+   "league": null
   },
   {
    "name": "Rivers",
    "matchRegex": "(?i)^\\s*(the\\s+)?rivers\\s*(school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
-   "name": "Rocky Hill",
+   "name": "Rocky Hill CD",
    "matchRegex": "(?i)^\\s*rocky\\s*hill\\s*(?:country\\s*day\\s*(?:school)?|cds)?\\s*$",
    "cls": "C",
    "classNum": 3,
-   "league": "SENEISAA"
+   "league": null
   },
   {
-   "name": "Rye CDS",
+   "name": "Rye CD",
    "matchRegex": "(?i)^\\s*rye\\s*(?:country\\s*day\\s*(?:school)?|cd\\s*s?)?\\s*$",
    "cls": "B",
    "classNum": 2,
-   "league": "FAA"
+   "league": null
   },
   {
-   "name": "SHG",
+   "name": "Sacred Heart",
    "matchRegex": "(?i)^\\s*(?:convent\\s+)?sacred\\s*heart\\s*(?:greenwich)?\\s*$|(?i)^\\s*shg\\s*$",
    "cls": "A",
    "classNum": 1,
-   "league": "FAA"
+   "league": null
   },
   {
-   "name": "St Georges",
+   "name": "St. George's",
    "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?georges?'?(\\s*school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
-   "name": "St Lukes",
+   "name": "St. Luke's",
    "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?lukes?'?(\\s*school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "FAA"
+   "league": null
   },
   {
-   "name": "St Marks",
+   "name": "St. Mark's",
    "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?marks?'?(\\s*school)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
-   "name": "St Pauls",
+   "name": "St. Paul's",
    "matchRegex": "(?i)^\\s*(?:st\\.?\\s*)?pauls?'?(\\s*school)?$|(?i)^\\s*sps\\s*$",
    "cls": "A",
    "classNum": 1,
-   "league": "Lakes"
+   "league": null
   },
   {
    "name": "Suffield",
@@ -451,45 +451,45 @@
    "matchRegex": "(?i)^tabor\\s*(academy)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "Taft",
    "matchRegex": "(?i)^(the\\s*)?taft\\s*(school)?$",
    "cls": "A",
    "classNum": 1,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Thayer",
    "matchRegex": "(?i)^thayer\\s*(academy\\s*)?(varsity)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "ISL"
+   "league": null
   },
   {
    "name": "Tilton",
    "matchRegex": "(?i)^\\s*(the\\s+)?tilton\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "Lakes"
+   "league": null
   },
   {
    "name": "Westminster",
    "matchRegex": "(?i)^\\s*(?:westminster\\s*(?:school)?|westy)\\s*$",
    "cls": "A",
    "classNum": 1,
-   "league": "Founders"
+   "league": null
   },
   {
    "name": "Wheeler",
    "matchRegex": "(?i)^\\s*(the\\s+)?wheeler\\s*(school)?$",
    "cls": "C",
    "classNum": 3,
-   "league": "EIL"
+   "league": null
   },
   {
-   "name": "Wilbraham Monson",
+   "name": "Wilbraham & Monson",
    "matchRegex": "(?i)^\\s*(?:wilbraham\\s*(?:and|&)?\\s*monson|wil\\s*(?:and|&)\\s*monson)\\s*(?:academy)?\\s*$",
    "cls": "C",
    "classNum": 3,
@@ -507,21 +507,21 @@
    "matchRegex": "(?i)^\\s*(the\\s+)?winsor\\s*(school|academy)?\\s*$",
    "cls": "B",
    "classNum": 2,
-   "league": "EIL"
+   "league": null
   },
   {
-   "name": "Worcester",
+   "name": "Worcester Academy",
    "matchRegex": "(?i)^worcester\\s*(academy)?$",
    "cls": "B",
    "classNum": 2,
-   "league": "Vaillancourt"
+   "league": null
   }
  ],
  "games": [
   {
    "date": "2026-09-05",
    "home": "King",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -531,8 +531,8 @@
   },
   {
    "date": "2026-09-09",
-   "home": "Greenwich CDS",
-   "away": "Rye CDS",
+   "home": "Greenwich CD",
+   "away": "Rye CD",
    "homeScore": 1,
    "awayScore": 2,
    "status": "final",
@@ -554,7 +554,7 @@
   {
    "date": "2026-09-09",
    "home": "Montrose",
-   "away": "Rocky Hill",
+   "away": "Rocky Hill CD",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -586,7 +586,7 @@
   },
   {
    "date": "2026-09-14",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Hopkins",
    "homeScore": 3,
    "awayScore": 4,
@@ -597,7 +597,7 @@
   },
   {
    "date": "2026-09-15",
-   "home": "Greenwich CDS",
+   "home": "Greenwich CD",
    "away": "Greenwich Academy",
    "homeScore": 0,
    "awayScore": 5,
@@ -608,7 +608,7 @@
   },
   {
    "date": "2026-09-15",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Holy Child",
    "homeScore": 7,
    "awayScore": 0,
@@ -619,8 +619,8 @@
   },
   {
    "date": "2026-09-16",
-   "home": "Choate",
-   "away": "Ethel Walker School",
+   "home": "Choate RH",
+   "away": "Ethel Walker",
    "homeScore": 5,
    "awayScore": 0,
    "status": "final",
@@ -642,7 +642,7 @@
   {
    "date": "2026-09-16",
    "home": "Dana Hall",
-   "away": "Beaver",
+   "away": "Beaver CD",
    "homeScore": 3,
    "awayScore": 1,
    "status": "final",
@@ -652,7 +652,7 @@
   },
   {
    "date": "2026-09-16",
-   "home": "Dexter",
+   "home": "Dexter Southfield",
    "away": "Brooks",
    "homeScore": 0,
    "awayScore": 3,
@@ -674,8 +674,8 @@
   },
   {
    "date": "2026-09-16",
-   "home": "Hamden Hall",
-   "away": "Worcester",
+   "home": "Hamden Hall CD",
+   "away": "Worcester Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -707,7 +707,7 @@
   },
   {
    "date": "2026-09-16",
-   "home": "Marianapolis",
+   "home": "Marianapolis Prep",
    "away": "Lexington Christian",
    "homeScore": 2,
    "awayScore": 10,
@@ -740,8 +740,8 @@
   },
   {
    "date": "2026-09-16",
-   "home": "Newton CDS",
-   "away": "Mount Saint Charles",
+   "home": "Newton CD",
+   "away": "Mt. St. Charles",
    "homeScore": 8,
    "awayScore": 0,
    "status": "final",
@@ -784,7 +784,7 @@
   },
   {
    "date": "2026-09-16",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Pomfret",
    "homeScore": 1,
    "awayScore": 0,
@@ -806,8 +806,8 @@
   },
   {
    "date": "2026-09-17",
-   "home": "Hamden Hall",
-   "away": "Worcester",
+   "home": "Hamden Hall CD",
+   "away": "Worcester Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -818,7 +818,7 @@
   {
    "date": "2026-09-17",
    "home": "Hopkins",
-   "away": "Rye CDS",
+   "away": "Rye CD",
    "homeScore": 1,
    "awayScore": 6,
    "status": "final",
@@ -840,7 +840,7 @@
   {
    "date": "2026-09-18",
    "home": "Concord",
-   "away": "Beaver",
+   "away": "Beaver CD",
    "homeScore": 3,
    "awayScore": 1,
    "status": "final",
@@ -850,8 +850,8 @@
   },
   {
    "date": "2026-09-18",
-   "home": "Dexter",
-   "away": "St Georges",
+   "home": "Dexter Southfield",
+   "away": "St. George's",
    "homeScore": 3,
    "awayScore": 0,
    "status": "final",
@@ -873,7 +873,7 @@
   {
    "date": "2026-09-18",
    "home": "Miss Porters",
-   "away": "Kingswood Oxford",
+   "away": "K-O",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -895,7 +895,7 @@
   {
    "date": "2026-09-18",
    "home": "Rivers",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": 8,
    "awayScore": 0,
    "status": "final",
@@ -939,7 +939,7 @@
   {
    "date": "2026-09-19",
    "home": "Canterbury",
-   "away": "Greenwich CDS",
+   "away": "Greenwich CD",
    "homeScore": 0,
    "awayScore": 0,
    "status": "final",
@@ -950,7 +950,7 @@
   {
    "date": "2026-09-19",
    "home": "Cushing",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": 1,
    "awayScore": 2,
    "status": "final",
@@ -971,7 +971,7 @@
   },
   {
    "date": "2026-09-19",
-   "home": "Dexter",
+   "home": "Dexter Southfield",
    "away": "Andover",
    "homeScore": 1,
    "awayScore": 8,
@@ -1005,7 +1005,7 @@
   {
    "date": "2026-09-19",
    "home": "Kents Hill",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": 3,
    "awayScore": 2,
    "status": "final",
@@ -1015,8 +1015,8 @@
   },
   {
    "date": "2026-09-19",
-   "home": "Loomis",
-   "away": "Choate",
+   "home": "Loomis Chaffee",
+   "away": "Choate RH",
    "homeScore": 2,
    "awayScore": 3,
    "status": "final",
@@ -1048,7 +1048,7 @@
   },
   {
    "date": "2026-09-19",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Kent",
    "homeScore": 8,
    "awayScore": 0,
@@ -1059,7 +1059,7 @@
   },
   {
    "date": "2026-09-19",
-   "home": "St Marks",
+   "home": "St. Mark's",
    "away": "Williston",
    "homeScore": 1,
    "awayScore": 3,
@@ -1070,7 +1070,7 @@
   },
   {
    "date": "2026-09-19",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Groton",
    "homeScore": 4,
    "awayScore": 0,
@@ -1104,7 +1104,7 @@
   {
    "date": "2026-09-19",
    "home": "Westminster",
-   "away": "Ethel Walker School",
+   "away": "Ethel Walker",
    "homeScore": 3,
    "awayScore": 1,
    "status": "final",
@@ -1125,7 +1125,7 @@
   },
   {
    "date": "2026-09-19",
-   "home": "Worcester",
+   "home": "Worcester Academy",
    "away": "Thayer",
    "homeScore": 1,
    "awayScore": 7,
@@ -1147,7 +1147,7 @@
   },
   {
    "date": "2026-09-22",
-   "home": "Greens Farms",
+   "home": "Greens Farms Academy",
    "away": "Holy Child",
    "homeScore": 5,
    "awayScore": 1,
@@ -1158,7 +1158,7 @@
   },
   {
    "date": "2026-09-22",
-   "home": "Greenwich CDS",
+   "home": "Greenwich CD",
    "away": "King",
    "homeScore": 1,
    "awayScore": 6,
@@ -1191,7 +1191,7 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Beaver",
+   "home": "Beaver CD",
    "away": "Pingree",
    "homeScore": 0,
    "awayScore": 9,
@@ -1258,7 +1258,7 @@
   {
    "date": "2026-09-23",
    "home": "Greenwich Academy",
-   "away": "Choate",
+   "away": "Choate RH",
    "homeScore": 6,
    "awayScore": 1,
    "status": "final",
@@ -1279,7 +1279,7 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Kingswood Oxford",
+   "home": "K-O",
    "away": "Hopkins",
    "homeScore": 1,
    "awayScore": 0,
@@ -1323,7 +1323,7 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "NMH",
    "homeScore": 5,
    "awayScore": 2,
@@ -1346,7 +1346,7 @@
   {
    "date": "2026-09-23",
    "home": "Millbrook",
-   "away": "Hamden Hall",
+   "away": "Hamden Hall CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1356,7 +1356,7 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Mount Saint Charles",
+   "home": "Mt. St. Charles",
    "away": "Austin Prep",
    "homeScore": 0,
    "awayScore": 2,
@@ -1378,7 +1378,7 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Newton CDS",
+   "home": "Newton CD",
    "away": "Lawrence Academy",
    "homeScore": 0,
    "awayScore": 5,
@@ -1401,7 +1401,7 @@
   {
    "date": "2026-09-23",
    "home": "Rivers",
-   "away": "Dexter",
+   "away": "Dexter Southfield",
    "homeScore": 4,
    "awayScore": 1,
    "status": "final",
@@ -1412,7 +1412,7 @@
   {
    "date": "2026-09-23",
    "home": "Tabor",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": 0,
    "awayScore": 1,
    "status": "final",
@@ -1423,7 +1423,7 @@
   {
    "date": "2026-09-23",
    "home": "Taft",
-   "away": "SHG",
+   "away": "Sacred Heart",
    "homeScore": 0,
    "awayScore": 4,
    "status": "final",
@@ -1434,7 +1434,7 @@
   {
    "date": "2026-09-23",
    "home": "Thayer",
-   "away": "St Pauls",
+   "away": "St. Paul's",
    "homeScore": 2,
    "awayScore": 3,
    "status": "final",
@@ -1445,7 +1445,7 @@
   {
    "date": "2026-09-23",
    "home": "Wheeler",
-   "away": "Rocky Hill",
+   "away": "Rocky Hill CD",
    "homeScore": 1,
    "awayScore": 2,
    "status": "final",
@@ -1455,8 +1455,8 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Wilbraham Monson",
-   "away": "St Lukes",
+   "home": "Wilbraham & Monson",
+   "away": "St. Luke's",
    "homeScore": 0,
    "awayScore": 4,
    "status": "final",
@@ -1466,8 +1466,8 @@
   },
   {
    "date": "2026-09-23",
-   "home": "Worcester",
-   "away": "St Georges",
+   "home": "Worcester Academy",
+   "away": "St. George's",
    "homeScore": 1,
    "awayScore": 3,
    "status": "final",
@@ -1478,7 +1478,7 @@
   {
    "date": "2026-09-24",
    "home": "King",
-   "away": "Greens Farms",
+   "away": "Greens Farms Academy",
    "homeScore": 2,
    "awayScore": 2,
    "status": "final",
@@ -1488,7 +1488,7 @@
   },
   {
    "date": "2026-09-25",
-   "home": "Beaver",
+   "home": "Beaver CD",
    "away": "Concord",
    "homeScore": 0,
    "awayScore": 0,
@@ -1499,8 +1499,8 @@
   },
   {
    "date": "2026-09-25",
-   "home": "Dexter",
-   "away": "St Marks",
+   "home": "Dexter Southfield",
+   "away": "St. Mark's",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1510,7 +1510,7 @@
   },
   {
    "date": "2026-09-25",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Brewster",
    "homeScore": null,
    "awayScore": null,
@@ -1521,7 +1521,7 @@
   },
   {
    "date": "2026-09-25",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Thayer",
    "homeScore": 7,
    "awayScore": 3,
@@ -1533,7 +1533,7 @@
   {
    "date": "2026-09-25",
    "home": "Middlesex",
-   "away": "St Marks",
+   "away": "St. Mark's",
    "homeScore": 4,
    "awayScore": 0,
    "status": "final",
@@ -1587,7 +1587,7 @@
   },
   {
    "date": "2026-09-25",
-   "home": "Rocky Hill",
+   "home": "Rocky Hill CD",
    "away": "Lexington Christian",
    "homeScore": null,
    "awayScore": null,
@@ -1598,7 +1598,7 @@
   },
   {
    "date": "2026-09-25",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Groton",
    "homeScore": 0,
    "awayScore": 1,
@@ -1621,7 +1621,7 @@
   {
    "date": "2026-09-25",
    "home": "Williston",
-   "away": "Kingswood Oxford",
+   "away": "K-O",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1631,7 +1631,7 @@
   },
   {
    "date": "2026-09-25",
-   "home": "Worcester",
+   "home": "Worcester Academy",
    "away": "Dana Hall",
    "homeScore": 1,
    "awayScore": 5,
@@ -1664,8 +1664,8 @@
   },
   {
    "date": "2026-09-26",
-   "home": "Hamden Hall",
-   "away": "Wilbraham Monson",
+   "home": "Hamden Hall CD",
+   "away": "Wilbraham & Monson",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1675,8 +1675,8 @@
   },
   {
    "date": "2026-09-26",
-   "home": "Kingswood Oxford",
-   "away": "Worcester",
+   "home": "K-O",
+   "away": "Worcester Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1686,7 +1686,7 @@
   },
   {
    "date": "2026-09-26",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Andover",
    "homeScore": null,
    "awayScore": null,
@@ -1698,7 +1698,7 @@
   {
    "date": "2026-09-26",
    "home": "Millbrook",
-   "away": "St Lukes",
+   "away": "St. Luke's",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1741,7 +1741,7 @@
   },
   {
    "date": "2026-09-26",
-   "home": "Rye CDS",
+   "home": "Rye CD",
    "away": "Frederick Gunn",
    "homeScore": null,
    "awayScore": null,
@@ -1753,7 +1753,7 @@
   {
    "date": "2026-09-26",
    "home": "Suffield",
-   "away": "Greenwich CDS",
+   "away": "Greenwich CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1786,7 +1786,7 @@
   {
    "date": "2026-09-26",
    "home": "Wheeler",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": 0,
    "awayScore": 1,
    "status": "forfeit",
@@ -1797,7 +1797,7 @@
   {
    "date": "2026-09-28",
    "home": "Montrose",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": 7,
    "awayScore": 1,
    "status": "final",
@@ -1808,7 +1808,7 @@
   {
    "date": "2026-09-28",
    "home": "Portsmouth Abbey",
-   "away": "St Georges",
+   "away": "St. George's",
    "homeScore": 4,
    "awayScore": 3,
    "status": "final",
@@ -1818,8 +1818,8 @@
   },
   {
    "date": "2026-09-28",
-   "home": "St Lukes",
-   "away": "Greens Farms",
+   "home": "St. Luke's",
+   "away": "Greens Farms Academy",
    "homeScore": 1,
    "awayScore": 3,
    "status": "final",
@@ -1840,7 +1840,7 @@
   },
   {
    "date": "2026-09-28",
-   "home": "Wilbraham Monson",
+   "home": "Wilbraham & Monson",
    "away": "Miss Porters",
    "homeScore": 0,
    "awayScore": 3,
@@ -1852,7 +1852,7 @@
   {
    "date": "2026-09-29",
    "home": "King",
-   "away": "SHG",
+   "away": "Sacred Heart",
    "homeScore": 0,
    "awayScore": 3,
    "status": "final",
@@ -1896,7 +1896,7 @@
   {
    "date": "2026-09-30",
    "home": "Concord",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": 0,
    "awayScore": 4,
    "status": "final",
@@ -1939,8 +1939,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "Ethel Walker School",
-   "away": "Hamden Hall",
+   "home": "Ethel Walker",
+   "away": "Hamden Hall CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -1950,8 +1950,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "Governors",
-   "away": "St Georges",
+   "home": "Governor's Academy",
+   "away": "St. George's",
    "homeScore": 8,
    "awayScore": 0,
    "status": "final",
@@ -1961,8 +1961,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "Greens Farms",
-   "away": "Rye CDS",
+   "home": "Greens Farms Academy",
+   "away": "Rye CD",
    "homeScore": 8,
    "awayScore": 2,
    "status": "final",
@@ -2005,8 +2005,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "Kingswood Oxford",
-   "away": "Loomis",
+   "home": "K-O",
+   "away": "Loomis Chaffee",
    "homeScore": 1,
    "awayScore": 3,
    "status": "final",
@@ -2049,8 +2049,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "Mount Saint Charles",
-   "away": "Rocky Hill",
+   "home": "Mt. St. Charles",
+   "away": "Rocky Hill CD",
    "homeScore": 4,
    "awayScore": 2,
    "status": "final",
@@ -2093,8 +2093,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "SHG",
-   "away": "Choate",
+   "home": "Sacred Heart",
+   "away": "Choate RH",
    "homeScore": 8,
    "awayScore": 0,
    "status": "final",
@@ -2104,7 +2104,7 @@
   },
   {
    "date": "2026-09-30",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Canterbury",
    "homeScore": 0,
    "awayScore": 5,
@@ -2115,7 +2115,7 @@
   },
   {
    "date": "2026-09-30",
-   "home": "St Marks",
+   "home": "St. Mark's",
    "away": "Brooks",
    "homeScore": 2,
    "awayScore": 4,
@@ -2181,8 +2181,8 @@
   },
   {
    "date": "2026-09-30",
-   "home": "Worcester",
-   "away": "Beaver",
+   "home": "Worcester Academy",
+   "away": "Beaver CD",
    "homeScore": 3,
    "awayScore": 0,
    "status": "final",
@@ -2203,7 +2203,7 @@
   },
   {
    "date": "2026-10-02",
-   "home": "Beaver",
+   "home": "Beaver CD",
    "away": "Berwick",
    "homeScore": 1,
    "awayScore": 3,
@@ -2236,7 +2236,7 @@
   },
   {
    "date": "2026-10-02",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Rivers",
    "homeScore": 4,
    "awayScore": 1,
@@ -2259,7 +2259,7 @@
   {
    "date": "2026-10-02",
    "home": "Pingree",
-   "away": "Dexter",
+   "away": "Dexter Southfield",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -2280,8 +2280,8 @@
   },
   {
    "date": "2026-10-02",
-   "home": "Rye CDS",
-   "away": "SHG",
+   "home": "Rye CD",
+   "away": "Sacred Heart",
    "homeScore": 0,
    "awayScore": 8,
    "status": "final",
@@ -2291,7 +2291,7 @@
   },
   {
    "date": "2026-10-02",
-   "home": "St Marks",
+   "home": "St. Mark's",
    "away": "Lawrence Academy",
    "homeScore": 6,
    "awayScore": 2,
@@ -2368,7 +2368,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Dexter",
+   "home": "Dexter Southfield",
    "away": "BBN",
    "homeScore": 0,
    "awayScore": 1,
@@ -2390,8 +2390,8 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Greens Farms",
-   "away": "Greenwich CDS",
+   "home": "Greens Farms Academy",
+   "away": "Greenwich CD",
    "homeScore": 5,
    "awayScore": 0,
    "status": "final",
@@ -2423,7 +2423,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Taft",
    "homeScore": 1,
    "awayScore": 2,
@@ -2434,7 +2434,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Marianapolis",
+   "home": "Marianapolis Prep",
    "away": "King",
    "homeScore": 0,
    "awayScore": 9,
@@ -2445,7 +2445,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Masters",
+   "home": "Masters NY",
    "away": "Hopkins",
    "homeScore": 1,
    "awayScore": 5,
@@ -2467,8 +2467,8 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Mount Saint Charles",
-   "away": "Worcester",
+   "home": "Mt. St. Charles",
+   "away": "Worcester Academy",
    "homeScore": 1,
    "awayScore": 4,
    "status": "final",
@@ -2489,7 +2489,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Newton CDS",
+   "home": "Newton CD",
    "away": "Dana Hall",
    "homeScore": 2,
    "awayScore": 1,
@@ -2500,7 +2500,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Nobles",
    "homeScore": 0,
    "awayScore": 6,
@@ -2511,7 +2511,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Miss Porters",
    "homeScore": 1,
    "awayScore": 6,
@@ -2522,7 +2522,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "NMH",
    "homeScore": 5,
    "awayScore": 1,
@@ -2534,7 +2534,7 @@
   {
    "date": "2026-10-03",
    "home": "Suffield",
-   "away": "Kingswood Oxford",
+   "away": "K-O",
    "homeScore": 4,
    "awayScore": 1,
    "status": "final",
@@ -2556,7 +2556,7 @@
   {
    "date": "2026-10-03",
    "home": "Westminster",
-   "away": "Choate",
+   "away": "Choate RH",
    "homeScore": 1,
    "awayScore": 0,
    "status": "final",
@@ -2566,7 +2566,7 @@
   },
   {
    "date": "2026-10-03",
-   "home": "Wilbraham Monson",
+   "home": "Wilbraham & Monson",
    "away": "Wheeler",
    "homeScore": 1,
    "awayScore": 0,
@@ -2588,8 +2588,8 @@
   },
   {
    "date": "2026-10-05",
-   "home": "Ethel Walker School",
-   "away": "Mount Saint Charles",
+   "home": "Ethel Walker",
+   "away": "Mt. St. Charles",
    "homeScore": 7,
    "awayScore": 0,
    "status": "final",
@@ -2599,7 +2599,7 @@
   },
   {
    "date": "2026-10-05",
-   "home": "Greenwich CDS",
+   "home": "Greenwich CD",
    "away": "Frederick Gunn",
    "homeScore": 1,
    "awayScore": 8,
@@ -2611,7 +2611,7 @@
   {
    "date": "2026-10-05",
    "home": "Hopkins",
-   "away": "Greens Farms",
+   "away": "Greens Farms Academy",
    "homeScore": 2,
    "awayScore": 3,
    "status": "final",
@@ -2633,7 +2633,7 @@
   {
    "date": "2026-10-05",
    "home": "Lexington Christian",
-   "away": "Beaver",
+   "away": "Beaver CD",
    "homeScore": 1,
    "awayScore": 1,
    "status": "final",
@@ -2644,7 +2644,7 @@
   {
    "date": "2026-10-05",
    "home": "New Hampton",
-   "away": "St Pauls",
+   "away": "St. Paul's",
    "homeScore": 2,
    "awayScore": 0,
    "status": "final",
@@ -2665,8 +2665,8 @@
   },
   {
    "date": "2026-10-05",
-   "home": "Rye CDS",
-   "away": "Hamden Hall",
+   "home": "Rye CD",
+   "away": "Hamden Hall CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -2676,7 +2676,7 @@
   },
   {
    "date": "2026-10-05",
-   "home": "Worcester",
+   "home": "Worcester Academy",
    "away": "Concord",
    "homeScore": 1,
    "awayScore": 0,
@@ -2698,7 +2698,7 @@
   },
   {
    "date": "2026-10-06",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Greenwich Academy",
    "homeScore": 0,
    "awayScore": 6,
@@ -2710,7 +2710,7 @@
   {
    "date": "2026-10-07",
    "home": "Andover",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": 3,
    "awayScore": 0,
    "status": "final",
@@ -2786,8 +2786,8 @@
   },
   {
    "date": "2026-10-07",
-   "home": "Greenwich CDS",
-   "away": "SHG",
+   "home": "Greenwich CD",
+   "away": "Sacred Heart",
    "homeScore": 0,
    "awayScore": 7,
    "status": "final",
@@ -2808,7 +2808,7 @@
   },
   {
    "date": "2026-10-07",
-   "home": "Kingswood Oxford",
+   "home": "K-O",
    "away": "Berkshire",
    "homeScore": 0,
    "awayScore": 5,
@@ -2831,7 +2831,7 @@
   {
    "date": "2026-10-07",
    "home": "Lexington Christian",
-   "away": "Marianapolis",
+   "away": "Marianapolis Prep",
    "homeScore": 5,
    "awayScore": 0,
    "status": "final",
@@ -2841,8 +2841,8 @@
   },
   {
    "date": "2026-10-07",
-   "home": "Loomis",
-   "away": "Ethel Walker School",
+   "home": "Loomis Chaffee",
+   "away": "Ethel Walker",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -2874,7 +2874,7 @@
   },
   {
    "date": "2026-10-07",
-   "home": "Newton CDS",
+   "home": "Newton CD",
    "away": "Portsmouth Abbey",
    "homeScore": 1,
    "awayScore": 4,
@@ -2918,7 +2918,7 @@
   },
   {
    "date": "2026-10-07",
-   "home": "Rocky Hill",
+   "home": "Rocky Hill CD",
    "away": "Montrose",
    "homeScore": 0,
    "awayScore": 2,
@@ -2929,7 +2929,7 @@
   },
   {
    "date": "2026-10-07",
-   "home": "St Marks",
+   "home": "St. Mark's",
    "away": "BBN",
    "homeScore": 4,
    "awayScore": 3,
@@ -2940,7 +2940,7 @@
   },
   {
    "date": "2026-10-07",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Kimball Union",
    "homeScore": 2,
    "awayScore": 0,
@@ -2985,7 +2985,7 @@
   {
    "date": "2026-10-07",
    "home": "Wheeler",
-   "away": "Worcester",
+   "away": "Worcester Academy",
    "homeScore": 0,
    "awayScore": 5,
    "status": "final",
@@ -2995,8 +2995,8 @@
   },
   {
    "date": "2026-10-07",
-   "home": "Wilbraham Monson",
-   "away": "Mount Saint Charles",
+   "home": "Wilbraham & Monson",
+   "away": "Mt. St. Charles",
    "homeScore": 1,
    "awayScore": 0,
    "status": "final",
@@ -3017,7 +3017,7 @@
   },
   {
    "date": "2026-10-08",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Hopkins",
    "homeScore": 7,
    "awayScore": 0,
@@ -3039,7 +3039,7 @@
   },
   {
    "date": "2026-10-09",
-   "home": "Beaver",
+   "home": "Beaver CD",
    "away": "Portsmouth Abbey",
    "homeScore": 0,
    "awayScore": 10,
@@ -3073,7 +3073,7 @@
   {
    "date": "2026-10-09",
    "home": "Cushing",
-   "away": "St Marks",
+   "away": "St. Mark's",
    "homeScore": 3,
    "awayScore": 1,
    "status": "final",
@@ -3094,8 +3094,8 @@
   },
   {
    "date": "2026-10-09",
-   "home": "Dexter",
-   "away": "Newton CDS",
+   "home": "Dexter Southfield",
+   "away": "Newton CD",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -3105,7 +3105,7 @@
   },
   {
    "date": "2026-10-09",
-   "home": "Ethel Walker School",
+   "home": "Ethel Walker",
    "away": "Pomfret",
    "homeScore": 1,
    "awayScore": 5,
@@ -3116,7 +3116,7 @@
   },
   {
    "date": "2026-10-09",
-   "home": "Greens Farms",
+   "home": "Greens Farms Academy",
    "away": "Suffield",
    "homeScore": 3,
    "awayScore": 2,
@@ -3127,7 +3127,7 @@
   },
   {
    "date": "2026-10-09",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Westminster",
    "homeScore": 1,
    "awayScore": 0,
@@ -3139,7 +3139,7 @@
   {
    "date": "2026-10-09",
    "home": "Taft",
-   "away": "Kingswood Oxford",
+   "away": "K-O",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -3172,7 +3172,7 @@
   {
    "date": "2026-10-10",
    "home": "BBN",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": 2,
    "awayScore": 6,
    "status": "final",
@@ -3193,7 +3193,7 @@
   },
   {
    "date": "2026-10-10",
-   "home": "Choate",
+   "home": "Choate RH",
    "away": "Andover",
    "homeScore": 0,
    "awayScore": 5,
@@ -3205,7 +3205,7 @@
   {
    "date": "2026-10-10",
    "home": "Deerfield",
-   "away": "St Pauls",
+   "away": "St. Paul's",
    "homeScore": 5,
    "awayScore": 3,
    "status": "final",
@@ -3293,7 +3293,7 @@
   {
    "date": "2026-10-10",
    "home": "Lawrence Academy",
-   "away": "St Georges",
+   "away": "St. George's",
    "homeScore": 0,
    "awayScore": 1,
    "status": "final",
@@ -3348,7 +3348,7 @@
   {
    "date": "2026-10-10",
    "home": "Pomfret",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": 8,
    "awayScore": 1,
    "status": "final",
@@ -3369,8 +3369,8 @@
   },
   {
    "date": "2026-10-10",
-   "home": "Worcester",
-   "away": "Wilbraham Monson",
+   "home": "Worcester Academy",
+   "away": "Wilbraham & Monson",
    "homeScore": 8,
    "awayScore": 1,
    "status": "final",
@@ -3402,7 +3402,7 @@
   },
   {
    "date": "2026-10-12",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Brewster",
    "homeScore": 4,
    "awayScore": 0,
@@ -3414,7 +3414,7 @@
   {
    "date": "2026-10-12",
    "home": "Lexington Christian",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -3425,7 +3425,7 @@
   {
    "date": "2026-10-13",
    "home": "Greenwich Academy",
-   "away": "Rye CDS",
+   "away": "Rye CD",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -3435,8 +3435,8 @@
   },
   {
    "date": "2026-10-13",
-   "home": "Hamden Hall",
-   "away": "Greenwich CDS",
+   "home": "Hamden Hall CD",
+   "away": "Greenwich CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -3457,7 +3457,7 @@
   },
   {
    "date": "2026-10-14",
-   "home": "Beaver",
+   "home": "Beaver CD",
    "away": "Wheeler",
    "homeScore": 2,
    "awayScore": 1,
@@ -3468,7 +3468,7 @@
   },
   {
    "date": "2026-10-14",
-   "home": "Choate",
+   "home": "Choate RH",
    "away": "Canterbury",
    "homeScore": 2,
    "awayScore": 1,
@@ -3501,7 +3501,7 @@
   },
   {
    "date": "2026-10-14",
-   "home": "Dexter",
+   "home": "Dexter Southfield",
    "away": "Winsor",
    "homeScore": 5,
    "awayScore": 1,
@@ -3556,7 +3556,7 @@
   },
   {
    "date": "2026-10-14",
-   "home": "Kingswood Oxford",
+   "home": "K-O",
    "away": "Kent",
    "homeScore": 2,
    "awayScore": 1,
@@ -3568,7 +3568,7 @@
   {
    "date": "2026-10-14",
    "home": "King",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -3590,7 +3590,7 @@
   {
    "date": "2026-10-14",
    "home": "Lexington Christian",
-   "away": "Wilbraham Monson",
+   "away": "Wilbraham & Monson",
    "homeScore": 4,
    "awayScore": 3,
    "status": "final",
@@ -3600,8 +3600,8 @@
   },
   {
    "date": "2026-10-14",
-   "home": "Marianapolis",
-   "away": "Rocky Hill",
+   "home": "Marianapolis Prep",
+   "away": "Rocky Hill CD",
    "homeScore": 1,
    "awayScore": 9,
    "status": "final",
@@ -3612,7 +3612,7 @@
   {
    "date": "2026-10-14",
    "home": "Middlesex",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": 2,
    "awayScore": 0,
    "status": "final",
@@ -3623,7 +3623,7 @@
   {
    "date": "2026-10-14",
    "home": "Millbrook",
-   "away": "Ethel Walker School",
+   "away": "Ethel Walker",
    "homeScore": 4,
    "awayScore": 3,
    "status": "final",
@@ -3667,7 +3667,7 @@
   {
    "date": "2026-10-14",
    "home": "Nobles",
-   "away": "St Marks",
+   "away": "St. Mark's",
    "homeScore": 5,
    "awayScore": 1,
    "status": "final",
@@ -3710,8 +3710,8 @@
   },
   {
    "date": "2026-10-14",
-   "home": "SHG",
-   "away": "Loomis",
+   "home": "Sacred Heart",
+   "away": "Loomis Chaffee",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -3721,7 +3721,7 @@
   },
   {
    "date": "2026-10-14",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Holderness",
    "homeScore": 4,
    "awayScore": 0,
@@ -3755,7 +3755,7 @@
   {
    "date": "2026-10-14",
    "home": "Williston",
-   "away": "Greens Farms",
+   "away": "Greens Farms Academy",
    "homeScore": 4,
    "awayScore": 2,
    "status": "final",
@@ -3765,7 +3765,7 @@
   },
   {
    "date": "2026-10-14",
-   "home": "Worcester",
+   "home": "Worcester Academy",
    "away": "Pomfret",
    "homeScore": 1,
    "awayScore": 7,
@@ -3776,8 +3776,8 @@
   },
   {
    "date": "2026-10-15",
-   "home": "Masters",
-   "away": "Greenwich CDS",
+   "home": "Masters NY",
+   "away": "Greenwich CD",
    "homeScore": 1,
    "awayScore": 1,
    "status": "final",
@@ -3787,8 +3787,8 @@
   },
   {
    "date": "2026-10-15",
-   "home": "Rye CDS",
-   "away": "St Lukes",
+   "home": "Rye CD",
+   "away": "St. Luke's",
    "homeScore": 4,
    "awayScore": 1,
    "status": "final",
@@ -3799,7 +3799,7 @@
   {
    "date": "2026-10-16",
    "home": "Andover",
-   "away": "St Pauls",
+   "away": "St. Paul's",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -3898,7 +3898,7 @@
   {
    "date": "2026-10-16",
    "home": "Winsor",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": 0,
    "awayScore": 1,
    "status": "final",
@@ -3909,7 +3909,7 @@
   {
    "date": "2026-10-17",
    "home": "Canterbury",
-   "away": "Wilbraham Monson",
+   "away": "Wilbraham & Monson",
    "homeScore": 5,
    "awayScore": 0,
    "status": "final",
@@ -3919,7 +3919,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Choate",
+   "home": "Choate RH",
    "away": "Taft",
    "homeScore": 0,
    "awayScore": 3,
@@ -3931,7 +3931,7 @@
   {
    "date": "2026-10-17",
    "home": "Deerfield",
-   "away": "Loomis",
+   "away": "Loomis Chaffee",
    "homeScore": 1,
    "awayScore": 1,
    "status": "final",
@@ -3941,8 +3941,8 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Dexter",
-   "away": "Worcester",
+   "home": "Dexter Southfield",
+   "away": "Worcester Academy",
    "homeScore": 4,
    "awayScore": 0,
    "status": "final",
@@ -3952,8 +3952,8 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Ethel Walker School",
-   "away": "St Lukes",
+   "home": "Ethel Walker",
+   "away": "St. Luke's",
    "homeScore": 1,
    "awayScore": 0,
    "status": "final",
@@ -3974,7 +3974,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Lawrence Academy",
    "homeScore": 7,
    "awayScore": 0,
@@ -3985,7 +3985,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Greenwich CDS",
+   "home": "Greenwich CD",
    "away": "Kent",
    "homeScore": 0,
    "awayScore": 3,
@@ -3996,7 +3996,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Hamden Hall",
+   "home": "Hamden Hall CD",
    "away": "King",
    "homeScore": null,
    "awayScore": null,
@@ -4018,7 +4018,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Kingswood Oxford",
+   "home": "K-O",
    "away": "Pomfret",
    "homeScore": 6,
    "awayScore": 1,
@@ -4030,7 +4030,7 @@
   {
    "date": "2026-10-17",
    "home": "Lexington Christian",
-   "away": "Rocky Hill",
+   "away": "Rocky Hill CD",
    "homeScore": 0,
    "awayScore": 3,
    "status": "final",
@@ -4052,7 +4052,7 @@
   {
    "date": "2026-10-17",
    "home": "Portsmouth Abbey",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": 8,
    "awayScore": 0,
    "status": "final",
@@ -4062,7 +4062,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "Rye CDS",
+   "home": "Rye CD",
    "away": "Holy Child",
    "homeScore": 5,
    "awayScore": 2,
@@ -4073,7 +4073,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Hotchkiss",
    "homeScore": 8,
    "awayScore": 0,
@@ -4084,8 +4084,8 @@
   },
   {
    "date": "2026-10-17",
-   "home": "St Georges",
-   "away": "St Marks",
+   "home": "St. George's",
+   "away": "St. Mark's",
    "homeScore": 0,
    "awayScore": 1,
    "status": "final",
@@ -4095,7 +4095,7 @@
   },
   {
    "date": "2026-10-17",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Tabor",
    "homeScore": 1,
    "awayScore": 2,
@@ -4173,7 +4173,7 @@
   {
    "date": "2026-10-19",
    "home": "Greenwich Academy",
-   "away": "Greens Farms",
+   "away": "Greens Farms Academy",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -4195,7 +4195,7 @@
   {
    "date": "2026-10-19",
    "home": "Nobles",
-   "away": "Dexter",
+   "away": "Dexter Southfield",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -4205,7 +4205,7 @@
   },
   {
    "date": "2026-10-19",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Holy Child",
    "homeScore": 1,
    "awayScore": 4,
@@ -4228,7 +4228,7 @@
   {
    "date": "2026-10-21",
    "home": "Berkshire",
-   "away": "Greenwich CDS",
+   "away": "Greenwich CD",
    "homeScore": 7,
    "awayScore": 0,
    "status": "final",
@@ -4250,7 +4250,7 @@
   {
    "date": "2026-10-21",
    "home": "Brooks",
-   "away": "St Georges",
+   "away": "St. George's",
    "homeScore": 6,
    "awayScore": 0,
    "status": "final",
@@ -4293,8 +4293,8 @@
   },
   {
    "date": "2026-10-21",
-   "home": "Greens Farms",
-   "away": "Choate",
+   "home": "Greens Farms Academy",
+   "away": "Choate RH",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -4316,7 +4316,7 @@
   {
    "date": "2026-10-21",
    "home": "Hopkins",
-   "away": "Ethel Walker School",
+   "away": "Ethel Walker",
    "homeScore": 2,
    "awayScore": 3,
    "status": "final",
@@ -4337,8 +4337,8 @@
   },
   {
    "date": "2026-10-21",
-   "home": "Kingswood Oxford",
-   "away": "Wilbraham Monson",
+   "home": "K-O",
+   "away": "Wilbraham & Monson",
    "homeScore": 7,
    "awayScore": 0,
    "status": "final",
@@ -4360,7 +4360,7 @@
   {
    "date": "2026-10-21",
    "home": "Lawrence Academy",
-   "away": "Worcester",
+   "away": "Worcester Academy",
    "homeScore": 5,
    "awayScore": 5,
    "status": "final",
@@ -4371,7 +4371,7 @@
   {
    "date": "2026-10-21",
    "home": "Milton",
-   "away": "St Marks",
+   "away": "St. Mark's",
    "homeScore": 5,
    "awayScore": 1,
    "status": "final",
@@ -4382,7 +4382,7 @@
   {
    "date": "2026-10-21",
    "home": "Miss Porters",
-   "away": "Loomis",
+   "away": "Loomis Chaffee",
    "homeScore": 1,
    "awayScore": 5,
    "status": "final",
@@ -4403,8 +4403,8 @@
   },
   {
    "date": "2026-10-21",
-   "home": "Newton CDS",
-   "away": "Beaver",
+   "home": "Newton CD",
+   "away": "Beaver CD",
    "homeScore": 4,
    "awayScore": 0,
    "status": "final",
@@ -4426,7 +4426,7 @@
   {
    "date": "2026-10-21",
    "home": "Pingree",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": 1,
    "awayScore": 3,
    "status": "final",
@@ -4437,7 +4437,7 @@
   {
    "date": "2026-10-21",
    "home": "Proctor",
-   "away": "St Pauls",
+   "away": "St. Paul's",
    "homeScore": 0,
    "awayScore": 6,
    "status": "final",
@@ -4447,8 +4447,8 @@
   },
   {
    "date": "2026-10-21",
-   "home": "Rocky Hill",
-   "away": "Mount Saint Charles",
+   "home": "Rocky Hill CD",
+   "away": "Mt. St. Charles",
    "homeScore": 8,
    "awayScore": 2,
    "status": "final",
@@ -4458,7 +4458,7 @@
   },
   {
    "date": "2026-10-21",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Greenwich Academy",
    "homeScore": 4,
    "awayScore": 1,
@@ -4469,7 +4469,7 @@
   },
   {
    "date": "2026-10-21",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Frederick Gunn",
    "homeScore": 0,
    "awayScore": 5,
@@ -4547,7 +4547,7 @@
   {
    "date": "2026-10-23",
    "home": "Berwick",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": 0,
    "awayScore": 1,
    "status": "final",
@@ -4568,7 +4568,7 @@
   },
   {
    "date": "2026-10-23",
-   "home": "Dexter",
+   "home": "Dexter Southfield",
    "away": "Austin Prep",
    "homeScore": 3,
    "awayScore": 0,
@@ -4590,7 +4590,7 @@
   },
   {
    "date": "2026-10-23",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Suffield",
    "homeScore": 0,
    "awayScore": 1,
@@ -4601,7 +4601,7 @@
   },
   {
    "date": "2026-10-23",
-   "home": "Mount Saint Charles",
+   "home": "Mt. St. Charles",
    "away": "Montrose",
    "homeScore": 3,
    "awayScore": 1,
@@ -4623,7 +4623,7 @@
   },
   {
    "date": "2026-10-23",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Cushing",
    "homeScore": 1,
    "awayScore": 1,
@@ -4646,7 +4646,7 @@
   {
    "date": "2026-10-23",
    "home": "Westminster",
-   "away": "Kingswood Oxford",
+   "away": "K-O",
    "homeScore": 2,
    "awayScore": 1,
    "status": "final",
@@ -4689,7 +4689,7 @@
   },
   {
    "date": "2026-10-24",
-   "home": "Choate",
+   "home": "Choate RH",
    "away": "Hotchkiss",
    "homeScore": 1,
    "awayScore": 2,
@@ -4733,8 +4733,8 @@
   },
   {
    "date": "2026-10-24",
-   "home": "Greens Farms",
-   "away": "Dexter",
+   "home": "Greens Farms Academy",
+   "away": "Dexter Southfield",
    "homeScore": 3,
    "awayScore": 0,
    "status": "final",
@@ -4767,7 +4767,7 @@
   {
    "date": "2026-10-24",
    "home": "Hopkins",
-   "away": "Greenwich CDS",
+   "away": "Greenwich CD",
    "homeScore": 1,
    "awayScore": 0,
    "status": "final",
@@ -4778,7 +4778,7 @@
   {
    "date": "2026-10-24",
    "home": "Kent",
-   "away": "Ethel Walker School",
+   "away": "Ethel Walker",
    "homeScore": 5,
    "awayScore": 0,
    "status": "final",
@@ -4800,7 +4800,7 @@
   {
    "date": "2026-10-24",
    "home": "King",
-   "away": "Hamden Hall",
+   "away": "Hamden Hall CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -4866,7 +4866,7 @@
   {
    "date": "2026-10-24",
    "home": "Portsmouth Abbey",
-   "away": "Beaver",
+   "away": "Beaver CD",
    "homeScore": 1,
    "awayScore": 0,
    "status": "forfeit",
@@ -4876,7 +4876,7 @@
   },
   {
    "date": "2026-10-24",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Tabor",
    "homeScore": 0,
    "awayScore": 4,
@@ -4887,7 +4887,7 @@
   },
   {
    "date": "2026-10-24",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "Suffield",
    "homeScore": 0,
    "awayScore": 5,
@@ -4898,8 +4898,8 @@
   },
   {
    "date": "2026-10-24",
-   "home": "St Marks",
-   "away": "Governors",
+   "home": "St. Mark's",
+   "away": "Governor's Academy",
    "homeScore": 0,
    "awayScore": 4,
    "status": "final",
@@ -4921,7 +4921,7 @@
   {
    "date": "2026-10-24",
    "home": "Wheeler",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": 1,
    "awayScore": 3,
    "status": "final",
@@ -4931,7 +4931,7 @@
   },
   {
    "date": "2026-10-24",
-   "home": "Wilbraham Monson",
+   "home": "Wilbraham & Monson",
    "away": "Lexington Christian",
    "homeScore": 4,
    "awayScore": 0,
@@ -4964,8 +4964,8 @@
   },
   {
    "date": "2026-10-26",
-   "home": "Greens Farms",
-   "away": "SHG",
+   "home": "Greens Farms Academy",
+   "away": "Sacred Heart",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -4986,8 +4986,8 @@
   },
   {
    "date": "2026-10-26",
-   "home": "St Lukes",
-   "away": "Greenwich CDS",
+   "home": "St. Luke's",
+   "away": "Greenwich CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5020,7 +5020,7 @@
   {
    "date": "2026-10-28",
    "home": "Concord",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5041,7 +5041,7 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Ethel Walker School",
+   "home": "Ethel Walker",
    "away": "Taft",
    "homeScore": null,
    "awayScore": null,
@@ -5063,7 +5063,7 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Nobles",
    "homeScore": null,
    "awayScore": null,
@@ -5075,7 +5075,7 @@
   {
    "date": "2026-10-28",
    "home": "Greenwich Academy",
-   "away": "Loomis",
+   "away": "Loomis Chaffee",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5085,7 +5085,7 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Greenwich CDS",
+   "home": "Greenwich CD",
    "away": "Millbrook",
    "homeScore": null,
    "awayScore": null,
@@ -5096,8 +5096,8 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Hamden Hall",
-   "away": "St Lukes",
+   "home": "Hamden Hall CD",
+   "away": "St. Luke's",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -5130,7 +5130,7 @@
   {
    "date": "2026-10-28",
    "home": "Hotchkiss",
-   "away": "Greens Farms",
+   "away": "Greens Farms Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5196,7 +5196,7 @@
   {
    "date": "2026-10-28",
    "home": "Miss Porters",
-   "away": "Choate",
+   "away": "Choate RH",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5218,7 +5218,7 @@
   {
    "date": "2026-10-28",
    "home": "Pingree",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5250,7 +5250,7 @@
   },
   {
    "date": "2026-10-28",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Westminster",
    "homeScore": null,
    "awayScore": null,
@@ -5261,8 +5261,8 @@
   },
   {
    "date": "2026-10-28",
-   "home": "St Marks",
-   "away": "St Pauls",
+   "home": "St. Mark's",
+   "away": "St. Paul's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5305,7 +5305,7 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Wilbraham Monson",
+   "home": "Wilbraham & Monson",
    "away": "Lexington Christian",
    "homeScore": null,
    "awayScore": null,
@@ -5316,8 +5316,8 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Wilbraham Monson",
-   "away": "Rocky Hill",
+   "home": "Wilbraham & Monson",
+   "away": "Rocky Hill CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5327,8 +5327,8 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Wilbraham Monson",
-   "away": "Rocky Hill",
+   "home": "Wilbraham & Monson",
+   "away": "Rocky Hill CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5349,8 +5349,8 @@
   },
   {
    "date": "2026-10-28",
-   "home": "Worcester",
-   "away": "Marianapolis",
+   "home": "Worcester Academy",
+   "away": "Marianapolis Prep",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5361,7 +5361,7 @@
   {
    "date": "2026-10-29",
    "home": "Holy Child",
-   "away": "Greenwich CDS",
+   "away": "Greenwich CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5405,7 +5405,7 @@
   {
    "date": "2026-10-30",
    "home": "Dana Hall",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5415,7 +5415,7 @@
   },
   {
    "date": "2026-10-30",
-   "home": "Kingswood Oxford",
+   "home": "K-O",
    "away": "Hotchkiss",
    "homeScore": null,
    "awayScore": null,
@@ -5438,7 +5438,7 @@
   {
    "date": "2026-10-30",
    "home": "New Hampton",
-   "away": "Mount Saint Charles",
+   "away": "Mt. St. Charles",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5460,7 +5460,7 @@
   {
    "date": "2026-10-30",
    "home": "Rivers",
-   "away": "St Marks",
+   "away": "St. Mark's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5470,7 +5470,7 @@
   },
   {
    "date": "2026-10-30",
-   "home": "Rye CDS",
+   "home": "Rye CD",
    "away": "King",
    "homeScore": null,
    "awayScore": null,
@@ -5493,7 +5493,7 @@
   {
    "date": "2026-10-30",
    "home": "Winsor",
-   "away": "Beaver",
+   "away": "Beaver CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5504,7 +5504,7 @@
   {
    "date": "2026-10-31",
    "home": "BBN",
-   "away": "St Georges",
+   "away": "St. George's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5515,7 +5515,7 @@
   {
    "date": "2026-10-31",
    "home": "Berkshire",
-   "away": "Loomis",
+   "away": "Loomis Chaffee",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5536,7 +5536,7 @@
   },
   {
    "date": "2026-10-31",
-   "home": "Choate",
+   "home": "Choate RH",
    "away": "NMH",
    "homeScore": null,
    "awayScore": null,
@@ -5548,7 +5548,7 @@
   {
    "date": "2026-10-31",
    "home": "Cushing",
-   "away": "Dexter",
+   "away": "Dexter Southfield",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5558,7 +5558,7 @@
   },
   {
    "date": "2026-10-31",
-   "home": "Ethel Walker School",
+   "home": "Ethel Walker",
    "away": "Miss Porters",
    "homeScore": null,
    "awayScore": null,
@@ -5569,7 +5569,7 @@
   },
   {
    "date": "2026-10-31",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Brooks",
    "homeScore": null,
    "awayScore": null,
@@ -5592,7 +5592,7 @@
   {
    "date": "2026-10-31",
    "home": "Holy Child",
-   "away": "Hamden Hall",
+   "away": "Hamden Hall CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -5625,7 +5625,7 @@
   {
    "date": "2026-10-31",
    "home": "Millbrook",
-   "away": "Wilbraham Monson",
+   "away": "Wilbraham & Monson",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5668,7 +5668,7 @@
   },
   {
    "date": "2026-10-31",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Exeter",
    "homeScore": null,
    "awayScore": null,
@@ -5724,7 +5724,7 @@
   {
    "date": "2026-11-02",
    "home": "Millbrook",
-   "away": "Masters",
+   "away": "Masters NY",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5745,8 +5745,8 @@
   },
   {
    "date": "2026-11-02",
-   "home": "St Lukes",
-   "away": "SHG",
+   "home": "St. Luke's",
+   "away": "Sacred Heart",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5756,7 +5756,7 @@
   },
   {
    "date": "2026-11-02",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Nobles",
    "homeScore": null,
    "awayScore": null,
@@ -5801,7 +5801,7 @@
   {
    "date": "2026-11-04",
    "home": "Berkshire",
-   "away": "Greens Farms",
+   "away": "Greens Farms Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5833,7 +5833,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Ethel Walker School",
+   "home": "Ethel Walker",
    "away": "Frederick Gunn",
    "homeScore": null,
    "awayScore": null,
@@ -5855,7 +5855,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Groton",
    "homeScore": null,
    "awayScore": null,
@@ -5866,8 +5866,8 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Greenwich CDS",
-   "away": "Kingswood Oxford",
+   "home": "Greenwich CD",
+   "away": "K-O",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5889,7 +5889,7 @@
   {
    "date": "2026-11-04",
    "home": "Hopkins",
-   "away": "Hamden Hall",
+   "away": "Hamden Hall CD",
    "homeScore": null,
    "awayScore": null,
    "status": "cancelled",
@@ -5911,7 +5911,7 @@
   {
    "date": "2026-11-04",
    "home": "Kent",
-   "away": "Choate",
+   "away": "Choate RH",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5943,7 +5943,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Tabor",
    "homeScore": null,
    "awayScore": null,
@@ -5955,7 +5955,7 @@
   {
    "date": "2026-11-04",
    "home": "Montrose",
-   "away": "Beaver",
+   "away": "Beaver CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -5965,7 +5965,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Mount Saint Charles",
+   "home": "Mt. St. Charles",
    "away": "Wheeler",
    "homeScore": null,
    "awayScore": null,
@@ -5976,7 +5976,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Mount Saint Charles",
+   "home": "Mt. St. Charles",
    "away": "Wheeler",
    "homeScore": null,
    "awayScore": null,
@@ -5998,8 +5998,8 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Newton CDS",
-   "away": "Worcester",
+   "home": "Newton CD",
+   "away": "Worcester Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6042,8 +6042,8 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Rocky Hill",
-   "away": "Marianapolis",
+   "home": "Rocky Hill CD",
+   "away": "Marianapolis Prep",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6053,7 +6053,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Milton",
    "homeScore": null,
    "awayScore": null,
@@ -6064,7 +6064,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "St Lukes",
+   "home": "St. Luke's",
    "away": "King",
    "homeScore": null,
    "awayScore": null,
@@ -6075,7 +6075,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "St Marks",
+   "home": "St. Mark's",
    "away": "Thayer",
    "homeScore": null,
    "awayScore": null,
@@ -6086,7 +6086,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Brewster",
    "homeScore": null,
    "awayScore": null,
@@ -6119,7 +6119,7 @@
   },
   {
    "date": "2026-11-04",
-   "home": "Wilbraham Monson",
+   "home": "Wilbraham & Monson",
    "away": "Pomfret",
    "homeScore": null,
    "awayScore": null,
@@ -6131,7 +6131,7 @@
   {
    "date": "2026-11-04",
    "home": "Williston",
-   "away": "Dexter",
+   "away": "Dexter Southfield",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6197,7 +6197,7 @@
   {
    "date": "2026-11-06",
    "home": "Middlesex",
-   "away": "Dexter",
+   "away": "Dexter Southfield",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6207,7 +6207,7 @@
   },
   {
    "date": "2026-11-06",
-   "home": "Newton CDS",
+   "home": "Newton CD",
    "away": "Austin Prep",
    "homeScore": null,
    "awayScore": null,
@@ -6219,7 +6219,7 @@
   {
    "date": "2026-11-06",
    "home": "Rivers",
-   "away": "St Georges",
+   "away": "St. George's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6230,7 +6230,7 @@
   {
    "date": "2026-11-06",
    "home": "Rivers",
-   "away": "St Georges",
+   "away": "St. George's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6241,7 +6241,7 @@
   {
    "date": "2026-11-07",
    "home": "Austin Prep",
-   "away": "Newton CDS",
+   "away": "Newton CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6285,7 +6285,7 @@
   {
    "date": "2026-11-07",
    "home": "Cushing",
-   "away": "SHG",
+   "away": "Sacred Heart",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6306,8 +6306,8 @@
   },
   {
    "date": "2026-11-07",
-   "home": "Ethel Walker School",
-   "away": "Wilbraham Monson",
+   "home": "Ethel Walker",
+   "away": "Wilbraham & Monson",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6317,7 +6317,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "Governors",
+   "home": "Governor's Academy",
    "away": "Milton",
    "homeScore": null,
    "awayScore": null,
@@ -6328,7 +6328,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "Greens Farms",
+   "home": "Greens Farms Academy",
    "away": "Kent",
    "homeScore": null,
    "awayScore": null,
@@ -6339,7 +6339,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "Greenwich CDS",
+   "home": "Greenwich CD",
    "away": "Hotchkiss",
    "homeScore": null,
    "awayScore": null,
@@ -6362,7 +6362,7 @@
   {
    "date": "2026-11-07",
    "home": "Hopkins",
-   "away": "Choate",
+   "away": "Choate RH",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6383,7 +6383,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Williston",
    "homeScore": null,
    "awayScore": null,
@@ -6427,7 +6427,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "SHG",
+   "home": "Sacred Heart",
    "away": "Cushing",
    "homeScore": null,
    "awayScore": null,
@@ -6438,7 +6438,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "St Marks",
+   "home": "St. Mark's",
    "away": "Tabor",
    "homeScore": null,
    "awayScore": null,
@@ -6449,7 +6449,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "St Pauls",
+   "home": "St. Paul's",
    "away": "Pingree",
    "homeScore": null,
    "awayScore": null,
@@ -6460,7 +6460,7 @@
   },
   {
    "date": "2026-11-07",
-   "home": "Worcester",
+   "home": "Worcester Academy",
    "away": "Portsmouth Abbey",
    "homeScore": null,
    "awayScore": null,
@@ -6471,8 +6471,8 @@
   },
   {
    "date": "2026-11-09",
-   "home": "Choate",
-   "away": "Kingswood Oxford",
+   "home": "Choate RH",
+   "away": "K-O",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6482,8 +6482,8 @@
   },
   {
    "date": "2026-11-09",
-   "home": "Mount Saint Charles",
-   "away": "Beaver",
+   "home": "Mt. St. Charles",
+   "away": "Beaver CD",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6493,7 +6493,7 @@
   },
   {
    "date": "2026-11-10",
-   "home": "Newton CDS",
+   "home": "Newton CD",
    "away": "Winsor",
    "homeScore": null,
    "awayScore": null,
@@ -6526,8 +6526,8 @@
   },
   {
    "date": "2026-11-11",
-   "home": "Beaver",
-   "away": "Ethel Walker School",
+   "home": "Beaver CD",
+   "away": "Ethel Walker",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6559,8 +6559,8 @@
   },
   {
    "date": "2026-11-11",
-   "home": "Dexter",
-   "away": "St Pauls",
+   "home": "Dexter Southfield",
+   "away": "St. Paul's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6571,7 +6571,7 @@
   {
    "date": "2026-11-11",
    "home": "Exeter",
-   "away": "Governors",
+   "away": "Governor's Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6582,7 +6582,7 @@
   {
    "date": "2026-11-11",
    "home": "Frederick Gunn",
-   "away": "Choate",
+   "away": "Choate RH",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6604,7 +6604,7 @@
   {
    "date": "2026-11-11",
    "home": "Hotchkiss",
-   "away": "Loomis",
+   "away": "Loomis Chaffee",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6636,8 +6636,8 @@
   },
   {
    "date": "2026-11-11",
-   "home": "Marianapolis",
-   "away": "Wilbraham Monson",
+   "home": "Marianapolis Prep",
+   "away": "Wilbraham & Monson",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6713,8 +6713,8 @@
   },
   {
    "date": "2026-11-11",
-   "home": "St Marks",
-   "away": "Worcester",
+   "home": "St. Mark's",
+   "away": "Worcester Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6746,7 +6746,7 @@
   },
   {
    "date": "2026-11-12",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Thayer",
    "homeScore": null,
    "awayScore": null,
@@ -6801,7 +6801,7 @@
   },
   {
    "date": "2026-11-14",
-   "home": "Choate",
+   "home": "Choate RH",
    "away": "Deerfield",
    "homeScore": null,
    "awayScore": null,
@@ -6813,7 +6813,7 @@
   {
    "date": "2026-11-14",
    "home": "Cushing",
-   "away": "Worcester",
+   "away": "Worcester Academy",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6823,7 +6823,7 @@
   },
   {
    "date": "2026-11-14",
-   "home": "Dexter",
+   "home": "Dexter Southfield",
    "away": "Berkshire",
    "homeScore": null,
    "awayScore": null,
@@ -6845,8 +6845,8 @@
   },
   {
    "date": "2026-11-14",
-   "home": "Governors",
-   "away": "St Pauls",
+   "home": "Governor's Academy",
+   "away": "St. Paul's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6857,7 +6857,7 @@
   {
    "date": "2026-11-14",
    "home": "Groton",
-   "away": "St Marks",
+   "away": "St. Mark's",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6867,8 +6867,8 @@
   },
   {
    "date": "2026-11-14",
-   "home": "Kingswood Oxford",
-   "away": "Ethel Walker School",
+   "home": "K-O",
+   "away": "Ethel Walker",
    "homeScore": null,
    "awayScore": null,
    "status": "scheduled",
@@ -6889,7 +6889,7 @@
   },
   {
    "date": "2026-11-14",
-   "home": "Loomis",
+   "home": "Loomis Chaffee",
    "away": "Kent",
    "homeScore": null,
    "awayScore": null,
@@ -6933,7 +6933,7 @@
   },
   {
    "date": "2026-11-14",
-   "home": "St Georges",
+   "home": "St. George's",
    "away": "Middlesex",
    "homeScore": null,
    "awayScore": null,

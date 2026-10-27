@@ -7,7 +7,7 @@ if (S) {
   let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
   let sortKey = 'spPerGame', sortDir = 'desc';
   // A link such as /rankings.html?class=A&sort=inWinPct opens the table sorted by that measure.
-  { const k = getParam('sort'); if (k && k !== 'league' && k !== 'record') { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; } }
+  { const k = getParam('sort'); if (k && k !== 'record') { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; } }
 
   const played = FHEngine.playedGames(S.games);
   const lastDate = played.reduce((m, g) => (g.date > m ? g.date : m), '');
@@ -15,7 +15,6 @@ if (S) {
   // rank key is the engine's rank_<metric>; value formatter is the cell text
   const COLS = [
     { key: 'name', label: 'School', cls: 'name' },
-    { key: 'league', label: 'League', cls: 'hide-sm' },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },
     { key: 'spPerGame', label: 'Saylor points per game', cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
@@ -65,7 +64,7 @@ if (S) {
     const rows = S.ranked.rows.filter((r) => r.cls === cls).sort(cmp);
     const head = COLS.map((c, i) => {
       const sorted = c.key === sortKey;
-      const sortable = c.key !== 'league' && !c.nosort;
+      const sortable = !c.nosort;
       return `<th scope="col" class="${c.cls.replace('name', 'l')}"${sorted ? ` aria-sort="${sortDir === 'desc' ? 'descending' : 'ascending'}"` : ''}>${
         sortable ? `<button type="button" data-i="${i}">${esc(c.label)}</button>` : esc(c.label)}</th>`;
     }).join('');
@@ -74,7 +73,6 @@ if (S) {
       <tbody>${rows.map((r) => `<tr>
         ${COLS.map((c) => {
           if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a></td>`;
-          if (c.key === 'league') return `<td class="hide-sm muted">${esc(r.league || '')}</td>`;
           const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
           return `<td class="${c.cls}">${c.cell(r)}${rk}</td>`;
         }).join('')}
