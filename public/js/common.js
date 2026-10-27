@@ -60,7 +60,8 @@ export function playoffLabel(season) {
 
 function renderChrome(active, data, me) {
   const items = [['playoffs', 'Playoffs', '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
-  const signedIn = me.admin || active === 'admin';
+  const signedIn = !!me.admin;
+  if (signedIn || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
     <div class="nav">
@@ -68,9 +69,7 @@ function renderChrome(active, data, me) {
       <span class="nav-sep">|</span>
       <nav class="nav-links" aria-label="Main">${items.map(([k, label, href]) =>
         `<a href="${href}"${k === active ? ' class="here" aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
-      <a class="admin-link${active === 'admin' ? ' here' : ''}" href="/admin.html"${active === 'admin' ? ' aria-current="page"' : ''}>${signedIn
-        ? 'Admin'
-        : 'Log in'}</a>
+      <a class="admin-link" href="${signedIn ? '/cdn-cgi/access/logout' : '/admin.html'}">${signedIn ? 'Sign out' : 'Log in'}</a>
       ${seasons.length ? `<label class="season"><span class="sr">Season</span>
         <select id="season-pick">${seasons.map((s) =>
           `<option value="${esc(s.id)}"${data.season && s.id === data.season.id ? ' selected' : ''}>${esc(s.label)}</option>`).join('')}</select></label>` : ''}
