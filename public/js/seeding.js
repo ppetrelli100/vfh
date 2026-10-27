@@ -114,9 +114,12 @@ if (S) {
         <td class="${w === g.home ? 'wn' : ''}">${nm(g.home)}</td><td class="sc">${hs}&ndash;${as}</td><td class="${w === g.away ? 'wn' : ''}">${nm(g.away)}</td>
         <td class="l muted">${w ? `${nm(w)} won` : 'Tie'}</td></tr>`;
     }).join('');
+    const ahead = S.games.filter((g) => g.status === 'scheduled' && ((g.home === A && g.away === B) || (g.home === B && g.away === A)))
+      .map((g) => fmtDate(g.date));
+    const when = ahead.length ? ` They are scheduled to play ${games.length ? 'again ' : ''}on ${ahead.length > 1 ? `${ahead.slice(0, -1).join(', ')} and ${ahead[ahead.length - 1]}` : ahead[0]}.` : '';
     return `<h3 id="h2h" class="sub">Head to head</h3>` + (games.length
-      ? `<div class="scroll"><table class="tbl sm"><tbody>${rows}</tbody></table></div>`
-      : `<p class="hint">${nm(A)} and ${nm(B)} have not played each other this season.</p>`);
+      ? `<div class="scroll"><table class="tbl sm"><tbody>${rows}</tbody></table></div>${when ? `<p class="hint">${esc(when.trim())}</p>` : ''}`
+      : `<p class="hint">${nm(A)} and ${nm(B)} have not played each other ${ahead.length ? 'yet' : 'this season'}.${esc(when)}</p>`);
   }
 
   // Each team's results against the opponents both have played.
