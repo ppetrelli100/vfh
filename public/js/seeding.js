@@ -1,7 +1,8 @@
-import { logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
+import { playoffLabel, logo, nm, boot, esc, fmtPct, fmtInt, fmtDate, gameUrl, classesOf, classPicker, getParam, setParam } from './common.js';
 
 const S = await boot('playoffs');
 if (S) {
+  document.title = `${playoffLabel(S.season)} - NEPSAC Field Hockey`;
   const app = document.getElementById('app');
   app.classList.add('narrow');
   const classes = classesOf(S.schools);
@@ -20,10 +21,18 @@ if (S) {
   ];
 
   app.innerHTML = `
-    <h1>Playoffs</h1>
+    <h1>${esc(playoffLabel(S.season))}</h1>
     <p class="lede">The 12 teams in each class with the most Saylor points per game are compared in pairs on seven measures. The top eight seeds make the playoffs.</p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
     <div id="out"></div>`;
+
+  // Teams level on pairings won and on points per game cannot be separated by the measures.
+  const tieNote = (res) => {
+    const groups = {};
+    for (const t of res.table) if (t.tie && t.pos <= 8 + 1) (groups[`${t.seed}|${t.spPerGame}`] = groups[`${t.seed}|${t.spPerGame}`] || []).push(t);
+    const parts = Object.values(groups).map((g) => `${g.map((t) => esc(t.name)).join(' and ')} are level on pairings won and on points per game, so their order here is provisional until the tie is broken.`);
+    return parts.length ? `<br>${parts.join(' ')}` : '';
+  };
 
   function draw() {
     const res = FHSeeding.seed(S.ranked.rows, S.ranked.rec, S.games, cls);
@@ -45,17 +54,17 @@ if (S) {
         <div class="matchups">${res.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`).join('')}</div>
       </section>
 
-      <h2>Seed order</h2>
+      <h2>Seeding</h2>
       <div class="scroll"><table class="tbl c">
         <thead><tr><th>Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
-        <tbody>${res.table.map((t) => `<tr${t.seed === 8 ? ' class="cut"' : ''}${t.seed > 8 ? ' style="opacity:.72"' : ''}>
-          <td class="pos">${t.seed}</td>
-          <td class="name"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a></td>
+        <tbody>${res.table.map((t) => `<tr${t.pos === 8 ? ' class="cut"' : ''}${t.pos > 8 ? ' style="opacity:.72"' : ''}>
+          <td class="pos">${t.pos}</td>
+          <td class="name" style="white-space:nowrap"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? ' <span class="tag" title="Level with another team on pairings won and points per game">tie</span>' : ''}</td>
           <td class="key">${t.total}<span class="rk">of ${res.top12.length - 1}</span></td>
           <td>${fmtInt(t.spPerGame)}</td>
           <td class="hide-sm">${t.spRank}</td></tr>`).join('')}</tbody>
       </table></div>
-      <p class="hint" style="margin-top:8px">Seeds 9 to 12 are shown for reference. The line marks the playoff cut.</p>
+      <p class="hint" style="margin-top:8px">Seeds 9 to 12 are shown for reference. The line marks the playoff cut.${tieNote(res)}</p>
 
       <h2>Pairwise comparison</h2>
       <p class="hint" style="margin-top:0">Each team is compared with every other team in the top 12. A 1 means the team in that row won the pairing against the team in that column. Select any cell to see the comparison below.</p>
@@ -78,7 +87,7 @@ if (S) {
         const w = res.detail[i][j].win;
         const sel = pair[0] === a && pair[1] === b;
         return `<td class="${w ? 'w' : 'l'}${sel ? ' sel' : ''}" data-a="${esc(a)}" data-b="${esc(b)}" tabindex="0" role="button" aria-label="${esc(a)} against ${esc(b)}: ${w ? 'won' : 'lost'}">${w ? '1' : '&ndash;'}</td>`;
-      }).join('')}<td class="tot">${res.total[i]}</td><td class="tot">${res.finalRank[i]}</td></tr>`).join('')}</tbody>`;
+      }).join('')}<td class="tot">${res.total[i]}</td><td class="tot">${res.table.find((t) => t.name === res.top12[i]).pos}</td></tr>`).join('')}</tbody>`;
     mx.querySelectorAll('td[data-a]').forEach((td) => {
       const go = () => { pair = [td.dataset.a, td.dataset.b]; draw(); };
       td.addEventListener('click', go);
@@ -133,7 +142,7 @@ if (S) {
   function drawCompare(res) {
     const [A, B] = pair;
     const iA = res.top12.indexOf(A), iB = res.top12.indexOf(B);
-    const sel = (id, v) => `<select id="${id}">${res.table.map((t) => `<option value="${esc(t.name)}"${t.name === v ? ' selected' : ''}>${t.seed}. ${esc(t.name)}</option>`).join('')}</select>`;
+    const sel = (id, v) => `<select id="${id}">${res.table.map((t) => `<option value="${esc(t.name)}"${t.name === v ? ' selected' : ''}>${t.pos}. ${esc(t.name)}</option>`).join('')}</select>`;
     const el = document.getElementById('cmp');
     if (iA === iB) {
       el.innerHTML = `<div class="toolbar"><label>Team<select id="ca">${res.table.map((t) => `<option${t.name === A ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></label>
@@ -155,6 +164,7 @@ if (S) {
       const verdict = d.sum > d.sumOpp ? `${A} wins the pairing, ${d.sum} measures to ${d.sumOpp}.`
         : d.sum < d.sumOpp ? `${B} wins the pairing, ${d.sumOpp} measures to ${d.sum}.`
         : `The teams are level at ${d.sum} measures each, so points per game decides it: ${d.win ? A : B} wins the pairing.`;
+      const spOf = (n) => res.table.find((t) => t.name === n).spPerGame, verdictTie = d.sum === d.sumOpp && spOf(A) === spOf(B);
       el.innerHTML = `
         <div class="toolbar"><label>Team${sel('ca', A)}</label><label>Compared with${sel('cb', B)}</label></div>
         <div class="scroll"><table class="tbl cmp">
@@ -163,7 +173,7 @@ if (S) {
             <td class="${d[k] ? 'win' : ''}">${val[k][0]}</td><td class="${d[k + '_opp'] ? 'win' : ''}">${val[k][1]}</td></tr>`).join('')}
           <tr><td class="l key">Measures won</td><td class="key">${d.sum}</td><td class="key">${d.sumOpp}</td></tr></tbody>
         </table></div>
-        <p class="verdict">${esc(verdict)}</p>
+        <p class="verdict">${esc(verdictTie ? `The teams are level at ${d.sum} measures each and have identical points per game, so neither wins the pairing.` : verdict)}</p>
         ${h2hSection(A, B)}
         ${mutualSection(A, B, mo.mutual)}`;
     }

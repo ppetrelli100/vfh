@@ -14,6 +14,7 @@ if (S) {
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
   const COLS = [
+    { key: 'rank', label: 'Rank', cls: 'pos', cell: (r) => (r.gp ? r.rank_spPerGame : '–'), nosort: true },
     { key: 'name', label: 'School', cls: 'name' },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },

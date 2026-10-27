@@ -59,7 +59,9 @@ if (S) {
   function drawAll() {
     // Earliest first, the same order as the score sheet.
     const list = S.games.filter((g) => !cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls);
-    document.getElementById('lede').textContent = `${list.length} games in ${S.season.label}${cls ? `, Class ${cls}` : ''}. Pick a team to see its schedule and how each game scored.`;
+    const playedAll = FHEngine.playedGames(S.games), lastDate = playedAll.reduce((m, g) => (g.date > m ? g.date : m), '');
+    const playedN = FHEngine.playedGames(list).length;
+    document.getElementById('lede').textContent = `${playedN} games played${lastDate ? ` as of ${fmtDate(lastDate)}` : ''}. ${list.length} games scheduled.`;
     document.getElementById('summary').innerHTML = '';
     document.getElementById('tbl').innerHTML = `
       <thead><tr><th class="l">Date</th><th style="text-align:center">Matchup</th><th class="l hide-sm">Notes</th></tr></thead>

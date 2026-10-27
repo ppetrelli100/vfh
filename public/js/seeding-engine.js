@@ -72,7 +72,10 @@
     const finalRank = H.map((h) => H.filter((x) => x > h).length + 1);
     const table = T.map((r, i) => ({ name: r.name, spRank: i + 1, spPerGame: r.spPerGame, total: total[i], seed: finalRank[i] }))
       .sort((a, b) => a.seed - b.seed || a.spRank - b.spRank);
-    const by = (s) => (table.find((x) => x.seed === s) || {}).name || null;
+    // pos = place in the order shown. Teams level on pairings won and on points per game share
+    // `seed` and are flagged `tie`; the bracket fills slots by place so no team drops out of it.
+    table.forEach((x, i) => { x.pos = i + 1; x.tie = table.some((o) => o !== x && o.seed === x.seed && o.spPerGame === x.spPerGame); });
+    const by = (s) => (table[s - 1] || {}).name || null;
     const bracket = [[1, 8], [4, 5], [3, 6], [2, 7]].map(([a, b]) => ({ high: { seed: a, name: by(a) }, low: { seed: b, name: by(b) } }));
     return { cls, top12: T.map((r) => r.name), crit, detail, total, finalRank, table, bracket };
   }

@@ -52,8 +52,14 @@ export const getParam = (key) => new URLSearchParams(location.search).get(key);
 export const classesOf = (schools) =>
   [...new Map(schools.map((s) => [s.cls, s.classNum])).entries()].sort((a, b) => a[1] - b[1]).map((x) => x[0]);
 
+/** The playoff page is "Playoff picture" until Nov 15 of the season's year, then "Playoffs". */
+export function playoffLabel(season) {
+  const y = Number(((season && (season.id || season.label)) || '').match(/\d{4}/)?.[0]) || new Date().getFullYear();
+  return new Date() >= new Date(y, 10, 15) ? 'Playoffs' : 'Playoff picture';
+}
+
 function renderChrome(active, data, me) {
-  const items = [['playoffs', 'Playoffs', '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
+  const items = [['playoffs', playoffLabel(data.season), '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
   if (me.admin || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
