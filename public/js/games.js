@@ -52,7 +52,8 @@ if (S) {
   const hasScore = (g) => g.homeScore !== null && g.awayScore !== null && g.status !== 'cancelled' && g.status !== 'scheduled';
 
   function drawAll() {
-    const list = S.games.filter((g) => !cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls).slice().reverse();
+    // Earliest first, the same order as the score sheet.
+    const list = S.games.filter((g) => !cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls);
     document.getElementById('lede').textContent = `${list.length} games in ${S.season.label}${cls ? `, Class ${cls}` : ''}. Pick a team to see its schedule and how each game scored.`;
     document.getElementById('summary').innerHTML = '';
     document.getElementById('tbl').innerHTML = `
@@ -76,7 +77,7 @@ if (S) {
 
   function drawTeam() {
     const R = S.ranked.R[team];
-    const log = FHEngine.teamGames(S.schools, S.games, team).reverse();
+    const log = FHEngine.teamGames(S.schools, S.games, team);
     const pts = log.reduce((s, x) => s + (x.saylor || 0), 0);
     document.getElementById('lede').innerHTML = `Class ${esc(R.cls)}. <a href="/games.html">All games</a>`;
     document.getElementById('summary').innerHTML = `
