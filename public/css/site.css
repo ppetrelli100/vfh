@@ -310,3 +310,7 @@ h1 .tn { gap: 12px; }
 textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; border: 1px solid var(--field); border-radius: 8px; }
 #sc-wrap .scroll { max-height: 520px; overflow-y: auto; }
 #sc-tbl thead th { position: sticky; top: 0; z-index: 1; }
+
+/* Rankings: the rank column is plain, narrow, and sits close to the school name */
+.tbl .rnk, .tbl.c .rnk { font-weight: 400; width: 40px; text-align: center; padding-right: 0; color: var(--ink); }
+.tbl .rnk + .name, .tbl.c .rnk + .name { padding-left: 8px; }
