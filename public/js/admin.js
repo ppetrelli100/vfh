@@ -51,8 +51,8 @@ function main() {
       </div>
       <div class="checks" id="ot-wrap"><label><input type="checkbox" id="ot"> Decided in overtime</label></div>
       <div class="teams">
-        <div class="field"><label for="gtype">Game type</label>
-          <select id="gtype"><option value="regular">Regular season</option><option value="league">League game</option><option value="tournament">Tournament</option><option value="playoff">Playoff</option></select></div>
+        <div class="field"><label for="division">Division</label>
+          <select id="division"><option value="">Choose a division</option><option>D1/2</option><option>D3</option><option>D4</option><option>Crossover</option></select><div class="err" id="err-division"></div></div>
         <div class="field"><label for="note">Note (optional)</label><input type="text" id="note" maxlength="120" placeholder="For example, played at a neutral site"></div>
       </div>
       <div id="dup" class="alert" hidden></div>
@@ -269,7 +269,7 @@ function wireForm($) {
   const byId = Object.fromEntries(S.schools.map((s) => [String(s.id), s]));
   const touched = new Set();
   let editingId = null, busy = false;
-  const FIELDS = { date: 'date', home: 'home', away: 'away', homeScore: 'hs', awayScore: 'as', winner: 'winner-wrap', status: 'status' };
+  const FIELDS = { division: 'division', date: 'date', home: 'home', away: 'away', homeScore: 'hs', awayScore: 'as', winner: 'winner-wrap', status: 'status' };
 
   $('date').value = store.get('vfh.lastDate') || localToday();
 
@@ -277,12 +277,13 @@ function wireForm($) {
     season: S.season.id, date: $('date').value, homeId: $('home').value, awayId: $('away').value,
     status: $('status').value, homeScore: $('hs').value, awayScore: $('as').value,
     winner: (form.querySelector('input[name="winner"]:checked') || {}).value || '',
-    overtime: $('ot').checked, gameType: $('gtype').value, note: $('note').value.trim(),
+    overtime: $('ot').checked, division: $('division').value, note: $('note').value.trim(),
   });
 
   function validate(v) {
     const e = {};
     if (!/^\d{4}-\d{2}-\d{2}$/.test(v.date)) e.date = 'Enter the game date.';
+    if (!v.division) e.division = 'Choose the division.';
     if (!v.homeId) e.home = 'Choose the home team.';
     if (!v.awayId) e.away = 'Choose the away team.';
     if (v.homeId && v.homeId === v.awayId) e.away = 'A team cannot play itself.';
@@ -324,7 +325,7 @@ function wireForm($) {
 
   form.addEventListener('input', (e) => {
     hideDup();
-    const map = { date: 'date', home: 'home', away: 'away', hs: 'homeScore', as: 'awayScore', status: 'status' };
+    const map = { date: 'date', home: 'home', away: 'away', hs: 'homeScore', as: 'awayScore', status: 'status', division: 'division' };
     if (map[e.target.id]) touched.add(map[e.target.id]);
     if (e.target.name === 'winner') touched.add('winner');
     if (e.target.id === 'home' && $('away').value === $('home').value) $('away').value = '';
@@ -334,7 +335,7 @@ function wireForm($) {
 
   function clearForm({ keepDate = true } = {}) {
     $('home').value = ''; $('away').value = ''; $('hs').value = ''; $('as').value = '';
-    $('ot').checked = false; $('note').value = ''; $('gtype').value = 'regular'; $('status').value = 'final';
+    $('ot').checked = false; $('note').value = ''; $('division').value = ''; $('status').value = 'final';
     form.querySelectorAll('input[name="winner"]').forEach((r) => { r.checked = false; });
     if (!keepDate) $('date').value = localToday();
     touched.clear(); syncLayout(); show({}); hideDup();
@@ -357,7 +358,7 @@ function wireForm($) {
   }
 
   async function save(force) {
-    ['date', 'home', 'away', 'homeScore', 'awayScore', 'winner', 'status'].forEach((k) => touched.add(k));
+    ['date', 'home', 'away', 'homeScore', 'awayScore', 'winner', 'status', 'division'].forEach((k) => touched.add(k));
     const v = read(), errs = validate(v);
     show(errs);
     const first = Object.keys(errs)[0];
@@ -392,7 +393,7 @@ function wireForm($) {
         $('dup-no').addEventListener('click', hideDup);
         say('');
       } else if (e.status === 422 && e.data && e.data.fields) {
-        const map = { home: 'home', away: 'away', date: 'date', homeScore: 'homeScore', awayScore: 'awayScore', winner: 'winner', status: 'status' };
+        const map = { home: 'home', away: 'away', date: 'date', homeScore: 'homeScore', awayScore: 'awayScore', winner: 'winner', status: 'status', division: 'division' };
         const errs2 = {}; Object.keys(e.data.fields).forEach((k) => { if (map[k]) { errs2[map[k]] = e.data.fields[k]; touched.add(map[k]); } });
         show(errs2); say(e.message, 'bad');
       } else if (e.status === 401) {
@@ -411,7 +412,7 @@ function wireForm($) {
     $('date').value = g.date; $('home').value = String(g.homeId); $('away').value = String(g.awayId);
     $('status').value = g.status === 'scheduled' ? 'final' : g.status;
     $('hs').value = g.homeScore ?? ''; $('as').value = g.awayScore ?? '';
-    $('ot').checked = !!g.overtime; $('gtype').value = g.gameType || 'regular'; $('note').value = g.note || '';
+    $('ot').checked = !!g.overtime; $('division').value = g.division || ''; $('note').value = g.note || '';
     if (g.status === 'forfeit') {
       const r = form.querySelector(`input[name="winner"][value="${g.homeScore > g.awayScore ? 'home' : 'away'}"]`);
       if (r) r.checked = true;

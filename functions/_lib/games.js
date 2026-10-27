@@ -4,6 +4,7 @@
 import { HttpError } from './db.js';
 
 export const STATUSES = ['final', 'forfeit', 'cancelled', 'scheduled'];
+export const DIVISIONS = ['D1/2', 'D3', 'D4', 'Crossover'];
 export const GAME_TYPES = ['regular', 'league', 'tournament', 'playoff'];
 
 const clean = (v, max = 120) => {
@@ -31,6 +32,7 @@ export async function validateGame(db, body, { seasonId, selfId = 0 }) {
   const homeId = toInt(body.homeId), awayId = toInt(body.awayId);
 
   if (!STATUSES.includes(status)) fields.status = 'Choose Final, Forfeit, Cancelled or Not played yet.';
+  if (!DIVISIONS.includes(body.division)) fields.division = 'Choose the division.';
   if (!validDate(body.date)) fields.date = 'Enter the game date.';
   if (!homeId) fields.home = 'Choose the home team.';
   if (!awayId) fields.away = 'Choose the away team.';
@@ -76,7 +78,7 @@ export async function validateGame(db, body, { seasonId, selfId = 0 }) {
   return {
     seasonId, date: body.date, homeId, awayId, status, homeScore, awayScore,
     overtime: status === 'final' && body.overtime ? 1 : 0,
-    gameType, division: clean(body.division, 20), note: clean(body.note),
+    gameType, division: body.division, note: clean(body.note),
   };
 }
 
