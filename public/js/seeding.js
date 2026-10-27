@@ -26,6 +26,8 @@ if (S) {
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
     <div id="out"></div>`;
 
+  const TIE_TIP = 'Level with another team on pairings won and points per game';
+  const tieOf = (res, name) => (res.table.find((t) => t.name === name) || {}).tie;
   // Teams level on pairings won and on points per game cannot be separated by the measures.
   const tieNote = (res) => {
     const groups = {};
@@ -44,7 +46,7 @@ if (S) {
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
     const side = (x) => x.name
-      ? `<div class="side"><span class="seedno">${x.seed}</span><span class="tn">${logo(x.name, 26)}${nm(x.name)}</span></div>`
+      ? `<div class="side"><span class="seedno${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${x.seed}</span><span class="tn">${logo(x.name, 26)}${nm(x.name)}</span></div>`
       : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`;
 
     out.innerHTML = `
@@ -58,9 +60,9 @@ if (S) {
       <div class="scroll"><table class="tbl c">
         <thead><tr><th>Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
         <tbody>${res.table.map((t) => `<tr${t.pos === 8 ? ' class="cut"' : ''}${t.pos > 8 ? ' style="opacity:.72"' : ''}>
-          <td class="pos">${t.pos}</td>
-          <td class="name"><div style="display:flex;align-items:center;gap:2px"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? '<span class="tag tie" title="Level with another team on pairings won and points per game">tie</span>' : ''}</div></td>
-          <td class="key">${t.total}<span class="rk">of ${res.top12.length - 1}</span></td>
+          <td class="pos${t.tie ? ' tie' : ''}"${t.tie ? ` title="${TIE_TIP}"` : ''}>${t.pos}</td>
+          <td class="name"><div style="display:flex;align-items:center;gap:2px"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? '<span class="tag tie" title="${TIE_TIP}">tie</span>' : ''}</div></td>
+          <td class="key${t.tie ? ' tie' : ''}"${t.tie ? ` title="${TIE_TIP}"` : ''}>${t.total}<span class="rk">of ${res.top12.length - 1}</span></td>
           <td>${fmtInt(t.spPerGame)}</td>
           <td class="hide-sm">${t.spRank}</td></tr>`).join('')}</tbody>
       </table></div>
