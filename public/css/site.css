@@ -351,3 +351,36 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .btn.reset { display: inline-flex; flex-direction: column; align-items: center; gap: 1px; line-height: 1.25; padding-top: 7px; padding-bottom: 7px; }
 .reset-wrap[hidden] { display: none; }
 .btn.reset small { font-size: 11px; font-style: italic; font-weight: 400; opacity: .8; }
+
+/* Enter scores: compact on phones */
+.games-list .mg { display: none; }
+@media (max-width: 700px) {
+  .lede { font-size: 13px; margin: 0 0 10px; }
+  .panel.form-grid { gap: 10px; padding: 12px; }
+  .form-grid .teams { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-grid .teams.stack { grid-template-columns: 1fr; }
+  .form-grid .field { gap: 3px; }
+  .form-grid .field select, .form-grid .field input[type="date"], .form-grid .field input[type="text"] { min-height: 38px; padding: 5px 8px; font-size: 14px; }
+  .field input.score { width: 100%; min-height: 48px; }
+  .mu { font-size: 15px; gap: 8px; padding: 0; }
+  .mu .mt { gap: 6px; }
+  .editing { padding: 6px 10px; font-size: 13px; }
+  .chip { padding: 7px 12px; font-size: 13px; }
+  .chip.on { padding: 6px 11px; }
+  .choice { gap: 6px; }
+  .checks label { min-height: 28px; }
+  .actions { gap: 8px; }
+  .actions .btn { padding: 8px 14px; }
+  .reset-wrap { margin-left: 0; }
+  .btn.reset { padding: 4px 10px; }
+  .btn.reset small { font-size: 10px; }
+  .actions .btn { font-size: 14px; }
+  .games-list { max-height: 360px; }
+  .games-list .dk { display: none; }
+  .games-list td.mg, .games-list th.mg { display: table-cell; }
+  .games-list .btn .mg { display: inline; }
+  .games-list .name.mg .tn { display: flex; padding: 1px 0; }
+  .games-list td.sc { white-space: nowrap; }
+  .games-list .btn.del { padding: 4px 8px; min-height: 0; }
+  .games-list .tag.today { display: block; margin: 2px 0 0; width: fit-content; }
+}

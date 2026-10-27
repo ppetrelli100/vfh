@@ -51,7 +51,7 @@ function main() {
         <div class="err" id="err-winner"></div>
       </div>
       <div class="checks" id="ot-wrap"><label><input type="checkbox" id="ot"> Decided in overtime</label></div>
-      <div class="teams">
+      <div class="teams stack">
         <div class="field"><label for="division">Division</label>
           <input type="hidden" id="division" value="">
           <div class="choice" id="division-btns" role="group" aria-label="Division">${['D1/2', 'D3', 'D4', 'Crossover'].map((d) => `<button type="button" class="chip" data-v="${d}" aria-pressed="false">${d}</button>`).join('')}</div>
@@ -68,7 +68,7 @@ function main() {
     </form>
 
     <h2>Games</h2>
-    <p class="hint" style="margin:0 0 8px">Pick a game to enter or change its score. The list opens at today's games; scroll up for earlier ones and down for later ones.</p>
+    <p class="hint" style="margin:0 0 8px">Tap a game to enter or change its score. Opens at today's games; scroll for earlier or later ones.</p>
     <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
     ${hasSeason ? `<details class="tools" id="sc-wrap">
@@ -446,7 +446,7 @@ function wireForm($) {
     }
     syncLayout();
     $('editing').hidden = false;
-    $('editing').textContent = `${g.status === 'scheduled' ? 'Entering the score for' : 'Editing'}: ${g.home} vs ${g.away}, ${fmtDate(g.date)}. Save, or cancel.`;
+    $('editing').textContent = `${g.status === 'scheduled' ? 'Entering the score' : 'Editing'} · ${fmtDate(g.date)}. Save, or cancel.`;
     $('cancel-edit').hidden = false; $('save').textContent = g.status === 'scheduled' ? 'Save score' : 'Save changes';
     $('reset-wrap').hidden = !isAdmin || g.status === 'scheduled'; resetArm(false);
     say(''); drawRecent(false);
@@ -467,15 +467,16 @@ function wireForm($) {
       : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.overtime ? '<span class="tag">OT</span>' : ''}`;
     let marked = false;
     $('recent').innerHTML = `
-      <thead><tr><th class="l">Date</th><th class="l">Home</th><th>Score</th><th class="l">Away</th><th></th></tr></thead>
+      <thead><tr><th class="l">Date</th><th class="l dk">Home</th><th class="mg l">Game</th><th>Score</th><th class="l dk">Away</th><th></th></tr></thead>
       <tbody>${list.map((g) => {
         const first = !marked && g.date === focusDate; if (first) marked = true;
         return `<tr data-row="${g.id}" class="pick${g.id === editingId ? ' sel' : ''}"${first ? ' id="focus-row"' : ''}>
         <td class="l">${esc(fmtDate(g.date))}${g.date === today ? ' <span class="tag today">Today</span>' : ''}</td>
-        <td class="name"><span class="tn">${logo(g.home, 18)}${esc(g.home)}</span></td>
-        <td>${state(g)}</td>
-        <td class="name"><span class="tn">${logo(g.away, 18)}${esc(g.away)}</span></td>
-        <td><button type="button" class="btn small ghost" data-del="${g.id}">Delete</button></td></tr>`;
+        <td class="name dk"><span class="tn">${logo(g.home, 18)}${esc(g.home)}</span></td>
+        <td class="name mg"><span class="tn">${logo(g.home, 16)}${esc(g.home)}</span><span class="tn">${logo(g.away, 16)}${esc(g.away)}</span></td>
+        <td class="sc">${state(g)}</td>
+        <td class="name dk"><span class="tn">${logo(g.away, 18)}${esc(g.away)}</span></td>
+        <td><button type="button" class="btn small ghost del" data-del="${g.id}" aria-label="Delete game"><span class="dk">Delete</span><span class="mg">✕</span></button></td></tr>`;
       }).join('')}</tbody>`;
     if (!list.length) $('recent').innerHTML = '<tbody><tr><td class="empty"><strong>No games yet</strong>Saved games appear here.</td></tr></tbody>';
     if (focus) {
