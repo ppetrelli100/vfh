@@ -62,6 +62,7 @@ function main() {
         <button type="submit" class="btn" id="save">Save game</button>
         <button type="button" class="btn ghost" id="cancel-edit" hidden>Cancel changes</button>
         <span class="status" id="msg" role="status"></span>
+        <button type="button" class="btn reset" id="reset-game" hidden>Reset to needs score</button>
       </div>
     </form>
 
@@ -351,7 +352,7 @@ function wireForm($) {
   }
 
   function endEdit() {
-    editingId = null; setTimeout(() => drawRecent(false), 0); $('editing').hidden = true; $('cancel-edit').hidden = true; $('save').textContent = 'Save game';
+    editingId = null; $('reset-game').hidden = true; setTimeout(() => drawRecent(false), 0); $('editing').hidden = true; $('cancel-edit').hidden = true; $('save').textContent = 'Save game';
   }
 
   function standing(name) {
@@ -411,6 +412,21 @@ function wireForm($) {
     } finally { busy = false; $('save').disabled = false; }
   }
 
+  // Puts a game back to "needs a score": click once, then click again to confirm.
+  let resetTimer = null;
+  function resetArm(on) {
+    clearTimeout(resetTimer); resetTimer = null;
+    $('reset-game').textContent = on ? 'Click again to reset this game' : 'Reset to needs score';
+    $('reset-game').classList.toggle('armed', on);
+    if (on) resetTimer = setTimeout(() => resetArm(false), 4000);
+  }
+  $('reset-game').addEventListener('click', () => {
+    if (!editingId) return;
+    if (!resetTimer) return resetArm(true);
+    resetArm(false);
+    $('status').value = 'scheduled'; syncLayout();
+    save(false);
+  });
   form.addEventListener('submit', (e) => { e.preventDefault(); save(false); });
   $('cancel-edit').addEventListener('click', () => { endEdit(); clearForm(); say(''); });
 
@@ -430,6 +446,7 @@ function wireForm($) {
     $('editing').hidden = false;
     $('editing').textContent = `${g.status === 'scheduled' ? 'Entering the score for' : 'Editing'}: ${g.home} vs ${g.away}, ${fmtDate(g.date)}. Save, or cancel.`;
     $('cancel-edit').hidden = false; $('save').textContent = g.status === 'scheduled' ? 'Save score' : 'Save changes';
+    $('reset-game').hidden = g.status === 'scheduled'; resetArm(false);
     say(''); drawRecent(false);
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
     (g.status === 'scheduled' || g.status === 'final' ? $('hs') : $('home')).focus();

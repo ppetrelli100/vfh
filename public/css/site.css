@@ -343,3 +343,6 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .chip:hover { border-color: #9aa5b4; }
 .chip.on { border: 2px solid var(--accent); padding: 8px 15px; font-weight: 700; color: var(--accent); background: #fff; }
 .choice.invalid .chip { border-color: #b42318; }
+
+.btn.reset { margin-left: auto; background: #fff7e6; color: #8a4b00; border: 1.5px solid #e0a030; }
+.btn.reset:hover, .btn.reset.armed { background: #e0a030; color: #fff; border-color: #c98a1a; }
