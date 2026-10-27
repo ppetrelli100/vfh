@@ -61,7 +61,7 @@ export function playoffLabel(season) {
 function renderChrome(active, data, me) {
   const items = [['playoffs', 'Playoffs', '/'], ['rankings', 'Rankings', '/rankings.html'], ['games', 'Games', '/games.html']];
   const signedIn = !!me.admin;
-  if (signedIn || active === 'admin') items.push(['admin', 'Enter scores', '/admin.html']);
+  if (signedIn || active === 'admin') items.push(['admin', '<span class="full">Enter scores</span><span class="abbr">Scores</span>', '/admin.html']);
   const seasons = data.seasons || [];
   document.getElementById('chrome').innerHTML = `
     <div class="nav">
@@ -69,12 +69,20 @@ function renderChrome(active, data, me) {
       <span class="nav-sep">|</span>
       <nav class="nav-links" aria-label="Main">${items.map(([k, label, href]) =>
         `<a href="${href}"${k === active ? ' class="here" aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
-      <a class="admin-link" href="${signedIn ? '/cdn-cgi/access/logout' : '/admin.html'}">${signedIn ? 'Sign out' : 'Log in'}</a>
+      <a class="admin-link" href="${signedIn ? '/cdn-cgi/access/logout' : '/admin.html'}">${signedIn ? 'Log out' : 'Log in'}</a>
       ${seasons.length ? `<label class="season"><span class="sr">Season</span>
         <select id="season-pick">${seasons.map((s) =>
           `<option value="${esc(s.id)}"${data.season && s.id === data.season.id ? ' selected' : ''}>${esc(s.label)}</option>`).join('')}</select></label>` : ''}
     </div>`;
   const pick = document.getElementById('season-pick');
+  if (pick) {   // on phones the season shows as just its year or short name ("Fall 2026" -> "2026")
+    const mq = window.matchMedia('(max-width: 700px)');
+    const fit = () => [...pick.options].forEach((o) => {
+      const full = seasons.find((x) => x.id === o.value)?.label || o.textContent;
+      o.textContent = mq.matches ? (full.replace(/^(fall|spring|winter)\s+/i, '') || full) : full;
+    });
+    fit(); (mq.addEventListener ? mq.addEventListener('change', fit) : mq.addListener(fit));
+  }
   if (pick) pick.addEventListener('change', () => {
     pickedSeason.set(pick.value);
     const u = new URL(location.href);

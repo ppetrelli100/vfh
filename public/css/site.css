@@ -249,7 +249,7 @@ details.how p, details.how li { color: var(--data); }
 .foot { margin: 44px auto 36px; color: var(--muted); font-size: 12px; }
 
 /* short school names are for phones only */
-.nm .abbr { display: none; }
+.nm .abbr, .nav-links .abbr { display: none; }
 
 @media (max-width: 700px) {
   .wrap { padding: 0 12px; }
@@ -259,7 +259,13 @@ details.how p, details.how li { color: var(--data); }
   .nav-links::-webkit-scrollbar { display: none; }
   .season { margin-left: 0; flex: none; }
   .nav-links { flex: 1; }
-  .admin-link { margin-left: 0; padding: 6px 6px; flex: none; }
+  .admin-link { margin-left: 0; padding: 6px 4px; flex: none; font-size: 12px; }
+  .nav { gap: 2px; padding: 6px 8px; }
+  .nav-links { gap: 0; }
+  .nav-links a { padding: 5px 5px; font-size: 12.5px; }
+  .nav-links .full { display: none; }
+  .nav-links .abbr { display: inline; }
+  .season select { padding: 5px 6px; }
   .season select { max-width: 110px; }
   h1 { font-size: 22px; padding-top: 18px; }
   .hide-sm { display: none; }
