@@ -59,7 +59,7 @@ if (S) {
         <thead><tr><th>Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
         <tbody>${res.table.map((t) => `<tr${t.pos === 8 ? ' class="cut"' : ''}${t.pos > 8 ? ' style="opacity:.72"' : ''}>
           <td class="pos">${t.pos}</td>
-          <td class="name" style="white-space:nowrap"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? ' <span class="tag" title="Level with another team on pairings won and points per game">tie</span>' : ''}</td>
+          <td class="name"><div style="display:flex;align-items:center;gap:2px"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? '<span class="tag tie" title="Level with another team on pairings won and points per game">tie</span>' : ''}</div></td>
           <td class="key">${t.total}<span class="rk">of ${res.top12.length - 1}</span></td>
           <td>${fmtInt(t.spPerGame)}</td>
           <td class="hide-sm">${t.spRank}</td></tr>`).join('')}</tbody>

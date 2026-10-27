@@ -314,3 +314,4 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 /* Rankings: the rank column is plain, narrow, and sits close to the school name */
 .tbl .rnk, .tbl.c .rnk { font-weight: 400; width: 40px; text-align: center; padding-right: 0; color: var(--ink); }
 .tbl .rnk + .name, .tbl.c .rnk + .name { padding-left: 8px; }
+.tag.tie { background: #fde8e8; color: #b42318; }
