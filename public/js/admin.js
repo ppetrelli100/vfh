@@ -1,4 +1,4 @@
-import { boot, api, esc, fmtDate, schoolOptions, store } from './common.js';
+import { boot, api, esc, fmtDate, schoolOptions, store, logo } from './common.js';
 
 const S = await boot('admin', { allowEmpty: true });
 const app = document.getElementById('app');
@@ -22,6 +22,7 @@ function main() {
       <span class="muted">Signed in as ${esc(S.me.email)}.</span></p>
     ${hasSeason ? `
     <form id="form" class="panel form-grid" novalidate>
+      <div id="mu" class="mu" hidden></div>
       <div id="editing" class="editing" hidden></div>
       <div class="teams">
         <div class="field"><label for="date">Game date</label><input type="date" id="date" required><div class="err" id="err-date"></div></div>
@@ -62,8 +63,9 @@ function main() {
       </div>
     </form>
 
-    <h2>Recent games</h2>
-    <div class="scroll"><table class="tbl" id="recent"></table></div>` : ''}
+    <h2>Games</h2>
+    <p class="hint" style="margin:0 0 8px">Pick a game to enter or change its score. The list opens at today's games; scroll up for earlier ones and down for later ones.</p>
+    <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
     ${hasSeason ? `<details class="tools" id="sc-wrap">
       <summary>Schools and classes</summary>
@@ -310,6 +312,9 @@ function wireForm($) {
     $('winner-wrap').hidden = st !== 'forfeit';
     $('w-home').textContent = byId[v.homeId] ? byId[v.homeId].name : 'Home team';
     $('w-away').textContent = byId[v.awayId] ? byId[v.awayId].name : 'Away team';
+    const hT = byId[v.homeId], aT = byId[v.awayId];
+    $('mu').hidden = !hT && !aT;
+    $('mu').innerHTML = `<span class="mt home">${hT ? `${esc(hT.name)}${logo(hT.name, 40)}` : '<span class="muted">Home team</span>'}</span><span class="vs">vs</span><span class="mt away">${aT ? `${logo(aT.name, 40)}${esc(aT.name)}` : '<span class="muted">Away team</span>'}</span>`;
     [...$('away').options].forEach((o) => { o.disabled = !!o.value && o.value === $('home').value; });
     [...$('home').options].forEach((o) => { o.disabled = !!o.value && o.value === $('away').value; });
   }
@@ -336,7 +341,7 @@ function wireForm($) {
   }
 
   function endEdit() {
-    editingId = null; $('editing').hidden = true; $('cancel-edit').hidden = true; $('save').textContent = 'Save game';
+    editingId = null; setTimeout(() => drawRecent(false), 0); $('editing').hidden = true; $('cancel-edit').hidden = true; $('save').textContent = 'Save game';
   }
 
   function standing(name) {
@@ -348,7 +353,7 @@ function wireForm($) {
     const data = await api(`/api/data?season=${encodeURIComponent(S.season.id)}`);
     S.games = data.games; S.schools = data.schools;
     S.ranked = FHEngine.rank(S.schools, S.games);
-    drawRecent();
+    drawRecent(false);
   }
 
   async function save(force) {
@@ -403,7 +408,7 @@ function wireForm($) {
     if (!g) return;
     editingId = id; clearForm();
     $('date').value = g.date; $('home').value = String(g.homeId); $('away').value = String(g.awayId);
-    $('status').value = g.status === 'scheduled' ? 'cancelled' : g.status;
+    $('status').value = g.status === 'scheduled' ? 'final' : g.status;
     $('hs').value = g.homeScore ?? ''; $('as').value = g.awayScore ?? '';
     $('ot').checked = !!g.overtime; $('gtype').value = g.gameType || 'regular'; $('note').value = g.note || '';
     if (g.status === 'forfeit') {
@@ -412,31 +417,46 @@ function wireForm($) {
     }
     syncLayout();
     $('editing').hidden = false;
-    $('editing').textContent = `Editing: ${g.home} vs ${g.away}, ${fmtDate(g.date)}. Save changes or cancel.`;
-    $('cancel-edit').hidden = false; $('save').textContent = 'Save changes';
-    say('');
+    $('editing').textContent = `${g.status === 'scheduled' ? 'Entering the score for' : 'Editing'}: ${g.home} vs ${g.away}, ${fmtDate(g.date)}. Save, or cancel.`;
+    $('cancel-edit').hidden = false; $('save').textContent = g.status === 'scheduled' ? 'Save score' : 'Save changes';
+    say(''); drawRecent(false);
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    $('home').focus();
+    (g.status === 'scheduled' || g.status === 'final' ? $('hs') : $('home')).focus();
   }
 
-  function drawRecent() {
-    const list = S.games.slice().sort((a, b) => String(b.updatedAt).localeCompare(String(a.updatedAt)) || b.id - a.id).slice(0, 12);
+  // Every game in date order, opened at today's games (or the most recent day with games).
+  function drawRecent(focus = true) {
+    const box = $('glist');
+    const keep = box.scrollTop;
+    const list = S.games.slice().sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id - b.id);
+    const today = localToday();
+    const past = list.filter((g) => g.date <= today);
+    const focusDate = past.length ? past[past.length - 1].date : (list[0] || {}).date;
+    const state = (g) => g.status === 'cancelled' ? '<span class="tag off">Cancelled</span>'
+      : g.status === 'scheduled' ? (g.date <= today ? '<span class="tag need">Needs score</span>' : '<span class="tag">Scheduled</span>')
+      : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.overtime ? '<span class="tag">OT</span>' : ''}`;
+    let marked = false;
     $('recent').innerHTML = `
       <thead><tr><th class="l">Date</th><th class="l">Home</th><th>Score</th><th class="l">Away</th><th></th></tr></thead>
-      <tbody>${list.map((g) => `<tr>
-        <td class="l">${esc(fmtDate(g.date))}</td>
-        <td class="name">${esc(g.home)}</td>
-        <td>${g.status === 'cancelled' ? '<span class="tag off">Cancelled</span>' : g.homeScore === null ? '' : `${g.homeScore}–${g.awayScore}`}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.overtime ? '<span class="tag">OT</span>' : ''}</td>
-        <td class="name">${esc(g.away)}</td>
-        <td><button type="button" class="btn small ghost" data-edit="${g.id}">Edit</button>
-            <button type="button" class="btn small ghost" data-del="${g.id}">Delete</button></td></tr>`).join('')}</tbody>`;
+      <tbody>${list.map((g) => {
+        const first = !marked && g.date === focusDate; if (first) marked = true;
+        return `<tr data-row="${g.id}" class="pick${g.id === editingId ? ' sel' : ''}"${first ? ' id="focus-row"' : ''}>
+        <td class="l">${esc(fmtDate(g.date))}${g.date === today ? ' <span class="tag today">Today</span>' : ''}</td>
+        <td class="name"><span class="tn">${logo(g.home, 18)}${esc(g.home)}</span></td>
+        <td>${state(g)}</td>
+        <td class="name"><span class="tn">${logo(g.away, 18)}${esc(g.away)}</span></td>
+        <td><button type="button" class="btn small ghost" data-del="${g.id}">Delete</button></td></tr>`;
+      }).join('')}</tbody>`;
     if (!list.length) $('recent').innerHTML = '<tbody><tr><td class="empty"><strong>No games yet</strong>Saved games appear here.</td></tr></tbody>';
+    if (focus) {
+      const row = $('focus-row');
+      if (row) box.scrollTop = Math.max(0, row.offsetTop - box.querySelector('thead').offsetHeight - row.offsetHeight * 1.5);
+    } else box.scrollTop = keep;
   }
 
   $('recent').addEventListener('click', async (e) => {
     const b = e.target.closest('button');
-    if (!b) return;
-    if (b.dataset.edit) return startEdit(Number(b.dataset.edit));
+    if (!b) { const tr = e.target.closest('tr[data-row]'); if (tr) startEdit(Number(tr.dataset.row)); return; }
     if (b.dataset.del) {
       if (b.dataset.armed !== '1') {
         b.dataset.armed = '1'; b.textContent = 'Confirm delete'; b.classList.add('danger'); b.classList.remove('ghost');

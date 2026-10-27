@@ -323,3 +323,16 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .tbl td.pos.tie, .tbl td.key.tie, .tbl td.key.tie .rk { color: #b42318; }
 .seedno.tie { background: #fde8e8; color: #b42318; }
 .match .tn.tie { color: #b42318; }
+
+/* Enter scores: matchup card with logos, and the scrollable game list */
+.mu { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 18px; font-weight: 700; padding: 6px 0 2px; flex-wrap: wrap; }
+.mu .mt { display: inline-flex; align-items: center; gap: 10px; }
+.mu .vs { font-size: 12px; font-weight: 600; color: var(--muted); }
+.games-list { max-height: 440px; overflow: auto; }
+.games-list thead th { position: sticky; top: 0; background: #fff; z-index: 1; }
+.games-list tr.pick { cursor: pointer; }
+.games-list tr.sel, .games-list tr.sel:hover { background: var(--accent-soft); }
+.games-list .tn { display: inline-flex; align-items: center; gap: 8px; }
+.tag.need { background: #fff4d6; color: #8a5a00; }
+.tag.today { background: var(--accent-soft); color: var(--accent); margin-left: 4px; }
+#form { scroll-margin-top: 70px; }
