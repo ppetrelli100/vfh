@@ -9,8 +9,6 @@ if (S) {
   // A link such as /rankings.html?class=A&sort=inWinPct opens the table sorted by that measure.
   { const k = getParam('sort'); if (k && k !== 'record') { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; } }
 
-  const played = FHEngine.playedGames(S.games);
-  const lastDate = played.reduce((m, g) => (g.date > m ? g.date : m), '');
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
   const COLS = [
@@ -30,8 +28,7 @@ if (S) {
   const app = document.getElementById('app');
   app.innerHTML = `
     <h1>Rankings</h1>
-    <p class="lede">${esc(S.season.label)}. Teams are ranked within their class by Saylor points per game.
-      ${played.length} games played${lastDate ? `, scores through ${esc(fmtDate(lastDate))}` : ''}.</p>
+    <p class="lede">Current ranking within class by Saylor points per game.</p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
     <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
