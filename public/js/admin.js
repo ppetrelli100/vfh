@@ -112,6 +112,7 @@ function main() {
           </div>
           <div class="checks" style="margin-top:8px">
             <label><select id="ns-copy"><option value="">Start with no schools</option>${S.seasons.map((s) => `<option value="${esc(s.id)}">Copy schools and classes from ${esc(s.label)}</option>`).join('')}</select></label>
+            <label><input type="checkbox" id="ns-games"> Also copy that season's games (for a practice season)</label>
             <label><input type="checkbox" id="ns-current" checked> Make it the current season</label>
           </div>
           <div class="actions" style="margin-top:10px"><button type="button" class="btn ghost" id="ns-go">Create season</button><span class="status" id="ns-msg" role="status"></span></div>
@@ -185,7 +186,7 @@ function wireTools($) {
     const msg = $('ns-msg');
     try {
       const r = await api('/api/seasons', { method: 'POST', body: {
-        id: $('ns-id').value.trim(), label: $('ns-label').value.trim(), copyFrom: $('ns-copy').value || null, isCurrent: $('ns-current').checked } });
+        id: $('ns-id').value.trim(), label: $('ns-label').value.trim(), copyFrom: $('ns-copy').value || null, copyGames: $('ns-games').checked, isCurrent: $('ns-current').checked } });
       msg.className = 'status ok'; msg.textContent = `Created ${r.season.label}.`;
       store.set('vfh.season', r.season.id);
       setTimeout(() => { location.href = `/admin.html?season=${encodeURIComponent(r.season.id)}`; }, 700);
