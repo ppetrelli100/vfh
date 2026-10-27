@@ -17,8 +17,25 @@ if (S) {
       <label id="cls-wrap">Class<select id="cls"><option value="">All classes</option>${classes.map((c) =>
         `<option value="${esc(c)}"${c === cls ? ' selected' : ''}>Class ${esc(c)}</option>`).join('')}</select></label>
     </div>
+    <p class="actions" style="margin:0 0 10px"><button type="button" class="btn ghost" id="export-csv">Download scores as CSV</button>
+      <span class="muted" id="export-note"> All ${S.games.length} games in ${esc(S.season.label)}, in the coach's score sheet columns.</span></p>
     <div id="summary"></div>
     <div class="scroll"><table class="tbl" id="tbl"></table></div>`;
+
+  // CSV in the same columns as the coach's Google Sheet: Date, Team, Score, Team, Score, Notes, Division.
+  document.getElementById('export-csv').addEventListener('click', () => {
+    const q = (v) => { const s = v === null || v === undefined ? '' : String(v); return /[",\n\r]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+    const noteOf = (g) => (g.note && g.note.trim()) || (g.status === 'cancelled' ? 'Cancelled' : g.status === 'forfeit' ? 'FFT' : g.overtime ? 'OT' : '');
+    const scored = (g) => g.status === 'final' || g.status === 'forfeit';
+    const rows = [['Date', 'Team', 'Score', 'Team', 'Score', 'Notes', 'Division']].concat(S.games.map((g) =>
+      [g.date, g.home, scored(g) ? g.homeScore : '', g.away, scored(g) ? g.awayScore : '', noteOf(g), g.division || '']));
+    const blob = new Blob(['\ufeff' + rows.map((r) => r.map(q).join(',')).join('\r\n') + '\r\n'], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `NEPSAC-field-hockey-${S.season.id}-scores.csv`;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
 
   const tags = (g) => {
     const out = [];

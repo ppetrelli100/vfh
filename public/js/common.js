@@ -34,6 +34,12 @@ const store = {
   del(k) { try { localStorage.removeItem(k); } catch (e) { /* storage unavailable */ } },
 };
 export { store };
+// The season a person picks is remembered for this tab only, so a fresh visit opens the current season.
+const pickedSeason = {
+  get() { try { return sessionStorage.getItem('vfh.season'); } catch (e) { return null; } },
+  set(v) { try { sessionStorage.setItem('vfh.season', v); } catch (e) { /* storage unavailable */ } },
+  del() { try { sessionStorage.removeItem('vfh.season'); } catch (e) { /* storage unavailable */ } },
+};
 
 /** Update one query-string value without reloading. */
 export function setParam(key, value) {
@@ -62,7 +68,7 @@ function renderChrome(active, data, me) {
     </div>`;
   const pick = document.getElementById('season-pick');
   if (pick) pick.addEventListener('change', () => {
-    store.set('vfh.season', pick.value);
+    pickedSeason.set(pick.value);
     const u = new URL(location.href);
     u.searchParams.set('season', pick.value);
     location.href = u;
@@ -111,12 +117,12 @@ export const emptySeason = () => problem('No season has been set up yet', 'An ad
  */
 export async function boot(active, { allowEmpty = false } = {}) {
   const app = document.getElementById('app');
-  const want = getParam('season') || store.get('vfh.season') || '';
+  const want = getParam('season') || pickedSeason.get() || '';
   let data;
   try {
     data = await api(`/api/data${want ? `?season=${encodeURIComponent(want)}` : ''}`);
   } catch (e) {
-    if (e.status === 404 && want) { store.del('vfh.season'); data = await api('/api/data'); }
+    if (e.status === 404 && want) { pickedSeason.del(); data = await api('/api/data'); }
     else {
       renderChrome(active, { seasons: [] }, { admin: false });
       app.innerHTML = problem('The page could not load its data', esc(e.message));
@@ -125,7 +131,7 @@ export async function boot(active, { allowEmpty = false } = {}) {
   }
   let me = { admin: false };
   try { me = await api('/api/me'); } catch (e) { /* signed out */ }
-  if (data.season) store.set('vfh.season', data.season.id);
+  if (data.season) pickedSeason.set(data.season.id);
   await loadLogos();
   renderChrome(active, data, me);
   if (!data.season) {
