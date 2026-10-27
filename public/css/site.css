@@ -50,7 +50,6 @@ a:hover { color: var(--accent-deep); }
 .admin-link { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--muted); padding: 6px 10px; border-radius: 8px; text-decoration: none; white-space: nowrap; }
 .admin-link:hover { background: #f9fafb; color: var(--ink); }
 .admin-link.here { color: var(--accent); background: var(--accent-soft); }
-.admin-link .abbr { display: none; }
 .season { margin-left: 0; }
 .season select { min-height: 0; font-size: 12px; font-weight: 600; padding: 5px 9px; }
 
@@ -261,8 +260,6 @@ details.how p, details.how li { color: var(--data); }
   .season { margin-left: 0; flex: none; }
   .nav-links { flex: 1; }
   .admin-link { margin-left: 0; padding: 6px 6px; flex: none; }
-  .admin-link .full { display: none; }
-  .admin-link .abbr { display: inline; }
   .season select { max-width: 110px; }
   h1 { font-size: 22px; padding-top: 18px; }
   .hide-sm { display: none; }
