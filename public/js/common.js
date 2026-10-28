@@ -89,12 +89,6 @@ function renderChrome(active, data, me) {
     u.searchParams.set('season', pick.value);
     location.href = u;
   });
-  if (!document.querySelector('.foot')) {
-    const f = document.createElement('footer');
-    f.className = 'wrap foot';
-    f.innerHTML = 'Rankings and playoff seeds are worked out from the saved scores each time a page loads. <a href="/admin.html">Administrator sign-in</a>';
-    document.body.appendChild(f);
-  }
 }
 
 // Shorter spellings for long school names, shown on phones only (the full name is used everywhere else).
