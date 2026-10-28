@@ -140,7 +140,7 @@ function main() {
 function wireLog($) {
   const wrap = $('log-wrap'), tbl = $('log-tbl');
   const fmtAt = (at) => { const d = new Date(String(at).replace(' ', 'T') + 'Z'); return isNaN(d) ? at : d.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
-  const score = (g) => g.status === 'scheduled' ? 'no score' : g.status === 'cancelled' ? 'cancelled' : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? ' forfeit' : ''}${g.overtime ? ' OT' : ''}`;
+  const score = (g) => g.status === 'scheduled' ? 'needs score' : g.status === 'cancelled' ? 'cancelled' : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? ' forfeit' : ''}${g.overtime ? ' OT' : ''}`;
   const label = (g) => `${g.home} vs ${g.away}, ${fmtDate(g.date)}`;
   const what = (e) => {
     const b = e.before, a = e.after;
@@ -148,7 +148,11 @@ function wireLog($) {
     if (e.gameId && e.action === 'delete' && b) return `Deleted ${label(b)} (was ${score(b)})`;
     if (e.gameId && e.action === 'update' && a && b) {
       const ch = [];
-      if (score(a) !== score(b)) ch.push(`score ${score(b)} → ${score(a)}`);
+      if (score(a) !== score(b)) {
+        if (b.status === 'scheduled') ch.push(a.status === 'cancelled' ? 'marked cancelled' : `score entered: ${score(a)}`);
+        else if (a.status === 'scheduled') ch.push(`reset to needs score (was ${score(b)})`);
+        else ch.push(`score ${score(b)} → ${score(a)}`);
+      }
       if (a.date !== b.date) ch.push(`date ${fmtDate(b.date)} → ${fmtDate(a.date)}`);
       if (a.home !== b.home || a.away !== b.away) ch.push(`teams ${b.home} vs ${b.away} → ${a.home} vs ${a.away}`);
       if ((a.division || '') !== (b.division || '')) ch.push(`division ${b.division || 'none'} → ${a.division || 'none'}`);
