@@ -71,12 +71,6 @@ function main() {
     <p class="hint" style="margin:0 0 8px">Tap a game to enter or change its score. Opens at today's games; scroll for earlier or later ones.</p>
     <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
-    <details class="tools" id="log-wrap">
-      <summary>Change log</summary>
-      <p class="hint" style="margin:0 0 8px">Every score added, changed or deleted, newest first, with who did it.</p>
-      <div class="scroll games-list" id="log-box"><table class="tbl" id="log-tbl"><tbody><tr><td class="empty">Open to load.</td></tr></tbody></table></div>
-    </details>
-
     ${hasSeason ? `<details class="tools" id="sc-wrap">
       <summary>Schools and classes</summary>
       <div class="panel">
@@ -130,6 +124,12 @@ function main() {
           <div class="actions" style="margin-top:10px"><button type="button" class="btn ghost" id="rm-go">Remove season</button><span class="status" id="rm-msg" role="status"></span></div>
         </div>
       </div>
+    </details>
+
+    <details class="tools" id="log-wrap">
+      <summary>Change log</summary>
+      <p class="hint" style="margin:0 0 8px">Every score added, changed or deleted, newest first, with who entered it.</p>
+      <div class="scroll games-list" id="log-box"><table class="tbl" id="log-tbl"><tbody><tr><td class="empty">Open to load.</td></tr></tbody></table></div>
     </details>`;
 
   wireTools($);
@@ -161,7 +161,7 @@ function wireLog($) {
   async function load() {
     try {
       const r = await api('/api/audit?limit=300');
-      tbl.innerHTML = `<thead><tr><th class="l">When</th><th class="l">Who</th><th class="l">What</th></tr></thead><tbody>${
+      tbl.innerHTML = `<thead><tr><th class="l">When</th><th class="l">Who entered</th><th class="l">What</th></tr></thead><tbody>${
         r.entries.map((e) => `<tr><td class="l" style="white-space:nowrap">${esc(fmtAt(e.at))}</td><td class="l">${esc((e.actor || '').split('@')[0])}</td><td class="l" style="white-space:normal">${esc(what(e))}</td></tr>`).join('')
         || '<tr><td class="empty">Nothing logged yet.</td></tr>'}</tbody>`;
       loaded = true;
