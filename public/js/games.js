@@ -91,7 +91,7 @@ if (S) {
       <div class="stats">
         <div class="stat"><b>${record(R)}</b><span>Record</span></div>
         <div class="stat"><b>${fmtPct(R.winPct)}</b><span>Win %</span></div>
-        <div class="stat"><b>${fmtInt(R.spPerGame)}</b><span>Saylor points per game${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)} in Class ${esc(R.cls)}` : ''}</span></div>
+        <div class="stat"><b>${fmtInt(R.spPerGame)}</b><span class="nm"><span class="full">Saylor points per game${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)} in Class ${esc(R.cls)}` : ''}</span><span class="abbr">SP/gm${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)}` : ''}</span></span></div>
         <div class="stat"><b>${R.inW}-${R.inL}-${R.inT}</b><span>In class</span></div>
       </div>`;
     document.getElementById('tbl').innerHTML = `
@@ -105,7 +105,7 @@ if (S) {
         <td class="hide-sm">${esc(x.oppClass || '')}</td>
         <td class="hide-sm">${fmtPct(x.oppWinPct)}</td>
         <td>${x.saylor === null ? '' : fmtInt(x.saylor)}</td></tr>`).join('')}
-      ${log.length ? `<tr><td class="l key" colspan="4">Total, ${R.gp} games</td><td class="hide-sm"></td><td class="hide-sm"></td><td class="key">${fmtInt(pts)}</td></tr>` : ''}</tbody>`;
+      ${log.length ? `<tr><td class="l key" colspan="4">Total (${R.gp} games)</td><td class="hide-sm"></td><td class="hide-sm"></td><td class="key">${fmtInt(pts)}</td></tr>` : ''}</tbody>`;
     if (!log.length) document.getElementById('tbl').innerHTML = '<tbody><tr><td class="empty">No games for this team yet.</td></tr></tbody>';
   }
 
