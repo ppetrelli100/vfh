@@ -141,7 +141,7 @@ function wireLog($) {
   const wrap = $('log-wrap'), tbl = $('log-tbl');
   const fmtAt = (at) => { const d = new Date(String(at).replace(' ', 'T') + 'Z'); return isNaN(d) ? at : d.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
   const score = (g) => g.status === 'scheduled' ? 'needs score' : g.status === 'cancelled' ? 'cancelled' : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? ' forfeit' : ''}${g.overtime ? ' OT' : ''}`;
-  const label = (g) => `${g.home} vs ${g.away}, ${fmtDate(g.date)}`;
+  const label = (g) => `${fmtDate(g.date)}, ${g.home} vs ${g.away}`;
   const what = (e) => {
     const b = e.before, a = e.after;
     if (e.gameId && e.action === 'create' && a) return `Added ${label(a)}: ${score(a)}`;
