@@ -155,7 +155,13 @@ function wireLog($) {
       if ((a.note || '') !== (b.note || '')) ch.push('note changed');
       return `${label(a)}: ${ch.join('; ') || 'saved with no changes'}`;
     }
-    return e.action.replace(/_/g, ' ');
+    const x = a || b || {};
+    const sname = (id) => { const f = S.seasons.find((q) => q.id === id); return `'${f ? f.label : id}'`; };
+    if (e.action === 'import') return `Imported season ${sname(x.season)} from spreadsheet: ${x.games} games, ${x.schools} schools${x.replace ? ' (replaced the existing games)' : ''}`;
+    if (e.action === 'season-delete') return `Deleted season '${x.label || x.id}' (${x.games} games)`;
+    if (e.action === 'season') return `Created season '${x.label || x.id}'${x.copyFrom ? `, copied schools${x.copyGames ? ' and games' : ''} from ${sname(x.copyFrom)}` : ''}`;
+    if (e.action === 'classes') return `Changed school classes in ${sname(x.season)}${Array.isArray(x.changes) ? `: ${x.changes.length} change${x.changes.length === 1 ? '' : 's'}` : ''}`;
+    return e.action.replace(/[_-]/g, ' ');
   };
   let loaded = false;
   async function load() {
