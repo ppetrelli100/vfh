@@ -405,15 +405,17 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
   .stat .sub { font-size: 11px; white-space: nowrap; }
 }
 
-/* Rankings on phones: Rank and School stay put; the other columns slide sideways */
+/* Rankings on phones: Rank and School stay put; the extra columns slide sideways */
 @media (max-width: 700px) {
-  .tbl.c { width: max-content; min-width: 100%; }
-  .tbl.c .hide-sm { display: table-cell; }
-  .tbl.c th, .tbl.c td { white-space: nowrap; }
-  .tbl.c th:nth-child(n+3) { white-space: normal; min-width: 60px; max-width: 72px; vertical-align: bottom; line-height: 1.2; }
-  .tbl.c th:nth-child(1), .tbl.c td:nth-child(1) { position: sticky; left: 0; z-index: 2; width: 40px; min-width: 40px; max-width: 40px; background: #fff; padding-left: 8px; padding-right: 2px; text-align: center; }
-  .tbl.c th:nth-child(2), .tbl.c td:nth-child(2) { position: sticky; left: 40px; z-index: 2; background: #fff; box-shadow: 1px 0 0 var(--line, #e5e7eb); }
-  .tbl.c thead th:nth-child(1), .tbl.c thead th:nth-child(2) { background: #fbfbfc; z-index: 3; }
-  .tbl.c td.key { }
+  #tbl.c { width: max-content; min-width: 100%; }
+  #tbl.c .hide-sm { display: table-cell; }
+  #tbl.c th, #tbl.c td { white-space: nowrap; padding-left: 3px; padding-right: 3px; }
+  #tbl.c th:nth-child(n+3) { white-space: normal; min-width: 0; max-width: 64px; vertical-align: bottom; line-height: 1.2; }
+  #tbl.c th:nth-child(5) { max-width: 74px; }
+  #tbl.c th:nth-child(n+6) { min-width: 62px; }
+  #tbl.c th:nth-child(1), #tbl.c td:nth-child(1) { position: sticky; left: 0; z-index: 2; width: 28px; min-width: 28px; max-width: 28px; background: #fff; padding-left: 4px; padding-right: 2px; text-align: center; }
+  #tbl.c th:nth-child(2), #tbl.c td:nth-child(2) { position: sticky; left: 28px; z-index: 2; background: #fff; box-shadow: 1px 0 0 var(--line, #e5e7eb); padding-left: 4px; }
+  #tbl.c thead th:nth-child(1), #tbl.c thead th:nth-child(2) { background: #fbfbfc; z-index: 3; }
+  #tbl.c thead th:nth-child(1) { font-size: 9px; letter-spacing: 0; }
+  #tbl.c .tn { gap: 5px; }
 }
-@media (max-width: 700px) { .tbl.c thead th:nth-child(1) { font-size: 9px; letter-spacing: 0; padding-left: 4px; padding-right: 2px; } }
