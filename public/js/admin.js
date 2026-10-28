@@ -71,6 +71,12 @@ function main() {
     <p class="hint" style="margin:0 0 8px">Tap a game to enter or change its score. Opens at today's games; scroll for earlier or later ones.</p>
     <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
+    <details class="tools" id="log-wrap">
+      <summary>Change log</summary>
+      <p class="hint" style="margin:0 0 8px">Every score added, changed or deleted, newest first, with who did it.</p>
+      <div class="scroll games-list" id="log-box"><table class="tbl" id="log-tbl"><tbody><tr><td class="empty">Open to load.</td></tr></tbody></table></div>
+    </details>
+
     ${hasSeason ? `<details class="tools" id="sc-wrap">
       <summary>Schools and classes</summary>
       <div class="panel">
@@ -127,7 +133,41 @@ function main() {
     </details>`;
 
   wireTools($);
+  wireLog($);
   if (hasSeason) { wireForm($); wireClasses($); }
+}
+
+function wireLog($) {
+  const wrap = $('log-wrap'), tbl = $('log-tbl');
+  const fmtAt = (at) => { const d = new Date(String(at).replace(' ', 'T') + 'Z'); return isNaN(d) ? at : d.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
+  const score = (g) => g.status === 'scheduled' ? 'no score' : g.status === 'cancelled' ? 'cancelled' : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? ' forfeit' : ''}${g.overtime ? ' OT' : ''}`;
+  const label = (g) => `${g.home} vs ${g.away}, ${fmtDate(g.date)}`;
+  const what = (e) => {
+    const b = e.before, a = e.after;
+    if (e.gameId && e.action === 'create' && a) return `Added ${label(a)}: ${score(a)}`;
+    if (e.gameId && e.action === 'delete' && b) return `Deleted ${label(b)} (was ${score(b)})`;
+    if (e.gameId && e.action === 'update' && a && b) {
+      const ch = [];
+      if (score(a) !== score(b)) ch.push(`score ${score(b)} → ${score(a)}`);
+      if (a.date !== b.date) ch.push(`date ${fmtDate(b.date)} → ${fmtDate(a.date)}`);
+      if (a.home !== b.home || a.away !== b.away) ch.push(`teams ${b.home} vs ${b.away} → ${a.home} vs ${a.away}`);
+      if ((a.division || '') !== (b.division || '')) ch.push(`division ${b.division || 'none'} → ${a.division || 'none'}`);
+      if ((a.note || '') !== (b.note || '')) ch.push('note changed');
+      return `${label(a)}: ${ch.join('; ') || 'saved with no changes'}`;
+    }
+    return e.action.replace(/_/g, ' ');
+  };
+  let loaded = false;
+  async function load() {
+    try {
+      const r = await api('/api/audit?limit=300');
+      tbl.innerHTML = `<thead><tr><th class="l">When</th><th class="l">Who</th><th class="l">What</th></tr></thead><tbody>${
+        r.entries.map((e) => `<tr><td class="l" style="white-space:nowrap">${esc(fmtAt(e.at))}</td><td class="l">${esc((e.actor || '').split('@')[0])}</td><td class="l" style="white-space:normal">${esc(what(e))}</td></tr>`).join('')
+        || '<tr><td class="empty">Nothing logged yet.</td></tr>'}</tbody>`;
+      loaded = true;
+    } catch (err) { tbl.innerHTML = `<tbody><tr><td class="empty">Could not load the change log: ${esc(err.message || err)}</td></tr></tbody>`; }
+  }
+  wrap.addEventListener('toggle', () => { if (wrap.open) load(); });
 }
 
 function wireTools($) {
