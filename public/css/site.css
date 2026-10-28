@@ -419,3 +419,7 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
   #tbl.c thead th:nth-child(1) { font-size: 9px; letter-spacing: 0; }
   #tbl.c .tn { gap: 5px; }
 }
+@media (max-width: 700px) {
+  #tbl.c th:nth-child(2), #tbl.c td:nth-child(2) { padding-right: 8px; }
+  #tbl.c th:nth-child(3), #tbl.c td:nth-child(3) { padding-right: 8px; }
+}
