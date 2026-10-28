@@ -90,9 +90,9 @@ if (S) {
     document.getElementById('summary').innerHTML = `
       <div class="stats">
         <div class="stat"><b>${record(R)}</b><span>Record</span></div>
-        <div class="stat"><b>${fmtPct(R.winPct)}</b><span>Win %</span></div>
-        <div class="stat"><b>${fmtInt(R.spPerGame)}</b><span class="nm"><span class="full">Saylor points per game${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)} in Class ${esc(R.cls)}` : ''}</span><span class="abbr">SP/gm${R.gp ? `, ${R.rank_spPerGame}${ord(R.rank_spPerGame)}` : ''}</span></span></div>
         <div class="stat"><b>${R.inW}-${R.inL}-${R.inT}</b><span>In class</span></div>
+        <div class="stat"><b>${fmtPct(R.winPct)}</b><span>Win %</span></div>
+        <div class="stat"><b>${fmtInt(R.spPerGame)}</b><span class="nm"><span class="full">Saylor points per game</span><span class="abbr">SP/game</span></span>${R.gp ? `<span class="sub">${R.rank_spPerGame}${ord(R.rank_spPerGame)} in Class ${esc(R.cls)}</span>` : ''}</div>
       </div>`;
     document.getElementById('tbl').innerHTML = `
       <thead><tr><th class="l">Date</th><th class="l">Site</th><th class="l">Opponent</th><th>Result</th>
