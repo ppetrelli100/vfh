@@ -528,7 +528,7 @@ function wireForm($) {
     const past = list.filter((g) => g.date <= today);
     const focusDate = past.length ? past[past.length - 1].date : (list[0] || {}).date;
     const state = (g) => g.status === 'cancelled' ? '<span class="tag off">Cancelled</span>'
-      : g.status === 'scheduled' ? (g.date <= today ? '<span class="tag need">Needs score</span>' : `<span class="tag sched">Scheduled</span> <button type="button" class="btn small ghost" data-edit="${g.id}">Edit</button>`)
+      : g.status === 'scheduled' ? (g.date <= today ? '<span class="tag need">Needs score</span>' : '<span class="tag sched">Scheduled</span>')
       : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.overtime ? '<span class="tag">OT</span>' : ''}`;
     let marked = false;
     $('recent').innerHTML = `
@@ -542,7 +542,7 @@ function wireForm($) {
         <td class="name mg"><span class="tn">${logo(g.home, 16)}${esc(g.home)}</span><span class="tn">${logo(g.away, 16)}${esc(g.away)}</span></td>
         <td class="sc">${state(g)}</td>
         <td class="name dk"><span class="tn">${logo(g.away, 18)}${esc(g.away)}</span></td>
-        <td class="acts"><button type="button" class="btn small ghost del" data-del="${g.id}" aria-label="Delete game"><span class="dk">Delete</span><span class="mg">✕</span></button></td></tr>`;
+        <td class="acts">${future ? `<button type="button" class="btn small ghost" data-edit="${g.id}">Edit</button> ` : ''}<button type="button" class="btn small ghost del" data-del="${g.id}" aria-label="Delete game"><span class="dk">Delete</span><span class="mg">✕</span></button></td></tr>`;
       }).join('')}</tbody>`;
     if (!list.length) $('recent').innerHTML = filtered
       ? '<tbody><tr><td class="empty"><strong>No games match</strong>Change or reset the filters.</td></tr></tbody>'
