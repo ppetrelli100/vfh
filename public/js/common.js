@@ -153,9 +153,10 @@ export async function boot(active, { allowEmpty = false } = {}) {
 }
 
 /** Segmented class picker. onPick(cls) is called on change. */
-export function classPicker(el, classes, counts, current, onPick) {
+export function classPicker(el, classes, counts, current, onPick, { all = false } = {}) {
   el.innerHTML = classes.map((c) =>
-    `<button type="button" data-c="${esc(c)}" aria-pressed="${c === current}">Class ${esc(c)}<span class="n">${counts[c] || 0}</span></button>`).join('');
+    `<button type="button" data-c="${esc(c)}" aria-pressed="${c === current}">Class ${esc(c)}<span class="n">${counts[c] || 0}</span></button>`).join('')
+    + (all ? `<button type="button" data-c="all" aria-pressed="${current === 'all'}">All<span class="n">${classes.reduce((n, c) => n + (counts[c] || 0), 0)}</span></button>` : '');
   el.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
     el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     onPick(b.dataset.c);

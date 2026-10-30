@@ -4,16 +4,21 @@ const S = await boot('rankings');
 if (S) {
   const classes = classesOf(S.schools);
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
-  let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
+  let cls = classes.includes(getParam('class')) || getParam('class') === 'all' ? getParam('class') : classes[0];
   let sortKey = 'spPerGame', sortDir = 'desc';
   // A link such as /rankings.html?class=A&sort=inWinPct opens the table sorted by that measure.
   { const k = getParam('sort'); if (k && k !== 'record') { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; } }
 
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
-  const COLS = [
-    { key: 'rank', label: 'Rank', cls: 'rnk', cell: (r) => (r.gp ? r.rank_spPerGame : '–'), nosort: true },
+  // With every class on one list, Rank is the position by Saylor points per game across all classes.
+  const overall = new Map(S.ranked.rows.filter((r) => r.gp).slice().sort((a, b) => b.spPerGame - a.spPerGame)
+    .map((r, i, arr) => [r.name, i && arr[i - 1].spPerGame === r.spPerGame ? 0 : i + 1]));
+  { let last = 0; for (const [k, v] of overall) { if (v) last = v; else overall.set(k, last); } }
+  const ALL_COLS = [
+    { key: 'rank', label: 'Rank', cls: 'rnk', cell: (r) => (r.gp ? (cls === 'all' ? overall.get(r.name) : r.rank_spPerGame) : '–'), nosort: true },
     { key: 'name', label: 'School', cls: 'name' },
+    { key: 'cls', label: 'Class', cls: '', cell: (r) => r.cls, onlyAll: true },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },
     { key: 'spPerGame', label: 'Saylor points per game', cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
@@ -22,8 +27,6 @@ if (S) {
     { key: 'gt500In', label: 'vs .500+ in class', cls: 'hide-sm', cell: (r) => r.gt500In, rank: 'rank_gt500In' },
     { key: 'gt500Out', label: 'vs .500+ other classes', cls: 'hide-sm', cell: (r) => r.gt500Out, rank: 'rank_gt500Out' },
   ];
-
-  if (!COLS.some((c) => c.key === sortKey && !c.nosort)) { sortKey = 'spPerGame'; sortDir = 'desc'; }
 
   const app = document.getElementById('app');
   app.innerHTML = `
@@ -59,7 +62,9 @@ if (S) {
   };
 
   function draw() {
-    const rows = S.ranked.rows.filter((r) => r.cls === cls).sort(cmp);
+    const rows = S.ranked.rows.filter((r) => cls === 'all' || r.cls === cls).sort(cmp);
+    const COLS = ALL_COLS.filter((c) => !c.onlyAll || cls === 'all');
+    if (!COLS.some((c) => c.key === sortKey && !c.nosort)) { sortKey = 'spPerGame'; sortDir = 'desc'; }
     const head = COLS.map((c, i) => {
       const sorted = c.key === sortKey;
       const sortable = !c.nosort;
@@ -76,13 +81,13 @@ if (S) {
         }).join('')}
       </tr>`).join('')}</tbody>`;
     document.querySelectorAll('#tbl th button').forEach((b) => b.addEventListener('click', () => {
-      const c = COLS[Number(b.dataset.i)];
+      const c = ALL_COLS.filter((q) => !q.onlyAll || cls === 'all')[Number(b.dataset.i)];
       if (c.key === sortKey) sortDir = sortDir === 'desc' ? 'asc' : 'desc';
       else { sortKey = c.key; sortDir = c.key === 'name' || c.rankCol ? 'asc' : 'desc'; }
       draw();
     }));
   }
 
-  classPicker(document.getElementById('classes'), classes, counts, cls, (c) => { cls = c; setParam('class', c); draw(); });
+  classPicker(document.getElementById('classes'), classes, counts, cls, (c) => { cls = c; setParam('class', c); draw(); }, { all: true });
   draw();
 }
