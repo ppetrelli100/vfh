@@ -42,14 +42,14 @@ if (S) {
   app.innerHTML = `
     <h1>Rankings</h1>
     <p class="lede" id="lede">Current ranking within class by Saylor points per game.</p>
-    <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
-    ${divisions.length ? '<div class="toolbar"><div class="seg" id="divs" role="group" aria-label="Division"></div></div>' : ''}
+    <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div>
+      ${divisions.length ? '<div class="seg seg-sm" id="divs" role="group" aria-label="Division"></div>' : ''}</div>
     <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
       <summary>How the points work</summary>
       <p>Every game earns both teams Saylor points. Find your team's class and the result on the left, then the opponent's class and win percentage across the top.</p>
       ${pointsTable()}
-      <p>An opponent's win percentage that falls exactly on a boundary (for example .750) counts in the higher band. Saylor points per game is a team's total divided by its games played, and it sets the order. The small grey number beside a figure is the team's rank in its class for that measure. The two .500+ columns score results against teams with a win percentage above .500: 2 points for a win and 1 for a tie, doubled when a team beats the same opponent twice.</p>
+      <p>An opponent's win percentage that falls exactly on a boundary (for example .750) counts in the higher band. Saylor points per game is a team's total divided by its games played, and it sets the order. The small grey number beside a figure is the team's rank in its class for that measure. The two .500+ columns score results against teams with a win percentage of .500 or higher: 2 points for a win and 1 for a tie, doubled when a team beats the same opponent twice.</p>
     </details>`;
 
   // The Saylor points table, built from the same formula the rankings use (so it cannot drift).

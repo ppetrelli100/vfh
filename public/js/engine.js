@@ -78,7 +78,8 @@
       r.inWinPct = winPct(r.inW, r.inL, r.inT);
     }
 
-    // --- ">.500" records: results against opponents whose overall win % > .500.
+    // --- ".500 and above" records: results against opponents whose overall win % is .500 or higher
+    // (the written NEPSAC selection rules say ".500 and above"; the sheet used strictly above).
     // The sheet scores a pair's wins as 2 pts/win (4 for exactly two wins), 1 pt/tie.
     // Faithful quirk: a pair with 3+ results scores 0 (see opts.fixPairCap).
     const winPts = (n) => (n === 2 ? 4 : n === 1 ? 2 : (opts.fixPairCap ? 2 * n : 0));
@@ -86,7 +87,7 @@
     for (const r of rows) {
       for (const bn in rec[r.name]) {
         const o = R[bn], x = rec[r.name][bn];
-        if (!(o.winPct > 0.5)) continue;
+        if (!(o.winPct >= 0.5)) continue;
         const pts = winPts(x.w) + tiePts(x.t);
         if (o.classNum === r.classNum) r.gt500In += pts; else r.gt500Out += pts;
       }
