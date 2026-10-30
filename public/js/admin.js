@@ -530,7 +530,8 @@ function wireForm($) {
       <thead><tr><th class="l">Date</th><th class="l dk">Home</th><th class="mg l">Game</th><th>Score</th><th class="l dk">Away</th><th></th></tr></thead>
       <tbody>${list.map((g) => {
         const first = !marked && g.date === focusDate; if (first) marked = true;
-        return `<tr data-row="${g.id}" class="pick${g.id === editingId ? ' sel' : ''}"${first ? ' id="focus-row"' : ''}>
+        const future = g.status === 'scheduled' && g.date > today;   // not played yet: no score can be entered
+        return `<tr${future ? '' : ` data-row="${g.id}"`} class="${future ? 'future' : 'pick'}${g.id === editingId ? ' sel' : ''}"${first ? ' id="focus-row"' : ''}>
         <td class="l">${esc(fmtDate(g.date))}${g.date === today ? ' <span class="tag today">Today</span>' : ''}</td>
         <td class="name dk"><span class="tn">${logo(g.home, 18)}${esc(g.home)}</span></td>
         <td class="name mg"><span class="tn">${logo(g.home, 16)}${esc(g.home)}</span><span class="tn">${logo(g.away, 16)}${esc(g.away)}</span></td>
@@ -570,7 +571,7 @@ function wireForm($) {
   $('f-reset').addEventListener('click', () => { $('f-team').value = ''; $('f-date').value = ''; drawRecent(); });
   syncLayout(); drawRecent();
   const want = Number(new URLSearchParams(location.search).get('game'));
-  if (want && S.games.some((g) => g.id === want)) startEdit(want);   // arrived from a game on the Games page
+  if (want && S.games.some((g) => g.id === want && !(g.status === 'scheduled' && g.date > localToday()))) startEdit(want);   // arrived from a game on the Games page
 }
 
 if (S) main();

@@ -426,3 +426,5 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 
 .matchup .go { cursor: pointer; }
 .matchup .score.go, .matchup .vs.go { color: var(--accent); font-weight: 700; text-decoration: underline dotted; text-underline-offset: 3px; }
+.games-list tr.future { cursor: default; }
+.games-list tr.future td:not(:last-child) { color: var(--muted); }
