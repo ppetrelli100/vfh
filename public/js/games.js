@@ -54,6 +54,7 @@ if (S) {
     const n = (g.note || '').trim();
     return n && !['ot', 'cancelled', 'forfeit'].includes(n.toLowerCase()) ? esc(n) : '';
   };
+  const today = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
   const hasScore = (g) => g.homeScore !== null && g.awayScore !== null && g.status !== 'cancelled' && g.status !== 'scheduled';
 
   function drawAll() {
@@ -70,7 +71,7 @@ if (S) {
         const off = g.status === 'cancelled' ? ' struck' : '';
         const hs = hasScore(g) ? g.homeScore : '–', as = hasScore(g) ? g.awayScore : '–';
         // Admins can click the score area of an unplayed game to enter its score.
-        const go = S.me && S.me.admin && g.status === 'scheduled' ? ` go" data-go="${g.id}" title="Enter this score` : '';
+        const go = S.me && S.me.admin && g.status === 'scheduled' && g.date <= today ? ` go" data-go="${g.id}" title="Enter this score` : '';
         return `<tr>
           <td class="l">${esc(fmtDate(g.date))}</td>
           <td class="matchup-cell"><div class="matchup">

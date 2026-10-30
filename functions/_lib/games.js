@@ -60,6 +60,12 @@ export async function validateGame(db, body, { seasonId, selfId = 0 }) {
     else { homeScore = body.winner === 'home' ? 1 : 0; awayScore = body.winner === 'home' ? 0 : 1; }
   }
 
+  // A score can't be entered for a game that hasn't happened yet (judged on New England's calendar).
+  if ((status === 'final' || status === 'forfeit') && validDate(body.date) && !fields.date) {
+    const today = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    if (body.date > today) fields.date = 'This game is in the future. Scores can be entered on or after the game date.';
+  }
+
   if (Object.keys(fields).length) throw new HttpError(422, 'Fix the highlighted fields.', { fields });
 
   if (!body.force) {
