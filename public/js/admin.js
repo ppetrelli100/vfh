@@ -69,6 +69,12 @@ function main() {
 
     <h2>Games</h2>
     <p class="hint" style="margin:0 0 8px">Tap a game to enter or change its score. Opens at today's games; scroll for earlier or later ones.</p>
+    <div class="toolbar gfilter" id="gfilter">
+      <label>Team<select id="f-team">${schoolOptions(S.schools, '', { blank: 'All teams' })}</select></label>
+      <label>Date<input type="date" id="f-date"></label>
+      <button type="button" class="btn ghost" id="f-reset" disabled>Reset filters</button>
+      <span class="hint" id="f-count"></span>
+    </div>
     <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
     ${hasSeason ? `<details class="tools" id="sc-wrap">
@@ -508,7 +514,11 @@ function wireForm($) {
   function drawRecent(focus = true) {
     const box = $('glist');
     const keep = box.scrollTop;
-    const list = S.games.slice().sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id - b.id);
+    const ft = $('f-team').value, fd = $('f-date').value, filtered = !!(ft || fd);
+    const all = S.games.slice().sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id - b.id);
+    const list = all.filter((g) => (!ft || String(g.homeId) === ft || String(g.awayId) === ft) && (!fd || g.date === fd));
+    $('f-reset').disabled = !filtered;
+    $('f-count').textContent = filtered ? `${list.length} of ${all.length} games` : '';
     const today = localToday();
     const past = list.filter((g) => g.date <= today);
     const focusDate = past.length ? past[past.length - 1].date : (list[0] || {}).date;
@@ -528,8 +538,11 @@ function wireForm($) {
         <td class="name dk"><span class="tn">${logo(g.away, 18)}${esc(g.away)}</span></td>
         <td><button type="button" class="btn small ghost del" data-del="${g.id}" aria-label="Delete game"><span class="dk">Delete</span><span class="mg">✕</span></button></td></tr>`;
       }).join('')}</tbody>`;
-    if (!list.length) $('recent').innerHTML = '<tbody><tr><td class="empty"><strong>No games yet</strong>Saved games appear here.</td></tr></tbody>';
-    if (focus) {
+    if (!list.length) $('recent').innerHTML = filtered
+      ? '<tbody><tr><td class="empty"><strong>No games match</strong>Change or reset the filters.</td></tr></tbody>'
+      : '<tbody><tr><td class="empty"><strong>No games yet</strong>Saved games appear here.</td></tr></tbody>';
+    if (focus && filtered) box.scrollTop = 0;
+    else if (focus) {
       const row = $('focus-row');
       if (row) box.scrollTop = Math.max(0, row.offsetTop - box.querySelector('thead').offsetHeight - row.offsetHeight * 1.5);
     } else box.scrollTop = keep;
@@ -552,6 +565,9 @@ function wireForm($) {
     }
   });
 
+  $('f-team').addEventListener('change', () => drawRecent());
+  $('f-date').addEventListener('input', () => drawRecent());
+  $('f-reset').addEventListener('click', () => { $('f-team').value = ''; $('f-date').value = ''; drawRecent(); });
   syncLayout(); drawRecent();
   const want = Number(new URLSearchParams(location.search).get('game'));
   if (want && S.games.some((g) => g.id === want)) startEdit(want);   // arrived from a game on the Games page
