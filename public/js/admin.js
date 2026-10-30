@@ -368,6 +368,9 @@ function wireForm($) {
   const refreshErrors = () => show(validate(read()));
 
   function syncLayout() {
+    const future = !!$('date').value && $('date').value > localToday();   // a game that hasn't happened can't have a score
+    [...$('status').options].forEach((o) => { o.disabled = future && (o.value === 'final' || o.value === 'forfeit'); });
+    if (future && ($('status').value === 'final' || $('status').value === 'forfeit')) $('status').value = 'scheduled';
     const st = $('status').value, v = read();
     $('scores').hidden = st !== 'final';
     $('ot-wrap').hidden = st !== 'final';
@@ -493,7 +496,8 @@ function wireForm($) {
     if (!g) return;
     editingId = id; clearForm();
     $('date').value = g.date; $('home').value = String(g.homeId); $('away').value = String(g.awayId);
-    $('status').value = g.status === 'scheduled' ? 'final' : g.status;
+    const isFuture = g.date > localToday();
+    $('status').value = g.status === 'scheduled' && !isFuture ? 'final' : g.status;
     $('hs').value = g.homeScore ?? ''; $('as').value = g.awayScore ?? '';
     $('ot').checked = !!g.overtime; $('division').value = g.division || ''; $('note').value = g.note || '';
     if (g.status === 'forfeit') {
@@ -502,12 +506,13 @@ function wireForm($) {
     }
     syncLayout();
     $('editing').hidden = false;
-    $('editing').textContent = `${g.status === 'scheduled' ? 'Entering the score' : 'Editing'} · ${fmtDate(g.date)}. Save, or cancel.`;
-    $('cancel-edit').hidden = false; $('save').textContent = g.status === 'scheduled' ? 'Save score' : 'Save changes';
+    const entering = g.status === 'scheduled' && !isFuture;
+    $('editing').textContent = `${entering ? 'Entering the score' : isFuture ? 'Not played yet: change the date or cancel the game' : 'Editing'} · ${fmtDate(g.date)}. Save, or cancel.`;
+    $('cancel-edit').hidden = false; $('save').textContent = entering ? 'Save score' : 'Save changes';
     $('reset-wrap').hidden = !isAdmin || g.status === 'scheduled'; resetArm(false);
     say(''); drawRecent(false);
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    (g.status === 'scheduled' || g.status === 'final' ? $('hs') : $('home')).focus();
+    (entering || g.status === 'final' ? $('hs') : $('home')).focus();
   }
 
   // Every game in date order, opened at today's games (or the most recent day with games).
@@ -523,7 +528,7 @@ function wireForm($) {
     const past = list.filter((g) => g.date <= today);
     const focusDate = past.length ? past[past.length - 1].date : (list[0] || {}).date;
     const state = (g) => g.status === 'cancelled' ? '<span class="tag off">Cancelled</span>'
-      : g.status === 'scheduled' ? (g.date <= today ? '<span class="tag need">Needs score</span>' : '<span class="tag">Scheduled</span>')
+      : g.status === 'scheduled' ? (g.date <= today ? '<span class="tag need">Needs score</span>' : `<span class="tag sched">Scheduled</span> <button type="button" class="btn small ghost" data-edit="${g.id}">Edit</button>`)
       : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.overtime ? '<span class="tag">OT</span>' : ''}`;
     let marked = false;
     $('recent').innerHTML = `
@@ -537,7 +542,7 @@ function wireForm($) {
         <td class="name mg"><span class="tn">${logo(g.home, 16)}${esc(g.home)}</span><span class="tn">${logo(g.away, 16)}${esc(g.away)}</span></td>
         <td class="sc">${state(g)}</td>
         <td class="name dk"><span class="tn">${logo(g.away, 18)}${esc(g.away)}</span></td>
-        <td><button type="button" class="btn small ghost del" data-del="${g.id}" aria-label="Delete game"><span class="dk">Delete</span><span class="mg">✕</span></button></td></tr>`;
+        <td class="acts"><button type="button" class="btn small ghost del" data-del="${g.id}" aria-label="Delete game"><span class="dk">Delete</span><span class="mg">✕</span></button></td></tr>`;
       }).join('')}</tbody>`;
     if (!list.length) $('recent').innerHTML = filtered
       ? '<tbody><tr><td class="empty"><strong>No games match</strong>Change or reset the filters.</td></tr></tbody>'
@@ -551,6 +556,7 @@ function wireForm($) {
 
   $('recent').addEventListener('click', async (e) => {
     const b = e.target.closest('button');
+    if (b && b.dataset.edit) { startEdit(Number(b.dataset.edit)); return; }
     if (!b) { const tr = e.target.closest('tr[data-row]'); if (tr) startEdit(Number(tr.dataset.row)); return; }
     if (b.dataset.del) {
       if (b.dataset.armed !== '1') {
@@ -571,7 +577,7 @@ function wireForm($) {
   $('f-reset').addEventListener('click', () => { $('f-team').value = ''; $('f-date').value = ''; drawRecent(); });
   syncLayout(); drawRecent();
   const want = Number(new URLSearchParams(location.search).get('game'));
-  if (want && S.games.some((g) => g.id === want && !(g.status === 'scheduled' && g.date > localToday()))) startEdit(want);   // arrived from a game on the Games page
+  if (want && S.games.some((g) => g.id === want)) startEdit(want);   // arrived from a game on the Games page
 }
 
 if (S) main();
