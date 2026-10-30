@@ -553,6 +553,8 @@ function wireForm($) {
   });
 
   syncLayout(); drawRecent();
+  const want = Number(new URLSearchParams(location.search).get('game'));
+  if (want && S.games.some((g) => g.id === want)) startEdit(want);   // arrived from a game on the Games page
 }
 
 if (S) main();

@@ -423,3 +423,6 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
   #tbl.c th:nth-child(2), #tbl.c td:nth-child(2) { padding-right: 8px; }
   #tbl.c th:nth-child(3), #tbl.c td:nth-child(3) { padding-right: 8px; }
 }
+
+.matchup .go { cursor: pointer; }
+.matchup .score.go, .matchup .vs.go { color: var(--accent); font-weight: 700; text-decoration: underline dotted; text-underline-offset: 3px; }

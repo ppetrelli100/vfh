@@ -69,17 +69,20 @@ if (S) {
         const hw = hasScore(g) && g.homeScore > g.awayScore, aw = hasScore(g) && g.awayScore > g.homeScore;
         const off = g.status === 'cancelled' ? ' struck' : '';
         const hs = hasScore(g) ? g.homeScore : '–', as = hasScore(g) ? g.awayScore : '–';
+        // Admins can click the score area of an unplayed game to enter its score.
+        const go = S.me && S.me.admin && g.status === 'scheduled' ? ` go" data-go="${g.id}" title="Enter this score` : '';
         return `<tr>
           <td class="l">${esc(fmtDate(g.date))}</td>
           <td class="matchup-cell"><div class="matchup">
             <a class="side home${hw ? ' w' : ''}${off}" href="${gameUrl(g.home)}">${nm(g.home)}${logo(g.home, 18)}</a>
-            <span class="score-both">${hasScore(g) ? `${hs}–${as}` : ''}${tags(g)}</span>
-            <span class="score home">${hs}</span><span class="vs">vs</span><span class="score away">${as}</span>
+            <span class="score-both${go}">${hasScore(g) ? `${hs}–${as}` : ''}${tags(g)}</span>
+            <span class="score home${go}">${hs}</span><span class="vs${go}">vs</span><span class="score away${go}">${as}</span>
             <a class="side away${aw ? ' w' : ''}${off}" href="${gameUrl(g.away)}">${logo(g.away, 18)}${nm(g.away)}</a>
           </div></td>
           <td class="l hide-sm muted">${tags(g).replace('tag"', 'tag first"')}${noteText(g)}</td></tr>`;
       }).join('')}</tbody>`;
     if (!list.length) document.getElementById('tbl').innerHTML = '<tbody><tr><td class="empty">No games yet.</td></tr></tbody>';
+    document.getElementById('tbl').onclick = (e) => { const t = e.target.closest('[data-go]'); if (t) location.href = `/admin.html?game=${t.dataset.go}`; };
   }
 
   function drawTeam() {
