@@ -11,12 +11,22 @@ if (S) {
 
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
-  // With every class on one list, Rank is the position by Saylor points per game across all classes.
-  const overall = new Map(S.ranked.rows.filter((r) => r.gp).slice().sort((a, b) => b.spPerGame - a.spPerGame)
-    .map((r, i, arr) => [r.name, i && arr[i - 1].spPerGame === r.spPerGame ? 0 : i + 1]));
-  { let last = 0; for (const [k, v] of overall) { if (v) last = v; else overall.set(k, last); } }
+  // Division is geographic and comes from the schools list; it only filters the view and never changes the math.
+  const divOf = Object.fromEntries(S.schools.map((x) => [x.name, x.division || '']));
+  const divisions = ['D1/2', 'D3', 'D4'].filter((d) => S.schools.some((x) => x.division === d));
+  let div = divisions.includes(getParam('division')) ? getParam('division') : '';
+  if (div && !getParam('class')) cls = 'all';
+  // When the list mixes classes or is limited to a division, Rank is the position on the list by Saylor points per game
+  // (schools level on points share a place); otherwise it is the school's rank in its class.
+  let viewRanks = null;
+  const placeRanks = (rows) => {
+    const sorted = rows.filter((r) => r.gp).sort((a, b) => b.spPerGame - a.spPerGame);
+    const m = new Map(); let last = 0;
+    sorted.forEach((r, i) => { if (!i || sorted[i - 1].spPerGame !== r.spPerGame) last = i + 1; m.set(r.name, last); });
+    return m;
+  };
   const ALL_COLS = [
-    { key: 'rank', label: 'Rank', cls: 'rnk', cell: (r) => (r.gp ? (cls === 'all' ? overall.get(r.name) : r.rank_spPerGame) : '–'), nosort: true },
+    { key: 'rank', label: 'Rank', cls: 'rnk', cell: (r) => (r.gp ? (viewRanks ? viewRanks.get(r.name) : r.rank_spPerGame) : '–'), nosort: true },
     { key: 'name', label: 'School', cls: 'name' },
     { key: 'cls', label: 'Class', cls: '', cell: (r) => r.cls, onlyAll: true },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
@@ -31,8 +41,9 @@ if (S) {
   const app = document.getElementById('app');
   app.innerHTML = `
     <h1>Rankings</h1>
-    <p class="lede">Current ranking within class by Saylor points per game.</p>
+    <p class="lede" id="lede">Current ranking within class by Saylor points per game.</p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
+    ${divisions.length ? '<div class="toolbar"><div class="seg" id="divs" role="group" aria-label="Division"></div></div>' : ''}
     <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
       <summary>How the points work</summary>
@@ -62,7 +73,12 @@ if (S) {
   };
 
   function draw() {
-    const rows = S.ranked.rows.filter((r) => cls === 'all' || r.cls === cls).sort(cmp);
+    const inView = S.ranked.rows.filter((r) => (cls === 'all' || r.cls === cls) && (!div || divOf[r.name] === div));
+    viewRanks = cls === 'all' || div ? placeRanks(inView) : null;
+    const rows = inView.slice().sort(cmp);
+    document.getElementById('lede').textContent = div
+      ? `Current ranking within division ${div}${cls === 'all' ? '' : `, Class ${cls} only`}, by Saylor points per game.`
+      : 'Current ranking within class by Saylor points per game.';
     const COLS = ALL_COLS.filter((c) => !c.onlyAll || cls === 'all');
     if (!COLS.some((c) => c.key === sortKey && !c.nosort)) { sortKey = 'spPerGame'; sortDir = 'desc'; }
     const head = COLS.map((c, i) => {
@@ -88,6 +104,20 @@ if (S) {
     }));
   }
 
+  if (divisions.length) {
+    const el = document.getElementById('divs'), n = (d) => S.schools.filter((x) => x.division === d).length;
+    el.innerHTML = [['', 'All divisions', S.schools.length], ...divisions.map((d) => [d, d, n(d)])].map(([v, label, c]) =>
+      `<button type="button" data-d="${esc(v)}" aria-pressed="${v === div}">${esc(label)}<span class="n">${c}</span></button>`).join('');
+    el.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
+      div = b.dataset.d; setParam('division', div);
+      if (div && cls !== 'all') {   // a division spans classes, so show them all (pick a class again to narrow)
+        cls = 'all'; setParam('class', 'all');
+        document.querySelectorAll('#classes button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.c === 'all')));
+      }
+      el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      draw();
+    }));
+  }
   classPicker(document.getElementById('classes'), classes, counts, cls, (c) => { cls = c; setParam('class', c); draw(); }, { all: true });
   draw();
 }

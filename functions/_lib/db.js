@@ -1,5 +1,7 @@
 // Database access, schema bootstrap and small response helpers shared by every API route.
 
+import { DIVISIONS_2026 } from './divisions2026.js';
+
 export class HttpError extends Error {
   constructor(status, message, extra) {
     super(message);
@@ -44,6 +46,14 @@ export async function getDb(env) {
   }
   if (!schemaReady) {
     await env.DB.batch(SCHEMA.map((s) => env.DB.prepare(s)));
+    // Each school's division (geographic, shown for ranking within a division; never used in the math).
+    // Added after launch, so add the column once and fill it from the 2026 list.
+    const cols = (await env.DB.prepare('PRAGMA table_info(season_schools)').all()).results;
+    if (!cols.some((c) => c.name === 'division')) {
+      await env.DB.prepare('ALTER TABLE season_schools ADD COLUMN division TEXT').run();
+      await batchInChunks(env.DB, Object.entries(DIVISIONS_2026).map(([name, d]) =>
+        env.DB.prepare('UPDATE season_schools SET division = ? WHERE division IS NULL AND school_id = (SELECT id FROM schools WHERE name = ?)').bind(d, name)));
+    }
     schemaReady = true;
   }
   return env.DB;

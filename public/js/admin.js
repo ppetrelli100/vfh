@@ -55,7 +55,7 @@ function main() {
         <div class="field"><label for="division">Division</label>
           <input type="hidden" id="division" value="">
           <div class="choice" id="division-btns" role="group" aria-label="Division">${['D1/2', 'D3', 'D4', 'Crossover'].map((d) => `<button type="button" class="chip" data-v="${d}" aria-pressed="false">${d}</button>`).join('')}</div>
-          <div class="err" id="err-division"></div></div>
+          <div class="hint" id="div-hint"></div><div class="err" id="err-division"></div></div>
         <div class="field"><label for="note">Note (optional)</label><input type="text" id="note" maxlength="120" placeholder="For example, played at a neutral site"></div>
       </div>
       <div id="dup" class="alert" hidden></div>
@@ -253,19 +253,21 @@ function wireTools($) {
 // Schools-and-classes editor: edit classes in a table, or paste a list, then save in one go.
 function wireClasses($) {
   const tbl = $('sc-tbl'); if (!tbl) return;
-  const orig = new Map(S.schools.map((x) => [x.name, { cls: x.cls }]));
+  const orig = new Map(S.schools.map((x) => [x.name, { cls: x.cls, division: x.division || '' }]));
   const cur = new Map([...orig].map(([k, v]) => [k, { ...v, remove: false }]));
   const added = new Set();            // names added in this edit
   const norm = (t) => String(t).toLowerCase().replace(/[^a-z0-9]/g, '');
   const msg = $('sc-msg');
-  const dirty = () => [...cur].filter(([k, v]) => added.has(k) || v.remove || v.cls !== orig.get(k)?.cls);
+  const dirty = () => [...cur].filter(([k, v]) => added.has(k) || v.remove || v.cls !== orig.get(k)?.cls || v.division !== orig.get(k)?.division);
   function draw() {
     const names = [...cur.keys()].sort((a, b) => a.localeCompare(b));
-    tbl.innerHTML = `<thead><tr><th class="l">School</th><th>Class</th><th>Take out</th></tr></thead><tbody>${names.map((n) => {
-      const v = cur.get(n), o = orig.get(n), ch = added.has(n) || v.remove || v.cls !== o?.cls;
+    tbl.innerHTML = `<thead><tr><th class="l">School</th><th>Class</th><th>Division</th><th>Take out</th></tr></thead><tbody>${names.map((n) => {
+      const v = cur.get(n), o = orig.get(n), ch = added.has(n) || v.remove || v.cls !== o?.cls || v.division !== o?.division;
       return `<tr class="${ch ? 'chg' : ''}${v.remove ? ' struck' : ''}"><td class="l name">${esc(n)}${added.has(n) ? ' <span class="tag">new</span>' : ''}</td>
         <td><select data-n="${esc(n)}" data-f="cls" aria-label="Class for ${esc(n)}">${['A', 'B', 'C'].map((c) => `<option${c === v.cls ? ' selected' : ''}>${c}</option>`).join('')}</select>
           ${o && o.cls !== v.cls ? `<span class="muted"> was ${o.cls}</span>` : ''}</td>
+        <td><select data-n="${esc(n)}" data-f="division" aria-label="Division for ${esc(n)}">${['', 'D1/2', 'D3', 'D4'].map((d) => `<option value="${d}"${d === v.division ? ' selected' : ''}>${d || 'none'}</option>`).join('')}</select>
+          ${o && o.division !== v.division ? `<span class="muted"> was ${o.division || 'none'}</span>` : ''}</td>
         <td><input type="checkbox" data-n="${esc(n)}" data-f="remove"${v.remove ? ' checked' : ''} aria-label="Take ${esc(n)} out of this season"></td></tr>`;
     }).join('')}</tbody>`;
     const n = dirty().length;
@@ -286,7 +288,7 @@ function wireClasses($) {
     const name = $('sc-new-name').value.trim(), m = $('sc-add-msg');
     if (!name) { m.className = 'status bad'; m.textContent = 'Type the school name.'; return; }
     if ([...cur.keys()].some((k) => norm(k) === norm(name))) { m.className = 'status bad'; m.textContent = `${name} is already in this season.`; return; }
-    cur.set(name, { cls: $('sc-new-cls').value, remove: false }); added.add(name);
+    cur.set(name, { cls: $('sc-new-cls').value, division: '', remove: false }); added.add(name);
     $('sc-new-name').value = ''; m.className = 'status ok'; m.textContent = 'Added to the table. Press Save changes.'; draw();
   });
   // Pasted list: match each line to one school, by name (ignoring punctuation and case; a short
@@ -314,7 +316,7 @@ function wireClasses($) {
     draw();
   });
   $('sc-save').addEventListener('click', async () => {
-    const changes = dirty().map(([k, v]) => ({ name: k, cls: v.cls, remove: v.remove }));
+    const changes = dirty().map(([k, v]) => ({ name: k, cls: v.cls, division: v.division, remove: v.remove }));
     $('sc-save').disabled = true;
     try {
       const r = await api(`/api/seasons/${encodeURIComponent(S.season.id)}/schools`, { method: 'PUT', body: { changes } });
@@ -391,7 +393,7 @@ function wireForm($) {
   $('division-btns').addEventListener('click', (e) => {
     const b = e.target.closest('.chip'); if (!b) return;
     $('division').value = $('division').value === b.dataset.v ? '' : b.dataset.v;   // click again to un-select
-    touched.add('division'); hideDup(); syncLayout(); refreshErrors();
+    touched.add('division'); autoDiv = false; $('div-hint').textContent = ''; hideDup(); syncLayout(); refreshErrors();
   });
 
   form.addEventListener('input', (e) => {
@@ -400,11 +402,23 @@ function wireForm($) {
     if (map[e.target.id]) touched.add(map[e.target.id]);
     if (e.target.name === 'winner') touched.add('winner');
     if (e.target.id === 'home' && $('away').value === $('home').value) $('away').value = '';
-    if (e.target.id === 'home' || e.target.id === 'away') { touched.add('home'); if ($('home').value && $('away').value) touched.add('away'); }
+    if (e.target.id === 'home' || e.target.id === 'away') { touched.add('home'); if ($('home').value && $('away').value) touched.add('away'); suggestDivision(); }
     syncLayout(); refreshErrors();
   });
 
+  // The division is suggested from the two schools (same division -> that division, otherwise Crossover)
+  // until the person picks one themselves. It is only a suggestion: the buttons still work as before.
+  let autoDiv = true;
+  function suggestDivision() {
+    if (!autoDiv) return;
+    const h = byId[$('home').value], a = byId[$('away').value];
+    if (!h || !a || !h.division || !a.division) return;
+    $('division').value = h.division === a.division ? h.division : 'Crossover';
+    $('div-hint').textContent = `Suggested from the schools (${h.division === a.division ? `both ${h.division}` : `${h.division} vs ${a.division}`}). Tap to change.`;
+  }
+
   function clearForm({ keepDate = true } = {}) {
+    autoDiv = true; $('div-hint').textContent = '';
     $('home').value = ''; $('away').value = ''; $('hs').value = ''; $('as').value = '';
     $('ot').checked = false; $('note').value = ''; $('division').value = ''; $('status').value = 'final';
     form.querySelectorAll('input[name="winner"]').forEach((r) => { r.checked = false; });
@@ -494,7 +508,7 @@ function wireForm($) {
   function startEdit(id) {
     const g = S.games.find((x) => x.id === id);
     if (!g) return;
-    editingId = id; clearForm();
+    editingId = id; clearForm(); autoDiv = false;   // an existing game keeps its own division
     $('date').value = g.date; $('home').value = String(g.homeId); $('away').value = String(g.awayId);
     const isFuture = g.date > localToday();
     $('status').value = g.status === 'scheduled' && !isFuture ? 'final' : g.status;

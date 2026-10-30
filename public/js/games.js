@@ -8,6 +8,8 @@ if (S) {
   const classes = classesOf(S.schools);
   let team = byName[getParam('team')] ? getParam('team') : '';
   let cls = classes.includes(getParam('class')) ? getParam('class') : '';
+  const DIVS = ['D1/2', 'D3', 'D4', 'Crossover'].filter((d) => S.games.some((g) => g.division === d));
+  let div = DIVS.includes(getParam('division')) ? getParam('division') : '';
 
   app.innerHTML = `
     <h1 id="title">Games</h1>
@@ -16,6 +18,7 @@ if (S) {
       <label>Team<select id="team"><option value="">All teams</option>${schoolOptions(S.schools.map((s) => ({ ...s, id: s.name })), team)}</select></label>
       <label id="cls-wrap">Class<select id="cls"><option value="">All classes</option>${classes.map((c) =>
         `<option value="${esc(c)}"${c === cls ? ' selected' : ''}>Class ${esc(c)}</option>`).join('')}</select></label>
+      ${DIVS.length ? `<label id="div-wrap">Division<select id="div"><option value="">All divisions</option>${DIVS.map((d) => `<option value="${esc(d)}"${d === div ? ' selected' : ''}>${esc(d)}</option>`).join('')}</select></label>` : ''}
       <button type="button" class="btn ghost" id="export-csv" style="margin-left:auto">Download as CSV</button>
     </div>
     <div id="summary"></div>
@@ -23,9 +26,9 @@ if (S) {
 
   // The export covers the whole season, so it is only available with all teams and all classes showing.
   const syncExport = () => {
-    const b = document.getElementById('export-csv'), all = !team && !cls;
+    const b = document.getElementById('export-csv'), all = !team && !cls && !div;
     b.disabled = !all;
-    b.title = all ? 'All games in the coach\'s score sheet columns' : 'Set Team and Class to All to download';
+    b.title = all ? 'All games in the coach\'s score sheet columns' : 'Set Team, Class and Division to All to download';
   };
   // CSV in the same columns as the coach's Google Sheet: Date, Team, Score, Team, Score, Notes, Division.
   document.getElementById('export-csv').addEventListener('click', () => {
@@ -59,7 +62,7 @@ if (S) {
 
   function drawAll() {
     // Earliest first, the same order as the score sheet.
-    const list = S.games.filter((g) => !cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls);
+    const list = S.games.filter((g) => (!cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls) && (!div || g.division === div));
     const playedAll = FHEngine.playedGames(S.games), lastDate = playedAll.reduce((m, g) => (g.date > m ? g.date : m), '');
     const playedN = FHEngine.playedGames(list).length;
     document.getElementById('lede').textContent = `${playedN} games played${lastDate ? ` as of ${fmtDate(lastDate)}` : ''}. ${list.length} games scheduled.`;
@@ -118,10 +121,12 @@ if (S) {
   function draw() {
     document.getElementById('title').innerHTML = team ? `<span class="tn">${logo(team, 40)}<span>${esc(team)}</span></span>` : 'Games';
     document.getElementById('cls-wrap').hidden = !!team;
+    if (document.getElementById('div-wrap')) document.getElementById('div-wrap').hidden = !!team;
     if (team) drawTeam(); else drawAll();
   }
   document.getElementById('team').addEventListener('change', (e) => { team = e.target.value; setParam('team', team); syncExport(); draw(); });
   document.getElementById('cls').addEventListener('change', (e) => { cls = e.target.value; setParam('class', cls); syncExport(); draw(); });
+  if (document.getElementById('div')) document.getElementById('div').addEventListener('change', (e) => { div = e.target.value; setParam('division', div); syncExport(); draw(); });
   syncExport();
   draw();
 }

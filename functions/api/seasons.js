@@ -14,7 +14,7 @@ export const onRequestPost = handle(async ({ env, request }) => {
 
   const stmts = [db.prepare('INSERT INTO seasons (id, label, is_current) VALUES (?, ?, 0)').bind(id, label)];
   if (body.copyFrom) {
-    stmts.push(db.prepare('INSERT INTO season_schools (season_id, school_id, class, class_num, league) SELECT ?, school_id, class, class_num, league FROM season_schools WHERE season_id = ? ORDER BY rowid')
+    stmts.push(db.prepare('INSERT INTO season_schools (season_id, school_id, class, class_num, league, division) SELECT ?, school_id, class, class_num, league, division FROM season_schools WHERE season_id = ? ORDER BY rowid')
       .bind(id, String(body.copyFrom)));
   }
   if (body.copyFrom && body.copyGames) {

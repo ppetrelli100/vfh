@@ -22,7 +22,7 @@ export const onRequestPut = handle(async ({ env, request, params }) => {
   if (changes.length > 200) throw new HttpError(422, 'Too many changes at once.');
 
   const cur = new Map((await db.prepare(
-    `SELECT s.id, s.name, ss.class AS cls, ss.league FROM season_schools ss JOIN schools s ON s.id = ss.school_id WHERE ss.season_id = ?`).bind(sid).all())
+    `SELECT s.id, s.name, ss.class AS cls, ss.league, ss.division FROM season_schools ss JOIN schools s ON s.id = ss.school_id WHERE ss.season_id = ?`).bind(sid).all())
     .results.map((r) => [r.name, r]));
   const gameCount = async (schoolId) => (await db.prepare('SELECT COUNT(*) AS n FROM games WHERE season_id = ? AND (home_id = ? OR away_id = ?)').bind(sid, schoolId, schoolId).first()).n;
 
@@ -34,6 +34,9 @@ export const onRequestPut = handle(async ({ env, request, params }) => {
     if (seen.has(name)) throw new HttpError(422, `${name} appears twice in the changes.`);
     seen.add(name);
     const league = c.league === undefined ? undefined : (String(c.league || '').trim().slice(0, 40) || null);
+    const DIVS = ['D1/2', 'D3', 'D4'];
+    const division = c.division === undefined ? undefined : (String(c.division || '').trim() || null);
+    if (division && !DIVS.includes(division)) throw new HttpError(422, `${name}: division must be D1/2, D3 or D4.`);
     const cls = c.cls === undefined ? undefined : String(c.cls).trim().toUpperCase();
     if (cls !== undefined && !CLASS_NUM[cls]) throw new HttpError(422, `${name}: class must be A, B or C.`);
     const existing = cur.get(name);
@@ -46,18 +49,19 @@ export const onRequestPut = handle(async ({ env, request, params }) => {
         continue;
       }
       const newCls = cls ?? existing.cls, newLeague = league === undefined ? existing.league : league;
-      if (newCls === existing.cls && newLeague === existing.league) continue;
-      stmts.push(db.prepare('UPDATE season_schools SET class = ?, class_num = ?, league = ? WHERE season_id = ? AND school_id = ?')
-        .bind(newCls, CLASS_NUM[newCls], newLeague, sid, existing.id));
-      log.push({ name, cls: [existing.cls, newCls], league: [existing.league, newLeague] });
+      const newDiv = division === undefined ? existing.division : division;
+      if (newCls === existing.cls && newLeague === existing.league && newDiv === existing.division) continue;
+      stmts.push(db.prepare('UPDATE season_schools SET class = ?, class_num = ?, league = ?, division = ? WHERE season_id = ? AND school_id = ?')
+        .bind(newCls, CLASS_NUM[newCls], newLeague, newDiv, sid, existing.id));
+      log.push({ name, cls: [existing.cls, newCls], league: [existing.league, newLeague], division: [existing.division ?? null, newDiv ?? null] });
     } else {
       if (c.remove) continue;
       if (!cls) throw new HttpError(422, `${name} is not in this season yet, so choose a class for it.`);
       await db.prepare('INSERT INTO schools (name) VALUES (?) ON CONFLICT(name) DO NOTHING').bind(name).run();
       const sch = await db.prepare('SELECT id FROM schools WHERE name = ?').bind(name).first();
-      stmts.push(db.prepare('INSERT OR REPLACE INTO season_schools (season_id, school_id, class, class_num, league) VALUES (?, ?, ?, ?, ?)')
-        .bind(sid, sch.id, cls, CLASS_NUM[cls], league ?? null));
-      log.push({ name, added: true, cls });
+      stmts.push(db.prepare('INSERT OR REPLACE INTO season_schools (season_id, school_id, class, class_num, league, division) VALUES (?, ?, ?, ?, ?, ?)')
+        .bind(sid, sch.id, cls, CLASS_NUM[cls], league ?? null, division ?? null));
+      log.push({ name, added: true, cls, division: division ?? null });
     }
   }
   if (stmts.length) await db.batch(stmts);
