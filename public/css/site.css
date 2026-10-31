@@ -465,3 +465,19 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .seg-sm .n { font-size: 11.5px; margin-left: 5px; }
 @media (max-width: 700px) { .seg-sm { margin-left: auto; } }
 .seg-sm button[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); font-weight: 600; }
+
+/* Phones use two drop-downs (Class left, Division right) in place of the button rows on Rankings */
+.pick-sel { display: none; }
+@media (max-width: 700px) {
+  .toolbar:has(#classes) { display: none; }
+  .pick-sel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pick-sel label { min-width: 0; }
+  .pick-sel select { width: 100%; }
+}
+
+/* On a phone the class letter sits beside the school name, so the points column stays in view */
+.tbl .cl { display: none; }
+@media (max-width: 700px) {
+  #tbl.c .cls-col { display: none; }
+  #tbl.c td.name .cl { display: inline; margin-left: 6px; font-size: 11px; color: var(--muted); font-weight: 600; }
+}

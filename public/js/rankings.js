@@ -4,7 +4,9 @@ const S = await boot('rankings');
 if (S) {
   const classes = classesOf(S.schools);
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
-  let cls = classes.includes(getParam('class')) || getParam('class') === 'all' ? getParam('class') : classes[0];
+  const phone = window.matchMedia('(max-width: 700px)').matches;
+  // Desktop opens on Class A; on a phone the two drop-downs both open on All.
+  let cls = classes.includes(getParam('class')) || getParam('class') === 'all' ? getParam('class') : (phone ? 'all' : classes[0]);
   let sortKey = 'spPerGame', sortDir = 'desc';
   // A link such as /rankings.html?class=A&sort=inWinPct opens the table sorted by that measure.
   { const k = getParam('sort'); if (k && k !== 'record') { sortKey = k; sortDir = k === 'name' ? 'asc' : 'desc'; } }
@@ -28,7 +30,7 @@ if (S) {
   const ALL_COLS = [
     { key: 'rank', label: 'Rank', cls: 'rnk', cell: (r) => (r.gp ? (viewRanks ? viewRanks.get(r.name) : r.rank_spPerGame) : '–'), nosort: true },
     { key: 'name', label: 'School', cls: 'name' },
-    { key: 'cls', label: 'Class', cls: '', cell: (r) => r.cls, onlyAll: true },
+    { key: 'cls', label: 'Class', cls: 'cls-col', cell: (r) => r.cls, onlyAll: true },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },
     { key: 'spPerGame', label: 'Saylor points per game', cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
@@ -44,6 +46,10 @@ if (S) {
     <p class="lede" id="lede">Current ranking within class by Saylor points per game.</p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div>
       ${divisions.length ? '<div class="seg seg-sm" id="divs" role="group" aria-label="Division"></div>' : ''}</div>
+    <div class="toolbar pick-sel">
+      <label>Class<select id="m-cls"><option value="all">All classes</option>${classes.map((c) => `<option value="${esc(c)}">Class ${esc(c)} (${counts[c]})</option>`).join('')}</select></label>
+      ${divisions.length ? `<label>Division<select id="m-div"><option value="">All divisions</option>${divisions.map((d) => `<option value="${esc(d)}">${esc(d)} (${S.schools.filter((x) => x.division === d).length})</option>`).join('')}</select></label>` : ''}
+    </div>
     <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
       <summary>How the points work</summary>
@@ -91,7 +97,7 @@ if (S) {
       <thead><tr>${head}</tr></thead>
       <tbody>${rows.map((r) => `<tr>
         ${COLS.map((c) => {
-          if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a></td>`;
+          if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a>${cls === 'all' ? `<span class="cl">${esc(r.cls)}</span>` : ''}</td>`;
           const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
           return `<td class="${c.cls}">${c.cell(r)}${rk}</td>`;
         }).join('')}
@@ -104,20 +110,28 @@ if (S) {
     }));
   }
 
+  // Class and division can be changed from the buttons (desktop) or the drop-downs (phones); keep them in step.
+  function syncUI() {
+    document.querySelectorAll('#classes button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.c === cls)));
+    document.querySelectorAll('#divs button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.d === div)));
+    document.getElementById('m-cls').value = cls;
+    if (document.getElementById('m-div')) document.getElementById('m-div').value = div;
+  }
+  function pickClass(c) { cls = c; setParam('class', c); syncUI(); draw(); }
+  function pickDivision(d) {
+    div = d; setParam('division', div);
+    if (div && cls !== 'all') { cls = 'all'; setParam('class', 'all'); }   // a division spans classes, so show them all (pick a class again to narrow)
+    syncUI(); draw();
+  }
   if (divisions.length) {
     const el = document.getElementById('divs'), n = (d) => S.schools.filter((x) => x.division === d).length;
     el.innerHTML = [['', 'All divisions', S.schools.length], ...divisions.map((d) => [d, d, n(d)])].map(([v, label, c]) =>
       `<button type="button" data-d="${esc(v)}" aria-pressed="${v === div}">${esc(label)}<span class="n">${c}</span></button>`).join('');
-    el.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => {
-      div = b.dataset.d; setParam('division', div);
-      if (div && cls !== 'all') {   // a division spans classes, so show them all (pick a class again to narrow)
-        cls = 'all'; setParam('class', 'all');
-        document.querySelectorAll('#classes button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.c === 'all')));
-      }
-      el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-      draw();
-    }));
+    el.querySelectorAll('button').forEach((b) => b.addEventListener('click', () => pickDivision(b.dataset.d)));
+    document.getElementById('m-div').addEventListener('change', (e) => pickDivision(e.target.value));
   }
-  classPicker(document.getElementById('classes'), classes, counts, cls, (c) => { cls = c; setParam('class', c); draw(); }, { all: true });
+  document.getElementById('m-cls').addEventListener('change', (e) => pickClass(e.target.value));
+  classPicker(document.getElementById('classes'), classes, counts, cls, pickClass, { all: true });
+  syncUI();
   draw();
 }
