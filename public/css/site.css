@@ -118,7 +118,7 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .tbl th[aria-sort="descending"] button::after { content: " \25BE"; color: var(--accent); }
 .tbl th[aria-sort="ascending"] button::after { content: " \25B4"; color: var(--accent); }
 .tbl th[aria-sort] { color: var(--ink); }
-.rk { margin-left: 6px; font-size: 11px; color: var(--muted); font-weight: 500; }
+.rk { margin-left: 4px; font-size: 12px; color: var(--muted); font-weight: 500; }
 .cut td { border-bottom: 2px solid var(--accent); }
 .result-W { color: #1a7f37; font-weight: 700; }
 .result-L { color: var(--warn); font-weight: 700; }
@@ -479,5 +479,5 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .tbl .cl { display: none; }
 @media (max-width: 700px) {
   #tbl.c .cls-col { display: none; }
-  #tbl.c td.name .cl { display: inline; margin-left: 6px; font-size: 11px; color: var(--muted); font-weight: 600; }
+  #tbl.c td.name .cl { display: inline; margin-left: 4px; font-size: 12px; color: var(--muted); font-weight: 600; }
 }

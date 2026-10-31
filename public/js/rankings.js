@@ -97,7 +97,7 @@ if (S) {
       <thead><tr>${head}</tr></thead>
       <tbody>${rows.map((r) => `<tr>
         ${COLS.map((c) => {
-          if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}${nm(r.name)}</a>${cls === 'all' ? `<span class="cl">${esc(r.cls)}</span>` : ''}</td>`;
+          if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}<span>${nm(r.name)}${cls === 'all' ? `<span class="cl">(${esc(r.cls)})</span>` : ''}</span></a></td>`;
           const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
           return `<td class="${c.cls}">${c.cell(r)}${rk}</td>`;
         }).join('')}
