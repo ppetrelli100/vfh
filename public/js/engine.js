@@ -110,13 +110,17 @@
       const opp = isHome ? g.away : g.home;
       const my = num(isHome ? g.homeScore : g.awayScore), th = num(isHome ? g.awayScore : g.homeScore);
       const cancelled = isCancelled(g);
-      let result = '', pts = null;
+      let result = '', pts = null, ifPts = null;
       if (!cancelled && my !== null && th !== null && R[team] && R[opp]) {
         result = my > th ? 'W' : my < th ? 'L' : 'T';
         const b = 1250 + (R[team].classNum - 2) * 50 + (R[opp].classNum - 2) * -200 + (R[opp].qrtl - 4) * 100;
         pts = b + (result === 'L' ? -700 : result === 'T' ? -300 : 0);
       }
-      out.push({ id: g.id, date: g.date, opp, home: isHome, my, th, result, status: g.status || 'final', overtime: !!g.overtime, note: g.note || '', oppClass: R[opp] && R[opp].cls, oppWinPct: R[opp] && R[opp].winPct, oppQrtl: R[opp] && R[opp].qrtl, saylor: pts });
+      if (g.status === 'scheduled' && R[team] && R[opp]) {
+        const b = 1250 + (R[team].classNum - 2) * 50 + (R[opp].classNum - 2) * -200 + (R[opp].qrtl - 4) * 100;
+        ifPts = { W: b, T: b - 300, L: b - 700 };
+      }
+      out.push({ ifPts, id: g.id, date: g.date, opp, home: isHome, my, th, result, status: g.status || 'final', overtime: !!g.overtime, note: g.note || '', oppClass: R[opp] && R[opp].cls, oppWinPct: R[opp] && R[opp].winPct, oppQrtl: R[opp] && R[opp].qrtl, saylor: pts });
     }
     return out.sort((a, b) => String(a.date).localeCompare(String(b.date)));
   }
