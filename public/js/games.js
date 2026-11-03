@@ -111,7 +111,7 @@ if (S) {
         <td>${x.result ? `<span class="result-${x.result}">${x.result}</span> ${x.my}–${x.th}` : ''}${tags(x)}</td>
         <td class="hide-sm">${esc(x.oppClass || '')}</td>
         <td class="hide-sm">${fmtPct(x.oppWinPct)}</td>
-        <td>${x.saylor !== null ? fmtInt(x.saylor) : x.ifPts ? `<span class="whatif" title="${esc(`Win: ${fmtInt(x.ifPts.W)} · Tie: ${fmtInt(x.ifPts.T)} · Loss: ${fmtInt(x.ifPts.L)}\n(based on ${x.opp}'s current record)`)}">–</span>` : ''}</td></tr>`).join('')}
+        <td>${x.saylor !== null ? fmtInt(x.saylor) : x.ifPts ? `<span class="whatif" title="${esc(`Win: ${fmtInt(x.ifPts.W)}\nTie: ${fmtInt(x.ifPts.T)}\nLoss: ${fmtInt(x.ifPts.L)}`)}">–</span>` : ''}</td></tr>`).join('')}
       ${log.length ? `<tr><td class="l key" colspan="4">Total (${R.gp} games)</td><td class="hide-sm"></td><td class="hide-sm"></td><td class="key">${fmtInt(pts)}</td></tr>` : ''}</tbody>`;
     if (!log.length) document.getElementById('tbl').innerHTML = '<tbody><tr><td class="empty">No games for this team yet.</td></tr></tbody>';
   }
