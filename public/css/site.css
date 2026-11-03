@@ -488,13 +488,3 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
   background: #1c2b2a; color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 400; text-align: left; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
 .whatif .tip b { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
 .whatif:hover .tip, .whatif:focus .tip { display: grid; }
-
-.planner { margin-top: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 16px 18px 6px; }
-.planner h2 { margin: 0 0 4px; font-size: 18px; }
-.planner p { margin: 0 0 12px; }
-.planner .presets { flex-wrap: wrap; margin-bottom: 12px; }
-.planner .scroll { box-shadow: none; border: 0; border-radius: 0; background: none; margin-bottom: 12px; }
-.planner td.pick { text-align: right; }
-.planner td.pick button { font: inherit; font-weight: 600; width: 34px; height: 30px; margin-left: 4px; border: 1px solid var(--field); border-radius: 6px; background: #fff; color: var(--ink); cursor: pointer; }
-.planner td.pick button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.planner .pl-out td.key { font-weight: 700; color: var(--ink); }

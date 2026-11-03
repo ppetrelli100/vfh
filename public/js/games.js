@@ -22,8 +22,7 @@ if (S) {
       <button type="button" class="btn ghost" id="export-csv" style="margin-left:auto">Download as CSV</button>
     </div>
     <div id="summary"></div>
-    <div class="scroll"><table class="tbl" id="tbl"></table></div>
-    <div id="planner"></div>`;
+    <div class="scroll"><table class="tbl" id="tbl"></table></div>`;
 
   // The export covers the whole season, so it is only available with all teams and all classes showing.
   const syncExport = () => {
@@ -119,91 +118,13 @@ if (S) {
 
   const ord = (n) => (n % 100 >= 11 && n % 100 <= 13 ? 'th' : { 1: 'st', 2: 'nd', 3: 'rd' }[n % 10] || 'th');
 
-
-  // ---- Scenario planner: fill the school's unplayed games with made-up results and re-run the real
-  // ranking and seeding. Only this school's games change; everyone else's unplayed games stay blank.
-  let picks = {};   // game id -> 'W' | 'T' | 'L'
-  const remaining = () => S.games.filter((g) => g.status === 'scheduled' && g.home && g.away && (g.home === team || g.away === team))
-    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
-  function project(games) {
-    const ranked = FHEngine.rank(S.schools, games);
-    const R = ranked.R[team];
-    const res = FHSeeding.seed(ranked.rows, ranked.rec, games, R.cls);
-    return { R, row: res.table.find((t) => t.name === team), ranked };
-  }
-  function withPicks() {
-    return S.games.map((g) => {
-      const k = picks[g.id];
-      if (!k || (g.home !== team && g.away !== team)) return g;
-      const mine = k === 'W' ? 1 : 0, theirs = k === 'L' ? 1 : 0;
-      return { ...g, status: 'final', homeScore: g.home === team ? mine : theirs, awayScore: g.home === team ? theirs : mine };
-    });
-  }
-  const seedText = (p) => {
-    if (!p.R.gp) return '–';
-    if (!p.row) return 'Outside top 12';
-    return p.row.pos <= 8 ? `#${p.row.pos} seed${p.row.tie ? ' (tied)' : ''}` : `${p.row.pos}${ord(p.row.pos)} · outside bracket`;
-  };
-  function drawPlanner() {
-    const el = document.getElementById('planner');
-    const games = team ? remaining() : [];
-    if (!games.length) { el.innerHTML = ''; return; }
-    const now = project(S.games), sc = project(withPicks());
-    const chosen = Object.keys(picks).length;
-    const cell = (a, b, fmt) => `<td>${fmt(a)}</td><td class="${chosen ? 'key' : ''}">${chosen ? fmt(b) : '–'}</td>`;
-    const rec = (P) => `${P.R.w}-${P.R.l}-${P.R.t}`;
-    const rk = (P) => (P.R.gp ? `${P.R.rank_spPerGame}${ord(P.R.rank_spPerGame)}` : '–');
-    el.innerHTML = `
-      <section class="planner" aria-labelledby="pl-h">
-        <h2 id="pl-h">What if…</h2>
-        <p class="muted">Pick results for ${esc(team)}'s remaining games to see how the rankings and playoff seed would change. Other teams' unplayed games are left out.</p>
-        <div class="seg seg-sm presets">
-          <button type="button" data-preset="W">Win all</button>
-          <button type="button" data-preset="L">Lose all</button>
-          <button type="button" data-preset="S">Beat lower-ranked, lose to higher-ranked</button>
-          <button type="button" data-preset="X"${chosen ? '' : ' disabled'}>Clear</button>
-        </div>
-        <div class="scroll"><table class="tbl pl-games"><tbody>${games.map((g) => {
-          const opp = g.home === team ? g.away : g.home, k = picks[g.id] || '';
-          return `<tr><td class="l">${esc(fmtDate(g.date))}</td><td class="l muted">${g.home === team ? 'H' : 'A'}</td>
-            <td class="name"><a class="tn" href="${gameUrl(opp)}">${logo(opp)}${nm(opp)}</a></td>
-            <td class="pick" data-g="${g.id}">${['W', 'T', 'L'].map((v) => `<button type="button" data-pick="${v}" aria-pressed="${k === v}">${v}</button>`).join('')}</td></tr>`;
-        }).join('')}</tbody></table></div>
-        <div class="scroll"><table class="tbl pl-out"><thead><tr><th class="l"></th><th>Now</th><th>With these results</th></tr></thead><tbody>
-          <tr><td class="l">Record</td>${cell(now, sc, rec)}</tr>
-          <tr><td class="l">SP/game</td>${cell(now, sc, (P) => fmtInt(P.R.spPerGame))}</tr>
-          <tr><td class="l">Rank in Class ${esc(now.R.cls)}</td>${cell(now, sc, rk)}</tr>
-          <tr><td class="l">Playoff seed</td>${cell(now, sc, seedText)}</tr>
-        </tbody></table></div>
-      </section>`;
-  }
-  document.getElementById('planner').addEventListener('click', (e) => {
-    const b = e.target.closest('button');
-    if (!b || b.disabled) return;
-    if (b.dataset.pick) {
-      const id = b.closest('[data-g]').dataset.g;
-      if (picks[id] === b.dataset.pick) delete picks[id]; else picks[id] = b.dataset.pick;
-    } else if (b.dataset.preset) {
-      const R = S.ranked.R, me = R[team].spPerGame;
-      picks = {};
-      for (const g of remaining()) {
-        const opp = g.home === team ? g.away : g.home, o = R[opp] && R[opp].spPerGame;
-        if (b.dataset.preset === 'W') picks[g.id] = 'W';
-        else if (b.dataset.preset === 'L') picks[g.id] = 'L';
-        else if (b.dataset.preset === 'S') picks[g.id] = (o === null || o === undefined || o < me) ? 'W' : 'L';
-      }
-    } else return;
-    drawPlanner();
-  });
-
   function draw() {
     document.getElementById('title').innerHTML = team ? `<span class="tn">${logo(team, 40)}<span>${esc(team)}</span></span>` : 'Games';
     document.getElementById('cls-wrap').hidden = !!team;
     if (document.getElementById('div-wrap')) document.getElementById('div-wrap').hidden = !!team;
     if (team) drawTeam(); else drawAll();
-    drawPlanner();
   }
-  document.getElementById('team').addEventListener('change', (e) => { team = e.target.value; picks = {}; setParam('team', team); syncExport(); draw(); });
+  document.getElementById('team').addEventListener('change', (e) => { team = e.target.value; setParam('team', team); syncExport(); draw(); });
   document.getElementById('cls').addEventListener('change', (e) => { cls = e.target.value; setParam('class', cls); syncExport(); draw(); });
   if (document.getElementById('div')) document.getElementById('div').addEventListener('change', (e) => { div = e.target.value; setParam('division', div); syncExport(); draw(); });
   syncExport();
