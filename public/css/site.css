@@ -498,3 +498,10 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .planner td.pick button { font: inherit; font-weight: 600; width: 34px; height: 30px; margin-left: 4px; border: 1px solid var(--field); border-radius: 6px; background: #fff; color: var(--ink); cursor: pointer; }
 .planner td.pick button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 .planner .pl-out td.key { font-weight: 700; color: var(--ink); }
+
+.planner summary { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; cursor: pointer; list-style: none; padding-bottom: 12px; }
+.planner summary::-webkit-details-marker { display: none; }
+.planner summary::before { content: '▸'; color: var(--muted); font-size: 14px; width: 12px; }
+.planner[open] summary::before { content: '▾'; }
+.planner summary h2 { margin: 0; }
+.planner[open] summary > span { display: none; }
