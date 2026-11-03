@@ -122,7 +122,6 @@ if (S) {
 
   // ---- Scenario planner: fill the school's unplayed games with made-up results and re-run the real
   // ranking and seeding. Only this school's games change; everyone else's unplayed games stay blank.
-  let plOpen = false;
   let picks = {};   // game id -> 'W' | 'T' | 'L'
   const remaining = () => S.games.filter((g) => g.status === 'scheduled' && g.home && g.away && (g.home === team || g.away === team))
     .sort((a, b) => String(a.date).localeCompare(String(b.date)));
@@ -155,8 +154,8 @@ if (S) {
     const rec = (P) => `${P.R.w}-${P.R.l}-${P.R.t}`;
     const rk = (P) => (P.R.gp ? `${P.R.rank_spPerGame}${ord(P.R.rank_spPerGame)}` : '–');
     el.innerHTML = `
-      <details class="planner"${plOpen ? ' open' : ''}>
-        <summary><h2>What if…</h2><span class="muted">Try different results for the remaining games</span></summary>
+      <section class="planner" aria-labelledby="pl-h">
+        <h2 id="pl-h">What if…</h2>
         <p class="muted">Pick results for ${esc(team)}'s remaining games to see how the rankings and playoff seed would change. Other teams' unplayed games are left out.</p>
         <div class="seg seg-sm presets">
           <button type="button" data-preset="W">Win all</button>
@@ -176,9 +175,8 @@ if (S) {
           <tr><td class="l">Rank in Class ${esc(now.R.cls)}</td>${cell(now, sc, rk)}</tr>
           <tr><td class="l">Playoff seed</td>${cell(now, sc, seedText)}</tr>
         </tbody></table></div>
-      </details>`;
+      </section>`;
   }
-  document.getElementById('planner').addEventListener('toggle', (e) => { if (e.target.matches('details')) plOpen = e.target.open; }, true);
   document.getElementById('planner').addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b || b.disabled) return;
