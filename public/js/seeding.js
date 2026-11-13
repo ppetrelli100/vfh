@@ -168,7 +168,7 @@ if (S) {
       };
       const verdict = d.sum > d.sumOpp ? `${A} wins the pairing, ${d.sum} measures to ${d.sumOpp}.`
         : d.sum < d.sumOpp ? `${B} wins the pairing, ${d.sumOpp} measures to ${d.sum}.`
-        : `The teams are level at ${d.sum} measures each, so points per game decides it: ${d.win ? A : B} wins the pairing.`;
+        : `The teams are level at ${d.sum} measures each, so Saylor points per game decides it: ${d.win ? A : B} wins the pairing. (The written selection rules don't set a tie-break for this; it is this site's rule, and the committee decides real ties.)`;
       const spOf = (n) => res.table.find((t) => t.name === n).spPerGame, verdictTie = d.sum === d.sumOpp && spOf(A) === spOf(B);
       el.innerHTML = `
         <div class="toolbar"><label>Team${sel('ca', A)}</label><label>Compared with${sel('cb', B)}</label></div>
