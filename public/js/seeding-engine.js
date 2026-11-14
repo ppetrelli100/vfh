@@ -60,16 +60,23 @@
       const d = {}; let sum = 0, sumC = 0;
       for (const c of crit) { d[c] = cell(i, j, c); d[c + '_opp'] = cell(j, i, c); sum += d[c]; sumC += d[c + '_opp']; }
       d.sum = sum; d.sumOpp = sumC;
-      d.win = sum > sumC ? 1 : sum < sumC ? 0 : (R.spPerGame > C.spPerGame ? 1 : 0);
+      // Level on the measures: head-to-head decides it, and if that is level too, Saylor points per game.
+      const net = ((rec[R.name][C.name] || { w: 0 }).w) - ((rec[C.name][R.name] || { w: 0 }).w);
+      d.h2hNet = net;
+      if (sum !== sumC) { d.win = sum > sumC ? 1 : 0; d.by = 'measures'; }
+      else if (net !== 0) { d.win = net > 0 ? 1 : 0; d.by = 'h2h'; }
+      else if (R.spPerGame !== C.spPerGame) { d.win = R.spPerGame > C.spPerGame ? 1 : 0; d.by = 'sp'; }
+      else { d.win = 0; d.by = 'none'; }
       return d;
     }));
     const total = detail.map((row) => row.reduce((s, d) => s + (d ? d.win : 0), 0));
-    // Tie-break: if a total is duplicated, add points/game/100000. The sheet only looks for
-    // duplicates among the first 8 rows (a quirk kept unless opts.fixDupeRange).
-    const dupeRange = opts.fixDupeRange ? n : Math.min(8, n);
-    const adj = total.map((t, i) => (total.slice(0, dupeRange).filter((x) => x === t).length > 1 ? T[i].spPerGame / 100000 : 0));
-    const H = total.map((t, i) => t + adj[i]);
-    const finalRank = H.map((h) => H.filter((x) => x > h).length + 1);
+    // Seed order: pairings won; among teams level on that, head-to-head wins against each other
+    // (just the teams in the tie), then Saylor points per game.
+    const h2hAmong = T.map((R, i) => T.reduce((s, C, j) => (j !== i && total[j] === total[i]
+      ? s + (((rec[R.name][C.name] || { w: 0 }).w) - ((rec[C.name][R.name] || { w: 0 }).w)) : s), 0));
+    const better = (i, j) => total[i] !== total[j] ? total[i] > total[j]
+      : h2hAmong[i] !== h2hAmong[j] ? h2hAmong[i] > h2hAmong[j] : T[i].spPerGame > T[j].spPerGame;
+    const finalRank = T.map((_, i) => T.filter((__, j) => better(j, i)).length + 1);
     const table = T.map((r, i) => ({ name: r.name, spRank: i + 1, spPerGame: r.spPerGame, total: total[i], seed: finalRank[i] }))
       .sort((a, b) => a.seed - b.seed || a.spRank - b.spRank);
     // pos = place in the order shown. Teams level on pairings won and on points per game share

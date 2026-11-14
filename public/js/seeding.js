@@ -26,13 +26,13 @@ if (S) {
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
     <div id="out"></div>`;
 
-  const TIE_TIP = 'Level with another team on pairings won and points per game';
+  const TIE_TIP = 'Level with another team on pairings won, head to head and points per game';
   const tieOf = (res, name) => (res.table.find((t) => t.name === name) || {}).tie;
   // Teams level on pairings won and on points per game cannot be separated by the measures.
   const tieNote = (res) => {
     const groups = {};
     for (const t of res.table) if (t.tie && t.pos <= 8 + 1) (groups[`${t.seed}|${t.spPerGame}`] = groups[`${t.seed}|${t.spPerGame}`] || []).push(t);
-    const parts = Object.values(groups).map((g) => `${g.map((t) => esc(t.name)).join(' and ')} are level on pairings won and on points per game, so their order here is provisional until the tie is broken.`);
+    const parts = Object.values(groups).map((g) => `${g.map((t) => esc(t.name)).join(' and ')} are level on pairings won, head to head and points per game, so their order here is provisional until the tie is broken.`);
     return parts.length ? `<br>${parts.join(' ')}` : '';
   };
 
@@ -77,7 +77,7 @@ if (S) {
       <details class="how">
         <summary>The seven measures</summary>
         <p>For each pairing, each team is awarded a point on every measure where its figure is strictly higher than the other team's. Win percentage, points per game, in-class win percentage and the two .500+ records compare each team's season totals. Head to head compares wins in the games the two teams played. Mutual opponents compares each team's win percentage in games against opponents both have played.</p>
-        <p>The team with more measure points wins the pairing. If the measure points are equal, the team with more Saylor points per game wins it. A team's seed order follows the number of pairings it won, and points per game breaks ties between teams that won the same number.</p>
+        <p>The team with more measure points wins the pairing. If the measure points are equal, the team that won head to head wins it, and if that is level too, the team with more Saylor points per game. A team's seed order follows the number of pairings it won. Teams that won the same number are separated by head to head against each other, then by Saylor points per game.</p>
       </details>`;
 
     const mx = document.getElementById('mx');
@@ -168,8 +168,9 @@ if (S) {
       };
       const verdict = d.sum > d.sumOpp ? `${A} wins the pairing, ${d.sum} measures to ${d.sumOpp}.`
         : d.sum < d.sumOpp ? `${B} wins the pairing, ${d.sumOpp} measures to ${d.sum}.`
-        : `The teams are level at ${d.sum} measures each, so Saylor points per game decides it: ${d.win ? A : B} wins the pairing.`;
-      const spOf = (n) => res.table.find((t) => t.name === n).spPerGame, verdictTie = d.sum === d.sumOpp && spOf(A) === spOf(B);
+        : d.by === 'h2h' ? `The teams are level at ${d.sum} measures each, so head to head decides it: ${d.win ? A : B} wins the pairing.`
+        : `The teams are level at ${d.sum} measures each and level head to head, so Saylor points per game decides it: ${d.win ? A : B} wins the pairing.`;
+      const verdictTie = d.by === 'none';
       el.innerHTML = `
         <div class="toolbar"><label>Team${sel('ca', A)}</label><label>Compared with${sel('cb', B)}</label></div>
         <div class="scroll"><table class="tbl cmp">
@@ -178,7 +179,7 @@ if (S) {
             <td class="${d[k] ? 'win' : ''}">${val[k][0]}</td><td class="${d[k + '_opp'] ? 'win' : ''}">${val[k][1]}</td></tr>`).join('')}
           <tr><td class="l key">Measures won</td><td class="key">${d.sum}</td><td class="key">${d.sumOpp}</td></tr></tbody>
         </table></div>
-        <p class="verdict">${esc(verdictTie ? `The teams are level at ${d.sum} measures each and have identical points per game, so neither wins the pairing.` : verdict)}</p>
+        <p class="verdict">${esc(verdictTie ? `The teams are level at ${d.sum} measures each and are level head to head with identical points per game, so neither wins the pairing.` : verdict)}</p>
         ${h2hSection(A, B)}
         ${mutualSection(A, B, mo.mutual)}`;
     }
