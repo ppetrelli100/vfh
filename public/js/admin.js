@@ -58,6 +58,7 @@ function main() {
           <div class="hint" id="div-hint"></div><div class="err" id="err-division"></div></div>
         <div class="field"><label for="note">Note (optional)</label><input type="text" id="note" maxlength="120" placeholder="For example, played at a neutral site"></div>
       </div>
+      <div id="third" class="alert" hidden></div>
       <div id="dup" class="alert" hidden></div>
       <div class="actions">
         <button type="submit" class="btn" id="save">Save game</button>
@@ -370,6 +371,7 @@ function wireForm($) {
   const refreshErrors = () => show(validate(read()));
 
   function syncLayout() {
+    thirdHint();
     const future = !!$('date').value && $('date').value > localToday();   // a game that hasn't happened can't have a score
     [...$('status').options].forEach((o) => { o.disabled = future && (o.value === 'final' || o.value === 'forfeit'); });
     if (future && ($('status').value === 'final' || $('status').value === 'forfeit')) $('status').value = 'scheduled';
@@ -409,6 +411,17 @@ function wireForm($) {
   // The division is suggested from the two schools (same division -> that division, otherwise Crossover)
   // until the person picks one themselves. It is only a suggestion: the buttons still work as before.
   let autoDiv = true;
+
+  // Only the first two games between two schools count. Say so before saving a third one; it is still saved.
+  function thirdHint() {
+    const h = $('home').value, a = $('away').value, d = $('date').value, el = $('third');
+    if (!h || !a || !d || h === a) { el.hidden = true; return; }
+    const prior = S.games.filter((g) => g.id !== editingId && g.status !== 'cancelled' && g.status !== 'scheduled' &&
+      ((g.home === h && g.away === a) || (g.home === a && g.away === h)) && (g.date < d || (g.date === d && g.id < (editingId || Infinity)))).length;
+    el.hidden = prior < 2;
+    if (prior >= 2) el.innerHTML = `<strong>This would be their ${prior + 1}${prior + 1 === 3 ? 'rd' : 'th'} game this season.</strong> It can be saved, but it will show as "Not counted" and stay out of the records, rankings and seeds. Only the first two games between the same schools count.`;
+  }
+  for (const id of ['home', 'away', 'date']) document.addEventListener('change', (e) => { if (e.target.id === id) thirdHint(); });
   function suggestDivision() {
     if (!autoDiv) return;
     const h = byId[$('home').value], a = byId[$('away').value];

@@ -20,8 +20,26 @@
   // (a cancelled game is never counted as a tie; the sheet only guards the Ties matrix,
   // and cancelled rows carry no scores, so excluding them everywhere is equivalent).
   function playedGames(games) {
-    return games.filter((g) => g.home && g.away && g.home !== g.away && !isCancelled(g) &&
+    const extra = extraGames(games);
+    return games.filter((g) => g.home && g.away && g.home !== g.away && !isCancelled(g) && !extra.has(g) &&
       num(g.homeScore) !== null && num(g.awayScore) !== null);
+  }
+
+  // Only the first two games between the same two schools count (earliest date first, then entry order).
+  // A third or later meeting can still be entered and shown, but it stays out of every record, ranking and seed.
+  // Cancelled games and games not yet played do not use up one of the two slots.
+  function extraGames(games) {
+    const seen = {}, out = new Set();
+    const live = games.filter((g) => g.home && g.away && g.home !== g.away && g.status !== 'cancelled' &&
+      String(g.note || '').trim().toLowerCase() !== 'cancelled' && g.status !== 'scheduled' &&
+      num(g.homeScore) !== null && num(g.awayScore) !== null);
+    live.sort((a, b) => String(a.date).localeCompare(String(b.date)) || (a.id || 0) - (b.id || 0));
+    for (const g of live) {
+      const k = g.home < g.away ? g.home + '|' + g.away : g.away + '|' + g.home;
+      seen[k] = (seen[k] || 0) + 1;
+      if (seen[k] > 2) out.add(g);
+    }
+    return out;
   }
 
   /** Build pairwise W/L/T counts: rec[a][b] = {w,l,t} from a's point of view. */
@@ -103,6 +121,7 @@
   /** Per-team game log (the sheet's Team tab). */
   function teamGames(schools, games, team) {
     const { R } = rank(schools, games);
+    const extra = extraGames(games);
     const out = [];
     for (const g of games) {
       if (g.home !== team && g.away !== team) continue;
@@ -111,7 +130,7 @@
       const my = num(isHome ? g.homeScore : g.awayScore), th = num(isHome ? g.awayScore : g.homeScore);
       const cancelled = isCancelled(g);
       let result = '', pts = null, ifPts = null;
-      if (!cancelled && my !== null && th !== null && R[team] && R[opp]) {
+      if (!cancelled && !extra.has(g) && my !== null && th !== null && R[team] && R[opp]) {
         result = my > th ? 'W' : my < th ? 'L' : 'T';
         const b = 1250 + (R[team].classNum - 2) * 50 + (R[opp].classNum - 2) * -200 + (R[opp].qrtl - 4) * 100;
         pts = b + (result === 'L' ? -700 : result === 'T' ? -300 : 0);
@@ -120,11 +139,13 @@
         const b = 1250 + (R[team].classNum - 2) * 50 + (R[opp].classNum - 2) * -200 + (R[opp].qrtl - 4) * 100;
         ifPts = { W: b, T: b - 300, L: b - 700 };
       }
-      out.push({ ifPts, id: g.id, date: g.date, opp, home: isHome, my, th, result, status: g.status || 'final', overtime: !!g.overtime, note: g.note || '', oppClass: R[opp] && R[opp].cls, oppWinPct: R[opp] && R[opp].winPct, oppQrtl: R[opp] && R[opp].qrtl, saylor: pts });
+      const notCounted = extra.has(g);
+      if (notCounted && my !== null && th !== null) result = my > th ? 'W' : my < th ? 'L' : 'T';
+      out.push({ notCounted, ifPts, id: g.id, date: g.date, opp, home: isHome, my, th, result, status: g.status || 'final', overtime: !!g.overtime, note: g.note || '', oppClass: R[opp] && R[opp].cls, oppWinPct: R[opp] && R[opp].winPct, oppQrtl: R[opp] && R[opp].qrtl, saylor: pts });
     }
     return out.sort((a, b) => String(a.date).localeCompare(String(b.date)));
   }
 
-  const api = { rank, teamGames, buildRecords, playedGames, winPct, quartile };
+  const api = { rank, teamGames, buildRecords, playedGames, extraGames, winPct, quartile };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.FHEngine = api;
 })(typeof self !== 'undefined' ? self : this);

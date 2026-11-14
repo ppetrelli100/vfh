@@ -488,3 +488,7 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
   background: #1c2b2a; color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 400; text-align: left; white-space: nowrap; box-shadow: 0 4px 14px rgba(0,0,0,.2); }
 .whatif .tip b { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
 .whatif:hover .tip, .whatif:focus .tip { display: grid; }
+
+.tag.nc { display: block; width: max-content; margin: 3px 0 0 auto; }
+tr.nc-row td { color: var(--muted); }
+tr.nc-row .result-W, tr.nc-row .result-L, tr.nc-row .result-T { color: inherit; }

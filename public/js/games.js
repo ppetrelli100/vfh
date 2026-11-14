@@ -45,12 +45,14 @@ if (S) {
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   });
 
+  const EXTRA = FHEngine.extraGames(S.games);
   const tags = (g) => {
     const out = [];
     if (g.status === 'cancelled') out.push('<span class="tag off">Cancelled</span>');
     else if (g.status === 'scheduled') out.push('<span class="tag">Scheduled</span>');
     else if (g.status === 'forfeit') out.push('<span class="tag">Forfeit</span>');
     if (g.overtime) out.push('<span class="tag">OT</span>');
+    if (g.notCounted || (EXTRA && EXTRA.has(g))) out.push('<span class="tag off" title="Only the first two games between the same schools count">Not counted</span>');
     return out.join('');
   };
   const noteText = (g) => {
@@ -104,11 +106,11 @@ if (S) {
     document.getElementById('tbl').innerHTML = `
       <thead><tr><th class="l">Date</th><th class="l">Site</th><th class="l">Opponent</th><th>Result</th>
         <th class="hide-sm">Opponent class</th><th class="hide-sm">Opponent win %</th><th>Saylor points</th></tr></thead>
-      <tbody>${log.map((x) => `<tr>
+      <tbody>${log.map((x) => `<tr${x.notCounted ? ' class="nc-row"' : ''}>
         <td class="l">${esc(fmtDate(x.date))}</td>
         <td class="l muted"><span class="nm"><span class="full">${x.home ? 'Home' : 'Away'}</span><span class="abbr">${x.home ? 'H' : 'A'}</span></span></td>
         <td class="name${x.status === 'cancelled' ? ' struck' : ''}"><a class="tn" href="${gameUrl(x.opp)}">${logo(x.opp)}${nm(x.opp)}</a></td>
-        <td>${x.result ? `<span class="result-${x.result}">${x.result}</span> ${x.my}–${x.th}` : ''}${tags(x)}</td>
+        <td>${x.result ? `<span class="result-${x.result}">${x.result}</span> ${x.my}–${x.th}` : ''}${tags(x).replace('tag off"', 'tag off nc"')}</td>
         <td class="hide-sm">${esc(x.oppClass || '')}</td>
         <td class="hide-sm">${fmtPct(x.oppWinPct)}</td>
         <td>${x.saylor !== null ? fmtInt(x.saylor) : x.ifPts ? `<span class="whatif" tabindex="0">–<span class="tip" role="tooltip"><span>Win</span><b>${fmtInt(x.ifPts.W)}</b><span>Tie</span><b>${fmtInt(x.ifPts.T)}</b><span>Loss</span><b>${fmtInt(x.ifPts.L)}</b></span></span>` : ''}</td></tr>`).join('')}
