@@ -469,7 +469,7 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 /* Phones use two drop-downs (Class left, Division right) in place of the button rows on Rankings */
 .pick-sel { display: none; }
 @media (max-width: 700px) {
-  .toolbar:has(#classes) { display: none; }
+  .toolbar:has(#classes):has(+ .pick-sel) { display: none; }
   .pick-sel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .pick-sel label { min-width: 0; }
   .pick-sel select { width: 100%; }
