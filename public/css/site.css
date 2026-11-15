@@ -492,3 +492,7 @@ textarea { font: inherit; width: 100%; max-width: 640px; padding: 8px 10px; bord
 .tag.nc { display: block; width: max-content; margin: 3px 0 0 auto; }
 tr.nc-row td { color: var(--muted); }
 tr.nc-row .result-W, tr.nc-row .result-L, tr.nc-row .result-T { color: inherit; }
+
+/* Rankings: division view */
+.divnote { margin: 4px 0 10px; }
+.tbl td.ref { color: var(--muted); }

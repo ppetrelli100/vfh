@@ -13,7 +13,8 @@ if (S) {
 
 
   // rank key is the engine's rank_<metric>; value formatter is the cell text
-  // Division is geographic and comes from the schools list; it only filters the view and never changes the math.
+  // Division is geographic and comes from the schools list. Choosing a division recalculates every figure from games
+  // between two schools in that division only; "All divisions" is the league-wide ranking.
   const divOf = Object.fromEntries(S.schools.map((x) => [x.name, x.division || '']));
   const divisions = ['D1/2', 'D3', 'D4'].filter((d) => S.schools.some((x) => x.division === d));
   let div = divisions.includes(getParam('division')) ? getParam('division') : '';
@@ -28,12 +29,14 @@ if (S) {
     return m;
   };
   const ALL_COLS = [
-    { key: 'rank', label: 'Rank', cls: 'rnk', cell: (r) => (r.gp ? (viewRanks ? viewRanks.get(r.name) : r.rank_spPerGame) : '–'), nosort: true },
+    { key: 'rank', label: 'Rank', dlabel: (d) => `${d} rank`, cls: 'rnk', cell: (r) => (r.gp ? (viewRanks ? viewRanks.get(r.name) : r.rank_spPerGame) : '–'), nosort: true },
     { key: 'name', label: 'School', cls: 'name' },
     { key: 'cls', label: 'Class', cls: 'cls-col', cell: (r) => r.cls, onlyAll: true },
     { key: 'record', label: 'Record', cls: '', cell: (r) => record(r), nosort: true },
     { key: 'winPct', label: 'Win %', cls: '', cell: (r) => fmtPct(r.winPct), rank: 'rank_winPct' },
-    { key: 'spPerGame', label: 'Saylor points per game', cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
+    { key: 'spPerGame', label: 'Saylor points per game', dlabel: (d) => `${d} Saylor points per game`, cls: 'key', cell: (r) => fmtInt(r.spPerGame), rank: 'rank_spPerGame' },
+    { key: 'games', label: 'Games counted', cls: 'hide-sm', cell: (r) => `${r.gp} of ${r.allGp}`, nosort: true, onlyDiv: true },
+    { key: 'allSp', label: 'All-games Saylor points per game', cls: 'hide-sm ref', cell: (r) => fmtInt(r.allSp), onlyDiv: true },
     { key: 'sp', label: 'Saylor points total', cls: 'hide-sm', cell: (r) => fmtInt(r.sp), rank: 'rank_sp' },
     { key: 'inWinPct', label: 'In-class win %', cls: 'hide-sm', cell: (r) => fmtPct(r.inWinPct), rank: 'rank_inWinPct' },
     { key: 'gt500In', label: 'vs .500+ in class', cls: 'hide-sm', cell: (r) => r.gt500In, rank: 'rank_gt500In' },
@@ -50,6 +53,7 @@ if (S) {
       <label>Class<select id="m-cls"><option value="all">All classes</option>${classes.map((c) => `<option value="${esc(c)}">Class ${esc(c)} (${counts[c]})</option>`).join('')}</select></label>
       ${divisions.length ? `<label>Division<select id="m-div"><option value="">All divisions</option>${divisions.map((d) => `<option value="${esc(d)}">${esc(d)} (${S.schools.filter((x) => x.division === d).length})</option>`).join('')}</select></label>` : ''}
     </div>
+    <p class="hint divnote" id="divnote" hidden></p>
     <div class="scroll"><table class="tbl c" id="tbl"></table></div>
     <details class="how">
       <summary>How the points work</summary>
@@ -78,32 +82,50 @@ if (S) {
     return sortDir === 'desc' ? -d : d;
   };
 
+  const cols = () => ALL_COLS.filter((c) => (!c.onlyAll || cls === 'all') && (!c.onlyDiv || div));
+  const lbl = (c) => (div && c.dlabel ? c.dlabel(div) : c.label);
+
   function draw() {
-    const inView = S.ranked.rows.filter((r) => (cls === 'all' || r.cls === cls) && (!div || divOf[r.name] === div));
+    let base = S.ranked.rows;
+    if (div) {
+      // Same engine, fed only the schools in this division and the games between two of them.
+      const inDiv = S.schools.filter((x) => divOf[x.name] === div);
+      const dg = S.games.filter((g) => divOf[g.home] === div && divOf[g.away] === div);
+      const all = Object.fromEntries(S.ranked.rows.map((r) => [r.name, r]));
+      base = FHEngine.rank(inDiv, dg).rows.map((r) => Object.assign(r, { allSp: all[r.name].spPerGame, allGp: all[r.name].gp }));
+    }
+    const inView = base.filter((r) => cls === 'all' || r.cls === cls);
     viewRanks = cls === 'all' || div ? placeRanks(inView) : null;
     const rows = inView.slice().sort(cmp);
     document.getElementById('lede').textContent = div
-      ? `Current ranking within division ${div}${cls === 'all' ? '' : `, Class ${cls} only`}, by Saylor points per game.`
+      ? `Current ranking within division ${div}${cls === 'all' ? '' : `, Class ${cls} only`}, by Saylor points per game from games within the division.`
       : 'Current ranking within class by Saylor points per game.';
-    const COLS = ALL_COLS.filter((c) => !c.onlyAll || cls === 'all');
+    const note = document.getElementById('divnote');
+    if (div) {
+      const played = FHEngine.playedGames(S.games);
+      const skipped = played.filter((g) => divOf[g.home] && divOf[g.away] && divOf[g.home] !== divOf[g.away] && (divOf[g.home] === div || divOf[g.away] === div)).length;
+      note.hidden = false;
+      note.innerHTML = `<strong>${esc(div)} ranking.</strong> This counts only games between ${esc(div)} schools, so the points, win percentages and .500+ columns differ from the all-games rankings. ${skipped} game${skipped === 1 ? '' : 's'} against other divisions ${skipped === 1 ? 'is' : 'are'} not counted. The grey column shows each school's all-games figure for comparison.`;
+    } else note.hidden = true;
+    const COLS = cols();
     if (!COLS.some((c) => c.key === sortKey && !c.nosort)) { sortKey = 'spPerGame'; sortDir = 'desc'; }
     const head = COLS.map((c, i) => {
       const sorted = c.key === sortKey;
       const sortable = !c.nosort;
       return `<th scope="col" class="${c.cls.replace('name', 'l')}"${sorted ? ` aria-sort="${sortDir === 'desc' ? 'descending' : 'ascending'}"` : ''}>${
-        sortable ? `<button type="button" data-i="${i}">${esc(c.label)}</button>` : esc(c.label)}</th>`;
+        sortable ? `<button type="button" data-i="${i}">${esc(lbl(c))}</button>` : esc(lbl(c))}</th>`;
     }).join('');
     document.getElementById('tbl').innerHTML = `
       <thead><tr>${head}</tr></thead>
       <tbody>${rows.map((r) => `<tr>
         ${COLS.map((c) => {
           if (c.key === 'name') return `<td class="name"><a class="tn" href="${gameUrl(r.name)}">${logo(r.name)}<span>${nm(r.name)}${cls === 'all' ? `<span class="cl">(${esc(r.cls)})</span>` : ''}</span></a></td>`;
-          const rk = c.rank && r.gp ? `<span class="rk">${r[c.rank]}</span>` : '';
+          const rk = c.rank && r.gp && !div ? `<span class="rk">${r[c.rank]}</span>` : '';
           return `<td class="${c.cls}">${c.cell(r)}${rk}</td>`;
         }).join('')}
       </tr>`).join('')}</tbody>`;
     document.querySelectorAll('#tbl th button').forEach((b) => b.addEventListener('click', () => {
-      const c = ALL_COLS.filter((q) => !q.onlyAll || cls === 'all')[Number(b.dataset.i)];
+      const c = cols()[Number(b.dataset.i)];
       if (c.key === sortKey) sortDir = sortDir === 'desc' ? 'asc' : 'desc';
       else { sortKey = c.key; sortDir = c.key === 'name' || c.rankCol ? 'asc' : 'desc'; }
       draw();
