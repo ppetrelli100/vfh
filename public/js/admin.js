@@ -78,6 +78,20 @@ function main() {
     </div>
     <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
+    ${hasSeason ? `<details class="tools" id="po-wrap">
+      <summary>Exclude from playoffs</summary>
+      <div class="panel">
+        <p class="hint" style="margin:0 0 10px">A school listed here stays in the rankings and its games still count for everyone else, but it is left out of the playoff picture for <strong>${esc(S.season.label)}</strong>. The next team in its class takes its place in the pool of 12. Changes save right away.</p>
+        <div class="teams">
+          <div class="field"><label for="po-school">School</label><select id="po-school"></select></div>
+          <div class="field"><label for="po-note">Reason (optional)</label><input type="text" id="po-note" maxlength="120" placeholder="For example, injuries"></div>
+        </div>
+        <div class="actions" style="margin-top:8px"><button type="button" class="btn ghost" id="po-add">Exclude from playoffs</button><span class="status" id="po-msg" role="status"></span></div>
+        <h3 style="margin:18px 0 4px">Currently excluded</h3>
+        <div class="scroll"><table class="tbl" id="po-tbl"></table></div>
+      </div>
+    </details>` : ''}
+
     ${hasSeason ? `<details class="tools" id="sc-wrap">
       <summary>Schools and classes</summary>
       <div class="panel">
@@ -141,7 +155,7 @@ function main() {
 
   wireTools($);
   wireLog($);
-  if (hasSeason) { wireForm($); wireClasses($); }
+  if (hasSeason) { wireForm($); wirePlayoffs($); wireClasses($); }
 }
 
 function wireLog($) {
@@ -171,6 +185,7 @@ function wireLog($) {
     if (e.action === 'import') return `Imported season ${sname(x.season)} from spreadsheet: ${x.games} games, ${x.schools} schools${x.replace ? ' (replaced the existing games)' : ''}`;
     if (e.action === 'season-delete') return `Deleted season '${x.label || x.id}' (${x.games} games)`;
     if (e.action === 'season') return `Created season '${x.label || x.id}'${x.copyFrom ? `, copied schools${x.copyGames ? ' and games' : ''} from ${sname(x.copyFrom)}` : ''}`;
+    if (e.action === 'playoffs') return `${x.out ? 'Took' : 'Put'} ${x.name} ${x.out ? 'out of' : 'back in'} the ${sname(x.season)} playoffs${x.out && x.note ? ` (${x.note})` : ''}`;
     if (e.action === 'classes') return `Changed school classes in ${sname(x.season)}${Array.isArray(x.changes) ? `: ${x.changes.length} change${x.changes.length === 1 ? '' : 's'}` : ''}`;
     return e.action.replace(/[_-]/g, ' ');
   };
@@ -252,6 +267,37 @@ function wireTools($) {
 }
 
 // Schools-and-classes editor: edit classes in a table, or paste a list, then save in one go.
+function wirePlayoffs($) {
+  const tbl = $('po-tbl'); if (!tbl) return;
+  const msg = $('po-msg');
+  const state = new Map(S.schools.map((x) => [x.name, { cls: x.cls, out: !!x.playoffOut, note: x.playoffNote || '' }]));
+  function draw() {
+    const rows = [...state].filter(([, v]) => v.out).sort((a, b) => a[1].cls.localeCompare(b[1].cls) || a[0].localeCompare(b[0]));
+    tbl.innerHTML = rows.length
+      ? `<thead><tr><th class="l">School</th><th>Class</th><th class="l">Reason</th><th></th></tr></thead><tbody>${rows.map(([n, v]) => `<tr><td class="l name">${esc(n)}</td><td>${esc(v.cls)}</td><td class="l">${esc(v.note) || '<span class="muted">none</span>'}</td><td><button type="button" class="btn ghost" data-back="${esc(n)}">Put back</button></td></tr>`).join('')}</tbody>`
+      : '<tbody><tr><td class="l muted">No schools are excluded.</td></tr></tbody>';
+    const avail = S.schools.filter((x) => !state.get(x.name).out).slice().sort((a, b) => a.name.localeCompare(b.name));
+    $('po-school').innerHTML = `<option value="">Choose a school</option>${avail.map((x) => `<option value="${esc(x.name)}">${esc(x.name)} (${esc(x.cls)})</option>`).join('')}`;
+  }
+  async function save(name, out, note) {
+    msg.className = 'status'; msg.textContent = 'Saving...';
+    try {
+      await api(`/api/seasons/${encodeURIComponent(S.season.id)}/playoffs`, { method: 'PUT', body: { name, out, note } });
+      state.set(name, { ...state.get(name), out, note: out ? note : '' });
+      msg.className = 'status ok'; msg.textContent = out ? `${name} is out of the playoffs.` : `${name} is back in.`;
+      draw();
+    } catch (e) { msg.className = 'status bad'; msg.textContent = e.message; }
+  }
+  $('po-add').addEventListener('click', () => {
+    const n = $('po-school').value;
+    if (!n) { msg.className = 'status bad'; msg.textContent = 'Choose a school.'; return; }
+    const note = $('po-note').value.trim(); $('po-note').value = '';
+    save(n, true, note);
+  });
+  tbl.addEventListener('click', (e) => { const b = e.target.closest('[data-back]'); if (b) save(b.dataset.back, false, ''); });
+  draw();
+}
+
 function wireClasses($) {
   const tbl = $('sc-tbl'); if (!tbl) return;
   const orig = new Map(S.schools.map((x) => [x.name, { cls: x.cls, division: x.division || '' }]));

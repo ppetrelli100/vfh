@@ -54,6 +54,11 @@ export async function getDb(env) {
       await batchInChunks(env.DB, Object.entries(DIVISIONS_2026).map(([name, d]) =>
         env.DB.prepare('UPDATE season_schools SET division = ? WHERE division IS NULL AND school_id = (SELECT id FROM schools WHERE name = ?)').bind(d, name)));
     }
+    // Teams that will not play in the playoffs this season (injuries, no team), with an optional reason.
+    if (!cols.some((c) => c.name === 'playoff_out')) {
+      await env.DB.prepare('ALTER TABLE season_schools ADD COLUMN playoff_out INTEGER NOT NULL DEFAULT 0').run();
+      await env.DB.prepare('ALTER TABLE season_schools ADD COLUMN playoff_note TEXT').run();
+    }
     schemaReady = true;
   }
   return env.DB;

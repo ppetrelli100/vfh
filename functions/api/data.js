@@ -15,7 +15,8 @@ export const onRequestGet = handle(async ({ env, request }) => {
   if (!season) throw new HttpError(404, 'That season does not exist.');
 
   const schools = (await db.prepare(
-    `SELECT s.id, s.name, ss.class AS cls, ss.class_num AS classNum, ss.league, ss.division
+    `SELECT s.id, s.name, ss.class AS cls, ss.class_num AS classNum, ss.league, ss.division,
+           ss.playoff_out AS playoffOut, ss.playoff_note AS playoffNote
        FROM season_schools ss JOIN schools s ON s.id = ss.school_id
       WHERE ss.season_id = ? ORDER BY ss.rowid`).bind(season.id).all()).results;
   const games = (await db.prepare(`${GAME_SELECT} WHERE g.season_id = ? ORDER BY g.game_date, g.id`).bind(season.id).all()).results;

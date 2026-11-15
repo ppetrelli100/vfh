@@ -7,6 +7,8 @@
  * The bracket is the first 8 teams in that order that have a .500 record overall or in class
  * (.500 or better): 1v8, 4v5, 3v6, 2v7. Teams below .500 stay in the pool and in the comparisons but
  * cannot take a bracket slot. opts.poolRequires500 (off for 2026) also keeps them out of the pool of 12.
+ * opts.excluded (names): teams that will not play in the playoffs. They are left out of the pool entirely,
+ * so the next team in the class by points/game takes the 12th place. Their games still count in everyone's record.
  */
 (function (root) {
   'use strict';
@@ -50,7 +52,8 @@
 
   function seed(rows, rec, games, cls, opts) {
     opts = opts || {};
-    const T = top12(opts.poolRequires500 ? rows.filter(meets500) : rows, cls, opts.size);
+    const skip = new Set(opts.excluded || []);
+    const T = top12(rows.filter((r) => !skip.has(r.name) && (!opts.poolRequires500 || meets500(r))), cls, opts.size);
     const n = T.length;
     const gt = (a, b) => (a !== null && b !== null && a > b ? 1 : 0);
     const crit = ['winPct', 'spPerGame', 'inWinPct', 'gt500In', 'gt500Out', 'h2h', 'mutual'];

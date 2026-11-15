@@ -46,7 +46,8 @@ if (S) {
   };
 
   function draw() {
-    const res = FHSeeding.seed(S.ranked.rows, S.ranked.rec, S.games, cls);
+    const res = FHSeeding.seed(S.ranked.rows, S.ranked.rec, S.games, cls, { excluded: S.schools.filter((s) => s.playoffOut).map((s) => s.name) });
+    const outTeams = S.schools.filter((s) => s.playoffOut && s.cls === cls);
     const out = document.getElementById('out');
     if (res.top12.length < 2) {
       out.innerHTML = '<div class="scroll"><div class="empty"><strong>Not enough games yet</strong>Seeds appear once teams in this class have played.</div></div>';
@@ -76,6 +77,7 @@ if (S) {
           <td class="hide-sm">${t.spRank}</td></tr>`).join('')}</tbody>
       </table></div>
       <p class="hint" style="margin-top:8px">The line marks the playoff cut. Teams below it are shown for reference. A team marked Below .500 has no .500 record overall or in class, so it stays in the comparisons but cannot take a bracket spot.${tieNote(res)}</p>
+      ${outTeams.length ? `<p class="hint" style="margin-top:4px">Not playing in the playoffs: ${outTeams.map((t) => `${esc(t.name)}${t.playoffNote ? ` (${esc(t.playoffNote)})` : ''}`).join('; ')}. ${outTeams.length === 1 ? 'It is' : 'They are'} left out of the pool, and the next team in the class takes ${outTeams.length === 1 ? 'its' : 'their'} place.</p>` : ''}
 
       <h2>Pairwise comparison</h2>
       <p class="hint" style="margin-top:0">Each team is compared with every other team in the top 12. A 1 means the team in that row won the pairing against the team in that column. Select any cell to see the comparison below.</p>
@@ -87,7 +89,7 @@ if (S) {
         <summary>The seven measures</summary>
         <p>For each pairing, each team is awarded a point on every measure where its figure is strictly higher than the other team's. Win percentage, points per game, in-class win percentage and the two .500+ records compare each team's season totals. Head to head compares wins in the games the two teams played. Mutual opponents compares each team's win percentage in games against opponents both have played.</p>
         <p>The team with more measure points wins the pairing. If the measure points are equal, the team that won head to head wins it. If that is level too, the team with more Saylor points per game wins it, then the team with the higher in-class win percentage. A team's seed order follows the number of pairings it won. Teams that won the same number are separated by head to head against each other, then by Saylor points per game, then by in-class win percentage.</p>
-        <p>Bracket eligibility: the bracket is the first 8 teams in that order with a .500 record or better overall, or .500 or better in class. A team without one can still be in the top 12 and in every comparison, but it does not take a bracket spot, so the next team that qualifies moves up.</p>
+        <p>Bracket eligibility: the bracket is the first 8 teams in that order with a .500 record or better overall, or .500 or better in class. A team without one can still be in the top 12 and in every comparison, but it does not take a bracket spot, so the next team that qualifies moves up. A team that has told the league it will not play is left out of the pool altogether, and the next team in the class by Saylor points per game takes the 12th place.</p>
       </details>`;
 
     const mx = document.getElementById('mx');
