@@ -51,7 +51,7 @@ function main() {
         <div class="err" id="err-winner"></div>
       </div>
       <div class="checks" id="ot-wrap"><label><input type="checkbox" id="ot"> Decided in overtime</label></div>
-      <div class="checks" id="pl-wrap"><label><input type="checkbox" id="pl"> Playoff game</label></div>
+      <div class="checks" id="pl-wrap"><label><input type="checkbox" id="pl"> Playoff game</label><span class="hint" id="pl-hint" style="margin-left:8px"></span></div>
       <div id="pl-decided" hidden>
         <div class="field"><label for="dec">How was it decided?</label>
           <select id="dec"><option value="0">Regulation</option><option value="1">Overtime</option><option value="2">Second overtime</option><option value="so">Shootout</option></select></div>
@@ -320,7 +320,7 @@ function wirePlayoffs($) {
     lm.className = 'status'; lm.textContent = 'Saving...';
     try {
       const r = await api(`/api/seasons/${encodeURIComponent(S.season.id)}/bracket`, { method: 'PUT', body: { locked } });
-      S.season.bracketLock = r.locked; lockState();
+      S.season.bracketLock = r.locked; lockState(); document.getElementById('pl').dispatchEvent(new Event('input', { bubbles: true }));
       lm.className = 'status ok'; lm.textContent = r.locked ? 'Seeds locked.' : 'Seeds unlocked.';
     } catch (e) { lm.className = 'status bad'; lm.textContent = e.message; }
   }
@@ -503,6 +503,12 @@ function wireForm($) {
     if (future && ($('status').value === 'final' || $('status').value === 'forfeit')) $('status').value = 'scheduled';
     const st = $('status').value, v = read();
     $('scores').hidden = st !== 'final';
+    const locked = !!(S.season.bracketLock && Object.keys(S.season.bracketLock).length);
+    const editingPlayoff = editingId && (S.allGames.find((x) => x.id === editingId) || {}).gameType === 'playoff';
+    $('pl').disabled = !locked && !editingPlayoff;
+    if ($('pl').disabled) $('pl').checked = false;
+    $('pl-wrap').classList.toggle('off', $('pl').disabled);
+    $('pl-hint').textContent = $('pl').disabled ? 'Available after you lock the seeds in Playoff settings.' : '';
     const playoff = $('pl').checked;
     $('ot-wrap').hidden = st !== 'final' || playoff;
     $('pl-decided').hidden = st !== 'final' || !playoff;

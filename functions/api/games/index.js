@@ -12,6 +12,10 @@ export const onRequestPost = handle(async ({ env, request }) => {
   const season = await db.prepare('SELECT id FROM seasons WHERE id = ?').bind(seasonId).first();
   if (!season) throw new HttpError(422, 'Choose a season first.', { fields: { season: 'Choose a season.' } });
 
+  if (body.gameType === 'playoff') {
+    const lk = await db.prepare('SELECT bracket_lock AS l FROM seasons WHERE id = ?').bind(seasonId).first();
+    if (!lk || !lk.l) throw new HttpError(422, 'Lock the seeds in Playoff settings before entering a playoff game.', { fields: { status: 'Lock the seeds in Playoff settings first.' } });
+  }
   const g = await validateGame(db, body, { seasonId });
   const res = await db.prepare(
     `INSERT INTO games (season_id, game_date, home_id, away_id, home_score, away_score, status, overtime, game_type, division, note, so_winner, created_by, updated_by, updated_at)

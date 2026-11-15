@@ -536,3 +536,5 @@ tr.nc-row .result-W, tr.nc-row .result-L, tr.nc-row .result-T { color: inherit; 
 .match .side .gscore + .tag { margin-left: 6px; }
 .match .side.lost { color: var(--muted); }
 .match .side.lost .gscore { font-weight: 500; }
+#pl-wrap.off { opacity: .55; }
+#pl-wrap.off label { cursor: not-allowed; }
