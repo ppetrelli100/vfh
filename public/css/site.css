@@ -170,19 +170,28 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .pitch h2 { margin: 0 0 2px; font-size: 14px; }
 .pitch-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .pitch-head .seg-sm { margin-left: auto; }
-/* full bracket: three columns, each round centred between the two games that feed it */
-.bk { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; align-items: stretch; }
-.bk .col { display: flex; flex-direction: column; min-width: 0; }
-.bk .col > .grp { flex: 1; display: flex; flex-direction: column; justify-content: space-around; padding: 5px 0; position: relative; }
-.bk .col.fin > .grp { justify-content: center; }
-.bk h3 { margin: 0 0 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
-.bk .col:not(.fin) > .grp::after { content: ''; position: absolute; right: -15px; top: 25%; bottom: 25%; width: 14px; border: 2px solid var(--line); border-left: 0; border-radius: 0 6px 6px 0; }
-.bk .col:not(.fin) > .grp::before { content: ''; position: absolute; right: -28px; top: 50%; width: 14px; border-top: 2px solid var(--line); }
-.bk .tbd { color: var(--muted); font-weight: 500; }
+/* full bracket: a grid of equal rows. Each later round spans the rows of the games that feed it, so it sits centred between them. */
+.bk { --rh: 98px; --g: 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto repeat(4, var(--rh)); gap: var(--g) 30px; }
+.bk h3 { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); align-self: end; }
+.bk .hq { grid-column: 1; grid-row: 1; } .bk .hs { grid-column: 2; grid-row: 1; } .bk .hf { grid-column: 3; grid-row: 1; }
+.bk .match { display: flex; flex-direction: column; position: relative; min-width: 0; }
+.bk .match .side { flex: 1; font-weight: 500; }
+.bk .q { grid-column: 1; }
+.bk .q1 { grid-row: 2; } .bk .q2 { grid-row: 3; } .bk .q3 { grid-row: 4; } .bk .q4 { grid-row: 5; }
+.bk .s { grid-column: 2; align-self: center; height: var(--rh); }
+.bk .s1 { grid-row: 2 / span 2; } .bk .s2 { grid-row: 4 / span 2; }
+.bk .f { grid-column: 3; grid-row: 2 / span 4; align-self: center; height: var(--rh); }
+.bk .tbd { color: var(--muted); }
+/* connector lines: a bracket from each pair of feeder games into the game they feed */
+.bk .s::before, .bk .f::before { content: ''; position: absolute; left: -16px; width: 15px; top: calc(50% - (var(--rh) + var(--g)) / 2); height: calc(var(--rh) + var(--g)); border: 2px solid var(--line); border-right: 0; border-radius: 6px 0 0 6px; box-sizing: border-box; }
+.bk .s1::before, .bk .s2::before { top: calc(50% - (var(--rh) + var(--g)) / 2); }
+.bk .s::after, .bk .f::after { content: ''; position: absolute; left: -31px; width: 15px; top: 50%; border-top: 2px solid var(--line); }
 @media (max-width: 700px) {
-  .bk { grid-template-columns: 1fr; row-gap: 14px; }
-  .bk .col > .grp { gap: 8px; }
-  .bk .col:not(.fin) > .grp::after, .bk .col:not(.fin) > .grp::before { display: none; }
+  .bk { display: flex; flex-direction: column; gap: 8px; }
+  .bk .match { height: auto; }
+  .bk h3 { margin-top: 10px; }
+  .bk h3.hq { order: 1; margin-top: 0; } .bk .q { order: 2; } .bk h3.hs { order: 3; } .bk .s { order: 4; } .bk h3.hf { order: 5; } .bk .f { order: 6; }
+  .bk .s::before, .bk .f::before, .bk .s::after, .bk .f::after { display: none; }
 }
 .pitch p { margin: 0 0 14px; color: var(--muted); max-width: 70ch; }
 .matchups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
@@ -514,3 +523,10 @@ tr.nc-row .result-W, tr.nc-row .result-L, tr.nc-row .result-T { color: inherit; 
 #tbl.divview thead th, #tbl.c.divview thead th:nth-child(1), #tbl.c.divview thead th:nth-child(2) { background: var(--accent-soft); }
 #tbl.divview td.key { background: rgba(29, 78, 216, .07); }
 .tbl td.ref { color: var(--muted); }
+
+/* connected two-way toggle on the matchups card */
+#viewseg { gap: 0; }
+#viewseg button { border-radius: 0; }
+#viewseg button:first-child { border-radius: 8px 0 0 8px; }
+#viewseg button:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }
+#viewseg button[aria-pressed="true"] { position: relative; z-index: 1; }

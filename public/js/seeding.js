@@ -72,15 +72,14 @@ if (S) {
     // Full bracket: quarterfinals (the four pairings, in bracket order), semifinals and the final.
     const tbd = (t) => `<div class="side tbd"><span>${t}</span></div>`;
     const bracketHtml = (r) => {
-      const q = r.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`);
       const lbl = (m) => `${m.high.seed} v ${m.low.seed}`;
       const [a, b, c2, d2] = r.bracket;
+      const sf = (x, y) => `<div class="match s">${tbd(`Winner of ${lbl(x)}`)}${tbd(`Winner of ${lbl(y)}`)}</div>`;
       return `<div class="bk">
-        <div class="col"><h3>Quarterfinals</h3><div class="grp">${q[0]}${q[1]}</div><div class="grp">${q[2]}${q[3]}</div></div>
-        <div class="col"><h3>Semifinals</h3><div class="grp">
-          <div class="match">${tbd(`Winner of ${lbl(a)}`)}${tbd(`Winner of ${lbl(b)}`)}</div>
-          <div class="match">${tbd(`Winner of ${lbl(c2)}`)}${tbd(`Winner of ${lbl(d2)}`)}</div></div></div>
-        <div class="col fin"><h3>Final</h3><div class="grp"><div class="match">${tbd('Winner of top semifinal')}${tbd('Winner of bottom semifinal')}</div></div></div>
+        <h3 class="hq">Quarterfinals</h3><h3 class="hs">Semifinals</h3><h3 class="hf">Final</h3>
+        ${r.bracket.map((m, i) => `<div class="match q q${i + 1}">${side(m.high)}${side(m.low)}</div>`).join('')}
+        ${sf(a, b).replace('match s', 'match s s1')}${sf(c2, d2).replace('match s', 'match s s2')}
+        <div class="match f">${tbd('Winner of top semifinal')}${tbd('Winner of bottom semifinal')}</div>
       </div>`;
     };
     const side = (x) => x.name
@@ -95,7 +94,7 @@ if (S) {
             <button type="button" data-v="matchups" aria-pressed="${view === 'matchups'}">Playoff matchups</button>
             <button type="button" data-v="bracket" aria-pressed="${view === 'bracket'}">Bracket view</button></div>
         </div>
-        <p>${view === 'bracket' ? 'Winners advance: the 1 v 8 winner plays the 4 v 5 winner, and the 3 v 6 winner plays the 2 v 7 winner. ' : ''}Based on games through the latest saved score. The seeds change as results come in.</p>
+        ${view === 'bracket' ? '' : '<p>Based on games through the latest saved score. The seeds change as results come in.</p>'}
         ${view === 'bracket' ? bracketHtml(res) : `<div class="matchups">${res.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`).join('')}</div>`}
       </section>
 
