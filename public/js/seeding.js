@@ -9,6 +9,7 @@ if (S) {
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
   let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
   let pair = null; // [teamA, teamB]
+  let view = getParam('view') === 'bracket' ? 'bracket' : 'matchups'; // matchups card: first-round pairings, or the full bracket
   // The pool is a season setting that an administrator makes; everyone sees it. An administrator can preview the other
   // one by adding ?pool=500 or ?pool=12 to the address without changing the setting.
   const official = S.season.playoffPool === 'all500' ? 'all500' : 'top12';
@@ -68,15 +69,34 @@ if (S) {
     }
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
+    // Full bracket: quarterfinals (the four pairings, in bracket order), semifinals and the final.
+    const tbd = (t) => `<div class="side tbd"><span>${t}</span></div>`;
+    const bracketHtml = (r) => {
+      const q = r.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`);
+      const lbl = (m) => `${m.high.seed} v ${m.low.seed}`;
+      const [a, b, c2, d2] = r.bracket;
+      return `<div class="bk">
+        <div class="col"><h3>Quarterfinals</h3><div class="grp">${q[0]}${q[1]}</div><div class="grp">${q[2]}${q[3]}</div></div>
+        <div class="col"><h3>Semifinals</h3><div class="grp">
+          <div class="match">${tbd(`Winner of ${lbl(a)}`)}${tbd(`Winner of ${lbl(b)}`)}</div>
+          <div class="match">${tbd(`Winner of ${lbl(c2)}`)}${tbd(`Winner of ${lbl(d2)}`)}</div></div></div>
+        <div class="col fin"><h3>Final</h3><div class="grp"><div class="match">${tbd('Winner of top semifinal')}${tbd('Winner of bottom semifinal')}</div></div></div>
+      </div>`;
+    };
     const side = (x) => x.name
       ? `<div class="side"><span class="seedno${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${x.seed}</span><span class="tn${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${logo(x.name, 26)}${nm(x.name)}</span></div>`
       : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`;
 
     out.innerHTML = `
       <section class="pitch" aria-labelledby="pm">
-        <h2 id="pm">Class ${esc(cls)} playoff matchups</h2>
-        <p>Based on games through the latest saved score. The seeds change as results come in.</p>
-        <div class="matchups">${res.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`).join('')}</div>
+        <div class="pitch-head">
+          <h2 id="pm">Class ${esc(cls)} playoff ${view === 'bracket' ? 'bracket' : 'matchups'}</h2>
+          <div class="seg seg-sm" id="viewseg" role="group" aria-label="View">
+            <button type="button" data-v="matchups" aria-pressed="${view === 'matchups'}">Playoff matchups</button>
+            <button type="button" data-v="bracket" aria-pressed="${view === 'bracket'}">Bracket view</button></div>
+        </div>
+        <p>${view === 'bracket' ? 'Winners advance: the 1 v 8 winner plays the 4 v 5 winner, and the 3 v 6 winner plays the 2 v 7 winner. ' : ''}Based on games through the latest saved score. The seeds change as results come in.</p>
+        ${view === 'bracket' ? bracketHtml(res) : `<div class="matchups">${res.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`).join('')}</div>`}
       </section>
 
       <h2>Seeding</h2>
@@ -214,6 +234,10 @@ if (S) {
     document.getElementById('cb').addEventListener('change', swap);
   }
 
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('#viewseg button'); if (!b) return;
+    view = b.dataset.v; setParam('view', view === 'bracket' ? 'bracket' : ''); draw();
+  });
   classPicker(document.getElementById('classes'), classes, counts, cls, (c) => { cls = c; pair = null; setParam('class', c); draw(); });
   draw();
 }

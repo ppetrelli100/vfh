@@ -168,6 +168,22 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 /* ---- playoffs ---- */
 .pitch { padding: 18px 18px 20px; margin-bottom: 8px; }
 .pitch h2 { margin: 0 0 2px; font-size: 14px; }
+.pitch-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pitch-head .seg-sm { margin-left: auto; }
+/* full bracket: three columns, each round centred between the two games that feed it */
+.bk { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; align-items: stretch; }
+.bk .col { display: flex; flex-direction: column; min-width: 0; }
+.bk .col > .grp { flex: 1; display: flex; flex-direction: column; justify-content: space-around; padding: 5px 0; position: relative; }
+.bk .col.fin > .grp { justify-content: center; }
+.bk h3 { margin: 0 0 4px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.bk .col:not(.fin) > .grp::after { content: ''; position: absolute; right: -15px; top: 25%; bottom: 25%; width: 14px; border: 2px solid var(--line); border-left: 0; border-radius: 0 6px 6px 0; }
+.bk .col:not(.fin) > .grp::before { content: ''; position: absolute; right: -28px; top: 50%; width: 14px; border-top: 2px solid var(--line); }
+.bk .tbd { color: var(--muted); font-weight: 500; }
+@media (max-width: 700px) {
+  .bk { grid-template-columns: 1fr; row-gap: 14px; }
+  .bk .col > .grp { gap: 8px; }
+  .bk .col:not(.fin) > .grp::after, .bk .col:not(.fin) > .grp::before { display: none; }
+}
 .pitch p { margin: 0 0 14px; color: var(--muted); max-width: 70ch; }
 .matchups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 860px) { .matchups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
