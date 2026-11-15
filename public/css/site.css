@@ -174,7 +174,7 @@ input.invalid, select.invalid { border-color: var(--warn); background: var(--war
 .bk { --rh: 98px; --g: 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto repeat(4, var(--rh)); gap: var(--g) 30px; }
 .bk h3 { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); align-self: end; }
 .bk .hq { grid-column: 1; grid-row: 1; } .bk .hs { grid-column: 2; grid-row: 1; } .bk .hf { grid-column: 3; grid-row: 1; }
-.bk .match { display: flex; flex-direction: column; position: relative; min-width: 0; }
+.bk .match { overflow: visible; display: flex; flex-direction: column; position: relative; min-width: 0; }
 .bk .match .side { flex: 1; font-weight: 500; }
 .bk .q { grid-column: 1; }
 .bk .q1 { grid-row: 2; } .bk .q2 { grid-row: 3; } .bk .q3 { grid-row: 4; } .bk .q4 { grid-row: 5; }
