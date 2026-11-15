@@ -3,11 +3,18 @@
  * 7 criteria (each criterion: strictly better = 1, else 0). The team with the higher
  * criteria total wins the pair (1 pt); if the totals are equal, the better points/game wins.
  * A team's pair points across the other 11 teams = its total; highest total = #1 seed.
- * Ties on total are broken by points/game. Top 8 make the playoffs: 1v8, 4v5, 3v6, 2v7.
+ * Ties on total are broken by head to head, then points/game, then in-class win %.
+ * The bracket is the first 8 teams in that order that have a .500 record overall or in class
+ * (.500 or better): 1v8, 4v5, 3v6, 2v7. Teams below .500 stay in the pool and in the comparisons but
+ * cannot take a bracket slot. opts.poolRequires500 (off for 2026) also keeps them out of the pool of 12.
  */
 (function (root) {
   'use strict';
   const E = (typeof require !== 'undefined') ? require('./engine.js') : root.FHEngine;
+
+  // .500 or better overall, or .500 or better in class. No games means no record, so it does not qualify.
+  const meets500 = (r) => (r.winPct !== null && r.winPct !== undefined && r.winPct >= 0.5) ||
+    (r.inWinPct !== null && r.inWinPct !== undefined && r.inWinPct >= 0.5);
 
   const num = (x) => (x === null || x === undefined || x === '' ? null : Number(x));
 
@@ -43,7 +50,7 @@
 
   function seed(rows, rec, games, cls, opts) {
     opts = opts || {};
-    const T = top12(rows, cls, opts.size);
+    const T = top12(opts.poolRequires500 ? rows.filter(meets500) : rows, cls, opts.size);
     const n = T.length;
     const gt = (a, b) => (a !== null && b !== null && a > b ? 1 : 0);
     const crit = ['winPct', 'spPerGame', 'inWinPct', 'gt500In', 'gt500Out', 'h2h', 'mutual'];
@@ -85,11 +92,16 @@
     // pos = place in the order shown. Teams level on pairings won and on points per game share
     // `seed` and are flagged `tie`; the bracket fills slots by place so no team drops out of it.
     table.forEach((x, i) => { x.pos = i + 1; x.tie = table.some((o) => o !== x && o.seed === x.seed); });
-    const by = (s) => (table[s - 1] || {}).name || null;
+    // Bracket seeds go to the first 8 teams, in table order, that meet the .500 test.
+    const rowOf = Object.fromEntries(rows.map((r) => [r.name, r]));
+    let q = 0;
+    table.forEach((x) => { x.eligible = meets500(rowOf[x.name]); x.bseed = x.eligible && q < 8 ? ++q : null; });
+    const cutPos = table.reduce((m, x) => (x.bseed ? x.pos : m), 0);
+    const by = (s) => (table.find((x) => x.bseed === s) || {}).name || null;
     const bracket = [[1, 8], [4, 5], [3, 6], [2, 7]].map(([a, b]) => ({ high: { seed: a, name: by(a) }, low: { seed: b, name: by(b) } }));
-    return { cls, top12: T.map((r) => r.name), crit, detail, total, finalRank, table, bracket };
+    return { cls, top12: T.map((r) => r.name), crit, detail, total, finalRank, table, bracket, cutPos };
   }
 
-  const api = { seed, top12, mutualWinPct };
+  const api = { seed, top12, mutualWinPct, meets500 };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.FHSeeding = api;
 })(typeof self !== 'undefined' ? self : this);

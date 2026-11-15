@@ -27,11 +27,12 @@ if (S) {
     <div id="out"></div>`;
 
   const TIE_TIP = 'Level with another team on pairings won, head to head, points per game and in-class win percentage';
+  const OFF_TIP = 'Needs a .500 record overall or in class to take a bracket spot';
   const tieOf = (res, name) => (res.table.find((t) => t.name === name) || {}).tie;
   // Teams level on pairings won and on points per game cannot be separated by the measures.
   const tieNote = (res) => {
     const groups = {};
-    for (const t of res.table) if (t.tie && t.pos <= 8 + 1) (groups[`${t.seed}|${t.spPerGame}`] = groups[`${t.seed}|${t.spPerGame}`] || []).push(t);
+    for (const t of res.table) if (t.tie && t.pos <= res.cutPos + 1) (groups[`${t.seed}|${t.spPerGame}`] = groups[`${t.seed}|${t.spPerGame}`] || []).push(t);
     const parts = Object.values(groups).map((g) => `${g.map((t) => esc(t.name)).join(' and ')} are level on pairings won, head to head, points per game and in-class win percentage, so their order here is provisional until the tie is broken.`);
     return parts.length ? `<br>${parts.join(' ')}` : '';
   };
@@ -59,14 +60,14 @@ if (S) {
       <h2>Seeding</h2>
       <div class="scroll"><table class="tbl c">
         <thead><tr><th>Seed</th><th class="l">School</th><th>Pairings won</th><th>Saylor points per game</th><th class="hide-sm">Saylor points per game rank</th></tr></thead>
-        <tbody>${res.table.map((t) => `<tr${t.pos === 8 ? ' class="cut"' : ''}${t.pos > 8 ? ' style="opacity:.72"' : ''}>
-          <td class="pos${t.tie ? ' tie' : ''}"${t.tie ? ` title="${TIE_TIP}"` : ''}>${t.pos}</td>
-          <td class="name"><div style="display:flex;align-items:center;gap:2px"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? '<span class="tag tie" title="${TIE_TIP}">tie</span>' : ''}</div></td>
+        <tbody>${res.table.map((t) => `<tr${t.pos === res.cutPos ? ' class="cut"' : ''}${t.pos > res.cutPos || !t.eligible ? ' style="opacity:.72"' : ''}>
+          <td class="pos${t.tie ? ' tie' : ''}"${t.tie ? ` title="${TIE_TIP}"` : ''}>${t.bseed || '&ndash;'}</td>
+          <td class="name"><div style="display:flex;align-items:center;gap:2px"><a class="tn" href="${gameUrl(t.name)}">${logo(t.name)}${nm(t.name)}</a>${t.tie ? `<span class="tag tie" title="${TIE_TIP}">tie</span>` : ''}${t.eligible ? '' : `<span class="tag off" title="${OFF_TIP}">Below .500</span>`}</div></td>
           <td class="key${t.tie ? ' tie' : ''}"${t.tie ? ` title="${TIE_TIP}"` : ''}>${t.total}<span class="rk">of ${res.top12.length - 1}</span></td>
           <td>${fmtInt(t.spPerGame)}</td>
           <td class="hide-sm">${t.spRank}</td></tr>`).join('')}</tbody>
       </table></div>
-      <p class="hint" style="margin-top:8px">Seeds 9 to 12 are shown for reference. The line marks the playoff cut.${tieNote(res)}</p>
+      <p class="hint" style="margin-top:8px">The line marks the playoff cut. Teams below it are shown for reference. A team marked Below .500 has no .500 record overall or in class, so it stays in the comparisons but cannot take a bracket spot.${tieNote(res)}</p>
 
       <h2>Pairwise comparison</h2>
       <p class="hint" style="margin-top:0">Each team is compared with every other team in the top 12. A 1 means the team in that row won the pairing against the team in that column. Select any cell to see the comparison below.</p>
@@ -78,6 +79,7 @@ if (S) {
         <summary>The seven measures</summary>
         <p>For each pairing, each team is awarded a point on every measure where its figure is strictly higher than the other team's. Win percentage, points per game, in-class win percentage and the two .500+ records compare each team's season totals. Head to head compares wins in the games the two teams played. Mutual opponents compares each team's win percentage in games against opponents both have played.</p>
         <p>The team with more measure points wins the pairing. If the measure points are equal, the team that won head to head wins it. If that is level too, the team with more Saylor points per game wins it, then the team with the higher in-class win percentage. A team's seed order follows the number of pairings it won. Teams that won the same number are separated by head to head against each other, then by Saylor points per game, then by in-class win percentage.</p>
+        <p>Bracket eligibility: the bracket is the first 8 teams in that order with a .500 record or better overall, or .500 or better in class. A team without one can still be in the top 12 and in every comparison, but it does not take a bracket spot, so the next team that qualifies moves up.</p>
       </details>`;
 
     const mx = document.getElementById('mx');
@@ -89,7 +91,7 @@ if (S) {
         const w = res.detail[i][j].win;
         const sel = pair[0] === a && pair[1] === b;
         return `<td class="${w ? 'w' : 'l'}${sel ? ' sel' : ''}" data-a="${esc(a)}" data-b="${esc(b)}" tabindex="0" role="button" aria-label="${esc(a)} against ${esc(b)}: ${w ? 'won' : 'lost'}">${w ? '1' : '&ndash;'}</td>`;
-      }).join('')}<td class="tot">${res.total[i]}</td><td class="tot">${res.table.find((t) => t.name === res.top12[i]).pos}</td></tr>`).join('')}</tbody>`;
+      }).join('')}<td class="tot">${res.total[i]}</td><td class="tot">${res.table.find((t) => t.name === res.top12[i]).bseed || '&ndash;'}</td></tr>`).join('')}</tbody>`;
     mx.querySelectorAll('td[data-a]').forEach((td) => {
       const go = () => { pair = [td.dataset.a, td.dataset.b]; draw(); };
       td.addEventListener('click', go);
@@ -147,7 +149,7 @@ if (S) {
   function drawCompare(res) {
     const [A, B] = pair;
     const iA = res.top12.indexOf(A), iB = res.top12.indexOf(B);
-    const sel = (id, v) => `<select id="${id}">${res.table.map((t) => `<option value="${esc(t.name)}"${t.name === v ? ' selected' : ''}>${t.pos}. ${esc(t.name)}</option>`).join('')}</select>`;
+    const sel = (id, v) => `<select id="${id}">${res.table.map((t) => `<option value="${esc(t.name)}"${t.name === v ? ' selected' : ''}>${t.bseed ? t.bseed + '. ' : ''}${esc(t.name)}</option>`).join('')}</select>`;
     const el = document.getElementById('cmp');
     if (iA === iB) {
       el.innerHTML = `<div class="toolbar"><label>Team<select id="ca">${res.table.map((t) => `<option${t.name === A ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></label>
