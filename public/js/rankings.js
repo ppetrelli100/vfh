@@ -115,6 +115,7 @@ if (S) {
       return `<th scope="col" class="${c.cls.replace('name', 'l')}"${sorted ? ` aria-sort="${sortDir === 'desc' ? 'descending' : 'ascending'}"` : ''}>${
         sortable ? `<button type="button" data-i="${i}">${esc(lbl(c))}</button>` : esc(lbl(c))}</th>`;
     }).join('');
+    document.getElementById('tbl').classList.toggle('divview', !!div);
     document.getElementById('tbl').innerHTML = `
       <thead><tr>${head}</tr></thead>
       <tbody>${rows.map((r) => `<tr>
