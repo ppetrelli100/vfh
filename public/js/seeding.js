@@ -27,6 +27,14 @@ if (S) {
     <div id="out"></div>`;
 
   const TIE_TIP = 'Level with another team on pairings won, head to head, points per game and in-class win percentage';
+  // Whole numbers, unless the two round alike but differ: then add decimals (up to 4) until they show it.
+  const spPair = (x, y) => {
+    if (x === null || x === undefined || y === null || y === undefined) return [fmtInt(x), fmtInt(y)];
+    let dp = 0;
+    while (dp < 4 && x !== y && x.toFixed(dp) === y.toFixed(dp)) dp++;
+    const f = (v) => v.toLocaleString('en-US', { minimumFractionDigits: dp, maximumFractionDigits: dp });
+    return [f(x), f(y)];
+  };
   const OFF_TIP = 'Needs a .500 record overall or in class to take a bracket spot';
   const tieOf = (res, name) => (res.table.find((t) => t.name === name) || {}).tie;
   // Teams level on pairings won and on points per game cannot be separated by the measures.
@@ -161,7 +169,7 @@ if (S) {
       const mo = FHSeeding.mutualWinPct(S.games, A, B);
       const val = {
         winPct: [fmtPct(rA.winPct), fmtPct(rB.winPct)],
-        spPerGame: [fmtInt(rA.spPerGame), fmtInt(rB.spPerGame)],
+        spPerGame: spPair(rA.spPerGame, rB.spPerGame),
         inWinPct: [fmtPct(rA.inWinPct), fmtPct(rB.inWinPct)],
         gt500In: [rA.gt500In, rB.gt500In],
         gt500Out: [rA.gt500Out, rB.gt500Out],
