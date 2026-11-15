@@ -60,28 +60,31 @@
       const d = {}; let sum = 0, sumC = 0;
       for (const c of crit) { d[c] = cell(i, j, c); d[c + '_opp'] = cell(j, i, c); sum += d[c]; sumC += d[c + '_opp']; }
       d.sum = sum; d.sumOpp = sumC;
-      // Level on the measures: head-to-head decides it, and if that is level too, Saylor points per game.
+      // Level on the measures: head-to-head decides it, then Saylor points per game, then in-class win percentage.
       const net = ((rec[R.name][C.name] || { w: 0 }).w) - ((rec[C.name][R.name] || { w: 0 }).w);
       d.h2hNet = net;
       if (sum !== sumC) { d.win = sum > sumC ? 1 : 0; d.by = 'measures'; }
       else if (net !== 0) { d.win = net > 0 ? 1 : 0; d.by = 'h2h'; }
       else if (R.spPerGame !== C.spPerGame) { d.win = R.spPerGame > C.spPerGame ? 1 : 0; d.by = 'sp'; }
+      else if (R.inWinPct !== C.inWinPct && R.inWinPct !== null && C.inWinPct !== null) { d.win = R.inWinPct > C.inWinPct ? 1 : 0; d.by = 'inclass'; }
       else { d.win = 0; d.by = 'none'; }
       return d;
     }));
     const total = detail.map((row) => row.reduce((s, d) => s + (d ? d.win : 0), 0));
     // Seed order: pairings won; among teams level on that, head-to-head wins against each other
-    // (just the teams in the tie), then Saylor points per game.
+    // (just the teams in the tie), then Saylor points per game, then in-class win percentage.
     const h2hAmong = T.map((R, i) => T.reduce((s, C, j) => (j !== i && total[j] === total[i]
       ? s + (((rec[R.name][C.name] || { w: 0 }).w) - ((rec[C.name][R.name] || { w: 0 }).w)) : s), 0));
     const better = (i, j) => total[i] !== total[j] ? total[i] > total[j]
-      : h2hAmong[i] !== h2hAmong[j] ? h2hAmong[i] > h2hAmong[j] : T[i].spPerGame > T[j].spPerGame;
+      : h2hAmong[i] !== h2hAmong[j] ? h2hAmong[i] > h2hAmong[j]
+      : T[i].spPerGame !== T[j].spPerGame ? T[i].spPerGame > T[j].spPerGame
+      : (T[i].inWinPct || 0) > (T[j].inWinPct || 0);
     const finalRank = T.map((_, i) => T.filter((__, j) => better(j, i)).length + 1);
     const table = T.map((r, i) => ({ name: r.name, spRank: i + 1, spPerGame: r.spPerGame, total: total[i], seed: finalRank[i] }))
       .sort((a, b) => a.seed - b.seed || a.spRank - b.spRank);
     // pos = place in the order shown. Teams level on pairings won and on points per game share
     // `seed` and are flagged `tie`; the bracket fills slots by place so no team drops out of it.
-    table.forEach((x, i) => { x.pos = i + 1; x.tie = table.some((o) => o !== x && o.seed === x.seed && o.spPerGame === x.spPerGame); });
+    table.forEach((x, i) => { x.pos = i + 1; x.tie = table.some((o) => o !== x && o.seed === x.seed); });
     const by = (s) => (table[s - 1] || {}).name || null;
     const bracket = [[1, 8], [4, 5], [3, 6], [2, 7]].map(([a, b]) => ({ high: { seed: a, name: by(a) }, low: { seed: b, name: by(b) } }));
     return { cls, top12: T.map((r) => r.name), crit, detail, total, finalRank, table, bracket };
