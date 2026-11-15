@@ -85,7 +85,7 @@ if (S) {
     // One game card. `from` are the two games that feed it, for the "Winner of 1 v 8" labels.
     const card = (m, cls2, from) => {
       const row = (x, k) => (x && x.name ? entrant(x, m, k ? m.game && m.game.bScore : m.game && m.game.aScore)
-        : from ? tbd(`Winner of ${from[k].a.seed} v ${from[k].b.seed}`)
+        : from ? tbd(typeof from[k] === 'string' ? from[k] : `Winner of ${from[k].a.seed} v ${from[k].b.seed}`)
         : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`);
       return `<div class="match ${cls2}">${row(m.a, 0)}${row(m.b, 1)}</div>`;
     };
@@ -93,7 +93,7 @@ if (S) {
         <h3 class="hq">Quarterfinals</h3><h3 class="hs">Semifinals</h3><h3 class="hf">Final</h3>
         ${pb.qf.map((m, i) => card(m, `q q${i + 1}`)).join('')}
         ${card(pb.sf[0], 's s1', [pb.qf[0], pb.qf[1]])}${card(pb.sf[1], 's s2', [pb.qf[2], pb.qf[3]])}
-        ${card(pb.f[0], 'f', [pb.sf[0], pb.sf[1]])}
+        ${card(pb.f[0], 'f', ['Winner of top semifinal', 'Winner of bottom semifinal'])}
       </div>`;
     const matchupsHtml = () => `<div class="matchups">${pb.qf.map((m) => card(m, '')).join('')}</div>`;
 
