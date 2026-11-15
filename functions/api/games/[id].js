@@ -23,11 +23,11 @@ export const onRequestPut = handle(async ({ env, request, params }) => {
   const sameSlot = body.date === before.date &&
     ((h === before.homeId && a === before.awayId) || (h === before.awayId && a === before.homeId));
   // The admin form has no division field, so an edit keeps the division the game already has.
-  const g = await validateGame(db, { ...body, gameType: before.gameType, division: body.division === undefined ? before.division : body.division, force: body.force || sameSlot }, { seasonId: before.season, selfId: before.id });
+  const g = await validateGame(db, { ...body, gameType: body.gameType || before.gameType, division: body.division === undefined ? before.division : body.division, force: body.force || sameSlot }, { seasonId: before.season, selfId: before.id });
   await db.prepare(
     `UPDATE games SET game_date = ?, home_id = ?, away_id = ?, home_score = ?, away_score = ?, status = ?, overtime = ?,
-       game_type = ?, division = ?, note = ?, updated_by = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`)
-    .bind(g.date, g.homeId, g.awayId, g.homeScore, g.awayScore, g.status, g.overtime, g.gameType, g.division, g.note, admin.email, before.id).run();
+       game_type = ?, division = ?, note = ?, so_winner = ?, updated_by = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`)
+    .bind(g.date, g.homeId, g.awayId, g.homeScore, g.awayScore, g.status, g.overtime, g.gameType, g.division, g.note, g.soWinner, admin.email, before.id).run();
   const after = await db.prepare(`${GAME_SELECT} WHERE g.id = ?`).bind(before.id).first();
   await db.prepare('INSERT INTO audit_log (game_id, action, actor, before_json, after_json) VALUES (?, ?, ?, ?, ?)')
     .bind(before.id, 'update', admin.email, JSON.stringify(before), JSON.stringify(after)).run();

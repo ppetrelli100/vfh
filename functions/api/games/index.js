@@ -14,9 +14,9 @@ export const onRequestPost = handle(async ({ env, request }) => {
 
   const g = await validateGame(db, body, { seasonId });
   const res = await db.prepare(
-    `INSERT INTO games (season_id, game_date, home_id, away_id, home_score, away_score, status, overtime, game_type, division, note, created_by, updated_by, updated_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`)
-    .bind(g.seasonId, g.date, g.homeId, g.awayId, g.homeScore, g.awayScore, g.status, g.overtime, g.gameType, g.division, g.note, admin.email, admin.email).run();
+    `INSERT INTO games (season_id, game_date, home_id, away_id, home_score, away_score, status, overtime, game_type, division, note, so_winner, created_by, updated_by, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)`)
+    .bind(g.seasonId, g.date, g.homeId, g.awayId, g.homeScore, g.awayScore, g.status, g.overtime, g.gameType, g.division, g.note, g.soWinner, admin.email, admin.email).run();
   const id = res.meta.last_row_id;
   const saved = await db.prepare(`${GAME_SELECT} WHERE g.id = ?`).bind(id).first();
   await db.prepare('INSERT INTO audit_log (game_id, action, actor, after_json) VALUES (?, ?, ?, ?)')

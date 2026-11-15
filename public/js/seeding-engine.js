@@ -105,6 +105,39 @@
     return { cls, top12: T.map((r) => r.name), crit, detail, total, finalRank, table, bracket, cutPos };
   }
 
-  const api = { seed, top12, mutualWinPct, meets500 };
+  /**
+   * The playoff bracket from locked seeds and the playoff games played so far.
+   * seeds: school names in seed order (seeds[0] is the 1 seed; missing = null). games: playoff games (any status).
+   * Quarterfinals are 1v8, 4v5, 3v6, 2v7; the 1v8 winner meets the 4v5 winner, the 3v6 winner meets the 2v7 winner.
+   * A game fills its slot when it was played between the two teams. A level score is settled by `soWinner` (shootout).
+   * Returns { qf: [4], sf: [2], f: [1] }; each match is { a, b, game, winner } where a and b are { seed, name } and
+   * winner is the winning side's name (null until decided). game: { aScore, bScore, overtime, so } from a's point of view.
+   */
+  function playoffBracket(seeds, games) {
+    const played = (games || []).filter((g) => g.status === 'final' && g.homeScore !== null && g.awayScore !== null);
+    const entrant = (seed) => ({ seed, name: (seeds && seeds[seed - 1]) || null });
+    const play = (a, b) => {
+      const out = { a, b, game: null, winner: null };
+      if (!a || !b || !a.name || !b.name) return out;
+      const g = played.filter((x) => (x.home === a.name && x.away === b.name) || (x.home === b.name && x.away === a.name))
+        .sort((x, y) => String(x.date).localeCompare(String(y.date)) || x.id - y.id).pop();
+      if (!g) return out;
+      const aHome = g.home === a.name;
+      const as = aHome ? g.homeScore : g.awayScore, bs = aHome ? g.awayScore : g.homeScore;
+      const so = as === bs;
+      const aWon = so ? (g.soWinner === (aHome ? 'home' : 'away')) : as > bs;
+      if (so && !g.soWinner) return out;   // level with no shootout winner recorded: not a valid result
+      out.game = { id: g.id, date: g.date, aScore: as, bScore: bs, overtime: g.overtime || 0, so };
+      out.winner = aWon ? a.name : b.name;
+      return out;
+    };
+    const win = (m) => (m.winner ? (m.winner === m.a.name ? m.a : m.b) : null);
+    const qf = [[1, 8], [4, 5], [3, 6], [2, 7]].map(([x, y]) => play(entrant(x), entrant(y)));
+    const sf = [play(win(qf[0]), win(qf[1])), play(win(qf[2]), win(qf[3]))];
+    const f = [play(win(sf[0]), win(sf[1]))];
+    return { qf, sf, f };
+  }
+
+  const api = { seed, top12, mutualWinPct, meets500, playoffBracket };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.FHSeeding = api;
 })(typeof self !== 'undefined' ? self : this);

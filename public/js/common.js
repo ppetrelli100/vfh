@@ -145,11 +145,15 @@ export async function boot(active, { allowEmpty = false } = {}) {
   await loadLogos();
   renderChrome(active, data, me);
   if (!data.season) {
-    if (allowEmpty) return { ...data, me, ranked: null };
+    if (allowEmpty) return { ...data, playoffGames: [], allGames: [], me, ranked: null };
     app.innerHTML = emptySeason();
     return null;
   }
-  return { ...data, me, ranked: FHEngine.rank(data.schools, data.games) };
+  // Playoff games are kept apart: they never feed the rankings, records or seeding, only the bracket and the lists.
+  const allGames = data.games;
+  const games = allGames.filter((g) => g.gameType !== 'playoff');
+  const playoffGames = allGames.filter((g) => g.gameType === 'playoff');
+  return { ...data, games, playoffGames, allGames, me, ranked: FHEngine.rank(data.schools, games) };
 }
 
 /** Segmented class picker. onPick(cls) is called on change. */

@@ -530,3 +530,9 @@ tr.nc-row .result-W, tr.nc-row .result-L, tr.nc-row .result-T { color: inherit; 
 #viewseg button:first-child { border-radius: 8px 0 0 8px; }
 #viewseg button:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }
 #viewseg button[aria-pressed="true"] { position: relative; z-index: 1; }
+
+/* playoff results on the bracket: the loser is muted, the score sits at the right edge */
+.match .side .gscore { margin-left: auto; font-variant-numeric: tabular-nums; font-weight: 600; }
+.match .side .gscore + .tag { margin-left: 6px; }
+.match .side.lost { color: var(--muted); }
+.match .side.lost .gscore { font-weight: 500; }

@@ -69,22 +69,33 @@ if (S) {
     }
     if (!pair || !res.top12.includes(pair[0]) || !res.top12.includes(pair[1])) pair = [res.table[0].name, (res.table[1] || res.table[0]).name];
 
-    // Full bracket: quarterfinals (the four pairings, in bracket order), semifinals and the final.
+    // Locked seeds (set by an administrator) replace the live ones, and playoff games fill in the bracket.
+    const lock = (S.season.bracketLock || {})[cls] || null;
+    const seedNames = lock || [];
+    if (!lock) res.table.forEach((t) => { if (t.bseed) seedNames[t.bseed - 1] = t.name; });
+    const pb = FHSeeding.playoffBracket(seedNames, lock ? S.playoffGames : []);
     const tbd = (t) => `<div class="side tbd"><span>${t}</span></div>`;
-    const bracketHtml = (r) => {
-      const lbl = (m) => `${m.high.seed} v ${m.low.seed}`;
-      const [a, b, c2, d2] = r.bracket;
-      const sf = (x, y) => `<div class="match s">${tbd(`Winner of ${lbl(x)}`)}${tbd(`Winner of ${lbl(y)}`)}</div>`;
-      return `<div class="bk">
-        <h3 class="hq">Quarterfinals</h3><h3 class="hs">Semifinals</h3><h3 class="hf">Final</h3>
-        ${r.bracket.map((m, i) => `<div class="match q q${i + 1}">${side(m.high)}${side(m.low)}</div>`).join('')}
-        ${sf(a, b).replace('match s', 'match s s1')}${sf(c2, d2).replace('match s', 'match s s2')}
-        <div class="match f">${tbd('Winner of top semifinal')}${tbd('Winner of bottom semifinal')}</div>
-      </div>`;
+    const tag = (g, won) => (!g || !won ? '' : g.so ? '<span class="tag">SO</span>' : g.overtime ? `<span class="tag">${g.overtime > 1 ? '2OT' : 'OT'}</span>` : '');
+    const entrant = (x, m, mine) => {
+      const won = m.winner === x.name, lost = m.winner && !won;
+      const tieMark = !lock && tieOf(res, x.name);
+      const sc = m.game ? `<span class="gscore">${mine}</span>${tag(m.game, won)}` : '';
+      return `<div class="side${won ? ' won' : lost ? ' lost' : ''}"><span class="seedno${tieMark ? ' tie' : ''}"${tieMark ? ` title="${TIE_TIP}"` : ''}>${x.seed}</span><span class="tn${tieMark ? ' tie' : ''}"${tieMark ? ` title="${TIE_TIP}"` : ''}>${logo(x.name, 26)}${nm(x.name)}</span>${sc}</div>`;
     };
-    const side = (x) => x.name
-      ? `<div class="side"><span class="seedno${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${x.seed}</span><span class="tn${tieOf(res, x.name) ? ' tie' : ''}"${tieOf(res, x.name) ? ` title="${TIE_TIP}"` : ''}>${logo(x.name, 26)}${nm(x.name)}</span></div>`
-      : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`;
+    // One game card. `from` are the two games that feed it, for the "Winner of 1 v 8" labels.
+    const card = (m, cls2, from) => {
+      const row = (x, k) => (x && x.name ? entrant(x, m, k ? m.game && m.game.bScore : m.game && m.game.aScore)
+        : from ? tbd(`Winner of ${from[k].a.seed} v ${from[k].b.seed}`)
+        : `<div class="side"><span class="seedno">${x.seed}</span><span>To be decided</span></div>`);
+      return `<div class="match ${cls2}">${row(m.a, 0)}${row(m.b, 1)}</div>`;
+    };
+    const bracketHtml = () => `<div class="bk">
+        <h3 class="hq">Quarterfinals</h3><h3 class="hs">Semifinals</h3><h3 class="hf">Final</h3>
+        ${pb.qf.map((m, i) => card(m, `q q${i + 1}`)).join('')}
+        ${card(pb.sf[0], 's s1', [pb.qf[0], pb.qf[1]])}${card(pb.sf[1], 's s2', [pb.qf[2], pb.qf[3]])}
+        ${card(pb.f[0], 'f', [pb.sf[0], pb.sf[1]])}
+      </div>`;
+    const matchupsHtml = () => `<div class="matchups">${pb.qf.map((m) => card(m, '')).join('')}</div>`;
 
     out.innerHTML = `
       <section class="pitch" aria-labelledby="pm">
@@ -94,8 +105,8 @@ if (S) {
             <button type="button" data-v="matchups" aria-pressed="${view === 'matchups'}">Playoff matchups</button>
             <button type="button" data-v="bracket" aria-pressed="${view === 'bracket'}">Bracket view</button></div>
         </div>
-        ${view === 'bracket' ? '' : '<p>Based on games through the latest saved score. The seeds change as results come in.</p>'}
-        ${view === 'bracket' ? bracketHtml(res) : `<div class="matchups">${res.bracket.map((m) => `<div class="match">${side(m.high)}${side(m.low)}</div>`).join('')}</div>`}
+        ${view === 'bracket' ? '' : `<p>${lock ? 'The seeds are locked. Scores of playoff games appear here as they are entered.' : 'Based on games through the latest saved score. The seeds change as results come in.'}</p>`}
+        ${view === 'bracket' ? bracketHtml() : matchupsHtml()}
       </section>
 
       <h2>Seeding</h2>

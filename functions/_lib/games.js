@@ -66,6 +66,21 @@ export async function validateGame(db, body, { seasonId, selfId = 0 }) {
     if (body.date > today) fields.date = 'This game is in the future. Scores can be entered on or after the game date.';
   }
 
+  // Playoff games must have a winner: up to two overtimes, then a shootout. A level score is only allowed when a
+  // shootout decided it, and then the winner is recorded separately.
+  const isPlayoff = body.gameType === 'playoff';
+  let overtime = status === 'final' && body.overtime ? 1 : 0, soWinner = null;
+  if (isPlayoff) {
+    if (status !== 'final') fields.status = 'A playoff game needs a final score.';
+    else if (!fields.homeScore && !fields.awayScore) {
+      overtime = Math.min(2, Math.max(0, Number(body.overtime) || 0));
+      if (homeScore === awayScore) {
+        if (body.soWinner !== 'home' && body.soWinner !== 'away') fields.soWinner = 'A playoff game cannot end level. Choose who won the shootout.';
+        else { soWinner = body.soWinner; overtime = 2; }
+      } else if (body.soWinner) fields.soWinner = 'The scores are not level, so there is no shootout.';
+    }
+  }
+
   if (Object.keys(fields).length) throw new HttpError(422, 'Fix the highlighted fields.', { fields });
 
   if (!body.force) {
@@ -83,13 +98,13 @@ export async function validateGame(db, body, { seasonId, selfId = 0 }) {
   const gameType = GAME_TYPES.includes(body.gameType) ? body.gameType : 'regular';
   return {
     seasonId, date: body.date, homeId, awayId, status, homeScore, awayScore,
-    overtime: status === 'final' && body.overtime ? 1 : 0,
+    overtime, soWinner,
     gameType, division: body.division, note: clean(body.note),
   };
 }
 
 /** Same shape the page and the ranking engine read. */
 export const GAME_SELECT = `SELECT g.id, g.season_id AS season, g.game_date AS date, g.home_id AS homeId, g.away_id AS awayId,
-  h.name AS home, a.name AS away, g.home_score AS homeScore, g.away_score AS awayScore, g.status, g.overtime,
+  h.name AS home, a.name AS away, g.home_score AS homeScore, g.away_score AS awayScore, g.status, g.overtime, g.so_winner AS soWinner,
   g.game_type AS gameType, g.division, g.note, g.updated_at AS updatedAt, g.created_at AS createdAt
   FROM games g JOIN schools h ON h.id = g.home_id JOIN schools a ON a.id = g.away_id`;

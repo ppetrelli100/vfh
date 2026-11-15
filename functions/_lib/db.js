@@ -64,6 +64,15 @@ export async function getDb(env) {
     if (!scols.some((c) => c.name === 'playoff_pool')) {
       await env.DB.prepare("ALTER TABLE seasons ADD COLUMN playoff_pool TEXT NOT NULL DEFAULT 'top12'").run();
     }
+    // Seeds saved when the committee locks the bracket (JSON: class -> school names in seed order), and the
+    // winner of a playoff game that was settled in a shootout (the score alone is level).
+    if (!scols.some((c) => c.name === 'bracket_lock')) {
+      await env.DB.prepare('ALTER TABLE seasons ADD COLUMN bracket_lock TEXT').run();
+    }
+    const gcols = (await env.DB.prepare('PRAGMA table_info(games)').all()).results;
+    if (!gcols.some((c) => c.name === 'so_winner')) {
+      await env.DB.prepare('ALTER TABLE games ADD COLUMN so_winner TEXT').run();
+    }
     schemaReady = true;
   }
   return env.DB;

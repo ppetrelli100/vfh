@@ -51,6 +51,20 @@ function main() {
         <div class="err" id="err-winner"></div>
       </div>
       <div class="checks" id="ot-wrap"><label><input type="checkbox" id="ot"> Decided in overtime</label></div>
+      <div class="checks" id="pl-wrap"><label><input type="checkbox" id="pl"> Playoff game</label></div>
+      <div id="pl-decided" hidden>
+        <div class="field"><label for="dec">How was it decided?</label>
+          <select id="dec"><option value="0">Regulation</option><option value="1">Overtime</option><option value="2">Second overtime</option><option value="so">Shootout</option></select></div>
+        <div class="field" id="so-wrap" hidden>
+          <span class="lab">Who won the shootout?</span>
+          <div class="checks">
+            <label><input type="radio" name="sowin" value="home"> <span id="so-home">Home team</span></label>
+            <label><input type="radio" name="sowin" value="away"> <span id="so-away">Away team</span></label>
+          </div>
+          <div class="hint">Enter the score after overtime (level). The shootout winner advances. Playoff games do not count in rankings or seeding.</div>
+          <div class="err" id="err-soWinner"></div>
+        </div>
+      </div>
       <div class="teams stack">
         <div class="field"><label for="division">Division</label>
           <input type="hidden" id="division" value="">
@@ -87,6 +101,10 @@ function main() {
           <button type="button" data-v="top12" aria-pressed="false">Top 12</button>
           <button type="button" data-v="all500" aria-pressed="false">All .500+ teams</button></div>
         <div class="status" id="po-pool-msg" role="status" style="margin-top:6px"></div>
+        <h3 style="margin:18px 0 4px">Lock the bracket</h3>
+        <p class="hint" style="margin:0 0 8px">When the regular season is over, lock the seeds. The Playoffs page then shows the eight seeds in each class as they are now, and they stop changing. Enter playoff games on this page with <strong>Playoff game</strong> checked; the scores appear on the bracket and the winners move on. Unlocking goes back to live seeds.</p>
+        <div class="actions"><button type="button" class="btn" id="po-lock">Lock seeds</button><button type="button" class="btn ghost" id="po-unlock">Unlock</button><span class="status" id="po-lock-msg" role="status"></span></div>
+        <div class="hint" id="po-lock-state" style="margin-top:6px"></div>
         <h3 style="margin:18px 0 4px">Exclude from playoffs</h3>
         <p class="hint" style="margin:0 0 10px">A school listed here stays in the rankings and its games still count for everyone else, but it is left out of the playoff picture for <strong>${esc(S.season.label)}</strong>. The next team in its class takes its place in the pool. Changes save right away.</p>
         <div class="teams">
@@ -193,6 +211,7 @@ function wireLog($) {
     if (e.action === 'season-delete') return `Deleted season '${x.label || x.id}' (${x.games} games)`;
     if (e.action === 'season') return `Created season '${x.label || x.id}'${x.copyFrom ? `, copied schools${x.copyGames ? ' and games' : ''} from ${sname(x.copyFrom)}` : ''}`;
     if (e.action === 'playoff-pool') return `Set the ${sname(x.season)} playoff pool to ${x.pool === 'all500' ? 'all teams with .500 or better' : 'the top 12'}`;
+    if (e.action === 'playoff-lock') return x.locked ? `Locked the ${sname(x.season)} playoff seeds` : `Unlocked the ${sname(x.season)} playoff seeds`;
     if (e.action === 'playoffs') return `${x.out ? 'Took' : 'Put'} ${x.name} ${x.out ? 'out of' : 'back in'} the ${sname(x.season)} playoffs${x.out && x.note ? ` (${x.note})` : ''}`;
     if (e.action === 'classes') return `Changed school classes in ${sname(x.season)}${Array.isArray(x.changes) ? `: ${x.changes.length} change${x.changes.length === 1 ? '' : 's'}` : ''}`;
     return e.action.replace(/[_-]/g, ' ');
@@ -288,6 +307,36 @@ function wirePlayoffs($) {
       pm.className = 'status ok'; pm.textContent = b.dataset.v === 'all500' ? 'The Playoffs page now compares all teams with .500 or better.' : 'The Playoffs page now compares the top 12 in each class.';
     } catch (e) { pm.className = 'status bad'; pm.textContent = e.message; }
   }));
+  // Lock or unlock the seeds. The seeds are worked out here, from the same data and settings the Playoffs page uses.
+  const lm = $('po-lock-msg');
+  const lockState = () => {
+    const L = S.season.bracketLock;
+    $('po-lock-state').innerHTML = L ? `Locked. ${Object.keys(L).sort().map((c) => `Class ${esc(c)}: ${L[c].filter(Boolean).length} seeds`).join('; ')}.` : 'Not locked. The Playoffs page shows live seeds.';
+    $('po-lock').disabled = false; $('po-unlock').disabled = !L;
+    $('po-lock').textContent = L ? 'Lock again with current seeds' : 'Lock seeds';
+  };
+  lockState();
+  async function putLock(locked) {
+    lm.className = 'status'; lm.textContent = 'Saving...';
+    try {
+      const r = await api(`/api/seasons/${encodeURIComponent(S.season.id)}/bracket`, { method: 'PUT', body: { locked } });
+      S.season.bracketLock = r.locked; lockState();
+      lm.className = 'status ok'; lm.textContent = r.locked ? 'Seeds locked.' : 'Seeds unlocked.';
+    } catch (e) { lm.className = 'status bad'; lm.textContent = e.message; }
+  }
+  $('po-lock').addEventListener('click', () => {
+    if (S.season.bracketLock && !window.confirm('Replace the locked seeds with the current ones?')) return;
+    const locked = {};
+    const excluded = S.schools.filter((x) => x.playoffOut).map((x) => x.name);
+    for (const c of [...new Set(S.schools.map((x) => x.cls))].sort()) {
+      const res = FHSeeding.seed(S.ranked.rows, S.ranked.rec, S.games, c, { ...(S.season.playoffPool === 'all500' ? { poolRequires500: true, size: 999 } : {}), excluded });
+      const seeds = Array(8).fill(null);
+      res.table.forEach((t) => { if (t.bseed) seeds[t.bseed - 1] = t.name; });
+      if (seeds.some(Boolean)) locked[c] = seeds;
+    }
+    putLock(locked);
+  });
+  $('po-unlock').addEventListener('click', () => { if (window.confirm('Unlock the seeds? The bracket goes back to live seeds, but saved playoff games are kept.')) putLock(null); });
   const msg = $('po-msg');
   const state = new Map(S.schools.map((x) => [x.name, { cls: x.cls, out: !!x.playoffOut, note: x.playoffNote || '' }]));
   function draw() {
@@ -398,7 +447,7 @@ function wireForm($) {
   const byId = Object.fromEntries(S.schools.map((s) => [String(s.id), s]));
   const touched = new Set();
   let editingId = null, busy = false;
-  const FIELDS = { division: 'division-btns', date: 'date', home: 'home', away: 'away', homeScore: 'hs', awayScore: 'as', winner: 'winner-wrap', status: 'status' };
+  const FIELDS = { division: 'division-btns', date: 'date', home: 'home', away: 'away', homeScore: 'hs', awayScore: 'as', winner: 'winner-wrap', status: 'status', soWinner: 'so-wrap' };
 
   $('date').value = store.get('vfh.lastDate') || localToday();
 
@@ -406,7 +455,10 @@ function wireForm($) {
     season: S.season.id, date: $('date').value, homeId: $('home').value, awayId: $('away').value,
     status: $('status').value, homeScore: $('hs').value, awayScore: $('as').value,
     winner: (form.querySelector('input[name="winner"]:checked') || {}).value || '',
-    overtime: $('ot').checked, division: $('division').value, note: $('note').value.trim(),
+    overtime: $('pl').checked ? ($('dec').value === 'so' ? 2 : Number($('dec').value)) : $('ot').checked,
+    gameType: $('pl').checked ? 'playoff' : 'regular',
+    soWinner: $('pl').checked && $('dec').value === 'so' ? ((form.querySelector('input[name="sowin"]:checked') || {}).value || '') : '',
+    division: $('division').value, note: $('note').value.trim(),
   });
 
   function validate(v) {
@@ -420,6 +472,15 @@ function wireForm($) {
       const ok = (s) => /^\d{1,2}$/.test(String(s));
       if (!ok(v.homeScore)) e.homeScore = 'Enter a score from 0 to 99.';
       if (!ok(v.awayScore)) e.awayScore = 'Enter a score from 0 to 99.';
+    }
+    if (v.gameType === 'playoff') {
+      if (v.status !== 'final') e.status = 'A playoff game needs a final score.';
+      else if (/^\d{1,2}$/.test(String(v.homeScore)) && /^\d{1,2}$/.test(String(v.awayScore))) {
+        const level = Number(v.homeScore) === Number(v.awayScore);
+        if (v.soWinner && !level) e.soWinner = 'The scores are not level, so there is no shootout.';
+        else if (v.overtime === 2 && $('dec').value === 'so' && !v.soWinner) e.soWinner = 'Choose who won the shootout.';
+        else if (level && !v.soWinner) e.soWinner = 'A playoff game cannot end level. Choose Shootout and who won it.';
+      }
     }
     if (v.status === 'forfeit' && !v.winner) e.winner = 'Choose which team won the forfeit.';
     return e;
@@ -442,7 +503,12 @@ function wireForm($) {
     if (future && ($('status').value === 'final' || $('status').value === 'forfeit')) $('status').value = 'scheduled';
     const st = $('status').value, v = read();
     $('scores').hidden = st !== 'final';
-    $('ot-wrap').hidden = st !== 'final';
+    const playoff = $('pl').checked;
+    $('ot-wrap').hidden = st !== 'final' || playoff;
+    $('pl-decided').hidden = st !== 'final' || !playoff;
+    $('so-wrap').hidden = !(playoff && $('dec').value === 'so');
+    $('so-home').textContent = byId[v.homeId] ? byId[v.homeId].name : 'Home team';
+    $('so-away').textContent = byId[v.awayId] ? byId[v.awayId].name : 'Away team';
     $('winner-wrap').hidden = st !== 'forfeit';
     $('w-home').textContent = byId[v.homeId] ? byId[v.homeId].name : 'Home team';
     $('w-away').textContent = byId[v.awayId] ? byId[v.awayId].name : 'Away team';
@@ -465,9 +531,10 @@ function wireForm($) {
 
   form.addEventListener('input', (e) => {
     hideDup();
-    const map = { date: 'date', home: 'home', away: 'away', hs: 'homeScore', as: 'awayScore', status: 'status', division: 'division' };
+    const map = { date: 'date', home: 'home', away: 'away', hs: 'homeScore', as: 'awayScore', status: 'status', division: 'division', dec: 'soWinner' };
     if (map[e.target.id]) touched.add(map[e.target.id]);
     if (e.target.name === 'winner') touched.add('winner');
+    if (e.target.name === 'sowin' || e.target.id === 'pl') touched.add('soWinner');
     if (e.target.id === 'home' && $('away').value === $('home').value) $('away').value = '';
     if (e.target.id === 'home' || e.target.id === 'away') { touched.add('home'); if ($('home').value && $('away').value) touched.add('away'); suggestDivision(); }
     syncLayout(); refreshErrors();
@@ -498,7 +565,8 @@ function wireForm($) {
   function clearForm({ keepDate = true } = {}) {
     autoDiv = true; $('div-hint').textContent = '';
     $('home').value = ''; $('away').value = ''; $('hs').value = ''; $('as').value = '';
-    $('ot').checked = false; $('note').value = ''; $('division').value = ''; $('status').value = 'final';
+    $('ot').checked = false; $('pl').checked = false; $('dec').value = '0'; form.querySelectorAll('input[name="sowin"]').forEach((x) => { x.checked = false; });
+    $('note').value = ''; $('division').value = ''; $('status').value = 'final';
     form.querySelectorAll('input[name="winner"]').forEach((r) => { r.checked = false; });
     if (!keepDate) $('date').value = localToday();
     touched.clear(); syncLayout(); show({}); hideDup();
@@ -515,13 +583,14 @@ function wireForm($) {
 
   async function refresh() {
     const data = await api(`/api/data?season=${encodeURIComponent(S.season.id)}`);
-    S.games = data.games; S.schools = data.schools;
+    S.allGames = data.games; S.games = data.games.filter((g) => g.gameType !== 'playoff'); S.playoffGames = data.games.filter((g) => g.gameType === 'playoff');
+    S.schools = data.schools; S.season = data.season;
     S.ranked = FHEngine.rank(S.schools, S.games);
     drawRecent(false);
   }
 
   async function save(force) {
-    ['date', 'home', 'away', 'homeScore', 'awayScore', 'winner', 'status', 'division'].forEach((k) => touched.add(k));
+    ['date', 'home', 'away', 'homeScore', 'awayScore', 'winner', 'status', 'division', 'soWinner'].forEach((k) => touched.add(k));
     const v = read(), errs = validate(v);
     show(errs);
     const first = Object.keys(errs)[0];
@@ -540,7 +609,7 @@ function wireForm($) {
       if (g.status === 'cancelled') text = `Saved ${g.home} vs ${g.away} on ${fmtDate(g.date)} as cancelled.`;
       else if (g.status === 'scheduled') text = `Saved ${g.home} vs ${g.away} on ${fmtDate(g.date)} as not played yet. It needs a score.`;
       else if (g.status === 'forfeit') text = `Saved: ${g.homeScore > g.awayScore ? g.home : g.away} won by forfeit on ${fmtDate(g.date)}, recorded as 1–0.`;
-      else text = `Saved: ${g.home} ${g.homeScore}, ${g.away} ${g.awayScore} on ${fmtDate(g.date)}${g.overtime ? ' (overtime)' : ''}.`;
+      else text = `Saved: ${g.home} ${g.homeScore}, ${g.away} ${g.awayScore} on ${fmtDate(g.date)}${g.soWinner ? ` (shootout: ${g.soWinner === 'home' ? g.home : g.away} advance${g.gameType === 'playoff' ? 's' : ''})` : g.overtime ? ' (overtime)' : ''}${g.gameType === 'playoff' ? ' Playoff game.' : '.'}`;
       const st = g.status === 'cancelled' || g.status === 'scheduled' ? '' : ` ${standing(g.home)}. ${standing(g.away)}.`;
       const wasEditing = !!editingId;
       endEdit(); clearForm();
@@ -556,7 +625,7 @@ function wireForm($) {
         $('dup-no').addEventListener('click', hideDup);
         say('');
       } else if (e.status === 422 && e.data && e.data.fields) {
-        const map = { home: 'home', away: 'away', date: 'date', homeScore: 'homeScore', awayScore: 'awayScore', winner: 'winner', status: 'status', division: 'division' };
+        const map = { home: 'home', away: 'away', date: 'date', homeScore: 'homeScore', awayScore: 'awayScore', winner: 'winner', status: 'status', division: 'division', soWinner: 'soWinner' };
         const errs2 = {}; Object.keys(e.data.fields).forEach((k) => { if (map[k]) { errs2[map[k]] = e.data.fields[k]; touched.add(map[k]); } });
         show(errs2); say(e.message, 'bad');
       } else if (e.status === 401) {
@@ -584,14 +653,18 @@ function wireForm($) {
   $('cancel-edit').addEventListener('click', () => { endEdit(); clearForm(); say(''); });
 
   function startEdit(id) {
-    const g = S.games.find((x) => x.id === id);
+    const g = S.allGames.find((x) => x.id === id);
     if (!g) return;
     editingId = id; clearForm(); autoDiv = false;   // an existing game keeps its own division
     $('date').value = g.date; $('home').value = String(g.homeId); $('away').value = String(g.awayId);
     const isFuture = g.date > localToday();
     $('status').value = g.status === 'scheduled' && !isFuture ? 'final' : g.status;
     $('hs').value = g.homeScore ?? ''; $('as').value = g.awayScore ?? '';
-    $('ot').checked = !!g.overtime; $('division').value = g.division || ''; $('note').value = g.note || '';
+    const po = g.gameType === 'playoff';
+    $('pl').checked = po; $('ot').checked = !po && !!g.overtime;
+    $('dec').value = g.soWinner ? 'so' : String(po ? g.overtime || 0 : 0);
+    if (g.soWinner) { const rr = form.querySelector(`input[name="sowin"][value="${g.soWinner}"]`); if (rr) rr.checked = true; }
+    $('division').value = g.division || ''; $('note').value = g.note || '';
     if (g.status === 'forfeit') {
       const r = form.querySelector(`input[name="winner"][value="${g.homeScore > g.awayScore ? 'home' : 'away'}"]`);
       if (r) r.checked = true;
@@ -612,7 +685,7 @@ function wireForm($) {
     const box = $('glist');
     const keep = box.scrollTop;
     const ft = $('f-team').value, fd = $('f-date').value, filtered = !!(ft || fd);
-    const all = S.games.slice().sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id - b.id);
+    const all = S.allGames.slice().sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.id - b.id);
     const list = all.filter((g) => (!ft || String(g.homeId) === ft || String(g.awayId) === ft) && (!fd || g.date === fd));
     $('f-reset').disabled = !filtered;
     $('f-count').textContent = filtered ? `${list.length} of ${all.length} games` : '';
@@ -621,7 +694,7 @@ function wireForm($) {
     const focusDate = past.length ? past[past.length - 1].date : (list[0] || {}).date;
     const state = (g) => g.status === 'cancelled' ? '<span class="tag off">Cancelled</span>'
       : g.status === 'scheduled' ? (g.date <= today ? '<span class="tag need">Needs score</span>' : '<span class="tag sched">Scheduled</span>')
-      : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.overtime ? '<span class="tag">OT</span>' : ''}`;
+      : `${g.homeScore}–${g.awayScore}${g.status === 'forfeit' ? '<span class="tag">Forfeit</span>' : ''}${g.gameType === 'playoff' ? '<span class="tag">Playoff</span>' : ''}${g.soWinner ? '<span class="tag">SO</span>' : g.overtime ? `<span class="tag">${g.overtime > 1 ? '2OT' : 'OT'}</span>` : ''}`;
     let marked = false;
     $('recent').innerHTML = `
       <thead><tr><th class="l">Date</th><th class="l dk">Home</th><th class="mg l">Game</th><th>Score</th><th class="l dk">Away</th><th></th></tr></thead>
@@ -669,7 +742,7 @@ function wireForm($) {
   $('f-reset').addEventListener('click', () => { $('f-team').value = ''; $('f-date').value = ''; drawRecent(); });
   syncLayout(); drawRecent();
   const want = Number(new URLSearchParams(location.search).get('game'));
-  if (want && S.games.some((g) => g.id === want)) startEdit(want);   // arrived from a game on the Games page
+  if (want && S.allGames.some((g) => g.id === want)) startEdit(want);   // arrived from a game on the Games page
 }
 
 if (S) main();

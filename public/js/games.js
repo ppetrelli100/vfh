@@ -51,7 +51,9 @@ if (S) {
     if (g.status === 'cancelled') out.push('<span class="tag off">Cancelled</span>');
     else if (g.status === 'scheduled') out.push('<span class="tag">Scheduled</span>');
     else if (g.status === 'forfeit') out.push('<span class="tag">Forfeit</span>');
-    if (g.overtime) out.push('<span class="tag">OT</span>');
+    if (g.gameType === 'playoff') out.push('<span class="tag">Playoff</span>');
+    if (g.soWinner) out.push('<span class="tag">SO</span>');
+    else if (g.overtime) out.push(`<span class="tag">${g.overtime > 1 ? '2OT' : 'OT'}</span>`);
     if (g.notCounted || (EXTRA && EXTRA.has(g))) out.push('<span class="tag off" title="Only the first two games between the same schools count">Not counted</span>');
     return out.join('');
   };
@@ -64,7 +66,7 @@ if (S) {
 
   function drawAll() {
     // Earliest first, the same order as the score sheet.
-    const list = S.games.filter((g) => (!cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls) && (!div || g.division === div));
+    const list = S.allGames.filter((g) => (!cls || byName[g.home]?.cls === cls || byName[g.away]?.cls === cls) && (!div || g.division === div));
     const playedAll = FHEngine.playedGames(S.games), lastDate = playedAll.reduce((m, g) => (g.date > m ? g.date : m), '');
     const playedN = FHEngine.playedGames(list).length;
     document.getElementById('lede').textContent = `${playedN} games played${lastDate ? ` as of ${fmtDate(lastDate)}` : ''}. ${list.length} games scheduled.`;
@@ -72,7 +74,7 @@ if (S) {
     document.getElementById('tbl').innerHTML = `
       <thead><tr><th class="l">Date</th><th style="text-align:center">Matchup</th><th class="l hide-sm">Notes</th></tr></thead>
       <tbody>${list.map((g) => {
-        const hw = hasScore(g) && g.homeScore > g.awayScore, aw = hasScore(g) && g.awayScore > g.homeScore;
+        const hw = hasScore(g) && (g.homeScore > g.awayScore || g.soWinner === 'home'), aw = hasScore(g) && (g.awayScore > g.homeScore || g.soWinner === 'away');
         const off = g.status === 'cancelled' ? ' struck' : '';
         const hs = hasScore(g) ? g.homeScore : '–', as = hasScore(g) ? g.awayScore : '–';
         // Admins can click the score area of an unplayed game to enter its score.
