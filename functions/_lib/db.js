@@ -59,6 +59,11 @@ export async function getDb(env) {
       await env.DB.prepare('ALTER TABLE season_schools ADD COLUMN playoff_out INTEGER NOT NULL DEFAULT 0').run();
       await env.DB.prepare('ALTER TABLE season_schools ADD COLUMN playoff_note TEXT').run();
     }
+    // Which teams the Playoffs page compares: 'top12' (default) or 'all500' (everyone with .500 overall or in class).
+    const scols = (await env.DB.prepare('PRAGMA table_info(seasons)').all()).results;
+    if (!scols.some((c) => c.name === 'playoff_pool')) {
+      await env.DB.prepare("ALTER TABLE seasons ADD COLUMN playoff_pool TEXT NOT NULL DEFAULT 'top12'").run();
+    }
     schemaReady = true;
   }
   return env.DB;

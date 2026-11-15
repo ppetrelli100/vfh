@@ -9,6 +9,11 @@ if (S) {
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
   let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
   let pair = null; // [teamA, teamB]
+  // The pool is a season setting that an administrator makes; everyone sees it. An administrator can preview the other
+  // one by adding ?pool=500 or ?pool=12 to the address without changing the setting.
+  const official = S.season.playoffPool === 'all500' ? 'all500' : 'top12';
+  let pool = official;
+  if (S.me && S.me.admin && ['500', '12'].includes(getParam('pool'))) pool = getParam('pool') === '500' ? 'all500' : 'top12';
 
   const CRITERIA = [
     ['winPct', 'Overall win %'],
@@ -22,7 +27,8 @@ if (S) {
 
   app.innerHTML = `
     <h1>${esc(playoffLabel(S.season))}</h1>
-    <p class="lede">The 12 teams in each class with the most Saylor points per game are compared in pairs on seven measures. The top eight seeds make the playoffs.</p>
+    <p class="lede" id="lede"></p>
+    <p class="hint" id="poolnote" style="margin-top:-6px" hidden></p>
     <div class="toolbar"><div class="seg" id="classes" role="group" aria-label="Class"></div></div>
     <div id="out"></div>`;
 
@@ -46,9 +52,16 @@ if (S) {
   };
 
   function draw() {
-    const res = FHSeeding.seed(S.ranked.rows, S.ranked.rec, S.games, cls, { excluded: S.schools.filter((s) => s.playoffOut).map((s) => s.name) });
+    const res = FHSeeding.seed(S.ranked.rows, S.ranked.rec, S.games, cls, { ...(pool === 'all500' ? { poolRequires500: true, size: 999 } : {}), excluded: S.schools.filter((s) => s.playoffOut).map((s) => s.name) });
     const outTeams = S.schools.filter((s) => s.playoffOut && s.cls === cls);
     const out = document.getElementById('out');
+    document.getElementById('lede').textContent = pool === 'all500'
+      ? 'Every team in each class with a .500 record or better overall or in class is compared in pairs on seven measures. The top eight seeds make the playoffs.'
+      : 'The 12 teams in each class with the most Saylor points per game are compared in pairs on seven measures. The top eight seeds make the playoffs.';
+    const pn = document.getElementById('poolnote');
+    pn.hidden = false;
+    pn.textContent = (pool === 'all500' ? `Pool: all teams with .500 or better overall or in class (${res.top12.length} in Class ${cls}).` : `Pool: the top 12 teams by Saylor points per game.`)
+      + (pool !== official ? ` Preview only: the setting for everyone is ${official === 'all500' ? 'all .500+ teams' : 'the top 12'}.` : '');
     if (res.top12.length < 2) {
       out.innerHTML = '<div class="scroll"><div class="empty"><strong>Not enough games yet</strong>Seeds appear once teams in this class have played.</div></div>';
       return;
@@ -80,7 +93,7 @@ if (S) {
       ${outTeams.length ? `<p class="hint" style="margin-top:4px">Not playing in the playoffs: ${outTeams.map((t) => `${esc(t.name)}${t.playoffNote ? ` (${esc(t.playoffNote)})` : ''}`).join('; ')}. ${outTeams.length === 1 ? 'It is' : 'They are'} left out of the pool, and the next team in the class takes ${outTeams.length === 1 ? 'its' : 'their'} place.</p>` : ''}
 
       <h2>Pairwise comparison</h2>
-      <p class="hint" style="margin-top:0">Each team is compared with every other team in the top 12. A 1 means the team in that row won the pairing against the team in that column. Select any cell to see the comparison below.</p>
+      <p class="hint" style="margin-top:0">Each team is compared with every other team in the pool. A 1 means the team in that row won the pairing against the team in that column. Select any cell to see the comparison below.</p>
       <div class="scroll"><table class="pw" id="mx"></table></div>
 
       <h2>Compare two teams</h2>
@@ -89,7 +102,7 @@ if (S) {
         <summary>The seven measures</summary>
         <p>For each pairing, each team is awarded a point on every measure where its figure is strictly higher than the other team's. Win percentage, points per game, in-class win percentage and the two .500+ records compare each team's season totals. Head to head compares wins in the games the two teams played. Mutual opponents compares each team's win percentage in games against opponents both have played.</p>
         <p>The team with more measure points wins the pairing. If the measure points are equal, the team that won head to head wins it. If that is level too, the team with more Saylor points per game wins it, then the team with the higher in-class win percentage. A team's seed order follows the number of pairings it won. Teams that won the same number are separated by head to head against each other, then by Saylor points per game, then by in-class win percentage.</p>
-        <p>Bracket eligibility: the bracket is the first 8 teams in that order with a .500 record or better overall, or .500 or better in class. A team without one can still be in the top 12 and in every comparison, but it does not take a bracket spot, so the next team that qualifies moves up. A team that has told the league it will not play is left out of the pool altogether, and the next team in the class by Saylor points per game takes the 12th place.</p>
+        <p>Bracket eligibility: the bracket is the first 8 teams in that order with a .500 record or better overall, or .500 or better in class. A team without one can still be in the pool and in every comparison, but it does not take a bracket spot, so the next team that qualifies moves up. A team that has told the league it will not play is left out of the pool altogether, and the next team in the class by Saylor points per game takes the 12th place.</p>
       </details>`;
 
     const mx = document.getElementById('mx');

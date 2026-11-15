@@ -7,7 +7,7 @@ import { GAME_SELECT } from '../_lib/games.js';
 
 export const onRequestGet = handle(async ({ env, request }) => {
   const db = await getDb(env);
-  const seasons = (await db.prepare('SELECT id, label, is_current AS isCurrent FROM seasons ORDER BY id DESC').all()).results;
+  const seasons = (await db.prepare('SELECT id, label, is_current AS isCurrent, playoff_pool AS playoffPool FROM seasons ORDER BY id DESC').all()).results;
   if (!seasons.length) return json({ seasons: [], season: null, schools: [], games: [] });
 
   const wanted = new URL(request.url).searchParams.get('season');

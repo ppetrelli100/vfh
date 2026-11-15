@@ -79,9 +79,16 @@ function main() {
     <div class="scroll games-list" id="glist"><table class="tbl" id="recent"></table></div>` : ''}
 
     ${hasSeason ? `<details class="tools" id="po-wrap">
-      <summary>Exclude from playoffs</summary>
+      <summary>Playoff settings</summary>
       <div class="panel">
-        <p class="hint" style="margin:0 0 10px">A school listed here stays in the rankings and its games still count for everyone else, but it is left out of the playoff picture for <strong>${esc(S.season.label)}</strong>. The next team in its class takes its place in the pool of 12. Changes save right away.</p>
+        <h3 style="margin:0 0 4px">Teams compared</h3>
+        <p class="hint" style="margin:0 0 8px">Sets what everyone sees on the Playoffs page for <strong>${esc(S.season.label)}</strong>. Top 12 compares the 12 teams in each class with the most Saylor points per game. All .500+ teams compares every team with a .500 record overall or in class, which gets long early in the season. Saves right away.</p>
+        <div class="seg" id="po-pool" role="group" aria-label="Teams compared">
+          <button type="button" data-v="top12" aria-pressed="false">Top 12</button>
+          <button type="button" data-v="all500" aria-pressed="false">All .500+ teams</button></div>
+        <div class="status" id="po-pool-msg" role="status" style="margin-top:6px"></div>
+        <h3 style="margin:18px 0 4px">Exclude from playoffs</h3>
+        <p class="hint" style="margin:0 0 10px">A school listed here stays in the rankings and its games still count for everyone else, but it is left out of the playoff picture for <strong>${esc(S.season.label)}</strong>. The next team in its class takes its place in the pool. Changes save right away.</p>
         <div class="teams">
           <div class="field"><label for="po-school">School</label><select id="po-school"></select></div>
           <div class="field"><label for="po-note">Reason (optional)</label><input type="text" id="po-note" maxlength="120" placeholder="For example, injuries"></div>
@@ -185,6 +192,7 @@ function wireLog($) {
     if (e.action === 'import') return `Imported season ${sname(x.season)} from spreadsheet: ${x.games} games, ${x.schools} schools${x.replace ? ' (replaced the existing games)' : ''}`;
     if (e.action === 'season-delete') return `Deleted season '${x.label || x.id}' (${x.games} games)`;
     if (e.action === 'season') return `Created season '${x.label || x.id}'${x.copyFrom ? `, copied schools${x.copyGames ? ' and games' : ''} from ${sname(x.copyFrom)}` : ''}`;
+    if (e.action === 'playoff-pool') return `Set the ${sname(x.season)} playoff pool to ${x.pool === 'all500' ? 'all teams with .500 or better' : 'the top 12'}`;
     if (e.action === 'playoffs') return `${x.out ? 'Took' : 'Put'} ${x.name} ${x.out ? 'out of' : 'back in'} the ${sname(x.season)} playoffs${x.out && x.note ? ` (${x.note})` : ''}`;
     if (e.action === 'classes') return `Changed school classes in ${sname(x.season)}${Array.isArray(x.changes) ? `: ${x.changes.length} change${x.changes.length === 1 ? '' : 's'}` : ''}`;
     return e.action.replace(/[_-]/g, ' ');
@@ -269,6 +277,17 @@ function wireTools($) {
 // Schools-and-classes editor: edit classes in a table, or paste a list, then save in one go.
 function wirePlayoffs($) {
   const tbl = $('po-tbl'); if (!tbl) return;
+  const pm = $('po-pool-msg');
+  const showPool = (v) => document.querySelectorAll('#po-pool button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+  showPool(S.season.playoffPool === 'all500' ? 'all500' : 'top12');
+  document.querySelectorAll('#po-pool button').forEach((b) => b.addEventListener('click', async () => {
+    pm.className = 'status'; pm.textContent = 'Saving...';
+    try {
+      await api(`/api/seasons/${encodeURIComponent(S.season.id)}/pool`, { method: 'PUT', body: { pool: b.dataset.v } });
+      S.season.playoffPool = b.dataset.v; showPool(b.dataset.v);
+      pm.className = 'status ok'; pm.textContent = b.dataset.v === 'all500' ? 'The Playoffs page now compares all teams with .500 or better.' : 'The Playoffs page now compares the top 12 in each class.';
+    } catch (e) { pm.className = 'status bad'; pm.textContent = e.message; }
+  }));
   const msg = $('po-msg');
   const state = new Map(S.schools.map((x) => [x.name, { cls: x.cls, out: !!x.playoffOut, note: x.playoffNote || '' }]));
   function draw() {
