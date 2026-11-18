@@ -538,3 +538,8 @@ tr.nc-row .result-W, tr.nc-row .result-L, tr.nc-row .result-T { color: inherit; 
 .match .side.lost .gscore { font-weight: 500; }
 #pl-wrap.off { opacity: .55; }
 #pl-wrap.off label { cursor: not-allowed; }
+
+/* two-way switches in admin settings: one joined pill, the chosen side filled */
+#po-lock, #po-pool { display: inline-flex; gap: 0; padding: 3px; background: #eef0f3; border: 1px solid var(--field); border-radius: 12px; }
+#po-lock button, #po-pool button { border: 0; background: transparent; box-shadow: none; border-radius: 9px; min-width: 112px; color: var(--data); font-weight: 500; }
+#po-lock button[aria-pressed="true"], #po-pool button[aria-pressed="true"] { background: var(--accent); color: #fff; font-weight: 600; box-shadow: 0 1px 2px rgba(16, 24, 40, .25); }
