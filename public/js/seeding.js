@@ -9,7 +9,9 @@ if (S) {
   const counts = Object.fromEntries(classes.map((c) => [c, S.schools.filter((s) => s.cls === c).length]));
   let cls = classes.includes(getParam('class')) ? getParam('class') : classes[0];
   let pair = null; // [teamA, teamB]
-  let view = getParam('view') === 'bracket' ? 'bracket' : 'matchups'; // matchups card: first-round pairings, or the full bracket
+  const seedsLocked = !!(S.season.bracketLock && Object.keys(S.season.bracketLock).length);
+  // Once the seeds are locked the bracket is the first thing people see; the address (?view=matchups) or the toggle can still pick the other view.
+  let view = getParam('view') === 'matchups' ? 'matchups' : getParam('view') === 'bracket' || seedsLocked ? 'bracket' : 'matchups'; // matchups card: first-round pairings, or the full bracket
   // The pool is a season setting that an administrator makes; everyone sees it. An administrator can preview the other
   // one by adding ?pool=500 or ?pool=12 to the address without changing the setting.
   const official = S.season.playoffPool === 'all500' ? 'all500' : 'top12';
@@ -246,7 +248,7 @@ if (S) {
 
   document.addEventListener('click', (e) => {
     const b = e.target.closest('#viewseg button'); if (!b) return;
-    view = b.dataset.v; setParam('view', view === 'bracket' ? 'bracket' : ''); draw();
+    view = b.dataset.v; setParam('view', view); draw();
   });
   classPicker(document.getElementById('classes'), classes, counts, cls, (c) => { cls = c; pair = null; setParam('class', c); draw(); });
   draw();
