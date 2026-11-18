@@ -103,7 +103,10 @@ function main() {
         <div class="status" id="po-pool-msg" role="status" style="margin-top:6px"></div>
         <h3 style="margin:18px 0 4px">Lock the bracket</h3>
         <p class="hint" style="margin:0 0 8px">When the regular season is over, lock the seeds. The Playoffs page then shows the eight seeds in each class as they are now, and they stop changing. Enter playoff games on this page with <strong>Playoff game</strong> checked; the scores appear on the bracket and the winners move on. Unlocking goes back to live seeds.</p>
-        <div class="actions"><button type="button" class="btn" id="po-lock">Lock seeds</button><button type="button" class="btn ghost" id="po-unlock">Unlock</button><span class="status" id="po-lock-msg" role="status"></span></div>
+        <div class="seg" id="po-lock" role="group" aria-label="Seeds">
+          <button type="button" data-v="off" aria-pressed="true">Unlocked</button>
+          <button type="button" data-v="on" aria-pressed="false">Locked</button></div>
+        <div class="status" id="po-lock-msg" role="status" style="margin-top:6px"></div>
         <div class="hint" id="po-lock-state" style="margin-top:6px"></div>
         <h3 style="margin:18px 0 4px">Exclude from playoffs</h3>
         <p class="hint" style="margin:0 0 10px">A school listed here stays in the rankings and its games still count for everyone else, but it is left out of the playoff picture for <strong>${esc(S.season.label)}</strong>. The next team in its class takes its place in the pool. Changes save right away.</p>
@@ -311,21 +314,27 @@ function wirePlayoffs($) {
   const lm = $('po-lock-msg');
   const lockState = () => {
     const L = S.season.bracketLock;
-    $('po-lock-state').innerHTML = L ? `Locked. ${Object.keys(L).sort().map((c) => `Class ${esc(c)}: ${L[c].filter(Boolean).length} seeds`).join('; ')}.` : 'Not locked. The Playoffs page shows live seeds.';
-    $('po-lock').disabled = false; $('po-unlock').disabled = !L;
-    $('po-lock').textContent = L ? 'Lock again with current seeds' : 'Lock seeds';
+    document.querySelectorAll('#po-lock button').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.v === 'on') === !!L)));
+    $('po-lock-state').innerHTML = L ? `Locked. ${Object.keys(L).sort().map((c) => `Class ${esc(c)}: ${L[c].filter(Boolean).length} seeds`).join('; ')}. The Playoffs page shows these seeds.` : 'Not locked. The Playoffs page shows live seeds.';
+    document.getElementById('pl')?.dispatchEvent(new Event('input', { bubbles: true }));
   };
   lockState();
+  // Save, then read the season back from the server and show what it really holds, so the page never claims a lock it does not have.
   async function putLock(locked) {
     lm.className = 'status'; lm.textContent = 'Saving...';
     try {
-      const r = await api(`/api/seasons/${encodeURIComponent(S.season.id)}/bracket`, { method: 'PUT', body: { locked } });
-      S.season.bracketLock = r.locked; lockState(); document.getElementById('pl').dispatchEvent(new Event('input', { bubbles: true }));
-      lm.className = 'status ok'; lm.textContent = r.locked ? 'Seeds locked.' : 'Seeds unlocked.';
+      await api(`/api/seasons/${encodeURIComponent(S.season.id)}/bracket`, { method: 'PUT', body: { locked } });
+      const data = await api(`/api/data?season=${encodeURIComponent(S.season.id)}&v=${Date.now()}`);
+      S.season.bracketLock = data.season.bracketLock || null; lockState();
+      const ok = !!S.season.bracketLock === !!locked;
+      lm.className = `status ${ok ? 'ok' : 'bad'}`;
+      lm.textContent = ok ? (locked ? 'Seeds locked.' : 'Seeds unlocked.') : `The server did not keep that change: it still shows the seeds as ${S.season.bracketLock ? 'locked' : 'unlocked'}. Reload the page and try again.`;
     } catch (e) { lm.className = 'status bad'; lm.textContent = e.message; }
   }
-  $('po-lock').addEventListener('click', () => {
-    if (S.season.bracketLock && !window.confirm('Replace the locked seeds with the current ones?')) return;
+  document.querySelectorAll('#po-lock button').forEach((b) => b.addEventListener('click', () => {
+    const on = b.dataset.v === 'on';
+    if (on === !!S.season.bracketLock) return;
+    if (!on) { if (window.confirm('Unlock the seeds? The bracket goes back to live seeds, but saved playoff games are kept.')) putLock(null); return; }
     const locked = {};
     const excluded = S.schools.filter((x) => x.playoffOut).map((x) => x.name);
     for (const c of [...new Set(S.schools.map((x) => x.cls))].sort()) {
@@ -335,8 +344,7 @@ function wirePlayoffs($) {
       if (seeds.some(Boolean)) locked[c] = seeds;
     }
     putLock(locked);
-  });
-  $('po-unlock').addEventListener('click', () => { if (window.confirm('Unlock the seeds? The bracket goes back to live seeds, but saved playoff games are kept.')) putLock(null); });
+  }));
   const msg = $('po-msg');
   const state = new Map(S.schools.map((x) => [x.name, { cls: x.cls, out: !!x.playoffOut, note: x.playoffNote || '' }]));
   function draw() {
